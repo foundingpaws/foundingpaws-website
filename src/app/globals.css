@@ -1,26 +1,226 @@
 @import "tailwindcss";
 
+/*
+  Global brand tokens — Founding Paws
+  Colors from brand guide:
+  - Racing Green: #004225
+  - Cream Beige: #F5EFE7
+  - Copper Accent: #B46A34
+  - Charcoal Ink: #2A2E2F
+  - Warm Taupe: #8E7F74
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --fp-green: #004225;
+  --fp-cream: #F5EFE7;
+  --fp-copper: #B46A34;
+  --fp-charcoal: #2A2E2F;
+  --fp-taupe: #8E7F74;
+
+  /* Semantic surfaces */
+  --background: var(--fp-cream);
+  --foreground: var(--fp-charcoal);
+
+  /* Typography variables hooked from next/font in layout */
+  --font-display: var(--font-display-fallback);
+  --font-sans: var(--font-sans-fallback);
+  --font-round: var(--font-round-fallback);
 }
 
+/* Tailwind v4 theming via @theme inline */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-green: var(--fp-green);
+  --color-cream: var(--fp-cream);
+  --color-copper: var(--fp-copper);
+  --color-charcoal: var(--fp-charcoal);
+  --color-taupe: var(--fp-taupe);
+
+  --radius-pill: 9999px;
+  --radius-card: 24px;
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-round: var(--font-round);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--fp-green);
+    --foreground: var(--fp-cream);
   }
 }
 
+/* Base */
+html, body {
+  height: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--fp-cream);
+  color: var(--fp-green);
+  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto,
+    Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Premium utilities */
+.use-retrips { font-family: "Retrips", var(--font-display), serif; }
+.use-fredoka { font-family: var(--font-round), system-ui, sans-serif; }
+
+.container-wide {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.pill {
+  border-radius: var(--radius-pill);
+}
+
+.card-elevated {
+  border-radius: var(--radius-card);
+  border: 1px solid color-mix(in oklab, var(--fp-taupe) 20%, transparent);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--fp-taupe) 10%, transparent),
+    0 12px 32px -16px color-mix(in oklab, var(--fp-taupe) 25%, transparent);
+}
+
+.brand-divider {
+  height: 1px;
+  background: color-mix(in oklab, var(--fp-green) 30%, transparent);
+}
+
+.paw-bullet {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--fp-copper);
+  margin-bottom: 2px;
+}
+
+/* Watermark helper using cream paw asset when present */
+.watermark-paw {
+  position: relative;
+}
+.watermark-paw::after {
+  content: "";
+  position: absolute;
+  inset: auto -40px -80px auto;
+  width: 220px;
+  height: 220px;
+  background-image: url('/brand/paw-cream.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* Local brand font: Retrips (provide files under /public/brand/fonts/) */
+@font-face {
+  font-family: "Retrips";
+  src: url('/brand/fonts/Retrips-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Hero depth styling */
+.hero-depth {
+  position: relative;
+}
+.hero-depth::before {
+  /* Copper spotlight behind image for depth */
+  content: "";
+  position: absolute;
+  right: -80px;
+  bottom: -80px;
+  width: 720px;
+  height: 720px;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--fp-copper) 55%, transparent), transparent 70%);
+  filter: blur(8px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.img-depth {
+  filter: drop-shadow(0 28px 60px rgba(0, 66, 37, 0.45)) drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+  will-change: transform, filter;
+}
+
+/* Optional: soft cutout mask for hero images (interim) */
+.mask-oval {
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 38%, #000 80%, transparent 100%);
+  mask-image: radial-gradient(120% 100% at 50% 38%, #000 80%, transparent 100%);
+}
+
+/* Premium Micro-Interactions & Hover States */
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px -16px color-mix(in oklab, var(--fp-green) 40%, transparent);
+}
+
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+.hover-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--fp-copper), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.hover-glow:hover::after {
+  opacity: 0.15;
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--fp-copper) 20%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--fp-copper);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
