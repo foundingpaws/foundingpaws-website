@@ -72,7 +72,11 @@ export async function POST(request: NextRequest) {
         results.push({ email: subscriber.email, success: true });
       } catch (error) {
         console.error(`Failed to send to ${subscriber.email}:`, error);
-        results.push({ email: subscriber.email, success: false, error: error.message });
+        results.push({ 
+          email: subscriber.email, 
+          success: false, 
+          error: error instanceof Error ? error.message : 'Unknown error' 
+        });
       }
     }
 
