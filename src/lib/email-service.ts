@@ -11,7 +11,7 @@ import { RESEND_API_KEY } from './supabase';
 const resend = new Resend(RESEND_API_KEY);
 
 // Email configuration
-const FROM_EMAIL = 'onboarding@resend.dev';
+const FROM_EMAIL = 'noreply@foundingpaws.de'; // Now using verified domain
 const REPLY_TO = 'foundingpaws@gmail.com';
 
 // Email service class
@@ -19,76 +19,76 @@ export class EmailService {
   // Send welcome email to new subscribers
   static async sendWelcomeEmail(email: string, name?: string) {
     try {
-    const { data, error } = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: [email],
-      replyTo: REPLY_TO,
-      subject: '🎉 Willkommen bei Founding Paws!',
-      html: `
-        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #2d5a27; background-color: #f8f6f0; margin: 0; padding: 0;">
-          <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
-            <div style="background: linear-gradient(135deg, #2d5a27 0%, #1e3d1a 100%); padding: 40px 30px; text-align: center; color: #ffffff;">
-              <div style="font-size: 28px; font-weight: bold; margin-bottom: 10px; color: #ffffff;">🐾 Founding Paws</div>
-              <p style="font-size: 14px; opacity: 0.9; margin: 0;">Wissenschaft trifft Herz</p>
-            </div>
-            
-            <div style="padding: 40px 30px;">
-              <h1 style="color: #2d5a27; margin-top: 0; font-size: 32px;">Willkommen in der Founding Paws Familie! 🎉</h1>
-              
-              <p>Hallo ${name || 'Liebe/r Hundefreund/in'},</p>
-              
-              <p>herzlich willkommen bei Founding Paws! Wir freuen uns riesig, dass du Teil unserer Mission geworden bist, Hunden ein gesünderes und glücklicheres Leben zu ermöglichen.</p>
-              
-              <div style="background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%); border-left: 4px solid #b46a34; padding: 20px; margin: 20px 0; border-radius: 8px;">
-                <h3 style="color: #2d5a27; margin-top: 0;">Was dich erwartet:</h3>
-                <ul style="margin: 10px 0; padding-left: 20px;">
-                  <li>📚 <strong>Exklusive Tipps</strong> zur Hundegesundheit von Experten</li>
-                  <li>🔬 <strong>Wissenschaftliche Erkenntnisse</strong> aus der Veterinärmedizin</li>
-                  <li>🎁 <strong>Früher Zugang</strong> zu neuen Produkten und Angeboten</li>
-                  <li>💝 <strong>Spezielle Rabatte</strong> nur für Newsletter-Abonnenten</li>
-                </ul>
+      const { data, error } = await resend.emails.send({
+        from: FROM_EMAIL,
+        to: [email],
+        replyTo: REPLY_TO,
+        subject: '🎉 Willkommen bei Founding Paws!',
+        html: `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #2d5a27; background-color: #f8f6f0; margin: 0; padding: 0;">
+            <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+              <div style="background: linear-gradient(135deg, #2d5a27 0%, #1e3d1a 100%); padding: 40px 30px; text-align: center; color: #ffffff;">
+                <div style="font-size: 28px; font-weight: bold; margin-bottom: 10px; color: #ffffff;">🐾 Founding Paws</div>
+                <p style="font-size: 14px; opacity: 0.9; margin: 0;">Wissenschaft trifft Herz</p>
               </div>
               
-              <p>Unsere Supplements werden von Tierärzten entwickelt und basieren auf neuesten wissenschaftlichen Erkenntnissen. Jede Zutat ist sorgfältig ausgewählt, um deinem Hund optimal zu helfen.</p>
-              
-              <div style="text-align: center; margin: 30px 0;">
-                <a href="https://foundingpaws.de/produkte" style="display: inline-block; background: linear-gradient(135deg, #b46a34 0%, #9d5a2a 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 50px; font-weight: bold; font-size: 16px; margin: 20px 0; box-shadow: 0 4px 15px rgba(180, 106, 52, 0.3);">
-                  Entdecke unsere Produkte
-                </a>
+              <div style="padding: 40px 30px;">
+                <h1 style="color: #2d5a27; margin-top: 0; font-size: 32px;">Willkommen in der Founding Paws Familie! 🎉</h1>
+                
+                <p>Hallo ${name || 'Liebe/r Hundefreund/in'},</p>
+                
+                <p>herzlich willkommen bei Founding Paws! Wir freuen uns riesig, dass du Teil unserer Mission geworden bist, Hunden ein gesünderes und glücklicheres Leben zu ermöglichen.</p>
+                
+                <div style="background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%); border-left: 4px solid #b46a34; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                  <h3 style="color: #2d5a27; margin-top: 0;">Was dich erwartet:</h3>
+                  <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>📚 <strong>Exklusive Tipps</strong> zur Hundegesundheit von Experten</li>
+                    <li>🔬 <strong>Wissenschaftliche Erkenntnisse</strong> aus der Veterinärmedizin</li>
+                    <li>🎁 <strong>Früher Zugang</strong> zu neuen Produkten und Angeboten</li>
+                    <li>💝 <strong>Spezielle Rabatte</strong> nur für Newsletter-Abonnenten</li>
+                  </ul>
+                </div>
+                
+                <p>Unsere Supplements werden von Tierärzten entwickelt und basieren auf neuesten wissenschaftlichen Erkenntnissen. Jede Zutat ist sorgfältig ausgewählt, um deinem Hund optimal zu helfen.</p>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                  <a href="https://foundingpaws.de/produkte" style="display: inline-block; background: linear-gradient(135deg, #b46a34 0%, #9d5a2a 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 50px; font-weight: bold; font-size: 16px; margin: 20px 0; box-shadow: 0 4px 15px rgba(180, 106, 52, 0.3);">
+                    Entdecke unsere Produkte
+                  </a>
+                </div>
+                
+                <div style="height: 2px; background: linear-gradient(90deg, #b46a34, #2d5a27); margin: 30px 0; border-radius: 1px;"></div>
+                
+                <p><strong>Dein nächster Schritt:</strong> Folge uns auf Instagram für tägliche Tipps und schaue dir unseren Ratgeber an, wo du alles über Hundegesundheit erfährst.</p>
+                
+                <p>Bei Fragen stehen wir dir jederzeit zur Verfügung!</p>
+                
+                <p>Herzliche Grüße,<br/>
+                <strong>Das Founding Paws Team</strong><br/>
+                <em>Nala, Jackson, Alica & Nick</em></p>
               </div>
               
-              <div style="height: 2px; background: linear-gradient(90deg, #b46a34, #2d5a27); margin: 30px 0; border-radius: 1px;"></div>
-              
-              <p><strong>Dein nächster Schritt:</strong> Folge uns auf Instagram für tägliche Tipps und schaue dir unseren Ratgeber an, wo du alles über Hundegesundheit erfährst.</p>
-              
-              <p>Bei Fragen stehen wir dir jederzeit zur Verfügung!</p>
-              
-              <p>Herzliche Grüße,<br/>
-              <strong>Das Founding Paws Team</strong><br/>
-              <em>Nala, Jackson, Alica & Nick</em></p>
-            </div>
-            
-            <div style="background-color: #f8f6f0; padding: 30px; text-align: center; border-top: 1px solid #e5e5e5;">
-              <div style="margin: 20px 0;">
-                <a href="https://www.instagram.com/foundingpaws" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">Instagram</a>
-                <a href="https://www.linkedin.com/company/founding-paws" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">LinkedIn</a>
-                <a href="https://www.tiktok.com/@foundingpaws1" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">TikTok</a>
+              <div style="background-color: #f8f6f0; padding: 30px; text-align: center; border-top: 1px solid #e5e5e5;">
+                <div style="margin: 20px 0;">
+                  <a href="https://www.instagram.com/foundingpaws" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">Instagram</a>
+                  <a href="https://www.linkedin.com/company/founding-paws" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">LinkedIn</a>
+                  <a href="https://www.tiktok.com/@foundingpaws1" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">TikTok</a>
+                </div>
+                <p style="font-size: 12px; color: #666666; margin: 0;">
+                  Founding Paws • Eppendorfer Weg, Hamburg<br/>
+                  <a href="mailto:foundingpaws@gmail.com" style="color: #b46a34;">foundingpaws@gmail.com</a><br/>
+                  <a href="https://foundingpaws.de/datenschutz" style="color: #666666;">Datenschutz</a> • 
+                  <a href="https://foundingpaws.de/agb" style="color: #666666;">AGB</a> • 
+                  <a href="https://foundingpaws.de/abmelden" style="color: #666666;">Abmelden</a>
+                </p>
               </div>
-              <p style="font-size: 12px; color: #666666; margin: 0;">
-                Founding Paws • Eppendorfer Weg, Hamburg<br/>
-                <a href="mailto:foundingpaws@gmail.com" style="color: #b46a34;">foundingpaws@gmail.com</a><br/>
-                <a href="https://foundingpaws.de/datenschutz" style="color: #666666;">Datenschutz</a> • 
-                <a href="https://foundingpaws.de/agb" style="color: #666666;">AGB</a> • 
-                <a href="https://foundingpaws.de/abmelden" style="color: #666666;">Abmelden</a>
-              </p>
             </div>
           </div>
-        </div>
-      `,
-      headers: {
-        'X-Entity-Ref-ID': `welcome-${Date.now()}`,
-      },
-    });
+        `,
+        headers: {
+          'X-Entity-Ref-ID': `welcome-${Date.now()}`,
+        },
+      });
 
       if (error) {
         console.error('Welcome email error:', error);

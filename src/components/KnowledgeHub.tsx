@@ -58,8 +58,7 @@ export default function KnowledgeHub() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {articles.map((article, idx) => (
             <ScrollAnimation key={article.id} animation="slide-up" delay={idx * 100}>
-              <a href={article.href} className="block">
-                <article className="group wv-card-minimal hover-lift-minimal p-6 cursor-pointer">
+              <article className="group wv-card-minimal hover-lift-minimal p-6 cursor-pointer">
                 {/* Category Badge */}
                 <div className="pill bg-green/10 border border-green/20 text-green wv-caption px-3 py-1 font-medium wv-spacing-sm inline-block">
                   {article.category}
@@ -84,7 +83,6 @@ export default function KnowledgeHub() {
                   </a>
                 </div>
               </article>
-              </a>
             </ScrollAnimation>
           ))}
         </div>

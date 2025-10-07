@@ -1,6 +1,7 @@
--- Newsletter Subscribers Table
--- Run this in your Supabase SQL Editor
+-- Newsletter Subscribers Table Setup
+-- Execute this in your Supabase SQL Editor
 
+-- Create the newsletter_subscribers table
 CREATE TABLE IF NOT EXISTS newsletter_subscribers (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
@@ -16,7 +17,7 @@ CREATE TABLE IF NOT EXISTS newsletter_subscribers (
   metadata JSONB DEFAULT '{}'::jsonb
 );
 
--- Create index for faster queries
+-- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_email ON newsletter_subscribers(email);
 CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_status ON newsletter_subscribers(status);
 CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_created_at ON newsletter_subscribers(created_at);
@@ -55,12 +56,13 @@ END;
 $$ language 'plpgsql';
 
 -- Create trigger to automatically update updated_at
+DROP TRIGGER IF EXISTS update_newsletter_subscribers_updated_at ON newsletter_subscribers;
 CREATE TRIGGER update_newsletter_subscribers_updated_at 
     BEFORE UPDATE ON newsletter_subscribers 
     FOR EACH ROW 
     EXECUTE FUNCTION update_updated_at_column();
 
 -- Insert some sample data (optional)
--- INSERT INTO newsletter_subscribers (email, source) VALUES 
--- ('test@example.com', 'website'),
--- ('demo@foundingpaws.de', 'popup');
+-- INSERT INTO newsletter_subscribers (email, name, source) VALUES 
+-- ('test@foundingpaws.de', 'Test User', 'website'),
+-- ('demo@foundingpaws.de', 'Demo User', 'popup');

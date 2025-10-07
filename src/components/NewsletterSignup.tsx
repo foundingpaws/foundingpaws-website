@@ -1,125 +1,206 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { motion } from 'framer-motion';
 
 interface NewsletterSignupProps {
   className?: string;
-  variant?: 'default' | 'inline' | 'popup';
-  showSuccessMessage?: boolean;
+  variant?: 'default' | 'minimal' | 'popup';
 }
 
 export default function NewsletterSignup({ 
   className = '', 
-  variant = 'default',
-  showSuccessMessage = true 
+  variant = 'default' 
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [name, setName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    setErrorMessage('');
-    
+    setIsLoading(true);
+    setMessage('');
+
     try {
-      const response = await fetch('/api/newsletter', {
+      const response = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: email.toLowerCase().trim(),
-          source: 'website'
+        body: JSON.stringify({ 
+          email: email.trim(), 
+          name: name.trim() || null 
         }),
       });
 
-      const result = await response.json();
+      const data = await response.json();
 
-      if (result.success) {
-        setStatus('success');
+      if (data.success) {
+        setIsSuccess(true);
+        setMessage('Erfolgreich angemeldet! Willkommen in der Founding Paws Familie! 🎉');
         setEmail('');
-        
-        // Reset success message after 3 seconds
-        if (showSuccessMessage) {
-          setTimeout(() => setStatus('idle'), 3000);
-        }
+        setName('');
       } else {
-        setErrorMessage(result.error || 'Fehler beim Anmelden. Bitte versuche es erneut.');
-        setStatus('error');
+        setMessage(data.error || 'Ein Fehler ist aufgetreten.');
       }
     } catch (error) {
-      setErrorMessage('Ein unerwarteter Fehler ist aufgetreten.');
-      setStatus('error');
+      setMessage('Ein Fehler ist aufgetreten. Bitte versuche es später erneut.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const getVariantClasses = () => {
-    switch (variant) {
-      case 'inline':
-        return 'flex flex-col sm:flex-row gap-4';
-      case 'popup':
-        return 'space-y-4';
-      default:
-        return 'space-y-4';
-    }
-  };
+  if (variant === 'minimal') {
+    return (
+      <form onSubmit={handleSubmit} className={`flex gap-2 ${className}`}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Deine E-Mail-Adresse"
+          required
+          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+        />
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+        >
+          {isLoading ? '...' : 'Anmelden'}
+        </button>
+        {message && (
+          <div className={`text-sm ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
+            {message}
+          </div>
+        )}
+      </form>
+    );
+  }
 
-  const getInputClasses = () => {
-    const baseClasses = "w-full px-6 py-4 rounded-2xl border-2 border-green/20 focus:border-copper focus:outline-none text-green placeholder-green/60 text-lg bg-white shadow-lg transition-all duration-300 min-h-[48px]";
-    return baseClasses;
-  };
+  if (variant === 'popup') {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+      >
+        <motion.div
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
+          className="bg-white rounded-2xl p-8 max-w-md w-full"
+        >
+          <div className="text-center mb-6">
+            <div className="text-4xl mb-2">🐾</div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Bleib auf dem Laufenden!
+            </h2>
+            <p className="text-gray-600">
+              Erhalte exklusive Tipps zur Hundegesundheit und verpasse keine Neuigkeiten.
+            </p>
+          </div>
 
-  const getButtonClasses = () => {
-    const baseClasses = "btn-primary pill text-white px-8 py-4 text-lg font-bold whitespace-nowrap hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]";
-    return baseClasses;
-  };
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Dein Name (optional)"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Deine E-Mail-Adresse"
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 font-semibold"
+            >
+              {isLoading ? 'Wird angemeldet...' : 'Newsletter abonnieren'}
+            </button>
+          </form>
 
+          {message && (
+            <div className={`mt-4 text-sm text-center ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
+              {message}
+            </div>
+          )}
+
+          <button
+            onClick={() => setMessage('')}
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+          >
+            ✕
+          </button>
+        </motion.div>
+      </motion.div>
+    );
+  }
+
+  // Default variant
   return (
-    <div className={`newsletter-signup ${className}`}>
-      <form onSubmit={handleSubmit} className={getVariantClasses()}>
-        <div className="flex-1">
+    <div className={`bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-8 ${className}`}>
+      <div className="text-center mb-6">
+        <div className="text-5xl mb-4">🐾</div>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          Newsletter abonnieren
+        </h2>
+        <p className="text-gray-600 text-lg">
+          Erhalte exklusive Tipps zur Hundegesundheit, wissenschaftliche Erkenntnisse und 
+          spezielle Angebote direkt in dein Postfach.
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+        <div>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Dein Name (optional)"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          />
+        </div>
+        <div>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Deine E-Mail-Adresse"
-            className={getInputClasses()}
             required
-            disabled={status === 'loading'}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
           />
         </div>
-        <button 
-          type="submit" 
-          className={getButtonClasses()}
-          disabled={status === 'loading'}
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 font-semibold text-lg"
         >
-          {status === 'loading' ? 'Wird angemeldet...' : 'Newsletter abonnieren'}
+          {isLoading ? 'Wird angemeldet...' : 'Jetzt anmelden'}
         </button>
       </form>
 
-      {/* Status Messages */}
-      {status === 'success' && showSuccessMessage && (
-        <div className="mt-4 p-4 bg-green/10 border border-green/20 rounded-xl">
-          <p className="text-green font-medium text-center">
-            ✅ Erfolgreich angemeldet! Willkommen in der Founding Paws Familie.
-          </p>
+      {message && (
+        <div className={`mt-4 text-center ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
+          {message}
         </div>
       )}
 
-      {status === 'error' && (
-        <div className="mt-4 p-4 bg-red/10 border border-red/20 rounded-xl">
-          <p className="text-red-600 font-medium text-center">
-            ❌ {errorMessage}
-          </p>
-        </div>
-      )}
-
-      {/* Privacy Notice */}
-      <p className="mt-4 text-sm text-green/60 text-center">
-        Keine Sorge, wir spammen nicht. Du kannst dich jederzeit abmelden.
-      </p>
+      <div className="mt-6 text-center text-sm text-gray-500">
+        <p>
+          Keine Sorge, wir spammen nicht! Du kannst dich jederzeit abmelden.
+        </p>
+      </div>
     </div>
   );
 }

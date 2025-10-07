@@ -1,11 +1,52 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+    
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.toLowerCase().trim(),
+          name: null,
+          source: 'footer'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('success');
+        setEmail('');
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setErrorMessage(result.error || 'Fehler beim Anmelden.');
+        setStatus('error');
+      }
+    } catch (error) {
+      setErrorMessage('Ein unerwarteter Fehler ist aufgetreten.');
+      setStatus('error');
+    }
+  };
+
   return (
     <footer className="bg-green text-cream">
       <div className="container-wide py-16 sm:py-20">
-        <div className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+        <div className="grid gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-5 mb-12">
           {/* Brand */}
           <div>
             <Image src="/logo-header.png" alt="Founding Paws" width={320} height={80} className="h-12 w-auto mb-4" />
@@ -19,7 +60,8 @@ export default function Footer() {
             <h3 className="use-fredoka text-lg mb-4">Entdecken</h3>
             <ul className="space-y-3 text-sm">
               <li><Link href="#products" className="hover:text-copper transition">Produkte</Link></li>
-                  <li><Link href="/bedarfsfinder" className="hover:text-copper transition">Bedarfsfinder</Link></li>
+              <li><Link href="/bedarfsfinder" className="hover:text-copper transition">Bedarfsfinder</Link></li>
+              <li><Link href="/newsletter" className="hover:text-copper transition">Newsletter</Link></li>
               <li><Link href="#story" className="hover:text-copper transition">Unsere Geschichte</Link></li>
               <li><Link href="#values" className="hover:text-copper transition">Unsere Werte</Link></li>
             </ul>
@@ -45,6 +87,44 @@ export default function Footer() {
               <li><Link href="/agb" className="hover:text-copper transition">AGB</Link></li>
               <li><Link href="/widerruf" className="hover:text-copper transition">Widerrufsrecht</Link></li>
             </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h3 className="use-fredoka text-lg mb-4">Newsletter</h3>
+            <p className="text-cream/70 text-sm mb-4">
+              Erhalte exklusive Tipps zur Hundegesundheit und verpasse keine Neuigkeiten.
+            </p>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="deine@email.de"
+                className="w-full px-3 py-2 bg-cream/10 border border-cream/20 rounded-lg text-cream placeholder-cream/50 focus:ring-2 focus:ring-copper focus:border-transparent text-sm"
+                disabled={status === 'loading'}
+              />
+              <button
+                type="submit"
+                className="w-full py-2 bg-copper hover:bg-copper/80 text-white rounded-lg font-medium text-sm transition disabled:opacity-50"
+                disabled={status === 'loading'}
+              >
+                {status === 'loading' ? 'Wird angemeldet...' : 'Anmelden'}
+              </button>
+            </form>
+            
+            {status === 'success' && (
+              <div className="mt-3 p-2 bg-green/20 border border-green/30 rounded text-xs text-green-200">
+                ✅ Erfolgreich angemeldet!
+              </div>
+            )}
+            
+            {status === 'error' && (
+              <div className="mt-3 p-2 bg-red/20 border border-red/30 rounded text-xs text-red-200">
+                ❌ {errorMessage}
+              </div>
+            )}
           </div>
 
           {/* Contact & Social */}

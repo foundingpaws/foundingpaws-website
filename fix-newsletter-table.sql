@@ -1,28 +1,33 @@
--- Newsletter Subscribers Table
--- Run this in your Supabase SQL Editor
+-- Fix Newsletter Subscribers Table
+-- Execute this in your Supabase SQL Editor
 
-CREATE TABLE IF NOT EXISTS newsletter_subscribers (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  email TEXT UNIQUE NOT NULL,
-  name TEXT,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  subscribed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  unsubscribed_at TIMESTAMP WITH TIME ZONE,
-  status TEXT DEFAULT 'active' CHECK (status IN ('active', 'unsubscribed', 'bounced')),
-  source TEXT DEFAULT 'website',
-  ip_address INET,
-  user_agent TEXT,
-  metadata JSONB DEFAULT '{}'::jsonb
-);
+-- Add missing columns if they don't exist
+ALTER TABLE newsletter_subscribers 
+ADD COLUMN IF NOT EXISTS name TEXT,
+ADD COLUMN IF NOT EXISTS subscribed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+ADD COLUMN IF NOT EXISTS unsubscribed_at TIMESTAMP WITH TIME ZONE,
+ADD COLUMN IF NOT EXISTS source TEXT DEFAULT 'website',
+ADD COLUMN IF NOT EXISTS ip_address INET,
+ADD COLUMN IF NOT EXISTS user_agent TEXT,
+ADD COLUMN IF NOT EXISTS metadata JSONB DEFAULT '{}'::jsonb;
 
--- Create index for faster queries
+-- Update existing records to have subscribed_at = created_at if null
+UPDATE newsletter_subscribers 
+SET subscribed_at = created_at 
+WHERE subscribed_at IS NULL;
+
+-- Create indexes if they don't exist
 CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_email ON newsletter_subscribers(email);
 CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_status ON newsletter_subscribers(status);
 CREATE INDEX IF NOT EXISTS idx_newsletter_subscribers_created_at ON newsletter_subscribers(created_at);
 
--- Enable Row Level Security (RLS)
+-- Enable Row Level Security (RLS) if not already enabled
 ALTER TABLE newsletter_subscribers ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist and recreate them
+DROP POLICY IF EXISTS "Allow anonymous users to insert newsletter subscriptions" ON newsletter_subscribers;
+DROP POLICY IF EXISTS "Allow authenticated users to read newsletter subscriptions" ON newsletter_subscribers;
+DROP POLICY IF EXISTS "Allow service role full access" ON newsletter_subscribers;
 
 -- Create policy for anonymous users to insert
 CREATE POLICY "Allow anonymous users to insert newsletter subscriptions" 
@@ -55,12 +60,8 @@ END;
 $$ language 'plpgsql';
 
 -- Create trigger to automatically update updated_at
+DROP TRIGGER IF EXISTS update_newsletter_subscribers_updated_at ON newsletter_subscribers;
 CREATE TRIGGER update_newsletter_subscribers_updated_at 
     BEFORE UPDATE ON newsletter_subscribers 
     FOR EACH ROW 
     EXECUTE FUNCTION update_updated_at_column();
-
--- Insert some sample data (optional)
--- INSERT INTO newsletter_subscribers (email, source) VALUES 
--- ('test@example.com', 'website'),
--- ('demo@foundingpaws.de', 'popup');

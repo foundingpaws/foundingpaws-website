@@ -14,13 +14,14 @@ export default function CTA() {
     setErrorMessage('');
     
     try {
-      const response = await fetch('/api/newsletter', {
+      const response = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: email.toLowerCase().trim(),
+          name: null,
           source: 'cta'
         }),
       });

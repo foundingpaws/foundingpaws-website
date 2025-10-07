@@ -8,7 +8,7 @@
     }
   },
   "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://foundingpaws.vercel.app"
+    "NEXT_PUBLIC_SITE_URL": "https://www.foundingpaws.de"
   },
   "headers": [
     {
