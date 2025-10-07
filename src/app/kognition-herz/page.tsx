@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
@@ -11,7 +10,7 @@ export default function KognitionHerzPage() {
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-block pill bg-copper/20 backdrop-blur-sm border border-copper/30 px-5 py-2 text-sm font-medium mb-6">
-                🧠 Kognition & Herz
+                Kognition & Herz
               </div>
               <h1 className="use-retrips text-4xl sm:text-6xl leading-tight mb-6">
                 Geistige Klarheit & Herzgesundheit
@@ -106,7 +105,7 @@ export default function KognitionHerzPage() {
             <FadeIn delay={0.1}>
               <div className="bg-white/70 backdrop-blur-sm border border-taupe/20 rounded-[28px] p-8 sm:p-12 text-center shadow-[0_20px_60px_-20px_rgba(180,106,52,0.3)]">
                 <div className="w-24 h-24 rounded-full bg-copper/10 border border-copper/20 flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">🧠</span>
+                  <span className="text-2xl">Mind</span>
                 </div>
                 
                 <h3 className="use-retrips text-3xl text-green mb-4">Bright Mind</h3>
@@ -117,7 +116,7 @@ export default function KognitionHerzPage() {
 
                 <div className="border-t border-taupe/20 pt-6 mb-8">
                   <div className="flex items-center justify-center gap-6 text-xs text-green/60">
-                    <span>🩺 Mit Tierärzten entwickelt</span>
+                    <span>Mit Tierärzten entwickelt</span>
                     <span>🇩🇪 Handgefertigt in Heilbronn</span>
                   </div>
                 </div>

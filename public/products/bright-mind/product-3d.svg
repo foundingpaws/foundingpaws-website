@@ -1,0 +1,76 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients for 3D effect -->
+    <linearGradient id="bottleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#B46A34;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8E7F74;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#004225;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="capGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5EFE7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#E8DCC6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4C4A8;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="labelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5EFE7;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#E8DCC6;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- Shadow -->
+    <radialGradient id="shadowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Highlight -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.4" />
+      <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="#F5EFE7"/>
+  
+  <!-- Shadow -->
+  <ellipse cx="200" cy="380" rx="80" ry="20" fill="url(#shadowGradient)"/>
+  
+  <!-- Bottle Body -->
+  <path d="M 120 200 Q 120 120 200 120 Q 280 120 280 200 L 280 320 Q 280 360 200 360 Q 120 360 120 320 Z" 
+        fill="url(#bottleGradient)" 
+        stroke="#004225" 
+        stroke-width="2"/>
+  
+  <!-- Bottle Neck -->
+  <rect x="180" y="100" width="40" height="20" fill="url(#bottleGradient)" stroke="#004225" stroke-width="2"/>
+  
+  <!-- Cap -->
+  <rect x="175" y="80" width="50" height="25" rx="5" fill="url(#capGradient)" stroke="#004225" stroke-width="2"/>
+  
+  <!-- Label -->
+  <rect x="130" y="180" width="140" height="80" rx="8" fill="url(#labelGradient)" stroke="#004225" stroke-width="1"/>
+  
+  <!-- Label Text -->
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#004225">BRIGHT MIND</text>
+  <text x="200" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8E7F74">Kognitive Unterstützung</text>
+  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8E7F74">&amp; Herzgesundheit</text>
+  
+  <!-- Brain Icon -->
+  <circle cx="200" cy="250" r="15" fill="#B46A34" opacity="0.8"/>
+  <path d="M 190 245 Q 200 240 210 245 Q 210 250 200 255 Q 190 250 190 245" fill="#F5EFE7"/>
+  
+  <!-- Heart Icon -->
+  <path d="M 200 260 Q 195 255 190 260 Q 190 265 200 270 Q 210 265 210 260 Q 205 255 200 260" fill="#B46A34"/>
+  
+  <!-- Highlight on bottle -->
+  <path d="M 130 200 Q 130 130 200 130 Q 270 130 270 200" 
+        fill="url(#highlight)" 
+        opacity="0.6"/>
+  
+  <!-- 3D Effect Lines -->
+  <line x1="200" y1="120" x2="200" y2="360" stroke="#004225" stroke-width="1" opacity="0.3"/>
+  <line x1="120" y1="240" x2="280" y2="240" stroke="#004225" stroke-width="1" opacity="0.2"/>
+</svg>

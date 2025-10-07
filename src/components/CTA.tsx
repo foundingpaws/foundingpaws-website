@@ -1,58 +1,100 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from '@/lib/supabase';
 
 export default function CTA() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setStatus('loading');
+    setErrorMessage('');
+    
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.toLowerCase().trim(),
+          source: 'cta'
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('success');
+        setEmail('');
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setErrorMessage(result.error || 'Fehler beim Anmelden. Bitte versuche es erneut.');
+        setStatus('error');
+      }
+    } catch (error) {
+      setErrorMessage('Ein unerwarteter Fehler ist aufgetreten.');
+      setStatus('error');
+    }
   };
 
   return (
-    <section className="relative py-20 sm:py-32 bg-gradient-to-br from-copper/20 via-taupe/20 to-cream text-green overflow-hidden">
-      {/* Decorative Glow */}
-      <div className="absolute inset-0 opacity-40 pointer-events-none">
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-copper/30 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-taupe/30 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="container-wide relative z-10">
+    <section className="wv-section bg-cream text-green">
+      <div className="container-wide">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-block pill bg-copper/15 backdrop-blur-sm border border-copper/25 px-5 py-2 text-sm font-medium mb-6 text-copper">
+          <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-6 text-copper">
             Exklusiver Zugang
           </div>
-          <h2 className="use-retrips text-4xl sm:text-6xl leading-tight mb-6 text-green">
+          <h2 className="wv-h2 mb-6 text-green">
             Bleib auf dem Laufenden
           </h2>
           <div className="w-16 h-1 bg-copper mx-auto rounded-full mb-6"></div>
-          <p className="use-fredoka text-lg sm:text-xl text-green/70 mb-10 leading-relaxed max-w-2xl mx-auto">
+          <p className="wv-subhead text-green/70 mb-10 max-w-2xl mx-auto">
             Erhalte Einblicke in unsere Entwicklung, wissenschaftliche Updates und exklusive Launch-Vorteile.
           </p>
 
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+            <div className="form-group flex-1">
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="deine@email.de"
-                className="flex-1 px-6 py-4 rounded-full text-green placeholder:text-green/40 bg-white/70 border border-taupe/20 focus:outline-none focus:ring-2 focus:ring-copper transition"
+                className="form-input-premium w-full"
+                disabled={status === 'loading'}
               />
-              <button
-                type="submit"
-                className="pill bg-copper text-cream px-8 py-4 font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.7)] hover:opacity-95 hover:scale-105 transition-all whitespace-nowrap"
-              >
-                Jetzt anmelden
-              </button>
-            </form>
-          ) : (
-            <div className="pill bg-copper/15 border border-copper/25 text-copper px-8 py-4 inline-flex items-center gap-2 text-lg">
-              <span>✓</span> Danke! Du bist dabei.
+            </div>
+            <button
+              type="submit"
+              className="btn-primary pill text-cream px-8 py-4 font-medium whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={status === 'loading'}
+            >
+              {status === 'loading' ? 'Wird angemeldet...' : 'Jetzt anmelden'}
+            </button>
+          </form>
+
+          {/* Status Messages */}
+          {status === 'success' && (
+            <div className="mt-6 p-4 bg-green/10 border border-green/20 rounded-xl max-w-xl mx-auto">
+              <p className="text-green font-medium text-center flex items-center justify-center gap-2">
+                <span className="text-2xl">✅</span>
+                <span>Erfolgreich angemeldet! Willkommen in der Founding Paws Familie.</span>
+              </p>
+            </div>
+          )}
+
+          {status === 'error' && (
+            <div className="mt-6 p-4 bg-red/10 border border-red/20 rounded-xl max-w-xl mx-auto">
+              <p className="text-red-600 font-medium text-center flex items-center justify-center gap-2">
+                <span className="text-2xl">❌</span>
+                <span>{errorMessage}</span>
+              </p>
             </div>
           )}
 

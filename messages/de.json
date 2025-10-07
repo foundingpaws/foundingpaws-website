@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "knowledge": "Wissen",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "blog": "Blog",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "title": "Premium-Supplements für ein langes, gesundes Hundeleben",
+    "subtitle": "Evidenzbasiert entwickelt, handgefertigt in Heilbronn – für spürbare Wirkung und Vertrauen.",
+    "cta_products": "Produkte ansehen →",
+    "cta_finder": "Bedarfsfinder (2 Min)"
+  },
+  "trust": {
+    "veterinarians": "Mit Tierärzten entwickelt",
+    "made_in_germany": "Made in Germany",
+    "manufacturing": "Manufaktur Heilbronn",
+    "natural": "100% natürliche Inhaltsstoffe"
+  },
+  "story": {
+    "title": "Von Hundeliebe zur Mission",
+    "subtitle": "Founding Paws entstand aus der tiefen Verbindung zu unseren Hunden Nala und Jackson. Als wir nach Premium-Supplements suchten, die wissenschaftlich fundiert UND mit Liebe gemacht sind, fanden wir nichts – also schufen wir es selbst.",
+    "philosophy_title": "Unsere Philosophie",
+    "philosophy_text_1": "Jeder Hund verdient ein langes, gesundes Leben. Doch der Markt war voll von Produkten mit fragwürdigen Inhaltsstoffen, intransparenten Prozessen und leeren Versprechen.",
+    "philosophy_text_2": "Deshalb arbeiten wir mit führenden Tierärzten zusammen und fertigen unsere Supplements in einer kleinen Manufaktur in Heilbronn – mit höchster Sorgfalt, rückverfolgbaren Zutaten und echter Liebe zum Detail.",
+    "philosophy_quote": "Wissenschaft trifft Herz. Das ist Founding Paws."
+  },
+  "values": {
+    "title": "Unsere Werte",
+    "science_title": "Wissenschaft mit Herz",
+    "science_text": "Evidenzbasierte Ernährung, mit aufrichtigem Herzblut entwickelt – Forschung trifft Fürsorge.",
+    "transparency_title": "Reinheit & Transparenz",
+    "transparency_text": "Ausschließlich saubere, rückverfolgbare Inhaltsstoffe – Vertrauen entsteht durch Ehrlichkeit.",
+    "design_title": "Design mit Intention",
+    "design_text": "Ruhige Präzision mit moderner Eleganz – das Gleichgewicht aus Wellness und Anspruch."
+  },
+  "finder": {
+    "title": "Finde die passende Formel",
+    "subtitle": "Beantworte 3 kurze Fragen – erhalte eine klare Empfehlung.",
+    "step_1": "Alter & Größe",
+    "step_2": "Ziel wählen",
+    "step_3": "Empfehlung",
+    "cta": "Jetzt starten"
+  },
+  "blog": {
+    "title": "Hundegesundheit verstehen",
+    "subtitle": "Wissenschaftlich fundierte Artikel, praktische Tipps und kostenlose Guides für die beste Gesundheit deines Hundes",
+    "read_more": "Weiterlesen",
+    "categories": {
+      "all": "Alle",
+      "health": "Gesundheit",
+      "nutrition": "Ernährung",
+      "behavior": "Verhalten",
+      "prevention": "Prävention",
+      "naturopathy": "Naturheilkunde",
+      "exercise": "Bewegung"
+    }
+  },
+  "footer": {
+    "description": "Premium-Supplements für Hunde – wissenschaftlich fundiert, mit Liebe handgefertigt in Heilbronn.",
+    "discover": "Entdecken",
+    "knowledge": "Wissen",
+    "legal": "Rechtliches"
+  },
+  "language": {
+    "switch": "Sprache wechseln",
+    "german": "Deutsch",
+    "english": "English"
+  }
+}

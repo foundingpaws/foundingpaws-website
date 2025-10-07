@@ -1,0 +1,75 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#90ee90;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#98fb98;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dog" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c2c2c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Park Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- Grass -->
+  <rect x="0" y="300" width="400" height="100" fill="#228b22"/>
+  
+  <!-- Trees -->
+  <ellipse cx="80" cy="250" rx="25" ry="40" fill="#228b22"/>
+  <ellipse cx="320" cy="250" rx="25" ry="40" fill="#228b22"/>
+  <rect x="75" y="250" width="10" height="30" fill="#8b4513"/>
+  <rect x="315" y="250" width="10" height="30" fill="#8b4513"/>
+  
+  <!-- Border Collie working -->
+  <g transform="translate(200, 200)">
+    <!-- Body (alert pose) -->
+    <ellipse cx="0" cy="10" rx="45" ry="25" fill="url(#dog)"/>
+    
+    <!-- Head (focused) -->
+    <ellipse cx="0" cy="-25" rx="25" ry="22" fill="url(#dog)"/>
+    
+    <!-- Ears (perked up) -->
+    <ellipse cx="-15" cy="-40" rx="5" ry="12" fill="url(#dog)" transform="rotate(-10)"/>
+    <ellipse cx="15" cy="-40" rx="5" ry="12" fill="url(#dog)" transform="rotate(10)"/>
+    
+    <!-- Eyes (focused) -->
+    <circle cx="-8" cy="-30" r="2" fill="#2c1810"/>
+    <circle cx="8" cy="-30" r="2" fill="#2c1810"/>
+    
+    <!-- Nose -->
+    <ellipse cx="0" cy="-22" rx="2" ry="1.5" fill="#2c1810"/>
+    
+    <!-- Mouth (concentrated) -->
+    <path d="M -4 -18 Q 0 -16 4 -18" stroke="#2c1810" stroke-width="1.5" fill="none"/>
+    
+    <!-- Legs (ready stance) -->
+    <rect x="-12" y="30" width="5" height="20" fill="url(#dog)"/>
+    <rect x="-3" y="30" width="5" height="20" fill="url(#dog)"/>
+    <rect x="3" y="30" width="5" height="20" fill="url(#dog)"/>
+    <rect x="12" y="30" width="5" height="20" fill="url(#dog)"/>
+    
+    <!-- Tail (alert) -->
+    <ellipse cx="30" cy="-5" rx="8" ry="4" fill="url(#dog)" transform="rotate(30)"/>
+    
+    <!-- Paws -->
+    <circle cx="-10" cy="50" r="3" fill="#2c1810"/>
+    <circle cx="-1" cy="50" r="3" fill="#2c1810"/>
+    <circle cx="5" cy="50" r="3" fill="#2c1810"/>
+    <circle cx="14" cy="50" r="3" fill="#2c1810"/>
+  </g>
+  
+  <!-- Park elements -->
+  <circle cx="150" cy="320" r="2" fill="#228b22"/>
+  <circle cx="250" cy="330" r="1.5" fill="#228b22"/>
+  <circle cx="180" cy="340" r="2.5" fill="#228b22"/>
+  
+  <!-- Text overlay -->
+  <text x="200" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#2c5f2d" font-weight="bold">
+    Luna konzentriert bei der Arbeit
+  </text>
+  <text x="200" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#2c5f2d">
+    Lisa W. • Bright Mind
+  </text>
+</svg>

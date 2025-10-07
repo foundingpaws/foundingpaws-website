@@ -1,0 +1,77 @@
+<svg width="200" height="280" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fef2f2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Book cover -->
+  <rect width="200" height="280" fill="url(#bg)" stroke="#2c5f2d" stroke-width="3" rx="8"/>
+  
+  <!-- Title -->
+  <text x="100" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#2c5f2d" font-weight="bold">
+    Stressabbau
+  </text>
+  <text x="100" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#2c5f2d">
+    bei Hunden
+  </text>
+  
+  <!-- Relaxed dog -->
+  <g transform="translate(100, 130)">
+    <!-- Body -->
+    <ellipse cx="0" cy="15" rx="25" ry="15" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+    
+    <!-- Head -->
+    <ellipse cx="0" cy="-10" rx="18" ry="15" fill="#8b4513" stroke="#654321" stroke-width="2"/>
+    
+    <!-- Ears (relaxed) -->
+    <ellipse cx="-10" cy="-20" rx="4" ry="8" fill="#8b4513" stroke="#654321" stroke-width="2" transform="rotate(-10)"/>
+    <ellipse cx="10" cy="-20" rx="4" ry="8" fill="#8b4513" stroke="#654321" stroke-width="2" transform="rotate(10)"/>
+    
+    <!-- Eyes (closed/relaxed) -->
+    <path d="M -6 -12 Q -3 -10 0 -12" stroke="#2c1810" stroke-width="1.5" fill="none"/>
+    <path d="M 0 -12 Q 3 -10 6 -12" stroke="#2c1810" stroke-width="1.5" fill="none"/>
+    
+    <!-- Nose -->
+    <ellipse cx="0" cy="-5" rx="1.5" ry="1" fill="#2c1810"/>
+    
+    <!-- Mouth (peaceful) -->
+    <path d="M -3 -2 Q 0 0 3 -2" stroke="#2c1810" stroke-width="1" fill="none"/>
+    
+    <!-- Legs (relaxed) -->
+    <path d="M -8 25 Q -10 30 -8 35" stroke="#8b4513" stroke-width="2" fill="none"/>
+    <path d="M -2 25 Q -4 30 -2 35" stroke="#8b4513" stroke-width="2" fill="none"/>
+    <path d="M 2 25 Q 4 30 2 35" stroke="#8b4513" stroke-width="2" fill="none"/>
+    <path d="M 8 25 Q 10 30 8 35" stroke="#8b4513" stroke-width="2" fill="none"/>
+    
+    <!-- Tail (relaxed) -->
+    <ellipse cx="18" cy="5" rx="6" ry="3" fill="#8b4513" stroke="#654321" stroke-width="2" transform="rotate(15)"/>
+  </g>
+  
+  <!-- Relaxation icons -->
+  <g transform="translate(50, 190)">
+    <circle cx="0" cy="0" r="12" fill="#d4af37" opacity="0.3"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c5f2d">🧘</text>
+  </g>
+  
+  <g transform="translate(100, 190)">
+    <circle cx="0" cy="0" r="12" fill="#d4af37" opacity="0.3"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c5f2d">💆</text>
+  </g>
+  
+  <g transform="translate(150, 190)">
+    <circle cx="0" cy="0" r="12" fill="#d4af37" opacity="0.3"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c5f2d">🌿</text>
+  </g>
+  
+  <!-- Calm waves -->
+  <g transform="translate(100, 220)">
+    <path d="M -15 0 Q -10 -5 -5 0 Q 0 5 5 0 Q 10 -5 15 0" stroke="#87ceeb" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+  
+  <!-- Footer -->
+  <text x="100" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2c5f2d">
+    20 Seiten • PDF
+  </text>
+</svg>

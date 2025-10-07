@@ -1,0 +1,67 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f8f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8f5e8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dog" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa8072;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e9967a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- French Bulldog -->
+  <g transform="translate(200, 200)">
+    <!-- Body -->
+    <ellipse cx="0" cy="30" rx="45" ry="30" fill="url(#dog)"/>
+    
+    <!-- Head -->
+    <ellipse cx="0" cy="-10" rx="35" ry="30" fill="url(#dog)"/>
+    
+    <!-- Ears -->
+    <ellipse cx="-25" cy="-25" rx="8" ry="12" fill="url(#dog)" transform="rotate(-30)"/>
+    <ellipse cx="25" cy="-25" rx="8" ry="12" fill="url(#dog)" transform="rotate(30)"/>
+    
+    <!-- Eyes -->
+    <circle cx="-12" cy="-15" r="2.5" fill="#2c1810"/>
+    <circle cx="12" cy="-15" r="2.5" fill="#2c1810"/>
+    
+    <!-- Nose -->
+    <ellipse cx="0" cy="-8" rx="2" ry="1.5" fill="#2c1810"/>
+    
+    <!-- Mouth -->
+    <path d="M -5 -5 Q 0 -2 5 -5" stroke="#2c1810" stroke-width="1.5" fill="none"/>
+    
+    <!-- Legs -->
+    <rect x="-15" y="55" width="6" height="18" fill="url(#dog)"/>
+    <rect x="-3" y="55" width="6" height="18" fill="url(#dog)"/>
+    <rect x="3" y="55" width="6" height="18" fill="url(#dog)"/>
+    <rect x="15" y="55" width="6" height="18" fill="url(#dog)"/>
+    
+    <!-- Tail -->
+    <ellipse cx="30" cy="20" rx="8" ry="4" fill="url(#dog)" transform="rotate(20)"/>
+    
+    <!-- Paws -->
+    <circle cx="-12" cy="73" r="4" fill="#2c1810"/>
+    <circle cx="0" cy="73" r="4" fill="#2c1810"/>
+    <circle cx="6" cy="73" r="4" fill="#2c1810"/>
+    <circle cx="18" cy="73" r="4" fill="#2c1810"/>
+  </g>
+  
+  <!-- Relaxed expression lines -->
+  <g stroke="#fa8072" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M 60 100 Q 70 90 80 100"/>
+    <path d="M 320 100 Q 330 90 340 100"/>
+  </g>
+  
+  <!-- Text overlay -->
+  <text x="200" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#2c5f2d" font-weight="bold">
+    Anna & Coco
+  </text>
+  <text x="200" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c5f2d">
+    Französische Bulldogge, 4 Jahre
+  </text>
+</svg>

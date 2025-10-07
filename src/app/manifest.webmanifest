@@ -1,15 +1,27 @@
 {
-  "name": "Founding Paws",
+  "name": "Founding Paws — Wissenschaft mit Herz",
   "short_name": "Founding Paws",
+  "description": "Premium-Ergänzungen für Hunde – evidenzbasiert entwickelt und mit Herz gemacht.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5EFE7",
   "theme_color": "#004225",
   "icons": [
     {
-      "src": "/icon.svg",
-      "sizes": "64x64",
-      "type": "image/svg+xml"
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/LogoInternet.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
