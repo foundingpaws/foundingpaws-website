@@ -272,7 +272,7 @@ export class EmailService {
         headers: {
           'X-Entity-Ref-ID': `custom-${Date.now()}`,
         },
-      });
+      } as any);
 
       if (error) {
         console.error('Custom email error:', error);
