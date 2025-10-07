@@ -268,7 +268,7 @@ export default function ShopPage() {
 
                   <div className="wv-spacing-xl">
                     <NewsletterSignup 
-                      variant="inline" 
+                      variant="minimal" 
                       className="max-w-lg mx-auto"
                     />
                   </div>
