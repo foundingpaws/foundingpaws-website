@@ -80,9 +80,9 @@ const testimonials = [
 ];
 
 const stats = [
-  { number: "100%", label: "Natürliche Inhaltsstoffe" },
-  { number: "0", label: "Künstliche Zusatzstoffe" },
-  { number: "3", label: "Wissenschaftlich entwickelte Formeln" },
+  { number: "100%", label: "Natürliche Inhaltsstoffe", isIcon: false },
+  { number: "0", label: "Künstliche Zusatzstoffe", isIcon: false },
+  { number: "3", label: "Wissenschaftlich entwickelte Formeln", isIcon: false },
   { number: IconInfinity, label: "Liebe zu Hunden", isIcon: true }
 ];
 
@@ -212,7 +212,7 @@ export default function MarkePage() {
                   <div className="text-4xl font-bold text-copper wv-spacing-sm">
                     {stat.isIcon ? (
                       <div className="w-12 h-12 mx-auto">
-                        {React.createElement(stat.number as React.ComponentType<{className: string}>, { className: "w-full h-full" })}
+                        <IconInfinity className="w-full h-full" />
                       </div>
                     ) : (
                       stat.number
