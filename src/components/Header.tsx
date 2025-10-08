@@ -34,61 +34,23 @@ export default function Header() {
       }`}
       style={{ minHeight: '80px' }}
     >
-      <div className="container-wide flex items-center justify-between min-h-[80px] sm:min-h-[96px] lg:min-h-[112px] py-4 sm:py-6 lg:py-8 relative">
-        <Link href="/" className="group inline-flex items-center gap-2" aria-label="Startseite">
-          {/* Transparent header logo, tuned size */}
-          <Image src="/logo-header.png" alt="Founding Paws Logo" width={120} height={30} className="h-8 sm:h-10 lg:h-11 w-auto" priority sizes="(max-width: 640px) 80px, (max-width: 1024px) 100px, 110px" />
-        </Link>
-        <nav className="hidden lg:flex items-center gap-8 wv-body">
-          <div className="group relative">
-            <button className="flex items-center gap-1 hover:opacity-80 text-cream">
-              Gut für
-              <span className="text-xs">▼</span>
-            </button>
-            {/* Improved dropdown with better spacing and visual hierarchy */}
-            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute left-0 mt-2 bg-green/98 backdrop-blur-sm border border-cream/20 rounded-2xl shadow-2xl p-6 w-[400px] max-w-[calc(100vw-2rem)]">
-              <div className="wv-caption wv-spacing-xs font-medium" style={{color: 'rgba(255, 255, 255, 0.8)'}}>WÄHLE EINE KATEGORIE</div>
-              <div className="space-y-2">
-                <Link href="/kognition-herz" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
-                  <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconBrainHeart className="w-4 h-4"/> Kognition & Herz</div>
-                  <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Geistige Klarheit & Herzgesundheit</div>
-                </Link>
-                <Link href="/stress-angst" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
-                  <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconSparkles className="w-4 h-4"/> Stress & Angst</div>
-                  <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Entspannung & emotionale Balance</div>
-                </Link>
-                <Link href="/gelenke-mobilitaet" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
-                  <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconBone className="w-4 h-4"/> Gelenke & Mobilität</div>
-                  <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Beweglichkeit & Schmerzlinderung</div>
-                </Link>
-                <Link href="/haut-fell" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
-                  <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconSparkles className="w-4 h-4"/> Haut & Fell</div>
-                  <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Glänzendes Fell & gesunde Haut</div>
-                </Link>
-                <Link href="/immunsystem" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
-                  <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconShield className="w-4 h-4"/> Immunsystem</div>
-                  <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Abwehrkräfte & Vitalität</div>
-                </Link>
-              </div>
-            </div>
-          </div>
-              <Link href="/produkte" className="link-hover hover:opacity-80 text-cream">Produkte</Link>
-          <Link href="/ratgeber" className="link-hover hover:opacity-80 text-cream">Ratgeber</Link>
-          <Link href="/bedarfsfinder" className="link-hover hover:opacity-80 text-cream">Bedarfsfinder</Link>
-          <Link href="/marke" className="link-hover hover:opacity-80 text-cream">Marke</Link>
-          <Link href="/team" className="link-hover hover:opacity-80 text-cream">Team</Link>
-        </nav>
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Mobile: Buttons zentriert, Desktop: normal */}
-          <div className="flex items-center justify-center gap-2 sm:gap-3">
-            <Link href="/shop" className="btn-primary pill bg-copper !text-white px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-medium shadow-[0_10px_24px_-12px_rgba(180,106,52,0.5)] touch-manipulation">Jetzt einkaufen</Link>
-            <Link href="/bedarfsfinder" className="btn-secondary pill bg-cream/10 border border-cream/30 !text-white px-3 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-medium backdrop-blur-sm touch-manipulation">Finder</Link>
+      <div className="container-wide min-h-[80px] sm:min-h-[96px] lg:min-h-[112px] py-4 sm:py-6 lg:py-8 relative">
+        {/* Mobile Layout */}
+        <div className="lg:hidden flex items-center justify-between">
+          <Link href="/" className="group inline-flex items-center gap-2" aria-label="Startseite">
+            <Image src="/logo-header.png" alt="Founding Paws Logo" width={120} height={30} className="h-8 w-auto" priority />
+          </Link>
+          
+          {/* Mobile Buttons - Zentriert */}
+          <div className="flex items-center justify-center gap-2 flex-1 px-4">
+            <Link href="/shop" className="btn-primary pill bg-copper !text-white px-3 py-1.5 text-xs font-medium shadow-[0_10px_24px_-12px_rgba(180,106,52,0.5)] touch-manipulation">Jetzt einkaufen</Link>
+            <Link href="/bedarfsfinder" className="btn-secondary pill bg-cream/10 border border-cream/30 !text-white px-3 py-1.5 text-xs font-medium backdrop-blur-sm touch-manipulation">Finder</Link>
           </div>
           
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-cream hover:text-copper transition-colors ml-2"
+            className="p-2 text-cream hover:text-copper transition-colors"
             aria-label="Menü öffnen"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,6 +61,58 @@ export default function Header() {
               )}
             </svg>
           </button>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:flex items-center justify-between">
+          <Link href="/" className="group inline-flex items-center gap-2" aria-label="Startseite">
+            <Image src="/logo-header.png" alt="Founding Paws Logo" width={120} height={30} className="h-11 w-auto" priority />
+          </Link>
+          <nav className="flex items-center gap-8 wv-body">
+            <div className="group relative">
+              <button className="flex items-center gap-1 hover:opacity-80 text-cream">
+                Gut für
+                <span className="text-xs">▼</span>
+              </button>
+              {/* Improved dropdown with better spacing and visual hierarchy */}
+              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute left-0 mt-2 bg-green/98 backdrop-blur-sm border border-cream/20 rounded-2xl shadow-2xl p-6 w-[400px] max-w-[calc(100vw-2rem)]">
+                <div className="wv-caption wv-spacing-xs font-medium" style={{color: 'rgba(255, 255, 255, 0.8)'}}>WÄHLE EINE KATEGORIE</div>
+                <div className="space-y-2">
+                  <Link href="/kognition-herz" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
+                    <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconBrainHeart className="w-4 h-4"/> Kognition & Herz</div>
+                    <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Geistige Klarheit & Herzgesundheit</div>
+                  </Link>
+                  <Link href="/stress-angst" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
+                    <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconSparkles className="w-4 h-4"/> Stress & Angst</div>
+                    <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Entspannung & emotionale Balance</div>
+                  </Link>
+                  <Link href="/gelenke-mobilitaet" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
+                    <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconBone className="w-4 h-4"/> Gelenke & Mobilität</div>
+                    <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Beweglichkeit & Schmerzlinderung</div>
+                  </Link>
+                  <Link href="/haut-fell" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
+                    <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconSparkles className="w-4 h-4"/> Haut & Fell</div>
+                    <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Glänzendes Fell & gesunde Haut</div>
+                  </Link>
+                  <Link href="/immunsystem" className="block p-3 rounded-xl hover:bg-cream/10 transition-all">
+                    <div className="font-medium flex items-center gap-2" style={{color: 'white'}}><IconShield className="w-4 h-4"/> Immunsystem</div>
+                    <div className="wv-caption" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Abwehrkräfte & Vitalität</div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Link href="/produkte" className="link-hover hover:opacity-80 text-cream">Produkte</Link>
+            <Link href="/ratgeber" className="link-hover hover:opacity-80 text-cream">Ratgeber</Link>
+            <Link href="/bedarfsfinder" className="link-hover hover:opacity-80 text-cream">Bedarfsfinder</Link>
+            <Link href="/marke" className="link-hover hover:opacity-80 text-cream">Marke</Link>
+            <Link href="/team" className="link-hover hover:opacity-80 text-cream">Team</Link>
+          </nav>
+          
+          {/* Desktop Buttons */}
+          <div className="flex items-center gap-3">
+            <Link href="/shop" className="btn-primary pill bg-copper !text-white px-5 py-2 text-sm font-medium shadow-[0_10px_24px_-12px_rgba(180,106,52,0.5)]">Jetzt einkaufen</Link>
+            <Link href="/bedarfsfinder" className="btn-secondary pill bg-cream/10 border border-cream/30 !text-white px-5 py-2 text-sm font-medium backdrop-blur-sm">Finder</Link>
+          </div>
         </div>
       </div>
 

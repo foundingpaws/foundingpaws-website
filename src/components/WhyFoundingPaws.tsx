@@ -5,18 +5,19 @@ export default function WhyFoundingPaws() {
   return (
     <section className="wv-section bg-cream" aria-labelledby="why-title">
       <div className="container-wide">
-        <ScrollAnimation animation="fade-in" className="text-center mb-12">
-          <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-6 text-copper">Unsere Mission</div>
-          <h2 id="why-title" className="wv-h2 text-green mb-4">Wissenschaft mit Herz. Transparent in jedem Schritt.</h2>
+        <ScrollAnimation animation="fade-in" className="text-center mb-8 lg:mb-12">
+          <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-4 lg:mb-6 text-copper">Unsere Mission</div>
+          <h2 id="why-title" className="wv-h2 text-green mb-3 lg:mb-4">Wissenschaft mit Herz. Transparent in jedem Schritt.</h2>
           <p className="wv-subhead text-green/70 max-w-3xl mx-auto">
             Wir entwickeln gezielte Formeln gemeinsam mit Tierärzten, verwenden natürliche
             Rohstoffe und machen die Anwendung so einfach wie möglich.
           </p>
         </ScrollAnimation>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Mobile: 1 Spalte, Desktop: 3 Spalten */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
           <ScrollAnimation animation="slide-up" delay={0}>
-            <article className="wv-card-premium hover-lift-premium p-8">
+            <article className="wv-card-premium hover-lift-premium p-6 lg:p-8">
               <div className="wv-eyebrow text-copper wv-spacing-xs">Wirkprinzip</div>
               <h3 className="wv-h3 text-green wv-spacing-xs">Gezielte Unterstützung</h3>
               <p className="wv-body text-green/75 wv-spacing-md">
@@ -28,7 +29,7 @@ export default function WhyFoundingPaws() {
           </ScrollAnimation>
 
           <ScrollAnimation animation="slide-up" delay={100}>
-            <article className="wv-card-feature hover-lift-feature p-8">
+            <article className="wv-card-feature hover-lift-feature p-6 lg:p-8">
               <div className="wv-eyebrow text-copper wv-spacing-xs">Inhaltsstoffe</div>
               <h3 className="wv-h3 text-green wv-spacing-xs">Rein, transparent</h3>
               <p className="wv-body text-green/75 wv-spacing-md">
@@ -39,7 +40,7 @@ export default function WhyFoundingPaws() {
           </ScrollAnimation>
 
           <ScrollAnimation animation="slide-up" delay={200}>
-            <article className="wv-card-minimal hover-lift-minimal p-8">
+            <article className="wv-card-minimal hover-lift-minimal p-6 lg:p-8">
               <div className="wv-eyebrow text-copper wv-spacing-xs">Anwendung</div>
               <h3 className="wv-h3 text-green wv-spacing-xs">Alltagstauglich</h3>
               <p className="wv-body text-green/75 wv-spacing-md">
@@ -50,10 +51,12 @@ export default function WhyFoundingPaws() {
           </ScrollAnimation>
         </div>
 
-
-        <div className="text-center mt-10">
-          <a href="#products" className="pill bg-copper text-cream px-6 py-3 text-sm font-medium inline-block mr-3">Produkte ansehen</a>
-          <a href="#waitlist" className="pill bg-cream/10 border border-green/20 text-green px-6 py-3 text-sm font-medium inline-block">Warteliste sichern</a>
+        {/* Mobile: Vertikale Anordnung, Desktop: Horizontal */}
+        <div className="text-center mt-6 lg:mt-10">
+          <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-center">
+            <a href="#products" className="pill bg-copper text-cream px-6 py-3 text-sm font-medium inline-block w-full sm:w-auto">Produkte ansehen</a>
+            <a href="#waitlist" className="pill bg-cream/10 border border-green/20 text-green px-6 py-3 text-sm font-medium inline-block w-full sm:w-auto">Warteliste sichern</a>
+          </div>
         </div>
       </div>
     </section>

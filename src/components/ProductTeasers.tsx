@@ -96,23 +96,23 @@ export default function ProductTeasers() {
   return (
     <section id="products" className="wv-section bg-cream">
       <div className="container-wide">
-        {/* Header */}
-        <div className="text-center wv-spacing-2xl">
-          <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow wv-spacing-md text-copper">
+        {/* Header - Verbesserte Hierarchie */}
+        <div className="text-center mb-12 lg:mb-16">
+          <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-4 text-copper">
             Bald verfügbar
           </div>
-          <h2 className="wv-h2 text-green wv-spacing-sm">
+          <h2 className="wv-h2 text-green mb-4">
             Unsere Formeln
           </h2>
-          <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
+          <div className="w-16 h-1 bg-copper mx-auto rounded-full mb-6"></div>
           <p className="wv-lead text-green/70 max-w-2xl mx-auto">
-            Fünf wissenschaftlich entwickelte Supplements für jede Lebensphase deines Hundes.
+            Drei wissenschaftlich entwickelte Supplements für jede Lebensphase deines Hundes.
             Handgefertigt in Heilbronn, entwickelt mit Tierärzten.
           </p>
         </div>
 
-        {/* Product Grid - Top 3 only for better focus */}
-        <div className="grid gap-8 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-14 sm:mb-16">
+        {/* Product Grid - Verbesserte Balance */}
+        <div className="grid gap-6 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12 lg:mb-16">
           {showSkeletons ? (
             // Skeleton Loaders
             Array.from({ length: 3 }).map((_, idx) => (
@@ -132,67 +132,69 @@ export default function ProductTeasers() {
                 className="group relative"
               >
                 <a href={`/produkte/${product.key}`} className="block">
-                  <div className="wv-card-feature hover-lift-feature p-7 sm:p-8 shadow-floating transition-all duration-300 hover:shadow-xl cursor-pointer">
+                  <div className="wv-card-feature hover-lift-feature p-6 lg:p-8 shadow-floating transition-all duration-300 hover:shadow-xl cursor-pointer h-full flex flex-col">
                   {/* Coming Soon Badge */}
                   <div className="absolute top-4 right-4 pill bg-copper/15 border border-copper/25 text-copper text-xs px-3 py-1 font-medium">
                     Coming Soon
                   </div>
 
                   {/* Category Badge */}
-                  <div className="pill bg-green/5 border border-green/15 text-green wv-caption px-3 py-1 font-medium wv-spacing-sm inline-block">
+                  <div className="pill bg-green/5 border border-green/15 text-green wv-caption px-3 py-1 font-medium mb-4 inline-block">
                     {product.category}
                   </div>
 
-                  {/* Product Image */}
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden bg-gradient-to-br from-cream to-taupe/20 border border-taupe/20 flex items-center justify-center wv-spacing-md group-hover:scale-110 transition-transform shadow-premium">
+                  {/* Product Image - Größer und prominenter */}
+                  <div className="w-32 h-32 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-cream to-taupe/20 border border-taupe/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-premium">
                     <OptimizedImage 
                       src={product.productImage} 
                       alt={`${product.title} Produktbild`}
-                      width={80}
-                      height={80}
+                      width={100}
+                      height={100}
                       className="w-full h-full object-contain"
                       placeholder="blur"
                       quality={90}
                     />
                   </div>
 
-                  {/* Content */}
-                  <h3 className="wv-h3 text-green wv-spacing-xs">
-                    {product.title}
-                  </h3>
-                  <p className="wv-subhead text-copper wv-spacing-sm">
-                    {product.subtitle}
-                  </p>
-                  <p className="wv-body text-green/75 wv-spacing-sm">
-                    {product.description}
-                  </p>
-                  <ul className="text-green/70 text-sm mb-5 sm:mb-6 list-disc pl-5">
-                    {product.key === 'bright-mind' && (
-                      <>
-                        <li>Omega‑3 + Antioxidantien für mentale Schärfe</li>
-                        <li>Kohärent dosiert, alltagstauglich</li>
-                      </>
-                    )}
-                    {product.key === 'gentle-calm' && (
-                      <>
-                        <li>Sanfte Pflanzenstoffe für Balance</li>
-                        <li>Ohne Sedierung, klare Dosierung</li>
-                      </>
-                    )}
-                    {product.key === 'vital-joints' && (
-                      <>
-                        <li>Gelenknährstoffe in sinnvoller Kombination</li>
-                        <li>Für Beweglichkeit bis ins Alter</li>
-                      </>
-                    )}
-                  </ul>
+                  {/* Content - Bessere Hierarchie */}
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="wv-h3 text-green mb-2">
+                      {product.title}
+                    </h3>
+                    <p className="wv-subhead text-copper mb-3">
+                      {product.subtitle}
+                    </p>
+                    <p className="wv-body text-green/75 mb-4 flex-1">
+                      {product.description}
+                    </p>
+                    <ul className="text-green/70 text-sm mb-5 sm:mb-6 list-disc pl-5">
+                      {product.key === 'bright-mind' && (
+                        <>
+                          <li>Omega‑3 + Antioxidantien für mentale Schärfe</li>
+                          <li>Kohärent dosiert, alltagstauglich</li>
+                        </>
+                      )}
+                      {product.key === 'gentle-calm' && (
+                        <>
+                          <li>Sanfte Pflanzenstoffe für Balance</li>
+                          <li>Ohne Sedierung, klare Dosierung</li>
+                        </>
+                      )}
+                      {product.key === 'vital-joints' && (
+                        <>
+                          <li>Gelenknährstoffe in sinnvoller Kombination</li>
+                          <li>Für Beweglichkeit bis ins Alter</li>
+                        </>
+                      )}
+                    </ul>
 
-                  {/* Trust Footer */}
-                  <div className="border-t border-taupe/15 pt-4 text-xs text-green/60 flex items-center gap-4">
-                    <span className="flex items-center gap-2"><span className="inline-block w-1.5 h-1.5 rounded-full bg-copper"/> Mit Tierärzten entwickelt</span>
-                    <span className="flex items-center gap-2"><span className="inline-block w-1.5 h-1.5 rounded-full bg-copper"/> Handgefertigt in Heilbronn</span>
+                    {/* Trust Footer */}
+                    <div className="border-t border-taupe/15 pt-4 text-xs text-green/60 flex items-center gap-4">
+                      <span className="flex items-center gap-2"><span className="inline-block w-1.5 h-1.5 rounded-full bg-copper"/> Mit Tierärzten entwickelt</span>
+                      <span className="flex items-center gap-2"><span className="inline-block w-1.5 h-1.5 rounded-full bg-copper"/> Handgefertigt in Heilbronn</span>
+                    </div>
                   </div>
-                </div>
+                  </div>
                 </a>
               </ScrollAnimation>
             ))

@@ -173,3 +173,116 @@
     backface-visibility: hidden;
   }
 }
+
+/* Enhanced Mobile Touch Targets */
+@media (pointer: coarse) {
+  /* All interactive elements should have proper touch targets */
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline,
+  .btn-ghost,
+  .pill,
+  a[href],
+  button {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Enhanced button press feedback */
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-outline:active,
+  .btn-ghost:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Card hover effects for touch devices */
+  .wv-card-premium,
+  .wv-card-feature,
+  .wv-card-minimal {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  
+  .wv-card-premium:active,
+  .wv-card-feature:active,
+  .wv-card-minimal:active {
+    transform: scale(0.99);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* iOS-specific scroll optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* Smooth scrolling for iOS */
+  .container-wide,
+  .wv-section {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Prevent iOS bounce on main content */
+  body {
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Optimize animations for iOS */
+  .hover-lift-premium,
+  .hover-lift-feature,
+  .hover-lift-minimal {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* Enhanced Mobile Form Interactions */
+@media (pointer: coarse) {
+  /* Form inputs with proper touch targets */
+  input[type="email"],
+  input[type="text"],
+  textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevent zoom on iOS */
+    -webkit-appearance: none;
+    border-radius: 8px;
+  }
+  
+  /* Enhanced focus states for mobile */
+  input:focus,
+  textarea:focus {
+    outline: 2px solid #b46a34;
+    outline-offset: 2px;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* iOS-specific animation performance */
+@supports (-webkit-touch-callout: none) {
+  /* Hardware acceleration for smooth animations */
+  .micro-pulse,
+  .micro-bounce,
+  .icon-hover {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  /* Optimize transform3d effects */
+  .Transform3D,
+  .hover-lift-premium,
+  .hover-lift-feature,
+  .hover-lift-minimal {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
