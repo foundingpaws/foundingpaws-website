@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
@@ -211,7 +212,7 @@ export default function MarkePage() {
                   <div className="text-4xl font-bold text-copper wv-spacing-sm">
                     {stat.isIcon ? (
                       <div className="w-12 h-12 mx-auto">
-                        <stat.number className="w-full h-full" />
+                        {React.createElement(stat.number as React.ComponentType<{className: string}>, { className: "w-full h-full" })}
                       </div>
                     ) : (
                       stat.number
