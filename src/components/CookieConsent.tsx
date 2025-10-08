@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { updateAdvancedConsent } from "@/lib/analytics";
-import { cookieManager, CookiePreferences } from "@/lib/cookie-manager";
+import { cookieManager, type CookiePreferences } from "@/lib/cookie-manager";
 import { COOKIE_CATEGORIES, DEFAULT_PREFERENCES } from "@/lib/cookie-config";
 
 export default function CookieConsent() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { cookieManager, CookiePreferences } from "@/lib/cookie-manager";
+import { cookieManager, type CookiePreferences } from "@/lib/cookie-manager";
 import { COOKIE_CATEGORIES, DEFAULT_PREFERENCES } from "@/lib/cookie-config";
 
 export default function CookiePreferences() {

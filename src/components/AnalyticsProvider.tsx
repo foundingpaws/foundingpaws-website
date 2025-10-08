@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { initGA, trackPageView, updateConsent, updateAdvancedConsent, getConsentState } from '@/lib/analytics';
@@ -12,7 +12,7 @@ interface AnalyticsProviderProps {
   gaId?: string;
 }
 
-export default function AnalyticsProvider({ 
+function AnalyticsProviderInner({ 
   children, 
   gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-W1DWJZHQB1' 
 }: AnalyticsProviderProps) {
@@ -165,5 +165,13 @@ export default function AnalyticsProvider({
       
       {children}
     </>
+  );
+}
+
+export default function AnalyticsProvider(props: AnalyticsProviderProps) {
+  return (
+    <Suspense fallback={<div>{props.children}</div>}>
+      <AnalyticsProviderInner {...props} />
+    </Suspense>
   );
 }

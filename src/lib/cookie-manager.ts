@@ -1,6 +1,8 @@
 // Advanced Cookie Management for Premium Website
 import { COOKIE_CATEGORIES, DEFAULT_PREFERENCES, CONSENT_EXPIRY_DAYS, CONSENT_VERSION, CookiePreferences } from './cookie-config';
 
+export type { CookiePreferences };
+
 export interface ConsentData {
   version: string;
   timestamp: number;
