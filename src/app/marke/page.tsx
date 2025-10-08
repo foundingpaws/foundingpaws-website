@@ -2,28 +2,34 @@ import Image from "next/image";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
+import IconHeart from "@/components/icons/IconHeart";
+import IconScience from "@/components/icons/IconScience";
+import IconNature from "@/components/icons/IconNature";
+import IconTrust from "@/components/icons/IconTrust";
+import IconDoctor from "@/components/icons/IconDoctor";
+import IconInfinity from "@/components/icons/IconInfinity";
 
 const values = [
   {
-    icon: "❤️",
+    icon: IconHeart,
     title: "Liebe zu Hunden",
     description: "Jeder Hund ist einzigartig und verdient die bestmögliche Versorgung. Wir verstehen die tiefe Bindung zwischen dir und deinem Vierbeiner.",
     color: "copper"
   },
   {
-    icon: "🔬",
+    icon: IconScience,
     title: "Wissenschaftliche Exzellenz",
     description: "Unsere Formeln basieren auf aktueller Forschung und werden von Tierärzten entwickelt. Jede Zutat ist sorgfältig ausgewählt.",
     color: "green"
   },
   {
-    icon: "🌱",
+    icon: IconNature,
     title: "Natürlichkeit",
     description: "Wir setzen auf die Kraft der Natur. Keine künstlichen Zusatzstoffe, keine Kompromisse bei der Qualität.",
     color: "taupe"
   },
   {
-    icon: "🤝",
+    icon: IconTrust,
     title: "Vertrauen",
     description: "Transparenz ist unser Versprechen. Du weißt immer, was in unseren Produkten enthalten ist und woher es kommt.",
     color: "copper"
@@ -38,7 +44,7 @@ const milestones = [
     image: "/Nala1.jpg"
   },
   {
-    year: "2025",
+    year: "2025 Q2",
     title: "Erste Erfolge",
     description: "Nala und Jackson wurden unsere ersten Produkttester. Ihre Begeisterung bestätigte uns: Wir sind auf dem richtigen Weg.",
     image: "/mockups/Jackson.jpg"
@@ -76,7 +82,7 @@ const stats = [
   { number: "100%", label: "Natürliche Inhaltsstoffe" },
   { number: "0", label: "Künstliche Zusatzstoffe" },
   { number: "3", label: "Wissenschaftlich entwickelte Formeln" },
-  { number: "∞", label: "Liebe zu Hunden" }
+  { number: IconInfinity, label: "Liebe zu Hunden", isIcon: true }
 ];
 
 export default function MarkePage() {
@@ -87,11 +93,11 @@ export default function MarkePage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md text-cream">
+              <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md" style={{color: 'white'}}>
                 Unsere Marke
               </div>
               <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>
-                Mehr als nur Supplements – eine Mission
+                Unsere Mission
               </h1>
               <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
               <p className="wv-lead wv-spacing-md max-w-3xl mx-auto" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
@@ -167,7 +173,9 @@ export default function MarkePage() {
             {values.map((value, index) => (
               <ScrollAnimation key={value.title} animation="fade-in" delay={index * 100}>
                 <GlassmorphismCard className="p-6 text-center hover-lift-feature">
-                  <div className="text-4xl wv-spacing-sm">{value.icon}</div>
+                  <div className="w-16 h-16 mx-auto wv-spacing-sm text-green">
+                    <value.icon className="w-full h-full" />
+                  </div>
                   <h3 className="wv-h4 text-green wv-spacing-xs">
                     {value.title}
                   </h3>
@@ -201,7 +209,13 @@ export default function MarkePage() {
               <ScrollAnimation key={stat.label} animation="fade-in" delay={index * 100}>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-copper wv-spacing-sm">
-                    {stat.number}
+                    {stat.isIcon ? (
+                      <div className="w-12 h-12 mx-auto">
+                        <stat.number className="w-full h-full" />
+                      </div>
+                    ) : (
+                      stat.number
+                    )}
                   </div>
                   <div className="wv-body" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
                     {stat.label}
@@ -244,7 +258,7 @@ export default function MarkePage() {
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-green/20 to-copper/20 flex items-center justify-center">
-                        <span className="text-2xl text-green/60">👨‍⚕️</span>
+                        <IconDoctor className="w-8 h-8 text-green/60" />
                       </div>
                     )}
                   </div>
@@ -272,7 +286,7 @@ export default function MarkePage() {
               {/* Text Content */}
               <div className="text-center lg:text-left">
                 <h2 className="wv-h2 text-green wv-spacing-sm">
-                  Werde Teil unserer Mission
+                  Unsere Mission
                 </h2>
                 <div className="w-16 h-1 bg-copper mx-auto lg:mx-0 rounded-full wv-spacing-md"></div>
                 <p className="wv-lead text-green/70 wv-spacing-md">

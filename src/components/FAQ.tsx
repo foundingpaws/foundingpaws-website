@@ -9,23 +9,23 @@ const faqs = [
   },
   {
     question: "Wie lange dauert es, bis ich erste Ergebnisse sehe?",
-    answer: "Die meisten Hunde zeigen nach 2-4 Wochen erste Verbesserungen. Bei Gelenkproblemen kann es 6-8 Wochen dauern, bis die volle Wirkung eintritt. Konsistenz ist der Schlüssel – gib deinem Hund täglich die empfohlene Dosis.",
+    answer: "Jeder Hund reagiert individuell auf Nahrungsergänzungsmittel. Manche Besitzer berichten von ersten Beobachtungen nach 2-4 Wochen, andere benötigen länger. Konsistenz in der Anwendung ist wichtig. Wir empfehlen, die Entwicklung mit deinem Tierarzt zu besprechen.",
   },
   {
     question: "Kann ich alle drei Produkte gleichzeitig geben?",
-    answer: "Ja, unsere Produkte sind darauf ausgelegt, zusammen zu wirken. Du kannst sie problemlos kombinieren oder einzeln verwenden. Bei Unsicherheiten empfehlen wir, mit einem Produkt zu beginnen und nach 2 Wochen die anderen hinzuzufügen.",
+    answer: "Unsere Produkte sind so formuliert, dass sie sich ergänzen können. Du kannst sie einzeln oder in Kombination verwenden. Wir empfehlen, mit einem Produkt zu beginnen und die Reaktion deines Hundes zu beobachten, bevor du weitere hinzufügst. Sprich bei Fragen mit deinem Tierarzt.",
   },
   {
     question: "Sind die Supplements für Welpen geeignet?",
     answer: "Unsere aktuellen Formeln sind für Hunde ab 1 Jahr optimiert. Für Welpen entwickeln wir spezielle Produkte. Bei jungen Hunden empfehlen wir, vor der Supplementierung mit deinem Tierarzt zu sprechen.",
   },
   {
-    question: "Was passiert, wenn mein Hund die Kapseln nicht mag?",
-    answer: "Du kannst die Kapseln öffnen und den Inhalt über das Futter mischen. Alternativ bieten wir auch Pulver-Varianten an. Die meisten Hunde gewöhnen sich schnell an den Geschmack, da wir natürliche Aromen verwenden.",
+    question: "Was passiert, wenn mein Hund die Produkte nicht mag?",
+    answer: "Du kannst die Produkte über das Futter mischen oder in Pulverform verabreichen. Die meisten Hunde gewöhnen sich schnell an den Geschmack, da wir natürliche Aromen verwenden. Bei Problemen empfehlen wir, die Dosierung schrittweise zu reduzieren.",
   },
   {
     question: "Wie unterscheiden sich eure Produkte von denen im Zoofachhandel?",
-    answer: "Wir verwenden nur hochwertige, pharmazeutische Rohstoffe ohne Füllstoffe. Jede Charge wird in Deutschland hergestellt und von unabhängigen Laboren getestet. Zudem arbeiten wir direkt mit Tierärzten zusammen, nicht nur mit Marketing-Abteilungen.",
+    answer: "Unsere Produkte werden handgemacht in kleinen Chargen mit höchster Sorgfalt hergestellt. Wir verwenden ausschließlich natürliche, hochwertige Rohstoffe ohne künstliche Zusätze oder Füllstoffe. Jede Charge wird in unserem eigenen Labor auf Qualität und Reinheit geprüft. Wir arbeiten eng mit Tierärzten zusammen, um fundierte Formulierungen zu entwickeln.",
   },
   {
     question: "Kann ich die Produkte bei Medikamenteneinnahme geben?",
@@ -33,11 +33,11 @@ const faqs = [
   },
   {
     question: "Wie werden die Produkte hergestellt?",
-    answer: "Alle Supplements werden in kleinen Chargen in unserer Manufaktur in Heilbronn gefertigt – mit höchsten Qualitätsstandards und regelmäßigen Laborkontrollen. Jede Kapsel wird einzeln geprüft.",
+    answer: "Alle Supplements werden in kleinen Chargen in unserer Manufaktur in Heilbronn gefertigt – mit höchsten Qualitätsstandards und regelmäßigen Laborkontrollen. Jede Charge wird sorgfältig geprüft und dokumentiert.",
   },
   {
     question: "Gibt es Nebenwirkungen?",
-    answer: "Bei korrekter Dosierung sind keine Nebenwirkungen bekannt. Bei Überdosierung kann es zu weichem Stuhl kommen. Bei allergischen Reaktionen (Juckreiz, Hautausschlag) solltest du die Einnahme stoppen und uns kontaktieren.",
+    answer: "Unsere Produkte sind als Nahrungsergänzungsmittel konzipiert und bei bestimmungsgemäßer Anwendung gut verträglich. Bei Überdosierung kann es zu Verdauungsbeschwerden kommen. Bei ungewöhnlichen Reaktionen solltest du die Anwendung stoppen und einen Tierarzt konsultieren.",
   },
   {
     question: "Wie lange sind die Produkte haltbar?",
@@ -48,8 +48,12 @@ const faqs = [
     answer: "Unsere aktuellen Formeln sind speziell für Hunde entwickelt. Katzen haben andere Nährstoffbedürfnisse. Wir arbeiten an katzenfreundlichen Varianten – melde dich für Updates an.",
   },
   {
+    question: "Wie funktioniert die 1%-Spende an Tierheime?",
+    answer: "Sobald wir starten, spenden wir jeden Monat 1% unseres Umsatzes an lokale Tierheime in Deutschland. Die Spenden werden transparent auf unserer Website veröffentlicht. Jeder Kauf unterstützt also nicht nur die Gesundheit deines Hundes, sondern hilft auch anderen Hunden in Not.",
+  },
+  {
     question: "Was macht Founding Paws anders?",
-    answer: "Transparenz, Wissenschaft und Liebe. Wir zeigen dir genau, was drin ist, woher es kommt und warum. Keine Füllstoffe, keine leeren Versprechen – nur das Beste für deinen Hund. Zudem spenden wir 1% unseres Umsatzes an Tierheime.",
+    answer: "Transparenz, Qualität und Verantwortung. Wir zeigen dir genau, was in unseren Produkten enthalten ist und woher die Rohstoffe stammen. Wir verzichten auf unnötige Zusätze und setzen auf ausgewählte, hochwertige Inhaltsstoffe. Zudem spenden wir ab dem ersten Verkauf 1% unseres Umsatzes an Tierheime und arbeiten eng mit Tierärzten zusammen.",
   },
   {
     question: "Was passiert, wenn mein Hund die Produkte nicht mag?",
@@ -57,7 +61,7 @@ const faqs = [
   },
   {
     question: "Wie kann ich die richtige Dosierung für meinen Hund bestimmen?",
-    answer: "Die Dosierung richtet sich nach Gewicht und Alter deines Hundes. Unser Produktfinder hilft dir dabei, die optimale Menge zu bestimmen. Bei sehr großen oder sehr kleinen Hunden empfehlen wir eine individuelle Beratung.",
+    answer: "Die Dosierung orientiert sich an Gewicht und Alter deines Hundes. Unser Produktfinder kann dir als Orientierungshilfe dienen. Bei sehr großen oder sehr kleinen Hunden sowie bei gesundheitlichen Besonderheiten empfehlen wir eine individuelle Beratung mit deinem Tierarzt.",
   },
   {
     question: "Sind die Inhaltsstoffe bio-zertifiziert?",

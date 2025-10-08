@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../styles/ios-optimizations.css";
 
 /*
   Global brand tokens — Founding Paws
@@ -25,6 +26,11 @@
   --font-display: var(--font-display-fallback);
   --font-sans: var(--font-sans-fallback);
   --font-round: var(--font-round-fallback);
+  
+  /* Enhanced font stacks with German Umlaute support */
+  --font-display-umlaut: "Retrips", "Retrips-Fallback", "Times New Roman", "Times", "serif";
+  --font-sans-umlaut: "DM Sans", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-round-umlaut: "Fredoka", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 /* Tailwind v4 theming via @theme inline */
@@ -40,9 +46,9 @@
   --radius-pill: 9999px;
   --radius-card: 24px;
 
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
-  --font-round: var(--font-round);
+        --font-display: var(--font-display-umlaut);
+        --font-sans: var(--font-sans-umlaut);
+        --font-round: var(--font-round-umlaut);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,49 +85,49 @@ html, body {
 body {
   background: var(--fp-cream);
   color: var(--fp-green);
-  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto,
-    Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: var(--font-sans-umlaut);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 /* Premium utilities */
-.use-retrips { font-family: "Retrips", var(--font-display), serif; letter-spacing: -0.005em; }
-.use-fredoka { font-family: var(--font-round), system-ui, sans-serif; letter-spacing: 0; }
+.use-retrips { font-family: var(--font-display-umlaut); letter-spacing: -0.005em; }
+.use-fredoka { font-family: var(--font-round-umlaut); letter-spacing: 0; }
 
 /* Willow Voice — typographic system */
 .wv-h1 {
-  font-family: "Retrips", var(--font-display), serif;
+  font-family: var(--font-display-umlaut);
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.05;
   font-size: clamp(2.25rem, 3.2vw + 1rem, 4.25rem);
 }
 .wv-h2 {
-  font-family: "Retrips", var(--font-display), serif;
+  font-family: var(--font-display-umlaut);
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.08;
   font-size: clamp(1.875rem, 2.2vw + 1rem, 3.25rem);
 }
 .wv-h3 {
-  font-family: "Retrips", var(--font-display), serif;
+  font-family: var(--font-display-umlaut);
   font-weight: 400;
   letter-spacing: -0.005em;
   line-height: 1.12;
   font-size: clamp(1.5rem, 1.5vw + 1rem, 2.25rem);
 }
 .wv-subhead {
-  font-family: var(--font-round), system-ui, sans-serif; /* Fredoka */
+  font-family: var(--font-round-umlaut);
   font-weight: 500;
   letter-spacing: 0.005em;
   font-size: clamp(1.0625rem, 0.6vw + 0.85rem, 1.375rem);
   color: color-mix(in oklab, var(--fp-green) 88%, black 0%);
 }
 .wv-eyebrow {
-  font-family: var(--font-round), system-ui, sans-serif;
+  font-family: var(--font-round-umlaut);
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -129,15 +135,16 @@ body {
   color: color-mix(in oklab, var(--fp-green) 70%, transparent);
 }
 .wv-body {
-  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: var(--font-sans-umlaut);
   font-size: 1rem;
   line-height: 1.7;
   color: color-mix(in oklab, var(--fp-green) 92%, black 0%);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 /* Premium Typography Extensions */
 .wv-h4 {
-  font-family: "Retrips", var(--font-display), serif;
+  font-family: var(--font-display-umlaut);
   font-weight: 400;
   letter-spacing: -0.002em;
   line-height: 1.15;
@@ -145,28 +152,31 @@ body {
 }
 
 .wv-lead {
-  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: var(--font-sans-umlaut);
   font-size: clamp(1.125rem, 0.8vw + 0.9rem, 1.375rem);
   line-height: 1.6;
   font-weight: 400;
   color: color-mix(in oklab, var(--fp-green) 85%, black 0%);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 .wv-small {
-  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: var(--font-sans-umlaut);
   font-size: 0.875rem;
   line-height: 1.5;
   color: color-mix(in oklab, var(--fp-green) 75%, black 0%);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 .wv-caption {
-  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: var(--font-sans-umlaut);
   font-size: 0.75rem;
   line-height: 1.4;
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: color-mix(in oklab, var(--fp-green) 65%, black 0%);
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 /* Willow Voice — section rhythm */
@@ -327,6 +337,27 @@ body {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Enhanced German Umlaute Support with Fallback */
+@font-face {
+  font-family: "Retrips";
+  src: url('/brand/fonts/Retrips-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+00C0-00FF, U+0100-017F, U+0180-024F, U+1E00-1EFF;
+}
+
+/* Fallback for German Umlaute when Retrips doesn't support them */
+@font-face {
+  font-family: "Retrips-Fallback";
+  src: local("Times New Roman"), local("Times"), local("serif");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+00C0-00FF, U+0100-017F, U+0180-024F, U+1E00-1EFF;
 }
 
 /* Hero depth styling */
@@ -631,13 +662,14 @@ body {
 
 /* Form Labels */
 .form-label {
-  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-family: var(--font-sans), "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--fp-green);
   margin-bottom: 0.5rem;
   display: block;
   transition: color 0.3s ease;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 .form-label-required::after {

@@ -2,6 +2,7 @@ import Image from "next/image";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
+import IconBook from "@/components/icons/IconBook";
 
 const categories = [
   {
@@ -178,8 +179,9 @@ export default function RatgeberPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <div className="inline-block pill bg-cream/20 border border-cream/30 px-6 py-3 wv-eyebrow wv-spacing-md text-cream backdrop-blur-sm">
-                📚 Hundegesundheit verstehen
+              <div className="inline-block pill bg-cream/20 border border-cream/30 px-6 py-3 wv-eyebrow wv-spacing-md backdrop-blur-sm flex items-center gap-2" style={{color: 'white'}}>
+                <IconBook className="w-4 h-4" />
+                Hundegesundheit verstehen
               </div>
               <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>
                 Der Founding Paws Ratgeber

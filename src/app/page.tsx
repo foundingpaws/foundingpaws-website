@@ -4,6 +4,7 @@ import WhyFoundingPaws from "@/components/WhyFoundingPaws";
 import ProductTeasers from "@/components/ProductTeasers";
 import IngredientsShowcase from "@/components/IngredientsShowcase";
 import LifestyleShowcase from "@/components/LifestyleShowcase";
+import CharitySection from "@/components/CharitySection";
 import FinderMVP from "@/components/FinderMVP";
 import KnowledgeHub from "@/components/KnowledgeHub";
 import BlogSection from "@/components/BlogSection";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <ProductTeasers />
       <IngredientsShowcase />
       <LifestyleShowcase />
+      <CharitySection />
       <FinderMVP />
       <KnowledgeHub />
       <BlogSection />

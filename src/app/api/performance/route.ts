@@ -10,6 +10,14 @@ interface PerformanceMetric {
 }
 
 export async function POST(request: NextRequest) {
+  // Skip processing in development to improve performance
+  if (process.env.NODE_ENV === 'development') {
+    return NextResponse.json({
+      success: true,
+      message: 'Performance monitoring disabled in development'
+    });
+  }
+
   try {
     const metric: PerformanceMetric = await request.json();
     
@@ -30,14 +38,16 @@ export async function POST(request: NextRequest) {
       version: process.env.npm_package_version || '1.0.0',
     };
 
-    // Log performance metric
-    console.log('Performance Metric:', {
-      name: processedMetric.name,
-      value: processedMetric.value,
-      rating: processedMetric.rating,
-      url: processedMetric.url,
-      timestamp: processedMetric.timestamp,
-    });
+    // Log performance metric (only for poor ratings in production)
+    if (processedMetric.rating === 'poor') {
+      console.log('Poor Performance Metric:', {
+        name: processedMetric.name,
+        value: processedMetric.value,
+        rating: processedMetric.rating,
+        url: processedMetric.url,
+        timestamp: processedMetric.timestamp,
+      });
+    }
 
     // In production, you would:
     // 1. Send to Google Analytics

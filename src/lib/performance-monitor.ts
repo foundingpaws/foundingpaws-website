@@ -143,6 +143,11 @@ class PerformanceMonitor {
   }
 
   private measureCustomMetrics(): void {
+    // Skip in development to improve performance
+    if (process.env.NODE_ENV === 'development') {
+      return;
+    }
+    
     // Time to Interactive (TTI) approximation
     this.measureTTI();
     
@@ -231,6 +236,11 @@ class PerformanceMonitor {
   }
 
   public recordMetric(name: string, value: number, rating: 'good' | 'needs-improvement' | 'poor'): void {
+    // Skip in development to improve performance
+    if (process.env.NODE_ENV === 'development') {
+      return;
+    }
+    
     const metric: PerformanceMetric = {
       name,
       value: Math.round(value * 100) / 100, // Round to 2 decimal places
@@ -262,6 +272,11 @@ class PerformanceMonitor {
   }
 
   private async sendToCustomEndpoint(metric: PerformanceMetric): Promise<void> {
+    // Disable in development to improve performance
+    if (process.env.NODE_ENV === 'development') {
+      return;
+    }
+    
     try {
       await fetch('/api/performance', {
         method: 'POST',

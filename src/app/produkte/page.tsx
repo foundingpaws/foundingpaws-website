@@ -111,7 +111,7 @@ export default function ProduktePage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md text-cream">
+              <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md" style={{color: 'white'}}>
                 Unsere Produkte
               </div>
               <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>

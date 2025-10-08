@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from "next/image";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
+import IconDog from "@/components/icons/IconDog";
 
 const questions = [
   {
@@ -275,8 +276,9 @@ export default function BedarfsfinderPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <div className="inline-block pill bg-cream/20 border border-cream/30 px-6 py-3 wv-eyebrow wv-spacing-md text-cream backdrop-blur-sm">
-                🐕 Bedarfsfinder
+              <div className="inline-block pill bg-cream/20 border border-cream/30 px-6 py-3 wv-eyebrow wv-spacing-md backdrop-blur-sm flex items-center gap-2" style={{color: 'white'}}>
+                <IconDog className="w-4 h-4" />
+                Bedarfsfinder
               </div>
               <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>
                 Finde die perfekten Supplements für deinen Hund
@@ -326,7 +328,7 @@ export default function BedarfsfinderPage() {
                       <button
                         key={option.value}
                         onClick={() => handleAnswer(questions[currentQuestion].id, option.value)}
-                        className="group p-8 rounded-2xl border-2 border-green/10 hover:border-copper hover:bg-copper/5 transition-all duration-300 text-left hover:shadow-lg hover:-translate-y-1"
+                        className="group p-8 rounded-2xl border-2 border-green/10 hover:border-copper hover:bg-copper/5 transition-all duration-300 text-center hover:shadow-lg hover:-translate-y-1 bedarfsfinder-option"
                       >
                         <h3 className="wv-h4 text-green wv-spacing-xs group-hover:text-copper transition-colors">
                           {option.label}

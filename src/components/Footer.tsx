@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import CookiePreferences from "./CookiePreferences";
+import IconHeart from "./icons/IconHeart";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -86,6 +88,7 @@ export default function Footer() {
               <li><Link href="/datenschutz" className="hover:text-copper transition">Datenschutz</Link></li>
               <li><Link href="/agb" className="hover:text-copper transition">AGB</Link></li>
               <li><Link href="/widerruf" className="hover:text-copper transition">Widerrufsrecht</Link></li>
+              <li><CookiePreferences /></li>
             </ul>
           </div>
 
@@ -131,12 +134,16 @@ export default function Footer() {
           <div>
             <h3 className="use-fredoka text-lg mb-4">Kontakt</h3>
             <ul className="space-y-3 text-sm text-cream/70">
-              <li>Founding Paws GmbH</li>
+              <li>Founding Paws</li>
               <li>Heilbronn, Deutschland</li>
               <li className="pt-2">
                 <a href="mailto:hallo@foundingpaws.de" className="hover:text-copper transition">
                   hallo@foundingpaws.de
                 </a>
+              </li>
+              <li className="pt-2 text-copper font-medium flex items-center gap-2">
+                <IconHeart className="w-4 h-4" />
+                Jeder Kauf zählt - 1% für Tierheime
               </li>
             </ul>
             <div className="flex gap-4 mt-6">
@@ -179,7 +186,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-cream/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream/60">
-          <span>© {new Date().getFullYear()} Founding Paws GmbH. Alle Rechte vorbehalten.</span>
+          <span>© {new Date().getFullYear()} Founding Paws. Alle Rechte vorbehalten.</span>
           <span className="use-fredoka text-copper">Wissenschaft trifft Herz</span>
         </div>
       </div>

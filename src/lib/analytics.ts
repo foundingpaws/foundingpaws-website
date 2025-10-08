@@ -1,4 +1,4 @@
-// Google Analytics 4 Integration
+// Google Analytics 4 Integration with Consent Mode
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;
@@ -6,25 +6,38 @@ declare global {
   }
 }
 
-export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX';
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-W1DWJZHQB1';
 
-// Initialize Google Analytics
+// Consent Mode Configuration
+export const CONSENT_DEFAULTS = {
+  'ad_storage': 'denied',
+  'analytics_storage': 'denied',
+  'functionality_storage': 'denied',
+  'personalization_storage': 'denied',
+  'security_storage': 'granted',
+  'wait_for_update': 2000,
+};
+
+// Initialize Google Analytics with Consent Mode
 export const initGA = () => {
   if (typeof window === 'undefined') return;
   
+  // Initialize dataLayer first
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function() {
+    window.dataLayer.push(arguments);
+  };
+
+  // Set default consent state (denied for all)
+  window.gtag('consent', 'default', CONSENT_DEFAULTS);
+
   // Load Google Analytics script
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
   document.head.appendChild(script);
 
-  // Initialize dataLayer
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function() {
-    window.dataLayer.push(arguments);
-  };
-
-  // Configure GA4
+  // Configure GA4 with consent mode
   window.gtag('js', new Date());
   window.gtag('config', GA_TRACKING_ID, {
     page_title: document.title,
@@ -34,6 +47,48 @@ export const initGA = () => {
     allow_google_signals: true,
     allow_ad_personalization_signals: false,
   });
+};
+
+// Update consent based on user choice
+export const updateConsent = (analytics: boolean, adPersonalization: boolean = false) => {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  
+  window.gtag('consent', 'update', {
+    'analytics_storage': analytics ? 'granted' : 'denied',
+    'ad_storage': adPersonalization ? 'granted' : 'denied',
+    'personalization_storage': adPersonalization ? 'granted' : 'denied',
+  });
+};
+
+// Advanced consent update with all categories
+export const updateAdvancedConsent = (preferences: {
+  necessary: boolean;
+  analytics: boolean;
+  marketing: boolean;
+  personalization: boolean;
+  functional: boolean;
+}) => {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  
+  window.gtag('consent', 'update', {
+    'analytics_storage': preferences.analytics ? 'granted' : 'denied',
+    'ad_storage': preferences.marketing ? 'granted' : 'denied',
+    'personalization_storage': preferences.personalization ? 'granted' : 'denied',
+    'functionality_storage': preferences.functional ? 'granted' : 'denied',
+    'security_storage': preferences.necessary ? 'granted' : 'denied',
+  });
+};
+
+// Get current consent state
+export const getConsentState = () => {
+  if (typeof window === 'undefined') return null;
+  
+  try {
+    const stored = localStorage.getItem('fp-consent');
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
 };
 
 // Track page views

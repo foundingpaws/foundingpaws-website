@@ -1,18 +1,15 @@
 import FadeIn from "@/components/FadeIn";
 import ScrollAnimation from "@/components/ScrollAnimation";
-import IconStethoscope from "@/components/icons/IconStethoscope";
-import IconShield from "@/components/icons/IconShield";
-import IconLeaf from "@/components/icons/IconLeaf";
 
 export default function WhyFoundingPaws() {
   return (
     <section className="wv-section bg-cream" aria-labelledby="why-title">
       <div className="container-wide">
         <ScrollAnimation animation="fade-in" className="text-center mb-12">
-          <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-6 text-copper">Unsere Haltung</div>
+          <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-6 text-copper">Unsere Mission</div>
           <h2 id="why-title" className="wv-h2 text-green mb-4">Wissenschaft mit Herz. Transparent in jedem Schritt.</h2>
           <p className="wv-subhead text-green/70 max-w-3xl mx-auto">
-            Wir entwickeln gezielte Formeln gemeinsam mit Tierärzt:innen, verwenden natürliche
+            Wir entwickeln gezielte Formeln gemeinsam mit Tierärzten, verwenden natürliche
             Rohstoffe und machen die Anwendung so einfach wie möglich.
           </p>
         </ScrollAnimation>
@@ -53,20 +50,6 @@ export default function WhyFoundingPaws() {
           </ScrollAnimation>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
-          <div className="flex flex-col items-center gap-2 text-green/85">
-            <IconStethoscope className="w-6 h-6" />
-            <span className="text-sm">Mit Tierärzt:innen entwickelt</span>
-          </div>
-          <div className="flex flex-col items-center gap-2 text-green/85">
-            <IconShield className="w-6 h-6" />
-            <span className="text-sm">Manufaktur Heilbronn</span>
-          </div>
-          <div className="flex flex-col items-center gap-2 text-green/85">
-            <IconLeaf className="w-6 h-6" />
-            <span className="text-sm">100% natürliche Inhaltsstoffe</span>
-          </div>
-        </div>
 
         <div className="text-center mt-10">
           <a href="#products" className="pill bg-copper text-cream px-6 py-3 text-sm font-medium inline-block mr-3">Produkte ansehen</a>

@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ScrollAnimation from './ScrollAnimation';
 import GlassmorphismCard from './GlassmorphismCard';
+import IconQualityLab from './icons/IconQualityLab';
+import IconVetApproved from './icons/IconVetApproved';
+import IconMadeInGermany from './icons/IconMadeInGermany';
+import IconNatural from './icons/IconNatural';
+import IconNonGMO from './icons/IconNonGMO';
+import IconSustainable from './icons/IconSustainable';
+import IconRocket from './icons/IconRocket';
+import IconHeart from './icons/IconHeart';
 
 // Echte Kundenstimmen mit authentischen Details
 const testimonials = [
@@ -73,38 +81,44 @@ const testimonials = [
 const trustBadges = [
   {
     name: "Laborgeprüft",
-    description: "Qualitätssicherung durch unabhängige Labore",
-    icon: "🔬",
+    description: "Qualitätssicherung durch unser eigenes Labor",
+    icon: IconQualityLab,
     verified: true
   },
   {
     name: "Tierärztlich geprüft",
     description: "Von Fachtierärzten entwickelt",
-    icon: "🩺",
+    icon: IconVetApproved,
     verified: true
   },
   {
     name: "Made in Germany",
     description: "Handgefertigt in Heilbronn",
-    icon: "🇩🇪",
+    icon: IconMadeInGermany,
     verified: true
   },
   {
     name: "100% Natürlich",
     description: "Keine künstlichen Zusätze",
-    icon: "🌿",
+    icon: IconNatural,
     verified: true
   },
   {
     name: "GMO-frei",
     description: "Ohne gentechnisch veränderte Inhaltsstoffe",
-    icon: "✅",
+    icon: IconNonGMO,
     verified: true
   },
   {
     name: "Nachhaltig",
     description: "Umweltfreundliche Verpackung",
-    icon: "♻️",
+    icon: IconSustainable,
+    verified: true
+  },
+  {
+    name: "Jeder Kauf zählt",
+    description: "1% für Tierheime ab dem ersten Verkauf",
+    icon: IconHeart,
     verified: true
   }
 ];
@@ -196,7 +210,9 @@ export default function SocialProof() {
                 key={index}
                 className="p-6 text-center hover:scale-105 transition-transform duration-300"
               >
-                <div className="text-4xl wv-spacing-sm">{badge.icon}</div>
+                <div className="w-12 h-12 wv-spacing-sm mx-auto text-green">
+                  <badge.icon className="w-full h-full" />
+                </div>
                 <h3 className="wv-h4 text-green wv-spacing-xs">
                   {badge.name}
                 </h3>
@@ -220,7 +236,9 @@ export default function SocialProof() {
         <ScrollAnimation>
           <div className="max-w-4xl mx-auto wv-spacing-2xl">
             <GlassmorphismCard className="p-8 md:p-12 text-center">
-              <div className="text-6xl mb-6">🚀</div>
+              <div className="w-20 h-20 mb-6 mx-auto text-green">
+                <IconRocket className="w-full h-full" />
+              </div>
               <h3 className="wv-h3 text-green wv-spacing-sm">
                 Wir arbeiten an etwas Großartigem
               </h3>

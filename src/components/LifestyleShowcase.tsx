@@ -35,7 +35,7 @@ export default function LifestyleShowcase() {
         {/* Header */}
         <FadeIn>
           <div className="text-center wv-spacing-2xl">
-            <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md text-cream">
+            <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md" style={{color: 'white'}}>
               Echte Momente
             </div>
             <h2 className="wv-h2 wv-spacing-sm" style={{color: 'white'}}>

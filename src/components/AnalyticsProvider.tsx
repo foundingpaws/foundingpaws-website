@@ -3,8 +3,9 @@
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
-import { initGA, trackPageView } from '@/lib/analytics';
-import { performanceMonitor } from '@/lib/performance-monitor';
+import { initGA, trackPageView, updateConsent, updateAdvancedConsent, getConsentState } from '@/lib/analytics';
+import { cookieManager } from '@/lib/cookie-manager';
+// import { performanceMonitor } from '@/lib/performance-monitor'; // Disabled for development performance
 
 interface AnalyticsProviderProps {
   children: React.ReactNode;
@@ -13,17 +14,36 @@ interface AnalyticsProviderProps {
 
 export default function AnalyticsProvider({ 
   children, 
-  gaId = process.env.NEXT_PUBLIC_GA_ID 
+  gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-W1DWJZHQB1' 
 }: AnalyticsProviderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Initialize Google Analytics
+  // Check for existing consent and update accordingly
   useEffect(() => {
     if (gaId && gaId !== 'G-XXXXXXXXXX') {
-      initGA();
+      const preferences = cookieManager.getPreferences();
+      updateAdvancedConsent(preferences);
     }
   }, [gaId]);
+
+  // Listen for consent changes
+  useEffect(() => {
+    const handleConsentChange = () => {
+      const preferences = cookieManager.getPreferences();
+      updateAdvancedConsent(preferences);
+    };
+
+    // Listen for custom consent update events
+    window.addEventListener('consent-updated', handleConsentChange);
+    
+    // Also check on mount
+    handleConsentChange();
+
+    return () => {
+      window.removeEventListener('consent-updated', handleConsentChange);
+    };
+  }, []);
 
   // Track page views
   useEffect(() => {
@@ -36,11 +56,13 @@ export default function AnalyticsProvider({
   // Track performance metrics
   useEffect(() => {
     const handleLoad = () => {
-      // Track page load time
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-      if (navigation) {
-        const loadTime = navigation.loadEventEnd - navigation.fetchStart;
-        performanceMonitor.recordMetric('PageLoadTime', loadTime, 'good');
+      // Track page load time - disabled in development
+      if (process.env.NODE_ENV === 'production') {
+        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        if (navigation) {
+          const loadTime = navigation.loadEventEnd - navigation.fetchStart;
+          // performanceMonitor.recordMetric('PageLoadTime', loadTime, 'good');
+        }
       }
     };
 
@@ -94,9 +116,29 @@ export default function AnalyticsProvider({
 
   return (
     <>
-      {/* Google Analytics Script */}
+      {/* Google Analytics Script with Consent Mode */}
       {gaId && gaId !== 'G-XXXXXXXXXX' && (
         <>
+          <Script
+            id="gtag-init"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                
+                // Set default consent state (denied for all)
+                gtag('consent', 'default', {
+                  'ad_storage': 'denied',
+                  'analytics_storage': 'denied',
+                  'functionality_storage': 'denied',
+                  'personalization_storage': 'denied',
+                  'security_storage': 'granted',
+                  'wait_for_update': 2000,
+                });
+              `,
+            }}
+          />
           <Script
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
@@ -106,8 +148,6 @@ export default function AnalyticsProvider({
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${gaId}', {
                   page_title: document.title,

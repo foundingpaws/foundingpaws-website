@@ -133,7 +133,7 @@ export default function BlogSection() {
             </h2>
             <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
             <p className="wv-lead text-green/70 max-w-3xl mx-auto wv-spacing-md">
-              Wissenschaftlich fundierte Artikel, praktische Tipps und kostenlose Guides für die beste Gesundheit deines Hundes
+              Tiefgreifende Artikel, Expertenwissen und kostenlose Guides für informierte Hundebesitzer
             </p>
             
             {/* Category Filter */}

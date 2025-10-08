@@ -30,7 +30,7 @@ const articles = [
     id: "haut-fell",
     title: "Haut & Fellgesundheit",
     excerpt: "Glänzendes Fell von innen – die besten Tipps für schöne Haut.",
-    category: "✨ Schönheit",
+    category: "Schönheit",
     readTime: "2 Min",
     href: "/produkte",
   },
@@ -43,14 +43,14 @@ export default function KnowledgeHub() {
         <ScrollAnimation animation="fade-in">
           <div className="text-center mb-16">
             <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-6 text-copper">
-              Wissen & Ratgeber
+              Gut für
             </div>
             <h2 className="wv-h2 mb-6 text-green">
               Für ein gesundes Hundeleben
             </h2>
             <div className="w-16 h-1 bg-copper mx-auto rounded-full mb-6"></div>
             <p className="wv-subhead text-green/70 max-w-3xl mx-auto">
-              Wissenschaftlich fundierte Tipps und Ratgeber – entwickelt mit Tierärzten für die Gesundheit deines Hundes.
+              Praktische Tipps und Empfehlungen – entwickelt mit Tierärzten für die Gesundheit deines Hundes.
             </p>
           </div>
         </ScrollAnimation>

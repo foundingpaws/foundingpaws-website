@@ -2,6 +2,12 @@ import Image from "next/image";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
+import IconMicroscope from "@/components/icons/IconMicroscope";
+import IconPassion from "@/components/icons/IconPassion";
+import IconTransparency from "@/components/icons/IconTransparency";
+import IconSustainability from "@/components/icons/IconSustainability";
+import IconBusiness from "@/components/icons/IconBusiness";
+import IconScientist from "@/components/icons/IconScientist";
 
 const teamMembers = [
   {
@@ -10,7 +16,7 @@ const teamMembers = [
     specialty: "Hundegesundheit & Produkttestung",
     experience: "Seit Gründung",
     image: "/Nala1.jpg",
-    description: "Nala ist nicht nur unser Maskottchen – sie ist das Herz von Founding Paws. Als unsere treue Begleiterin und erste Produkttesterin hat sie uns gezeigt, was Hunde wirklich brauchen. Jeden Morgen, wenn sie mit leuchtenden Augen auf ihre Bright Mind Kapseln wartet, erinnert sie uns daran, warum wir das tun. Nala lebt vor, was wir versprechen: ein gesundes, glückliches Hundeleben bis ins hohe Alter. Sie ist der Grund, warum wir nie Kompromisse bei der Qualität eingehen – denn sie verdient nur das Beste.",
+    description: "Nala ist nicht nur unser Maskottchen – sie ist das Herz von Founding Paws. Als unsere treue Begleiterin und erste Produkttesterin hat sie uns gezeigt, was Hunde wirklich brauchen. Nala lebt vor, was wir versprechen: ein gesundes, glückliches Hundeleben bis ins hohe Alter. Sie ist der Grund, warum wir nie Kompromisse bei der Qualität eingehen – denn sie verdient nur das Beste.",
     qualifications: ["Produkttesterin", "Qualitätskontrolle", "Chief Inspiration Officer"]
   },
   {
@@ -25,41 +31,41 @@ const teamMembers = [
   {
     name: "Nick Herbig",
     role: "Gründer & Geschäftsführer",
-    specialty: "Strategie & Produktentwicklung",
+    specialty: "Strategie und Vertrieb",
     experience: "Seit Gründung",
     image: null,
-    description: "Nick ist der Visionär hinter Founding Paws. Nachdem er jahrelang beobachtete, wie herkömmliche Hundesupplements versagten, beschloss er, es besser zu machen. Seine Leidenschaft für evidenzbasierte Medizin und sein unerschütterlicher Glaube an die Kraft der Natur treiben uns jeden Tag voran. Nick arbeitet 24/7 daran, dass dein Hund die bestmögliche Versorgung bekommt – nicht weil es sein Job ist, sondern weil es seine Mission ist.",
-    qualifications: ["Gründer", "Produktvisionär", "Evidenzbasierte Medizin"]
+    description: "Nick ist der Gründer von Founding Paws und bringt seine Erfahrung in der Strategie und im Vertrieb ein. Mit einem tiefen Verständnis für die Bedürfnisse von Hunden und der Leidenschaft für qualitativ hochwertige Produkte entwickelt er die Vision für unser Unternehmen. Nick arbeitet daran, dass Hundebesitzer Zugang zu hochwertigen, wissenschaftlich fundierten Supplements haben – basierend auf dem Prinzip, dass jeder Hund das Beste verdient.",
+    qualifications: ["Gründer", "Strategie", "Vertrieb"]
   },
   {
     name: "Alica Szabries",
-    role: "Gründerin & Leiterin Forschung & Entwicklung",
+    role: "Gründerin & Geschäftsführerin",
     specialty: "Wissenschaft & Formulierung",
     experience: "Seit Gründung",
     image: null,
-    description: "Alica ist die Wissenschaftlerin, die unsere Träume in Realität verwandelt. Mit ihrer Expertise in Pharmazie und ihrer unendlichen Geduld entwickelt sie Formeln, die nicht nur wirken, sondern auch schmecken. Jede Kapsel, die wir herstellen, durchläuft Alicas strenge Tests – denn sie weiß: Dein Hund vertraut uns. Ihre Hingabe zur Perfektion ist der Grund, warum unsere Produkte so zuverlässig funktionieren. Für Alica ist jedes glückliche Hundegesicht der beste Lohn.",
-    qualifications: ["Gründerin", "Pharmazeutin", "Formulierungsexpertin"]
+    description: "Alica ist die Ernährungsexpertin, die unsere Träume in Realität verwandelt. Sie entwickelt Formeln, die nicht nur wirken, sondern auch schmecken. Jedes Produkt, das wir herstellen, durchläuft Alicas strenge Tests – denn sie weiß: Dein Hund vertraut uns. Ihre Hingabe zur Perfektion ist der Grund, warum unsere Produkte so zuverlässig funktionieren. Für Alica ist jedes glückliche Hundegesicht der beste Lohn.",
+    qualifications: ["Gründerin", "Ernährungsexpertin", "Formulierungsexpertin"]
   }
 ];
 
 const values = [
   {
-    icon: "🔬",
+    icon: IconMicroscope,
     title: "Wissenschaft",
     description: "Alle unsere Entscheidungen basieren auf aktueller Forschung und evidenzbasierten Erkenntnissen."
   },
   {
-    icon: "❤️",
+    icon: IconPassion,
     title: "Leidenschaft",
     description: "Wir lieben Hunde und sind leidenschaftlich daran interessiert, ihr Leben zu verbessern."
   },
   {
-    icon: "🤝",
+    icon: IconTransparency,
     title: "Transparenz",
     description: "Wir kommunizieren offen über unsere Prozesse, Inhaltsstoffe und Entwicklungen."
   },
   {
-    icon: "🌱",
+    icon: IconSustainability,
     title: "Nachhaltigkeit",
     description: "Verantwortungsvoller Umgang mit Ressourcen und umweltfreundliche Verpackungen."
   }
@@ -73,16 +79,16 @@ export default function TeamPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md text-cream">
+              <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md" style={{color: 'white'}}>
                 Unser Team
               </div>
               <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>
-                Die Menschen hinter Founding Paws
+                Unser Team bei Founding Paws
               </h1>
               <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
               <p className="wv-lead wv-spacing-md max-w-3xl mx-auto" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
-                Ein interdisziplinäres Team aus Tierärzten, Pharmazeuten und Wissenschaftlern, 
-                vereint durch die Leidenschaft für die Gesundheit von Hunden.
+                Ein interdisziplinäres Team aus Menschen und Hunden – Tierärzte, Pharmazeuten, 
+                Wissenschaftler und unsere vierbeinigen Produkttester, vereint durch die Leidenschaft für die Gesundheit von Hunden.
               </p>
             </FadeIn>
           </div>
@@ -116,14 +122,18 @@ export default function TeamPage() {
                         alt={member.name}
                         width={128}
                         height={128}
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full object-cover ${member.name === "Jackson" ? "object-[center_10%]" : "object-center"}`}
                         unoptimized
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-green/20 to-copper/20 flex items-center justify-center">
-                        <span className="text-4xl text-green/60">
-                          {member.name === "Nick Herbig" ? "👨‍💼" : "👩‍🔬"}
-                        </span>
+                        <div className="w-16 h-16 text-green/60">
+                          {member.name === "Nick Herbig" ? (
+                            <IconBusiness className="w-full h-full" />
+                          ) : (
+                            <IconScientist className="w-full h-full" />
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -182,7 +192,9 @@ export default function TeamPage() {
             {values.map((value, index) => (
               <ScrollAnimation key={value.title} animation="fade-in" delay={index * 100}>
                 <GlassmorphismCard className="p-6 text-center hover-lift-feature">
-                  <div className="text-4xl wv-spacing-sm">{value.icon}</div>
+                  <div className="w-16 h-16 mx-auto wv-spacing-sm text-copper">
+                    <value.icon className="w-full h-full" />
+                  </div>
                   <h3 className="wv-h4 text-green wv-spacing-xs">
                     {value.title}
                   </h3>

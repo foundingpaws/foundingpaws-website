@@ -69,7 +69,7 @@ export default function FinderMVP() {
               <div className="wv-h4 text-green wv-spacing-sm">Alter</div>
               <div className="grid grid-cols-3 gap-3">
                 {['Jung', 'Erwachsen', 'Senior'].map((a) => (
-                  <button key={a} onClick={() => select('age', a)} className={`pill px-4 py-3 border ${answers.age===a?'bg-green text-cream border-green':'bg-cream text-green border-taupe/20'}`}>{a}</button>
+                  <button key={a} onClick={() => select('age', a)} className={`pill px-4 py-3 border text-center bedarfsfinder-option ${answers.age===a?'bg-green text-cream border-green':'bg-cream text-green border-taupe/20'}`}>{a}</button>
                 ))}
               </div>
             </div>

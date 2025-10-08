@@ -2,6 +2,8 @@
 import IconStethoscope from "@/components/icons/IconStethoscope";
 import IconShield from "@/components/icons/IconShield";
 import IconLeaf from "@/components/icons/IconLeaf";
+import IconLab from "@/components/icons/IconLab";
+import IconHeart from "@/components/icons/IconHeart";
 import ParallaxElement from "@/components/ParallaxElement";
 import Transform3D from "@/components/Transform3D";
 
@@ -22,16 +24,21 @@ export default function TrustStrip() {
           </Transform3D>
           <div className="w-px h-5 bg-green/20" />
           <Transform3D hoverEffect="tilt" className="flex items-center gap-3 micro-pulse">
-            <IconShield className="w-6 h-6 icon-hover" />
-            <span className="wv-body">Manufaktur Heilbronn</span>
+            <IconLab className="w-6 h-6 icon-hover" />
+            <span className="wv-body">Laborgeprüft</span>
           </Transform3D>
           <div className="w-px h-5 bg-green/20" />
           <Transform3D hoverEffect="tilt" className="flex items-center gap-3 micro-pulse">
             <IconLeaf className="w-6 h-6 icon-hover" />
             <span className="wv-body">100% natürliche Inhaltsstoffe</span>
           </Transform3D>
+          <div className="w-px h-5 bg-green/20" />
+          <Transform3D hoverEffect="tilt" className="flex items-center gap-3 micro-pulse">
+            <IconHeart className="w-6 h-6 icon-hover" />
+            <span className="wv-body">Jeder Kauf zählt</span>
+          </Transform3D>
         </div>
-        <div className="md:hidden grid grid-cols-2 gap-4 text-center text-green/90">
+        <div className="md:hidden grid grid-cols-3 gap-4 text-center text-green/90">
           <Transform3D hoverEffect="tilt" className="flex flex-col items-center gap-2 micro-bounce">
             <IconStethoscope className="w-6 h-6 icon-hover"/>
             <span className="wv-caption">Tierärzte</span>
@@ -41,13 +48,18 @@ export default function TrustStrip() {
             <span className="wv-caption">Made in DE</span>
           </Transform3D>
           <Transform3D hoverEffect="tilt" className="flex flex-col items-center gap-2 micro-bounce">
-            <IconShield className="w-6 h-6 icon-hover"/>
-            <span className="wv-caption">Heilbronn</span>
+            <IconLab className="w-6 h-6 icon-hover"/>
+            <span className="wv-caption">Laborgeprüft</span>
           </Transform3D>
           <Transform3D hoverEffect="tilt" className="flex flex-col items-center gap-2 micro-bounce">
             <IconLeaf className="w-6 h-6 icon-hover"/>
             <span className="wv-caption">Natürlich</span>
           </Transform3D>
+          <Transform3D hoverEffect="tilt" className="flex flex-col items-center gap-2 micro-bounce">
+            <IconHeart className="w-6 h-6 icon-hover"/>
+            <span className="wv-caption">Jeder Kauf</span>
+          </Transform3D>
+          <div></div>
         </div>
       </div>
     </ParallaxElement>

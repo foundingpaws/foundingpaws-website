@@ -8,12 +8,7 @@ import CookieConsent from "@/components/CookieConsent";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CustomCursor from "@/components/CustomCursor";
 import { AccessibilityProvider } from "@/components/AccessibilityProvider";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
-import UserBehaviorTracker from "@/components/UserBehaviorTracker";
-import AnalyticsDashboard from "@/components/AnalyticsDashboard";
-import PerformanceOptimizer from "@/components/PerformanceOptimizer";
-import LaunchDashboard from "@/components/LaunchDashboard";
 // Removed next-i18next import
 
 // Display (Retrips-like) — using Fraunces as premium optical-serif stand-in
@@ -21,19 +16,26 @@ const display = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
   style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
 });
 
-// Body
+// Body - Optimized for German text
 const sans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
-// Rounded subhead
+// Rounded subhead - Optimized for German text
 const round = Fredoka({
   variable: "--font-round",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -42,10 +44,14 @@ export const metadata: Metadata = {
   description:
     "Premium-Ergänzungen für Hunde – evidenzbasiert entwickelt und mit Herz gemacht.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: "Founding Paws — Wissenschaft mit Herz",
     description:
@@ -79,11 +85,13 @@ export default function RootLayout({
       >
         <ErrorBoundary>
           <AccessibilityProvider>
-            <Header />
-            {children}
-            <StickyBar />
-            <Footer />
-            <CookieConsent />
+            <AnalyticsProvider>
+              <Header />
+              {children}
+              <StickyBar />
+              <Footer />
+              <CookieConsent />
+            </AnalyticsProvider>
           </AccessibilityProvider>
         </ErrorBoundary>
       </body>
