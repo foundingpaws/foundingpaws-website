@@ -176,16 +176,24 @@
 
 /* Enhanced Mobile Touch Targets */
 @media (pointer: coarse) {
-  /* All interactive elements should have proper touch targets */
+  /* Only specific interactive elements should have proper touch targets */
   .btn-primary,
   .btn-secondary,
   .btn-outline,
   .btn-ghost,
-  .pill,
+  .pill {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Links and buttons need touch targets but not min-width */
   a[href],
   button {
     min-height: 44px;
-    min-width: 44px;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -201,17 +209,17 @@
     transition: transform 0.1s ease;
   }
   
-  /* Card hover effects for touch devices */
-  .wv-card-premium,
-  .wv-card-feature,
-  .wv-card-minimal {
+  /* Card hover effects for touch devices - only for clickable cards */
+  .wv-card-premium[href],
+  .wv-card-feature[href],
+  .wv-card-minimal[href] {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
   }
   
-  .wv-card-premium:active,
-  .wv-card-feature:active,
-  .wv-card-minimal:active {
+  .wv-card-premium[href]:active,
+  .wv-card-feature[href]:active,
+  .wv-card-minimal[href]:active {
     transform: scale(0.99);
     transition: transform 0.1s ease;
   }

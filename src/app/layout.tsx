@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fraunces, DM_Sans, Fredoka } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import StickyBar from "@/components/StickyBar";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -88,7 +87,6 @@ export default function RootLayout({
             <AnalyticsProvider>
               <Header />
               {children}
-              <StickyBar />
               <Footer />
               <CookieConsent />
             </AnalyticsProvider>

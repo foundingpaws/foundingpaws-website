@@ -58,10 +58,10 @@ export default function Hero() {
           </FadeIn>
         </div>
 
-        {/* Desktop Layout - Diagonale Anordnung */}
-        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
+        {/* Desktop Layout - Verbesserte Balance */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
           <FadeIn>
-            <div className="lg:col-span-5 lg:pr-8">
+            <div className="max-w-lg">
               <h1 className="wv-h1 mb-6" style={{color: 'white'}}>
                 Premium-Supplements für ein langes, gesundes Hundeleben
               </h1>
@@ -79,9 +79,9 @@ export default function Hero() {
             </div>
           </FadeIn>
           
-          {/* Desktop Product Image - Diagonale Positionierung */}
-          <div className="lg:col-span-7 relative">
-            <div className="relative aspect-[5/4] rounded-[32px] overflow-hidden bg-green/20 transform -rotate-3 shadow-2xl">
+          {/* Desktop Product Image - Subtile Diagonale Positionierung */}
+          <div className="relative">
+            <div className="relative aspect-[4/3] rounded-[24px] overflow-hidden bg-green/20 transform rotate-1 shadow-2xl">
               <Image 
                 src="/mockups/PSD file.png" 
                 alt="Bright Mind Produktbild - Gründungspaws Supplements" 
@@ -94,10 +94,9 @@ export default function Hero() {
                 placeholder="empty" 
               />
             </div>
-            {/* Floating Elements für Desktop */}
-            <div className="absolute -top-6 -right-6 w-12 h-12 bg-copper rounded-full opacity-80 animate-pulse"></div>
-            <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-cream rounded-full opacity-60 animate-bounce"></div>
-            <div className="absolute top-1/3 -left-8 w-6 h-6 bg-copper/60 rounded-full opacity-70 animate-ping"></div>
+            {/* Subtile Floating Elements für Desktop */}
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-copper rounded-full opacity-70 animate-pulse"></div>
+            <div className="absolute -bottom-3 -left-3 w-6 h-6 bg-cream rounded-full opacity-50 animate-bounce"></div>
           </div>
         </div>
       </div>

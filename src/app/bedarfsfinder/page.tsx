@@ -276,8 +276,7 @@ export default function BedarfsfinderPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto text-center">
             <FadeIn>
-              <div className="inline-block pill bg-cream/20 border border-cream/30 px-6 py-3 wv-eyebrow wv-spacing-md backdrop-blur-sm flex items-center gap-2" style={{color: 'white'}}>
-                <IconDog className="w-4 h-4" />
+              <div className="inline-block pill bg-cream/20 border border-cream/30 px-6 py-3 wv-eyebrow wv-spacing-md backdrop-blur-sm" style={{color: 'white'}}>
                 Bedarfsfinder
               </div>
               <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>

@@ -134,7 +134,7 @@ export default function ProductTeasers() {
                 <a href={`/produkte/${product.key}`} className="block">
                   <div className="wv-card-feature hover-lift-feature p-6 lg:p-8 shadow-floating transition-all duration-300 hover:shadow-xl cursor-pointer h-full flex flex-col">
                   {/* Coming Soon Badge */}
-                  <div className="absolute top-4 right-4 pill bg-copper/15 border border-copper/25 text-copper text-xs px-3 py-1 font-medium">
+                  <div className="absolute top-4 right-4 pill bg-copper border border-copper text-cream text-xs px-3 py-1 font-medium shadow-sm">
                     Coming Soon
                   </div>
 
@@ -189,7 +189,7 @@ export default function ProductTeasers() {
                     </ul>
 
                     {/* Trust Footer */}
-                    <div className="border-t border-taupe/15 pt-4 text-xs text-green/60 flex items-center gap-4">
+                    <div className="border-t border-taupe/15 pt-4 text-xs text-green/60 flex items-center gap-4 mt-auto">
                       <span className="flex items-center gap-2"><span className="inline-block w-1.5 h-1.5 rounded-full bg-copper"/> Mit Tierärzten entwickelt</span>
                       <span className="flex items-center gap-2"><span className="inline-block w-1.5 h-1.5 rounded-full bg-copper"/> Handgefertigt in Heilbronn</span>
                     </div>
