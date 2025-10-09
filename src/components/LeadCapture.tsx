@@ -141,7 +141,7 @@ export default function LeadCapture({
   if (!isVisible) return null;
 
   const baseClasses = `
-    fixed z-50 bg-white/95 backdrop-blur-sm border border-taupe/20 shadow-2xl
+    fixed z-50 bg-white/95 backdrop-blur-sm border border-taupe/20 shadow-2xl ios-fix
     ${variant === 'popup' ? 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md w-full mx-4' : ''}
     ${variant === 'slide-in' ? 'top-0 right-0 h-full w-96 max-w-full' : ''}
     ${variant === 'banner' ? 'top-0 left-0 right-0 w-full' : ''}
@@ -149,7 +149,7 @@ export default function LeadCapture({
   `;
 
   const overlayClasses = `
-    fixed inset-0 bg-charcoal/20 backdrop-blur-sm z-40
+    fixed inset-0 bg-charcoal/20 backdrop-blur-sm z-40 ios-fix
     ${variant === 'banner' ? 'hidden' : ''}
   `;
 
@@ -172,22 +172,32 @@ export default function LeadCapture({
             ? 'slideInFromRight 0.4s ease-out'
             : variant === 'banner'
             ? 'slideInFromTop 0.4s ease-out'
-            : 'fadeInScale 0.3s ease-out'
+            : 'fadeInScale 0.3s ease-out',
+          WebkitTransform: 'translateZ(0)',
+          transform: 'translateZ(0)',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden'
         }}
       >
         {/* Close Button */}
         {showCloseButton && (
           <button
             onClick={hideComponent}
-            className="absolute top-4 right-4 text-taupe hover:text-charcoal transition-colors z-10"
+            className="absolute top-4 right-4 text-taupe hover:text-charcoal transition-colors z-10 touch-padding"
             aria-label="Schließen"
+            style={{
+              WebkitTapHighlightColor: 'transparent',
+              WebkitTouchCallout: 'none',
+              WebkitUserSelect: 'none',
+              userSelect: 'none'
+            }}
           >
             <X size={20} />
           </button>
         )}
 
         {/* Content */}
-        <div className="p-8">
+        <div className="p-6 sm:p-8">
           {isSuccess ? (
             /* Success State */
             <div className="text-center space-y-4">
@@ -200,7 +210,7 @@ export default function LeadCapture({
                 </div>
               </div>
               
-              <h3 className="text-2xl font-heading text-charcoal mb-2">
+              <h3 className="text-xl sm:text-2xl font-heading text-charcoal mb-2">
                 Willkommen in der Familie! 🎉
               </h3>
               
@@ -222,7 +232,7 @@ export default function LeadCapture({
                   </div>
                 </div>
                 
-                <h3 className="text-2xl font-heading text-charcoal mb-2">
+                <h3 className="text-xl sm:text-2xl font-heading text-charcoal mb-2">
                   Bleib auf dem Laufenden
                 </h3>
                 
@@ -239,7 +249,13 @@ export default function LeadCapture({
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="Dein Vorname (optional)"
-                    className="w-full px-4 py-3 border border-taupe/30 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-charcoal placeholder-taupe/60"
+                    className="w-full px-4 py-3 border border-taupe/30 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-charcoal placeholder-taupe/60 touch-padding"
+                    style={{
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none'
+                    }}
                   />
                 </div>
                 
@@ -250,14 +266,26 @@ export default function LeadCapture({
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Deine E-Mail-Adresse"
                     required
-                    className="w-full px-4 py-3 border border-taupe/30 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-charcoal placeholder-taupe/60"
+                    className="w-full px-4 py-3 border border-taupe/30 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-charcoal placeholder-taupe/60 touch-padding"
+                    style={{
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none'
+                    }}
                   />
                 </div>
                 
                 <button
                   type="submit"
                   disabled={isLoading || !email}
-                  className="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-xl font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 touch-padding"
+                  style={{
+                    WebkitTapHighlightColor: 'transparent',
+                    WebkitTouchCallout: 'none',
+                    WebkitUserSelect: 'none',
+                    userSelect: 'none'
+                  }}
                 >
                   {isLoading ? (
                     <>

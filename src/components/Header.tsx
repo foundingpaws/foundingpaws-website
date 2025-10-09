@@ -51,194 +51,103 @@ export default function Header() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [isMobileMenuOpen]);
 
   return (
     <>
-      <header
+      <header 
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg"
-            : "bg-green backdrop-blur-sm"
+        className={`header-mobile fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
         }`}
         style={{
-          transform: `translateY(${Math.min(scrollY * 0.1, 10)}px)`,
+          paddingTop: 'env(safe-area-inset-top)',
+          WebkitTransform: 'translateZ(0)',
+          transform: 'translateZ(0)',
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden'
         }}
       >
-        {/* Background overlay for better contrast */}
-        <div 
-          className={`absolute inset-0 transition-all duration-500 ${
-            isScrolled 
-              ? "opacity-100" 
-              : "opacity-0"
-          }`}
-          style={{
-            background: isScrolled 
-              ? "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,239,231,0.9) 100%)"
-              : "transparent"
-          }}
-        />
-        
-        {/* Header Content */}
-        <div className="relative w-full px-4 sm:px-6 lg:px-8">
-                <div className={`flex items-center justify-between transition-all duration-300 ${
-                  isScrolled ? "h-16 lg:h-20" : "h-32 lg:h-36"
-                }`}>
-            
-            {/* Logo Container - Größer in Hero-Sektion */}
-            <div className="flex-shrink-0 h-full flex items-center">
-              <Link 
-                href="/" 
-                className={`group flex items-center z-10 transition-all duration-300 ${
-                  isScrolled 
-                    ? "h-full px-1 py-2" 
-                    : "h-full px-20 py-16"
-                }`}
-                aria-label="Startseite"
-              >
-                <div className={`relative flex items-center transition-all duration-300 ${
-                  isScrolled ? "h-full overflow-hidden" : "h-full"
-                }`}>
-                  <div className={`transition-all duration-300 flex items-center ${
-                    isScrolled ? "h-14" : "h-10"
-                  }`} style={{
-                    marginTop: isScrolled ? '0' : '32px'
-                  }}>
-                    <Image 
-                      src="/brand/9 LogoNew.jpg" 
-                      alt="Founding Paws Logo" 
-                      width={isScrolled ? 200 : 127.5} 
-                      height={isScrolled ? 50 : 31.2} 
-                      className={`h-full w-auto object-contain transition-all duration-300 ${
-                        isScrolled 
-                          ? "drop-shadow-md" 
-                          : "drop-shadow-lg brightness-125 contrast-125"
-                      }`}
-                      priority 
-                      quality={100}
-                      style={{
-                        filter: isScrolled 
-                          ? 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' 
-                          : 'drop-shadow(0 4px 8px rgba(0,0,0,0.3)) brightness(1.25) contrast(1.25)',
-                        maxHeight: isScrolled ? '100%' : 'none',
-                        maxWidth: isScrolled ? '100%' : 'none'
-                      }}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </div>
+        <div className="container-wide">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo */}
+            <Link 
+              href="/" 
+              className="header-logo flex items-center space-x-3 ios-fix"
+              onClick={closeMobileMenu}
+            >
+              <div className="relative w-8 h-8 lg:w-10 lg:h-10">
+                <Image
+                  src="/logo-header.png"
+                  alt="Founding Paws Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 1024px) 32px, 40px"
+                />
+              </div>
+              <span className={`font-heading text-lg lg:text-xl font-medium transition-colors ${
+                isScrolled ? 'text-green' : 'text-cream'
+              }`}>
+                Founding Paws
+              </span>
+            </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8 z-10">
-              {/* Dropdown Menu */}
-              <div className="group relative">
-                <button className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-100/50 group-hover:bg-gray-100/80">
-                  <span className={`font-medium transition-colors duration-300 ${
-                    isScrolled ? "text-gray-900" : "text-white drop-shadow-lg"
-                  }`}>
-                    Gut für
-                  </span>
-                  <svg 
-                    className={`w-4 h-4 transition-all duration-300 ${
-                      isScrolled ? "text-gray-600" : "text-white drop-shadow-lg"
-                    }`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                
-                {/* Dropdown Content */}
-                <div className="absolute left-0 mt-2 w-96 bg-white/95 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                  <div className="p-6">
-                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                      Wähle eine Kategorie
-                    </div>
-                    <div className="space-y-2">
-                      {[
-                        { href: "/kognition-herz", icon: IconBrainHeart, title: "Kognition & Herz", desc: "Geistige Klarheit & Herzgesundheit" },
-                        { href: "/stress-angst", icon: IconSparkles, title: "Stress & Angst", desc: "Entspannung & emotionale Balance" },
-                        { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität", desc: "Beweglichkeit & Schmerzlinderung" },
-                        { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Glänzendes Fell & gesunde Haut" },
-                        { href: "/immunsystem", icon: IconShield, title: "Immunsystem", desc: "Abwehrkräfte & Vitalität" },
-                      ].map((item, index) => (
-                        <Link
-                          key={index}
-                          href={item.href}
-                          className="block p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 group/item"
-                        >
-                          <div className="flex items-center gap-3">
-                            <item.icon className="w-5 h-5 text-gray-600 group-hover/item:text-accent transition-colors" />
-                            <div>
-                              <div className="font-medium text-gray-900 group-hover/item:text-accent transition-colors">
-                                {item.title}
-                              </div>
-                              <div className="text-sm text-gray-600">
-                                {item.desc}
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation Links */}
-              {[
-                { href: "/produkte", label: "Produkte" },
-                { href: "/ratgeber", label: "Ratgeber" },
-                { href: "/bedarfsfinder", label: "Bedarfsfinder" },
-                { href: "/marke", label: "Marke" },
-                { href: "/team", label: "Team" },
-              ].map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-gray-100/50 ${
-                    isScrolled 
-                      ? "text-gray-700 hover:text-gray-900" 
-                      : "text-white drop-shadow-lg hover:bg-white/20"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Desktop Action Buttons */}
-            <div className="hidden lg:flex items-center gap-3 z-10">
+            <nav className="hidden lg:flex items-center space-x-8">
               <Link 
-                href="/bedarfsfinder"
-                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg ${
-                  isScrolled
-                    ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                    : "bg-white/90 text-gray-900 backdrop-blur-sm border border-white/50 hover:bg-white shadow-lg"
+                href="/produkte" 
+                className={`font-medium transition-colors hover:text-copper ${
+                  isScrolled ? 'text-green' : 'text-cream'
                 }`}
+              >
+                Produkte
+              </Link>
+              <Link 
+                href="/ratgeber" 
+                className={`font-medium transition-colors hover:text-copper ${
+                  isScrolled ? 'text-green' : 'text-cream'
+                }`}
+              >
+                Ratgeber
+              </Link>
+              <Link 
+                href="/team" 
+                className={`font-medium transition-colors hover:text-copper ${
+                  isScrolled ? 'text-green' : 'text-cream'
+                }`}
+              >
+                Über uns
+              </Link>
+              <Link 
+                href="/bedarfsfinder" 
+                className="btn-copper pill text-cream px-6 py-2 text-sm font-medium shadow-lg hover:opacity-95 transition-all"
               >
                 Bedarfsfinder
               </Link>
-              <Link 
-                href="/shop"
-                className="px-6 py-2.5 rounded-full font-medium text-white bg-accent hover:bg-accent-dark transition-all duration-300 hover:scale-105 hover:shadow-lg shadow-accent/25"
-              >
-                Jetzt einkaufen
-              </Link>
-            </div>
+            </nav>
 
-            {/* Mobile Menu Button - iOS Optimized */}
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-3 rounded-lg transition-all duration-300 hover:bg-gray-100/50 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center ${
-                isScrolled ? "text-gray-700" : "text-white drop-shadow-lg"
-              }`}
+              className="lg:hidden p-2 touch-padding"
               aria-label="Menü öffnen"
               style={{
                 WebkitTapHighlightColor: 'transparent',
@@ -247,13 +156,17 @@ export default function Header() {
                 userSelect: 'none'
               }}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+                <span className={`block h-0.5 w-6 transition-all duration-300 ${
+                  isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''
+                } ${isScrolled ? 'bg-green' : 'bg-cream'}`}></span>
+                <span className={`block h-0.5 w-6 transition-all duration-300 ${
+                  isMobileMenuOpen ? 'opacity-0' : ''
+                } ${isScrolled ? 'bg-green' : 'bg-cream'}`}></span>
+                <span className={`block h-0.5 w-6 transition-all duration-300 ${
+                  isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
+                } ${isScrolled ? 'bg-green' : 'bg-cream'}`}></span>
+              </div>
             </button>
           </div>
         </div>
@@ -268,16 +181,12 @@ export default function Header() {
       }}>
         {/* Backdrop */}
         <div 
-          className="absolute inset-0 bg-black/50"
+          className="mobile-menu-backdrop absolute inset-0 bg-black/50"
           onClick={closeMobileMenu}
-          style={{
-            WebkitBackdropFilter: 'blur(8px)',
-            backdropFilter: 'blur(8px)'
-          }}
         />
         
         {/* Mobile Menu Panel - iOS Safe Area Support */}
-        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 border-l border-gray-200/50 shadow-2xl transform transition-transform duration-300 ${
+        <div className={`mobile-menu-panel mobile-menu-slide absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 border-l border-gray-200/50 shadow-2xl transform transition-transform duration-300 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`} style={{
           paddingTop: 'env(safe-area-inset-top)',
@@ -291,23 +200,27 @@ export default function Header() {
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden'
         }}>
-          <div className="p-6 h-full overflow-y-auto" style={{
-            WebkitOverflowScrolling: 'touch',
-            overscrollBehavior: 'contain'
-          }}>
-            {/* Mobile Menu Header - iOS Optimized */}
+          <div className="mobile-menu-content p-6 h-full overflow-y-auto">
+            {/* Mobile Menu Header */}
             <div className="flex items-center justify-between mb-8">
-              <Image 
-                src="/brand/9 LogoNew.jpg" 
-                alt="Founding Paws Logo" 
-                width={140} 
-                height={35} 
-                className="h-10 w-auto" 
-                quality={100}
-              />
+              <div className="flex items-center space-x-3">
+                <div className="relative w-8 h-8">
+                  <Image
+                    src="/logo-header.png"
+                    alt="Founding Paws Logo"
+                    fill
+                    className="object-contain"
+                    sizes="32px"
+                  />
+                </div>
+                <span className="font-heading text-lg font-medium text-green">
+                  Founding Paws
+                </span>
+              </div>
               <button
                 onClick={closeMobileMenu}
-                className="p-3 rounded-lg hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2 touch-padding"
+                aria-label="Menü schließen"
                 style={{
                   WebkitTapHighlightColor: 'transparent',
                   WebkitTouchCallout: 'none',
@@ -315,123 +228,82 @@ export default function Header() {
                   userSelect: 'none'
                 }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
             {/* Mobile Navigation */}
-            <nav className="space-y-6">
-              {/* Categories Section */}
-              <div>
-                <div className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                  Gut für
-                </div>
-                <div className="space-y-2">
-                  {[
-                    { href: "/kognition-herz", icon: IconBrainHeart, title: "Kognition & Herz", desc: "Geistige Klarheit & Herzgesundheit" },
-                    { href: "/stress-angst", icon: IconSparkles, title: "Stress & Angst", desc: "Entspannung & emotionale Balance" },
-                    { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität", desc: "Beweglichkeit & Schmerzlinderung" },
-                    { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Glänzendes Fell & gesunde Haut" },
-                    { href: "/immunsystem", icon: IconShield, title: "Immunsystem", desc: "Abwehrkräfte & Vitalität" },
-                  ].map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.href}
-                      onClick={closeMobileMenu}
-                      className="block p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 group min-h-[60px]"
-                      style={{
-                        WebkitTapHighlightColor: 'transparent',
-                        WebkitTouchCallout: 'none',
-                        WebkitUserSelect: 'none',
-                        userSelect: 'none'
-                      }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <item.icon className="w-5 h-5 text-gray-600 group-hover:text-accent transition-colors flex-shrink-0" />
-                        <div className="flex-1">
-                          <div className="font-medium text-gray-900 group-hover:text-accent transition-colors">
-                            {item.title}
-                          </div>
-                          <div className="text-sm text-gray-600">
-                            {item.desc}
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Main Navigation */}
-              <div className="border-t border-gray-200 pt-6">
-                <div className="space-y-2">
-                  {[
-                    { href: "/produkte", label: "Produkte" },
-                    { href: "/ratgeber", label: "Ratgeber" },
-                    { href: "/bedarfsfinder", label: "Bedarfsfinder" },
-                    { href: "/marke", label: "Marke" },
-                    { href: "/team", label: "Team" },
-                  ].map((link, index) => (
-                    <Link
-                      key={index}
-                      href={link.href}
-                      onClick={closeMobileMenu}
-                      className="block px-4 py-4 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 min-h-[48px] flex items-center"
-                      style={{
-                        WebkitTapHighlightColor: 'transparent',
-                        WebkitTouchCallout: 'none',
-                        WebkitUserSelect: 'none',
-                        userSelect: 'none'
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Mobile Action Buttons - iOS Optimized */}
-              <div className="border-t border-gray-200 pt-6 space-y-3">
-                <Link
-                  href="/bedarfsfinder"
-                  onClick={closeMobileMenu}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 transition-all duration-200 min-h-[48px] flex items-center justify-center"
-                  style={{
-                    WebkitTapHighlightColor: 'transparent',
-                    WebkitTouchCallout: 'none',
-                    WebkitUserSelect: 'none',
-                    userSelect: 'none'
-                  }}
-                >
-                  Bedarfsfinder starten
-                </Link>
-                <Link
-                  href="/shop"
-                  onClick={closeMobileMenu}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-white bg-accent hover:bg-accent-dark transition-all duration-200 shadow-lg min-h-[48px] flex items-center justify-center"
-                  style={{
-                    WebkitTapHighlightColor: 'transparent',
-                    WebkitTouchCallout: 'none',
-                    WebkitUserSelect: 'none',
-                    userSelect: 'none'
-                  }}
-                >
-                  Jetzt einkaufen
-                </Link>
-              </div>
+            <nav className="space-y-2">
+              <Link 
+                href="/produkte" 
+                className="mobile-menu-link block w-full text-left text-green hover:bg-green/5 rounded-lg transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Produkte
+              </Link>
+              <Link 
+                href="/ratgeber" 
+                className="mobile-menu-link block w-full text-left text-green hover:bg-green/5 rounded-lg transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Ratgeber
+              </Link>
+              <Link 
+                href="/team" 
+                className="mobile-menu-link block w-full text-left text-green hover:bg-green/5 rounded-lg transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Über uns
+              </Link>
+              <Link 
+                href="/bedarfsfinder" 
+                className="mobile-menu-link block w-full text-left text-green hover:bg-green/5 rounded-lg transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Bedarfsfinder
+              </Link>
             </nav>
+
+            {/* Mobile CTA */}
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <Link 
+                href="/bedarfsfinder" 
+                className="btn-copper pill text-cream px-6 py-3 text-base font-medium shadow-lg hover:opacity-95 transition-all w-full text-center block"
+                onClick={closeMobileMenu}
+              >
+                Bedarfsfinder starten
+              </Link>
+            </div>
+
+            {/* Mobile Footer Links */}
+            <div className="mt-8 pt-6 border-t border-gray-200 space-y-2">
+              <Link 
+                href="/impressum" 
+                className="mobile-menu-link block text-sm text-gray-600 hover:text-green transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Impressum
+              </Link>
+              <Link 
+                href="/datenschutz" 
+                className="mobile-menu-link block text-sm text-gray-600 hover:text-green transition-colors"
+                onClick={closeMobileMenu}
+              >
+                Datenschutz
+              </Link>
+              <Link 
+                href="/agb" 
+                className="mobile-menu-link block text-sm text-gray-600 hover:text-green transition-colors"
+                onClick={closeMobileMenu}
+              >
+                AGB
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Spacer to prevent content jumping - iOS Safe Area Support */}
-      <div className="h-16 lg:h-20" style={{
-        paddingTop: 'env(safe-area-inset-top)'
-      }} />
     </>
   );
 }
-
-
