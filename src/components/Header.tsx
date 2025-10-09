@@ -89,7 +89,7 @@ export default function Header() {
                 }`}>
             
             {/* Logo Container - Größer in Hero-Sektion */}
-            <div className="flex-shrink-0 h-full flex items-center">
+            <div className="flex-shrink-0 h-full flex items-center header-logo-container">
               <Link 
                 href="/" 
                 className={`group flex items-center z-10 transition-all duration-300 ${
