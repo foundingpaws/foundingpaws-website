@@ -1971,3 +1971,273 @@ img {
     transform: none;
   }
 }
+
+/* Enhanced Mobile iOS Optimizations */
+
+/* Prevent iOS zoom on input focus */
+@media screen and (max-width: 768px) {
+  input[type="email"],
+  input[type="text"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 8px;
+  }
+}
+
+/* iOS-specific viewport fixes */
+@supports (-webkit-touch-callout: none) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-touch-callout: none;
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix for iOS Safari 100vh issue */
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  /* Prevent iOS bounce scrolling */
+  .no-bounce {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Enhanced touch targets for mobile */
+@media (pointer: coarse) {
+  /* All interactive elements should have proper touch targets */
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  a[href],
+  label[for] {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Enhanced button press feedback */
+  button:active,
+  [role="button"]:active,
+  input[type="button"]:active,
+  input[type="submit"]:active,
+  input[type="reset"]:active,
+  a[href]:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Card hover effects for touch devices */
+  .wv-card-premium[href]:active,
+  .wv-card-feature[href]:active,
+  .wv-card-minimal[href]:active {
+    transform: scale(0.99);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* iOS-specific safe area support */
+@supports (padding: max(0px)) {
+  .safe-area-all {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  
+  .safe-area-horizontal {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+  
+  .safe-area-vertical {
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+/* iOS-specific animation optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* Hardware acceleration for all animated elements */
+  .animate-pulse,
+  .animate-bounce,
+  .animate-ping,
+  .animate-spin,
+  .micro-pulse,
+  .micro-bounce,
+  .icon-hover,
+  .hover-lift-premium,
+  .hover-lift-feature,
+  .hover-lift-minimal {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  /* Optimize transform3d effects */
+  .Transform3D {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Mobile typography optimizations */
+@media screen and (max-width: 768px) {
+  /* Prevent text from being too small on mobile */
+  .wv-h1 {
+    font-size: clamp(1.875rem, 5vw, 3rem) !important;
+    line-height: 1.2 !important;
+  }
+  
+  .wv-h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem) !important;
+    line-height: 1.3 !important;
+  }
+  
+  .wv-h3 {
+    font-size: clamp(1.25rem, 3vw, 1.875rem) !important;
+    line-height: 1.4 !important;
+  }
+  
+  .wv-lead {
+    font-size: clamp(1rem, 3vw, 1.25rem) !important;
+    line-height: 1.6 !important;
+  }
+  
+  .wv-body {
+    font-size: clamp(0.875rem, 2.5vw, 1rem) !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* iOS-specific scroll optimizations */
+@supports (-webkit-touch-callout: none) {
+  .container-wide,
+  .wv-section {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Smooth scrolling for iOS */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Enhanced mobile form styling */
+@media (pointer: coarse) {
+  input[type="email"],
+  input[type="text"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="password"],
+  input[type="number"],
+  textarea,
+  select {
+    min-height: 48px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Enhanced focus states for mobile */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid #b46a34;
+    outline-offset: 2px;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* iOS-specific backdrop filter fixes */
+@supports (-webkit-touch-callout: none) {
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+  
+  .backdrop-blur {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  
+  .backdrop-blur-lg {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+  
+  .backdrop-blur-xl {
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+  }
+}
+
+/* Touch padding utility class */
+.touch-padding {
+  padding: 12px 16px;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* iOS button utility class */
+.ios-button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  min-height: 48px;
+  min-width: 48px;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ios-button:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* iOS fix utility class */
+.ios-fix {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
