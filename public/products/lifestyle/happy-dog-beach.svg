@@ -1,0 +1,68 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87A5E4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5EFE7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sea" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0066CC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0099FF;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="dogGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8E7F74;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A6958A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8E7F74;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="800" height="400" fill="url(#sky)"/>
+  
+  <!-- Sea -->
+  <rect x="0" y="400" width="800" height="200" fill="url(#sea)"/>
+  
+  <!-- Sand -->
+  <rect x="0" y="500" width="800" height="100" fill="#F5DEB3"/>
+  
+  <!-- Dog Silhouette -->
+  <!-- Body -->
+  <ellipse cx="400" cy="450" rx="80" ry="40" fill="url(#dogGradient)"/>
+  <!-- Head -->
+  <ellipse cx="400" cy="380" rx="60" ry="50" fill="url(#dogGradient)"/>
+  <!-- Ears -->
+  <ellipse cx="360" cy="350" rx="15" ry="40" fill="url(#dogGradient)"/>
+  <ellipse cx="440" cy="350" rx="15" ry="40" fill="url(#dogGradient)"/>
+  <!-- Legs -->
+  <rect x="360" y="480" width="15" height="40" fill="url(#dogGradient)"/>
+  <rect x="425" y="480" width="15" height="40" fill="url(#dogGradient)"/>
+  <!-- Tail -->
+  <ellipse cx="480" cy="450" rx="30" ry="15" fill="url(#dogGradient)"/>
+  <!-- Eyes -->
+  <circle cx="380" cy="370" r="6" fill="#004225"/>
+  <circle cx="420" cy="370" r="6" fill="#004225"/>
+  <!-- Nose -->
+  <ellipse cx="400" cy="390" rx="8" ry="6" fill="#004225"/>
+  <!-- Mouth (Happy) -->
+  <path d="M 380 400 Q 400 410 420 400" stroke="#004225" stroke-width="3" fill="none"/>
+  
+  <!-- Supplement Bottle (Small) -->
+  <rect x="500" y="420" width="40" height="60" rx="5" fill="#F5EFE7" stroke="#004225" stroke-width="2"/>
+  <rect x="505" y="410" width="30" height="15" rx="3" fill="#F5EFE7" stroke="#004225" stroke-width="2"/>
+  <text x="525" y="450" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#004225">FP</text>
+  
+  <!-- Shadow -->
+  <ellipse cx="400" cy="580" rx="100" ry="20" fill="url(#shadow)"/>
+  
+  <!-- Clouds -->
+  <ellipse cx="150" cy="100" rx="40" ry="20" fill="#F5EFE7" opacity="0.7"/>
+  <ellipse cx="650" cy="150" rx="50" ry="25" fill="#F5EFE7" opacity="0.6"/>
+  <ellipse cx="700" cy="80" rx="30" ry="15" fill="#F5EFE7" opacity="0.8"/>
+  
+  <!-- Wave Details -->
+  <path d="M 0 450 Q 200 440 400 450 Q 600 460 800 450 L 800 500 L 0 500 Z" fill="#87CEEB" opacity="0.3"/>
+  <path d="M 0 460 Q 200 450 400 460 Q 600 470 800 460 L 800 500 L 0 500 Z" fill="#87CEEB" opacity="0.2"/>
+</svg>

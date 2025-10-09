@@ -1,0 +1,441 @@
+/* ========================================
+   FOUNDING PAWS THEME SYSTEM
+   ========================================
+   
+   Centralized theme configuration for consistent design tokens
+   across all components and pages.
+   
+   Usage: Import this file in your components or globals.css
+   ======================================== */
+
+:root {
+  /* ========================================
+     BRAND COLOR PALETTE
+     ======================================== */
+  
+  /* Primary Brand Colors */
+  --color-primary: #004225;        /* Racing Green - Main brand color */
+  --color-primary-light: #006633;  /* Lighter variant for hover states */
+  --color-primary-dark: #002211;   /* Darker variant for pressed states */
+  
+  /* Secondary Brand Colors */
+  --color-secondary: #F5EFE7;      /* Cream Beige - Background and light elements */
+  --color-secondary-dark: #E8DDD0; /* Darker cream for subtle backgrounds */
+  --color-secondary-light: #FDFCF9; /* Lightest cream for cards and overlays */
+  
+  /* Accent Colors */
+  --color-accent: #B46A34;         /* Copper Accent - CTAs and highlights */
+  --color-accent-light: #D4844A;   /* Lighter copper for hover states */
+  --color-accent-dark: #8B4F2A;    /* Darker copper for pressed states */
+  
+  /* Neutral Colors */
+  --color-charcoal: #2A2E2F;       /* Charcoal Ink - Text and dark elements */
+  --color-taupe: #8E7F74;          /* Warm Taupe - Subtle borders and dividers */
+  --color-taupe-light: #A69B93;    /* Lighter taupe for subtle elements */
+  --color-taupe-dark: #6B5F57;     /* Darker taupe for stronger borders */
+  
+  /* Semantic Colors */
+  --color-background: var(--color-secondary);
+  --color-background-alt: var(--color-secondary-light);
+  --color-text: var(--color-charcoal);
+  --color-text-light: var(--color-taupe);
+  --color-text-muted: var(--color-taupe-light);
+  
+  /* Status Colors */
+  --color-success: #10b981;        /* Green for success states */
+  --color-warning: #f59e0b;        /* Amber for warning states */
+  --color-error: #ef4444;          /* Red for error states */
+  --color-info: #3b82f6;           /* Blue for info states */
+  
+  /* ========================================
+     TYPOGRAPHY SYSTEM
+     ======================================== */
+  
+  /* Font Families */
+  --font-heading: "Retrips", "Retrips-Fallback", "Playfair Display", "Times New Roman", "Times", serif;
+  --font-body: "DM Sans", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-display: var(--font-heading);
+  --font-sans: var(--font-body);
+  --font-round: "Fredoka", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Font Sizes - Fluid Typography Scale */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);      /* 12-14px */
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);       /* 14-16px */
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);       /* 16-18px */
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);      /* 18-20px */
+  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);       /* 20-24px */
+  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);            /* 24-32px */
+  --font-size-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);    /* 30-40px */
+  --font-size-4xl: clamp(2.25rem, 1.7rem + 2.75vw, 3.5rem);      /* 36-56px */
+  --font-size-5xl: clamp(3rem, 2rem + 5vw, 5rem);                /* 48-80px */
+  
+  /* Line Heights */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.8;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  /* ========================================
+     SPACING SYSTEM
+     ======================================== */
+  
+  /* Base spacing unit: 4px */
+  --space-0: 0;
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+  --space-4: 1rem;       /* 16px */
+  --space-5: 1.25rem;    /* 20px */
+  --space-6: 1.5rem;     /* 24px */
+  --space-8: 2rem;       /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+  --space-32: 8rem;      /* 128px */
+  --space-40: 10rem;     /* 160px */
+  --space-48: 12rem;     /* 192px */
+  --space-56: 14rem;     /* 224px */
+  --space-64: 16rem;     /* 256px */
+  
+  /* Fluid spacing for responsive design */
+  --space-section: clamp(3.5rem, 6vw, 7.5rem);     /* 56-120px */
+  --space-section-sm: clamp(2.5rem, 4vw, 5rem);    /* 40-80px */
+  --space-section-lg: clamp(5rem, 8vw, 10rem);     /* 80-160px */
+  
+  /* ========================================
+     BORDER RADIUS SYSTEM
+     ======================================== */
+  
+  --radius-none: 0;
+  --radius-sm: 0.25rem;      /* 4px */
+  --radius-base: 0.5rem;     /* 8px */
+  --radius-md: 0.75rem;      /* 12px */
+  --radius-lg: 1rem;         /* 16px */
+  --radius-xl: 1.5rem;       /* 24px */
+  --radius-2xl: 2rem;        /* 32px */
+  --radius-3xl: 3rem;        /* 48px */
+  --radius-full: 9999px;     /* Fully rounded */
+  
+  /* Semantic radius values */
+  --radius-card: var(--radius-xl);
+  --radius-button: var(--radius-full);
+  --radius-input: var(--radius-full);
+  --radius-badge: var(--radius-full);
+  
+  /* ========================================
+     SHADOW SYSTEM
+     ======================================== */
+  
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Brand-specific shadows */
+  --shadow-primary: 0 4px 16px -4px color-mix(in oklab, var(--color-primary) 30%, transparent);
+  --shadow-accent: 0 4px 16px -4px color-mix(in oklab, var(--color-accent) 30%, transparent);
+  --shadow-card: 0 10px 36px -16px color-mix(in oklab, var(--color-primary) 20%, transparent);
+  --shadow-floating: 0 8px 40px -8px color-mix(in oklab, var(--color-primary) 15%, transparent);
+  
+  /* ========================================
+     Z-INDEX SYSTEM
+     ======================================== */
+  
+  --z-index-hide: -1;
+  --z-index-auto: auto;
+  --z-index-base: 0;
+  --z-index-docked: 10;
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1100;
+  --z-index-banner: 1200;
+  --z-index-overlay: 1300;
+  --z-index-modal: 1400;
+  --z-index-popover: 1500;
+  --z-index-skipLink: 1600;
+  --z-index-toast: 1700;
+  --z-index-tooltip: 1800;
+  
+  /* ========================================
+     TRANSITION SYSTEM
+     ======================================== */
+  
+  /* Duration */
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+  
+  /* Easing */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-spring: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Common transitions */
+  --transition-fast: all var(--duration-150) var(--ease-out);
+  --transition-base: all var(--duration-300) var(--ease-out);
+  --transition-slow: all var(--duration-500) var(--ease-out);
+  --transition-bounce: all var(--duration-300) var(--ease-bounce);
+  --transition-spring: all var(--duration-400) var(--ease-spring);
+  
+  /* ========================================
+     BREAKPOINT SYSTEM
+     ======================================== */
+  
+  --breakpoint-xs: 20rem;      /* 320px */
+  --breakpoint-sm: 24rem;      /* 384px */
+  --breakpoint-md: 48rem;      /* 768px */
+  --breakpoint-lg: 64rem;      /* 1024px */
+  --breakpoint-xl: 80rem;      /* 1280px */
+  --breakpoint-2xl: 96rem;     /* 1536px */
+  
+  /* ========================================
+     CONTAINER SYSTEM
+     ======================================== */
+  
+  --container-xs: 20rem;       /* 320px */
+  --container-sm: 24rem;       /* 384px */
+  --container-md: 45rem;       /* 720px */
+  --container-lg: 60rem;       /* 960px */
+  --container-xl: 75rem;       /* 1200px */
+  --container-2xl: 90rem;      /* 1440px */
+  --container-full: 100%;
+  
+  /* ========================================
+     COMPONENT TOKENS
+     ======================================== */
+  
+  /* Button Tokens */
+  --button-height-sm: 2rem;      /* 32px */
+  --button-height-base: 2.5rem;  /* 40px */
+  --button-height-lg: 3rem;      /* 48px */
+  --button-height-xl: 3.5rem;    /* 56px */
+  
+  --button-padding-sm: var(--space-2) var(--space-4);
+  --button-padding-base: var(--space-3) var(--space-6);
+  --button-padding-lg: var(--space-4) var(--space-8);
+  --button-padding-xl: var(--space-5) var(--space-10);
+  
+  /* Input Tokens */
+  --input-height-sm: 2rem;       /* 32px */
+  --input-height-base: 2.5rem;   /* 40px */
+  --input-height-lg: 3rem;       /* 48px */
+  --input-height-xl: 3.5rem;     /* 56px */
+  
+  --input-padding-sm: var(--space-2) var(--space-3);
+  --input-padding-base: var(--space-3) var(--space-4);
+  --input-padding-lg: var(--space-4) var(--space-5);
+  --input-padding-xl: var(--space-5) var(--space-6);
+  
+  /* Card Tokens */
+  --card-padding-sm: var(--space-4);
+  --card-padding-base: var(--space-6);
+  --card-padding-lg: var(--space-8);
+  --card-padding-xl: var(--space-10);
+  
+  /* ========================================
+     DARK MODE OVERRIDES
+     ======================================== */
+  
+  @media (prefers-color-scheme: dark) {
+    --color-background: var(--color-primary);
+    --color-background-alt: var(--color-primary-dark);
+    --color-text: var(--color-secondary);
+    --color-text-light: var(--color-taupe-light);
+    --color-text-muted: var(--color-taupe);
+  }
+}
+
+/* ========================================
+   THEME UTILITY CLASSES
+   ======================================== */
+
+/* Color Utilities */
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-accent { color: var(--color-accent); }
+.text-charcoal { color: var(--color-charcoal); }
+.text-taupe { color: var(--color-taupe); }
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-error { color: var(--color-error); }
+.text-info { color: var(--color-info); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-charcoal { background-color: var(--color-charcoal); }
+.bg-taupe { background-color: var(--color-taupe); }
+
+/* Spacing Utilities */
+.p-xs { padding: var(--space-1); }
+.p-sm { padding: var(--space-2); }
+.p-md { padding: var(--space-4); }
+.p-lg { padding: var(--space-6); }
+.p-xl { padding: var(--space-8); }
+
+.m-xs { margin: var(--space-1); }
+.m-sm { margin: var(--space-2); }
+.m-md { margin: var(--space-4); }
+.m-lg { margin: var(--space-6); }
+.m-xl { margin: var(--space-8); }
+
+/* Border Radius Utilities */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-base { border-radius: var(--radius-base); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Shadow Utilities */
+.shadow-xs { box-shadow: var(--shadow-xs); }
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-base { box-shadow: var(--shadow-base); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-primary { box-shadow: var(--shadow-primary); }
+.shadow-accent { box-shadow: var(--shadow-accent); }
+.shadow-card { box-shadow: var(--shadow-card); }
+
+/* Typography Utilities */
+.font-heading { font-family: var(--font-heading); }
+.font-body { font-family: var(--font-body); }
+.font-display { font-family: var(--font-display); }
+.font-sans { font-family: var(--font-sans); }
+.font-round { font-family: var(--font-round); }
+
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-base { font-size: var(--font-size-base); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+.text-3xl { font-size: var(--font-size-3xl); }
+.text-4xl { font-size: var(--font-size-4xl); }
+.text-5xl { font-size: var(--font-size-5xl); }
+
+/* Transition Utilities */
+.transition-fast { transition: var(--transition-fast); }
+.transition-base { transition: var(--transition-base); }
+.transition-slow { transition: var(--transition-slow); }
+.transition-bounce { transition: var(--transition-bounce); }
+.transition-spring { transition: var(--transition-spring); }
+
+/* ========================================
+   RESPONSIVE DESIGN HELPERS
+   ======================================== */
+
+/* Container utilities */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+  .container {
+    max-width: var(--container-md);
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 64rem) {
+  .container {
+    max-width: var(--container-lg);
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+@media (min-width: 80rem) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+@media (min-width: 96rem) {
+  .container {
+    max-width: var(--container-2xl);
+  }
+}
+
+/* Section spacing */
+.section {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+.section-sm {
+  padding-top: var(--space-section-sm);
+  padding-bottom: var(--space-section-sm);
+}
+
+.section-lg {
+  padding-top: var(--space-section-lg);
+  padding-bottom: var(--space-section-lg);
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Focus styles */
+.focus-ring:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #000000;
+    --color-secondary: #ffffff;
+    --color-accent: #8B4513;
+    --color-text: #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

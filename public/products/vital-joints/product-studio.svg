@@ -1,0 +1,47 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bottleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8E7F74;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A6958A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8E7F74;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="shadowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="#F5EFE7"/>
+  
+  <!-- Shadow -->
+  <ellipse cx="200" cy="380" rx="80" ry="20" fill="url(#shadowGradient)"/>
+  
+  <!-- Bottle Body -->
+  <path d="M 120 200 Q 120 120 200 120 Q 280 120 280 200 L 280 320 Q 280 360 200 360 Q 120 360 120 320 Z" 
+        fill="url(#bottleGradient)" 
+        stroke="#004225" 
+        stroke-width="2"/>
+  
+  <!-- Bottle Neck -->
+  <rect x="180" y="100" width="40" height="20" fill="url(#bottleGradient)" stroke="#004225" stroke-width="2"/>
+  
+  <!-- Cap -->
+  <rect x="175" y="80" width="50" height="25" rx="5" fill="#F5EFE7" stroke="#004225" stroke-width="2"/>
+  
+  <!-- Label -->
+  <rect x="130" y="180" width="140" height="80" rx="8" fill="#F5EFE7" stroke="#004225" stroke-width="1"/>
+  
+  <!-- Label Text -->
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#004225">VITAL JOINTS</text>
+  <text x="200" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8E7F74">Gelenkgesundheit</text>
+  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8E7F74">&amp; Mobilität</text>
+  
+  <!-- Joint Icon (Bone) -->
+  <ellipse cx="190" cy="245" rx="8" ry="15" fill="#B46A34" transform="rotate(-20 190 245)"/>
+  <ellipse cx="210" cy="245" rx="8" ry="15" fill="#B46A34" transform="rotate(20 210 245)"/>
+  <circle cx="200" cy="245" r="6" fill="#F5EFE7"/>
+  
+  <!-- Movement Icon (Arrow) -->
+  <path d="M 200 260 L 210 270 L 205 270 L 205 275 L 195 275 L 195 270 L 190 270 Z" fill="#8E7F74"/>
+</svg>
