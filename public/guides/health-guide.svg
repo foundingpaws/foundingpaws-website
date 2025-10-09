@@ -1,0 +1,72 @@
+<svg width="200" height="280" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f8f0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8f5e8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Book cover -->
+  <rect width="200" height="280" fill="url(#bg)" stroke="#2c5f2d" stroke-width="3" rx="8"/>
+  
+  <!-- Title -->
+  <text x="100" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#2c5f2d" font-weight="bold">
+    Hundegesundheit
+  </text>
+  <text x="100" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#2c5f2d">
+    von A-Z
+  </text>
+  
+  <!-- Dog illustration -->
+  <g transform="translate(100, 140)">
+    <!-- Body -->
+    <ellipse cx="0" cy="10" rx="30" ry="20" fill="#d4af37" stroke="#b8941f" stroke-width="2"/>
+    
+    <!-- Head -->
+    <circle cx="0" cy="-20" r="20" fill="#d4af37" stroke="#b8941f" stroke-width="2"/>
+    
+    <!-- Ears -->
+    <ellipse cx="-12" cy="-30" rx="5" ry="10" fill="#d4af37" stroke="#b8941f" stroke-width="2" transform="rotate(-15)"/>
+    <ellipse cx="12" cy="-30" rx="5" ry="10" fill="#d4af37" stroke="#b8941f" stroke-width="2" transform="rotate(15)"/>
+    
+    <!-- Eyes -->
+    <circle cx="-6" cy="-25" r="2" fill="#2c1810"/>
+    <circle cx="6" cy="-25" r="2" fill="#2c1810"/>
+    
+    <!-- Nose -->
+    <ellipse cx="0" cy="-18" rx="1.5" ry="1" fill="#2c1810"/>
+    
+    <!-- Mouth -->
+    <path d="M -4 -15 Q 0 -12 4 -15" stroke="#2c1810" stroke-width="1.5" fill="none"/>
+    
+    <!-- Legs -->
+    <rect x="-8" y="25" width="3" height="15" fill="#d4af37" stroke="#b8941f" stroke-width="1"/>
+    <rect x="-2" y="25" width="3" height="15" fill="#d4af37" stroke="#b8941f" stroke-width="1"/>
+    <rect x="2" y="25" width="3" height="15" fill="#d4af37" stroke="#b8941f" stroke-width="1"/>
+    <rect x="8" y="25" width="3" height="15" fill="#d4af37" stroke="#b8941f" stroke-width="1"/>
+    
+    <!-- Tail -->
+    <ellipse cx="20" cy="0" rx="8" ry="4" fill="#d4af37" stroke="#b8941f" stroke-width="2" transform="rotate(20)"/>
+  </g>
+  
+  <!-- Health icons -->
+  <g transform="translate(50, 200)">
+    <circle cx="0" cy="0" r="12" fill="#d4af37" opacity="0.3"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c5f2d">❤️</text>
+  </g>
+  
+  <g transform="translate(100, 200)">
+    <circle cx="0" cy="0" r="12" fill="#d4af37" opacity="0.3"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c5f2d">🏥</text>
+  </g>
+  
+  <g transform="translate(150, 200)">
+    <circle cx="0" cy="0" r="12" fill="#d4af37" opacity="0.3"/>
+    <text x="0" y="4" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c5f2d">💊</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="100" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#2c5f2d">
+    24 Seiten • PDF
+  </text>
+</svg>

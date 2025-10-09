@@ -1,0 +1,73 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87ceeb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#98d8e8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dog" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8941f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Beach Background -->
+  <rect width="400" height="400" fill="url(#bg)"/>
+  
+  <!-- Sand -->
+  <ellipse cx="200" cy="350" rx="200" ry="50" fill="#f4e4bc"/>
+  
+  <!-- Golden Retriever playing -->
+  <g transform="translate(200, 250)">
+    <!-- Body -->
+    <ellipse cx="0" cy="0" rx="50" ry="30" fill="url(#dog)"/>
+    
+    <!-- Head -->
+    <circle cx="0" cy="-40" r="30" fill="url(#dog)"/>
+    
+    <!-- Ears -->
+    <ellipse cx="-20" cy="-55" rx="10" ry="18" fill="url(#dog)" transform="rotate(-20)"/>
+    <ellipse cx="20" cy="-55" rx="10" ry="18" fill="url(#dog)" transform="rotate(20)"/>
+    
+    <!-- Eyes -->
+    <circle cx="-10" cy="-45" r="2.5" fill="#2c1810"/>
+    <circle cx="10" cy="-45" r="2.5" fill="#2c1810"/>
+    
+    <!-- Nose -->
+    <ellipse cx="0" cy="-35" rx="3" ry="2" fill="#2c1810"/>
+    
+    <!-- Mouth (happy) -->
+    <path d="M -6 -30 Q 0 -25 6 -30" stroke="#2c1810" stroke-width="2" fill="none"/>
+    
+    <!-- Legs (running pose) -->
+    <ellipse cx="-15" cy="20" rx="6" ry="15" fill="url(#dog)" transform="rotate(-20)"/>
+    <ellipse cx="-5" cy="25" rx="6" ry="15" fill="url(#dog)" transform="rotate(10)"/>
+    <ellipse cx="5" cy="20" rx="6" ry="15" fill="url(#dog)" transform="rotate(-10)"/>
+    <ellipse cx="15" cy="25" rx="6" ry="15" fill="url(#dog)" transform="rotate(20)"/>
+    
+    <!-- Tail (wagging) -->
+    <ellipse cx="35" cy="-10" rx="12" ry="6" fill="url(#dog)" transform="rotate(45)"/>
+    
+    <!-- Paws -->
+    <circle cx="-18" cy="35" r="4" fill="#2c1810"/>
+    <circle cx="-2" cy="40" r="4" fill="#2c1810"/>
+    <circle cx="8" cy="35" r="4" fill="#2c1810"/>
+    <circle cx="22" cy="40" r="4" fill="#2c1810"/>
+  </g>
+  
+  <!-- Beach elements -->
+  <circle cx="100" cy="320" r="3" fill="#f4e4bc"/>
+  <circle cx="150" cy="330" r="2" fill="#f4e4bc"/>
+  <circle cx="250" cy="325" r="2.5" fill="#f4e4bc"/>
+  <circle cx="300" cy="335" r="2" fill="#f4e4bc"/>
+  
+  <!-- Waves -->
+  <path d="M 0 300 Q 100 280 200 300 T 400 300 L 400 400 L 0 400 Z" fill="#87ceeb" opacity="0.3"/>
+  
+  <!-- Text overlay -->
+  <text x="200" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#2c5f2d" font-weight="bold">
+    Bella genießt ihre tägliche Vital Joints Routine
+  </text>
+  <text x="200" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#2c5f2d">
+    Sarah M. • Vital Joints
+  </text>
+</svg>

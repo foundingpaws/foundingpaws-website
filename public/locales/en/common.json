@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "knowledge": "Knowledge",
+    "about": "About Us",
+    "contact": "Contact",
+    "blog": "Blog",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "title": "Premium Supplements for a Long, Healthy Dog Life",
+    "subtitle": "Evidence-based development, handcrafted in Heilbronn – for noticeable effect and trust.",
+    "cta_products": "View Products →",
+    "cta_finder": "Needs Finder (2 Min)"
+  },
+  "trust": {
+    "veterinarians": "Developed with Veterinarians",
+    "made_in_germany": "Made in Germany",
+    "manufacturing": "Heilbronn Manufacturing",
+    "natural": "100% Natural Ingredients"
+  },
+  "story": {
+    "title": "From Dog Love to Mission",
+    "subtitle": "Founding Paws emerged from our deep connection to our dogs Nala and Jackson. When we searched for premium supplements that are scientifically proven AND made with love, we found nothing – so we created it ourselves.",
+    "philosophy_title": "Our Philosophy",
+    "philosophy_text_1": "Every dog deserves a long, healthy life. But the market was full of products with questionable ingredients, non-transparent processes, and empty promises.",
+    "philosophy_text_2": "That's why we work with leading veterinarians and manufacture our supplements in a small facility in Heilbronn – with the highest care, traceable ingredients, and genuine attention to detail.",
+    "philosophy_quote": "Science meets heart. That's Founding Paws."
+  },
+  "values": {
+    "title": "Our Values",
+    "science_title": "Science with Heart",
+    "science_text": "Evidence-based nutrition, developed with sincere passion – research meets care.",
+    "transparency_title": "Purity & Transparency",
+    "transparency_text": "Exclusively clean, traceable ingredients – trust is built through honesty.",
+    "design_title": "Design with Intention",
+    "design_text": "Quiet precision with modern elegance – the balance of wellness and sophistication."
+  },
+  "finder": {
+    "title": "Find the Right Formula",
+    "subtitle": "Answer 3 short questions – receive a clear recommendation.",
+    "step_1": "Age & Size",
+    "step_2": "Choose Goal",
+    "step_3": "Recommendation",
+    "cta": "Start Now"
+  },
+  "blog": {
+    "title": "Understanding Dog Health",
+    "subtitle": "Scientifically based articles, practical tips, and free guides for your dog's best health",
+    "read_more": "Read More",
+    "categories": {
+      "all": "All",
+      "health": "Health",
+      "nutrition": "Nutrition",
+      "behavior": "Behavior",
+      "prevention": "Prevention",
+      "naturopathy": "Naturopathy",
+      "exercise": "Exercise"
+    }
+  },
+  "footer": {
+    "description": "Premium supplements for dogs – scientifically proven, handcrafted with love in Heilbronn.",
+    "discover": "Discover",
+    "knowledge": "Knowledge",
+    "legal": "Legal"
+  },
+  "language": {
+    "switch": "Switch Language",
+    "german": "Deutsch",
+    "english": "English"
+  }
+}

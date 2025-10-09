@@ -1,0 +1,368 @@
+/* iOS-specific optimizations for cookie banner */
+
+/* Prevent zoom on input focus on iOS */
+@media screen and (max-width: 768px) {
+  input[type="checkbox"],
+  input[type="email"],
+  input[type="text"] {
+    font-size: 16px !important;
+  }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix for iOS Safari viewport issues */
+  .cookie-banner-container {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent bounce scrolling on iOS */
+  .cookie-banner-modal {
+    overscroll-behavior: contain;
+  }
+  
+  /* Fix for iOS Safari backdrop-filter */
+  .cookie-banner-backdrop {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Touch target optimization for iOS */
+@media (pointer: coarse) {
+  .cookie-toggle,
+  .cookie-button,
+  .cookie-link {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Ensure proper touch targets */
+  .cookie-toggle label {
+    padding: 8px;
+    margin: -8px;
+  }
+}
+
+/* iOS-specific button styles */
+@supports (-webkit-touch-callout: none) {
+  .cookie-button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .cookie-button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Fix for iOS Safari modal positioning */
+@supports (-webkit-touch-callout: none) {
+  .cookie-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+  }
+}
+
+/* iOS-specific scroll behavior */
+@supports (-webkit-touch-callout: none) {
+  .cookie-content-scrollable {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+}
+
+/* Fix for iOS Safari safe area */
+@supports (padding: max(0px)) {
+  .cookie-banner {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+/* iOS-specific animation optimizations */
+@supports (-webkit-touch-callout: none) {
+  .cookie-animation {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+}
+
+/* Fix for iOS Safari input zoom */
+@media screen and (max-width: 768px) {
+  .cookie-input {
+    font-size: 16px !important;
+    transform: scale(1);
+  }
+}
+
+/* iOS-specific focus styles */
+@supports (-webkit-touch-callout: none) {
+  .cookie-focusable:focus {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Bedarfsfinder iOS optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* Ensure proper text centering on iOS */
+  .bedarfsfinder-option {
+    text-align: center !important;
+    -webkit-text-align: center;
+  }
+  
+  /* Optimize touch targets for iOS */
+  .bedarfsfinder-option {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* iOS button press feedback */
+  .bedarfsfinder-option:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Mobile Menu iOS optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* Mobile menu touch targets */
+  .mobile-menu-link {
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Mobile menu button feedback */
+  .mobile-menu-link:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Prevent zoom on mobile menu interaction */
+  .mobile-menu-container {
+    -webkit-text-size-adjust: 100%;
+    -webkit-touch-callout: none;
+  }
+  
+  /* Smooth mobile menu transitions */
+  .mobile-menu {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Header iOS optimizations */
+  .header-mobile {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Logo iOS optimizations */
+  .header-logo {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Mobile menu backdrop blur fix for iOS */
+  .mobile-menu-backdrop {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  
+  /* Mobile menu panel blur fix for iOS */
+  .mobile-menu-panel {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Enhanced Mobile Touch Targets */
+@media (pointer: coarse) {
+  /* Only specific interactive elements should have proper touch targets */
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline,
+  .btn-ghost,
+  .pill {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Links and buttons need touch targets but not min-width */
+  a[href],
+  button {
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Enhanced button press feedback */
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-outline:active,
+  .btn-ghost:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Card hover effects for touch devices - only for clickable cards */
+  .wv-card-premium[href],
+  .wv-card-feature[href],
+  .wv-card-minimal[href] {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  
+  .wv-card-premium[href]:active,
+  .wv-card-feature[href]:active,
+  .wv-card-minimal[href]:active {
+    transform: scale(0.99);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* iOS-specific scroll optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* Smooth scrolling for iOS */
+  .container-wide,
+  .wv-section {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  /* Prevent iOS bounce on main content */
+  body {
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Optimize animations for iOS */
+  .hover-lift-premium,
+  .hover-lift-feature,
+  .hover-lift-minimal {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* Enhanced Mobile Form Interactions */
+@media (pointer: coarse) {
+  /* Form inputs with proper touch targets */
+  input[type="email"],
+  input[type="text"],
+  textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevent zoom on iOS */
+    -webkit-appearance: none;
+    border-radius: 8px;
+  }
+  
+  /* Enhanced focus states for mobile */
+  input:focus,
+  textarea:focus {
+    outline: 2px solid #b46a34;
+    outline-offset: 2px;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* iOS-specific animation performance */
+@supports (-webkit-touch-callout: none) {
+  /* Hardware acceleration for smooth animations */
+  .micro-pulse,
+  .micro-bounce,
+  .icon-hover {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  /* Optimize transform3d effects */
+  .Transform3D,
+  .hover-lift-premium,
+  .hover-lift-feature,
+  .hover-lift-minimal {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Header scroll optimizations for iOS */
+  .header-scroll {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* Mobile menu slide animation optimization */
+  .mobile-menu-slide {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .mobile-menu-slide.open {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Logo transition optimization */
+  .logo-transition {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* Mobile performance optimizations */
+.no-animations * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Mobile touch feedback */
+@media (pointer: coarse) {
+  .mobile-touch-feedback:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}

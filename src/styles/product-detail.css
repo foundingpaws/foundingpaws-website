@@ -1,0 +1,226 @@
+/* Product Detail Page Styles */
+
+/* Hero Section */
+.product-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+/* Product Image Animation */
+.product-image-container {
+  position: relative;
+  transition: transform 0.3s ease-out;
+}
+
+.product-image-container:hover {
+  transform: translateY(-10px);
+}
+
+/* Tab Navigation */
+.product-tabs {
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.product-tab {
+  position: relative;
+  transition: all 0.2s ease-out;
+}
+
+.product-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #b46a34;
+  transform: scaleX(0);
+  transition: transform 0.2s ease-out;
+}
+
+.product-tab.active::after {
+  transform: scaleX(1);
+}
+
+/* Collapsible Sections */
+.collapsible-section {
+  transition: all 0.3s ease-in-out;
+}
+
+.collapsible-trigger {
+  transition: background-color 0.2s ease-out;
+}
+
+.collapsible-trigger:hover {
+  background-color: #f9fafb;
+}
+
+.collapsible-trigger:focus {
+  outline: 2px solid #b46a34;
+  outline-offset: 2px;
+}
+
+.collapsible-content {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Testimonials Slider */
+.testimonials-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Trust Badges */
+.trust-badge {
+  transition: all 0.2s ease-out;
+}
+
+.trust-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Sticky CTA */
+.sticky-cta {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Button Animations */
+.product-cta-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.product-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease-out;
+}
+
+.product-cta-button:hover::before {
+  left: 100%;
+}
+
+.product-cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px -5px rgba(180, 106, 52, 0.4);
+}
+
+/* Loading States */
+.product-image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-hero {
+    min-height: 60vh;
+  }
+  
+  .product-image-container {
+    height: 300px;
+  }
+  
+  .sticky-cta {
+    padding: 1rem;
+  }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+  .product-image-container,
+  .testimonial-card,
+  .trust-badge,
+  .product-cta-button,
+  .collapsible-content {
+    transition: none;
+  }
+  
+  .product-image-container:hover {
+    transform: none;
+  }
+  
+  .testimonial-card:hover {
+    transform: none;
+  }
+}
+
+/* Focus States */
+.product-cta-button:focus,
+.collapsible-trigger:focus,
+.tab-button:focus {
+  outline: 2px solid #b46a34;
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .product-hero {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .testimonial-card {
+    border: 2px solid #000;
+  }
+  
+  .trust-badge {
+    border: 1px solid #000;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sticky-cta,
+  .product-cta-button {
+    display: none;
+  }
+  
+  .product-hero {
+    background: none !important;
+    color: #000 !important;
+  }
+  
+  .testimonial-card {
+    break-inside: avoid;
+  }
+}
