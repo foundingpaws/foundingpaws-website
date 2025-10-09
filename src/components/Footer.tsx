@@ -52,7 +52,14 @@ export default function Footer() {
         <div className="grid gap-8 lg:gap-12 grid-cols-1 md:grid-cols-3 mb-8">
           {/* Brand & Mission */}
           <div className="md:col-span-1">
-            <Image src="/logo-header.png" alt="Founding Paws" width={320} height={80} className="h-10 w-auto mb-4" />
+            <Image 
+              src="/brand/9 LogoNew.jpg" 
+              alt="Founding Paws" 
+              width={120} 
+              height={30} 
+              className="h-8 w-auto mb-4 drop-shadow-md" 
+              quality={100}
+            />
             <p className="text-cream/70 text-sm leading-relaxed mb-4">
               Premium-Supplements für Hunde – wissenschaftlich fundiert, mit Liebe handgefertigt.
             </p>

@@ -271,7 +271,7 @@ class MobilePerformanceManager {
 
   private preloadCriticalImages(): void {
     const criticalImages = [
-      '/logo-header.png',
+      '/brand/9 LogoNew.jpg',
       '/brand/logo-main.jpg',
     ];
     

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "../styles/theme.css";
+@import "../styles/product-cards.css";
+@import "../styles/product-detail.css";
 @import "../styles/ios-optimizations.css";
 
 /*
@@ -11,16 +14,16 @@
   - Warm Taupe: #8E7F74
 */
 :root {
-  /* Brand palette */
-  --fp-green: #004225;
-  --fp-cream: #F5EFE7;
-  --fp-copper: #B46A34;
-  --fp-charcoal: #2A2E2F;
-  --fp-taupe: #8E7F74;
+  /* Legacy brand palette - kept for backward compatibility */
+  --fp-green: var(--color-primary);
+  --fp-cream: var(--color-secondary);
+  --fp-copper: var(--color-accent);
+  --fp-charcoal: var(--color-charcoal);
+  --fp-taupe: var(--color-taupe);
 
-  /* Semantic surfaces */
-  --background: var(--fp-cream);
-  --foreground: var(--fp-charcoal);
+  /* Semantic surfaces - using theme variables */
+  --background: var(--color-background);
+  --foreground: var(--color-text);
 
   /* Typography variables hooked from next/font in layout */
   --font-display: var(--font-display-fallback);
@@ -28,33 +31,100 @@
   --font-round: var(--font-round-fallback);
   
   /* Enhanced font stacks with German Umlaute support */
-  --font-display-umlaut: "Retrips", "Retrips-Fallback", "Times New Roman", "Times", "serif";
-  --font-sans-umlaut: "DM Sans", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  --font-round-umlaut: "Fredoka", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-display-umlaut: var(--font-heading);
+  --font-sans-umlaut: var(--font-body);
+  --font-round-umlaut: var(--font-round);
 }
 
 /* Tailwind v4 theming via @theme inline */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-green: var(--fp-green);
-  --color-cream: var(--fp-cream);
-  --color-copper: var(--fp-copper);
-  --color-charcoal: var(--fp-charcoal);
-  --color-taupe: var(--fp-taupe);
+  /* Colors */
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-text);
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-light: var(--color-secondary-light);
+  --color-secondary-dark: var(--color-secondary-dark);
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-charcoal: var(--color-charcoal);
+  --color-taupe: var(--color-taupe);
+  --color-taupe-light: var(--color-taupe-light);
+  --color-taupe-dark: var(--color-taupe-dark);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-info: var(--color-info);
+  
+  /* Legacy color mappings for backward compatibility */
+  --color-green: var(--color-primary);
+  --color-cream: var(--color-secondary);
+  --color-copper: var(--color-accent);
 
-  --radius-pill: 9999px;
-  --radius-card: 24px;
+  /* Border radius */
+  --radius-sm: var(--radius-sm);
+  --radius-base: var(--radius-base);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-full: var(--radius-full);
+  --radius-pill: var(--radius-full);
+  --radius-card: var(--radius-card);
+  --radius-button: var(--radius-button);
+  --radius-input: var(--radius-input);
+  --radius-badge: var(--radius-badge);
 
-        --font-display: var(--font-display-umlaut);
-        --font-sans: var(--font-sans-umlaut);
-        --font-round: var(--font-round-umlaut);
+  /* Typography */
+  --font-display: var(--font-display-umlaut);
+  --font-sans: var(--font-sans-umlaut);
+  --font-round: var(--font-round-umlaut);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  
+  /* Spacing */
+  --spacing-0: var(--space-0);
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+  --spacing-20: var(--space-20);
+  --spacing-24: var(--space-24);
+  --spacing-32: var(--space-32);
+  --spacing-40: var(--space-40);
+  --spacing-48: var(--space-48);
+  --spacing-56: var(--space-56);
+  --spacing-64: var(--space-64);
+  
+  /* Shadows */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-base: var(--shadow-base);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+  --shadow-inner: var(--shadow-inner);
+  --shadow-primary: var(--shadow-primary);
+  --shadow-accent: var(--shadow-accent);
+  --shadow-card: var(--shadow-card);
+  --shadow-floating: var(--shadow-floating);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--fp-green);
-    --foreground: var(--fp-cream);
+    --background: var(--color-primary);
+    --foreground: var(--color-secondary);
   }
 }
 
@@ -83,13 +153,13 @@ html, body {
 }
 
 body {
-  background: var(--fp-cream);
-  color: var(--fp-green);
-  font-family: var(--font-sans-umlaut);
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+  line-height: var(--line-height-relaxed);
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
@@ -1531,6 +1601,330 @@ html {
   .tilt-card:hover {
     transform: none !important;
   }
+}
+
+/* ========================================
+   HEADER ENHANCEMENTS
+   ======================================== */
+
+/* Transparent Header Effects */
+.header-transparent {
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+}
+
+.header-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.8),
+    0 4px 20px -4px rgba(0, 0, 0, 0.1),
+    0 8px 32px -8px rgba(0, 0, 0, 0.05);
+}
+
+/* Mix Blend Mode for Text on Hero Images */
+.header-text-blend {
+  mix-blend-mode: difference;
+  color: white;
+}
+
+.header-text-normal {
+  mix-blend-mode: normal;
+  color: var(--color-text);
+}
+
+/* Logo Glow Effect */
+.logo-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, var(--color-accent) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.logo-glow:hover::before {
+  opacity: 0.1;
+}
+
+/* Enhanced Button Styles for Header */
+.header-btn-primary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 12px -4px rgba(180, 106, 52, 0.3),
+    0 8px 24px -8px rgba(180, 106, 52, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.header-btn-primary:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 8px 20px -4px rgba(180, 106, 52, 0.4),
+    0 16px 40px -8px rgba(180, 106, 52, 0.3);
+}
+
+.header-btn-primary:hover::before {
+  left: 100%;
+}
+
+.header-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-btn-secondary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(180, 106, 52, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.header-btn-secondary:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 4px 16px -4px rgba(0, 0, 0, 0.1),
+    0 8px 24px -8px rgba(0, 0, 0, 0.05);
+}
+
+.header-btn-secondary:hover::before {
+  opacity: 1;
+}
+
+/* Scrolled State Button Styles */
+.header-btn-primary-scrolled {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px -2px rgba(180, 106, 52, 0.3);
+}
+
+.header-btn-primary-scrolled:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: var(--color-accent-dark);
+  box-shadow: 0 4px 16px -4px rgba(180, 106, 52, 0.4);
+}
+
+.header-btn-secondary-scrolled {
+  background: var(--color-gray-100);
+  color: var(--color-gray-900);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-btn-secondary-scrolled:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: var(--color-gray-200);
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Menu Enhancements */
+.mobile-menu-slide {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-slide.open {
+  transform: translateX(0);
+}
+
+.mobile-menu-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu-backdrop.open {
+  opacity: 1;
+}
+
+/* Navigation Link Hover Effects */
+.nav-link {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Dropdown Menu Enhancements */
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-item {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(180, 106, 52, 0.1), transparent);
+  transition: left 0.4s ease;
+}
+
+.dropdown-item:hover::before {
+  left: 100%;
+}
+
+/* Scroll-based Header Transformations */
+.header-parallax {
+  transform: translateY(var(--scroll-offset, 0));
+  transition: transform 0.1s ease-out;
+}
+
+/* Enhanced Focus States for Accessibility */
+.header-focus:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-base);
+}
+
+/* Smooth Transitions for All Header Elements */
+.header-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile Menu Button Animation */
+.mobile-menu-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-button:hover {
+  transform: scale(1.1);
+}
+
+.mobile-menu-button:active {
+  transform: scale(0.95);
+}
+
+/* Header Logo Animation */
+.header-logo {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+}
+
+/* ========================================
+   TEAM PAGE ANIMATIONS & UTILITIES
+   ======================================== */
+
+/* Line clamp utility for text truncation */
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========================================
+   TEAM PAGE ANIMATIONS
+   ======================================== */
+
+/* Values Carousel Animation */
+@keyframes scroll-slow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 30s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-scroll-slow:hover {
+  animation-play-state: paused;
 }
 
 /* ========================================

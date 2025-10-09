@@ -1,0 +1,214 @@
+/* Product Card Styles */
+
+
+/* Product Image Container - 4:5 Aspect Ratio */
+.product-image-container {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+}
+
+/* Image Hover Effects */
+.product-image {
+  transition: transform 0.5s ease-out, filter 0.3s ease-out;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.1);
+  filter: brightness(1.05);
+}
+
+/* Card Shadow Effects */
+.product-card {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.product-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+}
+
+/* Badge Styles */
+.product-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.product-badge-coming-soon {
+  background-color: rgba(180, 106, 52, 0.15);
+  color: #b46a34;
+  border: 1px solid rgba(180, 106, 52, 0.25);
+}
+
+.product-badge-new {
+  background-color: #004225;
+  color: white;
+}
+
+.product-badge-bestseller {
+  background-color: #b46a34;
+  color: white;
+}
+
+/* CTA Button Hover Effects */
+.product-cta {
+  transition: all 0.3s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease-out;
+}
+
+.product-card:hover .product-cta::before {
+  left: 100%;
+}
+
+.product-card:hover .product-cta {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px -5px rgba(180, 106, 52, 0.4);
+}
+
+/* Microinteractions */
+.product-card {
+  cursor: pointer;
+}
+
+.product-card:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease-out;
+}
+
+/* Text Hover Effects */
+.product-title {
+  transition: color 0.3s ease-out;
+}
+
+.product-card:hover .product-title {
+  color: #b46a34;
+}
+
+
+/* Responsive Grid */
+.product-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Loading States */
+.product-card-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Focus States for Accessibility */
+.product-card:focus-within {
+  outline: 2px solid #b46a34;
+  outline-offset: 2px;
+}
+
+.product-cta:focus {
+  outline: 2px solid #b46a34;
+  outline-offset: 2px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .product-card {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+  
+  .product-image-container {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  }
+  
+  .product-title {
+    color: #f9fafb;
+  }
+  
+  .product-card:hover .product-title {
+    color: #b46a34;
+  }
+}
+
+/* iOS Optimizations */
+@supports (-webkit-touch-callout: none) {
+  .product-card {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .product-card:hover {
+    -webkit-transform: translate3d(0, -4px, 10px);
+    transform: translate3d(0, -4px, 10px);
+  }
+  
+  .product-cta {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-image,
+  .product-cta,
+  .product-title {
+    transition: none;
+  }
+  
+  .product-card:hover {
+    transform: none;
+  }
+  
+  .product-card:hover .product-image {
+    transform: none;
+  }
+}

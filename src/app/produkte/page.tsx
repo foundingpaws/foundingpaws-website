@@ -3,6 +3,8 @@ import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import OptimizedImage from "@/components/OptimizedImage";
+import ProductCard from "@/components/ProductCard";
+import "@/styles/product-cards.css";
 
 const products = [
   {
@@ -13,6 +15,8 @@ const products = [
     category: "Kognition & Herz",
     accent: "copper",
     comingSoon: true,
+    isNew: false,
+    isBestseller: false,
     productImage: "/products/bright-mind/Bright Mind.png",
     studioImage: "/products/bright-mind/product-studio.svg",
     lifestyleImage: "/products/lifestyle/happy-dog-beach.svg",
@@ -39,6 +43,8 @@ const products = [
     category: "Stress & Angst",
     accent: "green",
     comingSoon: true,
+    isNew: false,
+    isBestseller: false,
     productImage: "/products/gentle-calm/ObjectID6a.png",
     studioImage: "/products/gentle-calm/product-studio.svg",
     lifestyleImage: "/products/lifestyle/calm-dog-home.svg",
@@ -65,6 +71,8 @@ const products = [
     category: "Gelenke & Mobilität",
     accent: "taupe",
     comingSoon: true,
+    isNew: false,
+    isBestseller: false,
     productImage: "/products/vital-joints/VitalJoints.png",
     studioImage: "/products/vital-joints/product-studio.svg",
     lifestyleImage: "/products/lifestyle/active-dog-park.svg",
@@ -143,82 +151,10 @@ export default function ProduktePage() {
             </div>
           </ScrollAnimation>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="product-grid">
             {products.map((product, index) => (
               <ScrollAnimation key={product.key} animation="slide-up" delay={index * 100}>
-                <a href={`/produkte/${product.key}`} className="block">
-                  <GlassmorphismCard className="p-8 hover-lift-feature cursor-pointer">
-                  {/* Coming Soon Badge */}
-                  <div className="absolute top-4 right-4 pill bg-copper/15 border border-copper/25 text-copper text-xs px-3 py-1 font-medium">
-                    Coming Soon
-                  </div>
-
-                  {/* Product Image */}
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden bg-gradient-to-br from-cream to-taupe/20 border border-taupe/20 flex items-center justify-center wv-spacing-md mx-auto">
-                    <OptimizedImage
-                      src={product.productImage}
-                      alt={`${product.title} Produktbild`}
-                      width={80}
-                      height={80}
-                      className="w-full h-full object-contain"
-                      placeholder="blur"
-                      quality={90}
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div className="text-center">
-                    <div className="pill bg-green/5 border border-green/15 text-green wv-caption px-3 py-1 font-medium wv-spacing-sm inline-block">
-                      {product.category}
-                    </div>
-                    
-                    <h3 className="wv-h3 text-green wv-spacing-xs">
-                      {product.title}
-                    </h3>
-                    <p className="wv-subhead text-copper wv-spacing-sm">
-                      {product.subtitle}
-                    </p>
-                    <p className="wv-body text-green/75 wv-spacing-sm">
-                      {product.description}
-                    </p>
-
-                    {/* Benefits */}
-                    <div className="wv-spacing-sm">
-                      <h4 className="wv-h4 text-green wv-spacing-xs">Wirkung:</h4>
-                      <ul className="text-green/70 wv-body text-left">
-                        {product.benefits.map((benefit, idx) => (
-                          <li key={idx} className="flex items-start gap-2 mb-1">
-                            <span className="text-copper text-sm mt-0.5">•</span>
-                            <span>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Ingredients */}
-                    <div className="wv-spacing-sm">
-                      <h4 className="wv-h4 text-green wv-spacing-xs">Inhaltsstoffe:</h4>
-                      <div className="flex flex-wrap gap-2 justify-center">
-                        {product.ingredients.map((ingredient, idx) => (
-                          <span key={idx} className="pill bg-taupe/10 text-green px-3 py-1 text-xs">
-                            {ingredient}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Dosage & Target */}
-                    <div className="border-t border-taupe/15 pt-4 wv-spacing-sm">
-                      <div className="wv-caption text-green/60 wv-spacing-xs">
-                        <strong>Dosierung:</strong> {product.dosage}
-                      </div>
-                      <div className="wv-caption text-green/60">
-                        <strong>Für:</strong> {product.targetGroup}
-                      </div>
-                    </div>
-                  </div>
-                </GlassmorphismCard>
-                </a>
+                <ProductCard product={product} index={index} />
               </ScrollAnimation>
             ))}
           </div>
