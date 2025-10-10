@@ -40,7 +40,18 @@ export default function Header() {
 
   // Close mobile menu when a link is clicked
   const closeMobileMenu = () => {
+    console.log('Closing mobile menu');
     setIsMobileMenuOpen(false);
+  };
+
+  // Handle link click with debugging
+  const handleLinkClick = (href: string) => {
+    console.log('Link clicked:', href);
+    closeMobileMenu();
+    // Force navigation after a short delay to ensure menu closes
+    setTimeout(() => {
+      window.location.href = href;
+    }, 100);
   };
 
   // Close mobile menu when clicking outside
@@ -59,12 +70,13 @@ export default function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-[1100] transition-all duration-500 ease-out ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg"
+            ? "backdrop-blur-xl border-b border-cream/20 shadow-lg"
             : "bg-green backdrop-blur-sm"
         }`}
         style={{
+          backgroundColor: isScrolled ? 'rgba(0, 66, 37, 0.95)' : undefined,
           transform: `translateY(${Math.min(scrollY * 0.1, 10)}px)`,
         }}
       >
@@ -260,7 +272,7 @@ export default function Header() {
       </header>
 
       {/* Mobile Menu Overlay - iOS Optimized */}
-      <div className={`lg:hidden fixed inset-0 z-40 transition-opacity duration-300 ${
+      <div className={`lg:hidden fixed inset-0 z-[1300] transition-opacity duration-300 ${
         isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`} style={{
         WebkitOverflowScrolling: 'touch',
@@ -277,7 +289,7 @@ export default function Header() {
         />
         
         {/* Mobile Menu Panel - iOS Safe Area Support */}
-        <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-green/95 border-l border-cream/20 shadow-2xl transform transition-transform duration-300 z-50 ${
+        <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-green/95 border-l border-cream/20 shadow-2xl transform transition-transform duration-300 z-[1400] ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`} style={{
           paddingTop: 'env(safe-area-inset-top)',
@@ -336,11 +348,10 @@ export default function Header() {
                     { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Glänzendes Fell & gesunde Haut" },
                     { href: "/immunsystem", icon: IconShield, title: "Immunsystem", desc: "Abwehrkräfte & Vitalität" },
                   ].map((item, index) => (
-                    <Link
+                    <div
                       key={index}
-                      href={item.href}
-                      onClick={closeMobileMenu}
-                      className="block p-4 rounded-xl hover:bg-cream/10 transition-all duration-200 group min-h-[60px]"
+                      onClick={() => handleLinkClick(item.href)}
+                      className="block p-4 rounded-xl hover:bg-cream/10 transition-all duration-200 group min-h-[60px] cursor-pointer"
                       style={{
                         WebkitTapHighlightColor: 'transparent',
                         WebkitTouchCallout: 'none',
@@ -359,7 +370,7 @@ export default function Header() {
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -374,11 +385,10 @@ export default function Header() {
                     { href: "/marke", label: "Marke" },
                     { href: "/team", label: "Team" },
                   ].map((link, index) => (
-                    <Link
+                    <div
                       key={index}
-                      href={link.href}
-                      onClick={closeMobileMenu}
-                      className="block px-4 py-4 rounded-lg text-cream hover:bg-cream/10 hover:text-white transition-all duration-200 min-h-[48px] flex items-center"
+                      onClick={() => handleLinkClick(link.href)}
+                      className="block px-4 py-4 rounded-lg text-cream hover:bg-cream/10 hover:text-white transition-all duration-200 min-h-[48px] flex items-center cursor-pointer"
                       style={{
                         WebkitTapHighlightColor: 'transparent',
                         WebkitTouchCallout: 'none',
@@ -387,17 +397,16 @@ export default function Header() {
                       }}
                     >
                       {link.label}
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>
 
               {/* Mobile Action Buttons - iOS Optimized */}
               <div className="border-t border-cream/20 pt-6 space-y-3">
-                <Link
-                  href="/bedarfsfinder"
-                  onClick={closeMobileMenu}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-green bg-cream hover:bg-white transition-all duration-200 min-h-[48px] flex items-center justify-center"
+                <div
+                  onClick={() => handleLinkClick("/bedarfsfinder")}
+                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-green bg-cream hover:bg-white transition-all duration-200 min-h-[48px] flex items-center justify-center cursor-pointer"
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     WebkitTouchCallout: 'none',
@@ -406,11 +415,10 @@ export default function Header() {
                   }}
                 >
                   Bedarfsfinder starten
-                </Link>
-                <Link
-                  href="/shop"
-                  onClick={closeMobileMenu}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-white bg-accent hover:bg-accent-dark transition-all duration-200 shadow-lg min-h-[48px] flex items-center justify-center"
+                </div>
+                <div
+                  onClick={() => handleLinkClick("/shop")}
+                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-white bg-accent hover:bg-accent-dark transition-all duration-200 shadow-lg min-h-[48px] flex items-center justify-center cursor-pointer"
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     WebkitTouchCallout: 'none',
@@ -419,7 +427,7 @@ export default function Header() {
                   }}
                 >
                   Jetzt einkaufen
-                </Link>
+                </div>
               </div>
             </nav>
           </div>
