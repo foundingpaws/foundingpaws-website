@@ -30,6 +30,9 @@ export const AccessibilityProvider: React.FC<AccessibilityProviderProps> = ({ ch
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'extra-large'>('normal');
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setIsReducedMotion(mediaQuery.matches);

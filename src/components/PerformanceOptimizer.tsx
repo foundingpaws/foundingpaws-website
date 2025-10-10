@@ -48,7 +48,7 @@ export default function PerformanceOptimizer() {
 
   useEffect(() => {
     // Only show in development or for admin users
-    if (process.env.NODE_ENV === 'development' || window.location.search.includes('debug=true')) {
+    if (typeof window !== 'undefined' && (process.env.NODE_ENV === 'development' || window.location.search.includes('debug=true'))) {
       setIsVisible(true);
       generateReport();
     }

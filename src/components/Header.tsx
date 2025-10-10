@@ -29,7 +29,7 @@ export default function Header() {
 
   // Mobile performance optimization
   useEffect(() => {
-    if (mobilePerformanceManager.isMobile()) {
+    if (typeof window !== 'undefined' && mobilePerformanceManager.isMobile()) {
       const optimization = mobilePerformanceManager.getOptimization();
       if (optimization && !optimization.enableAnimations) {
         // Disable animations on low-end mobile devices
