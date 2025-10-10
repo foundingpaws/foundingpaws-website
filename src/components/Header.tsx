@@ -277,7 +277,7 @@ export default function Header() {
         />
         
         {/* Mobile Menu Panel - iOS Safe Area Support */}
-        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 border-l border-gray-200/50 shadow-2xl transform transition-transform duration-300 ${
+        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-green/95 border-l border-cream/20 shadow-2xl transform transition-transform duration-300 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`} style={{
           paddingTop: 'env(safe-area-inset-top)',
@@ -307,7 +307,7 @@ export default function Header() {
               />
               <button
                 onClick={closeMobileMenu}
-                className="p-3 rounded-lg hover:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-3 rounded-lg hover:bg-cream/10 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                 style={{
                   WebkitTapHighlightColor: 'transparent',
                   WebkitTouchCallout: 'none',
@@ -315,7 +315,7 @@ export default function Header() {
                   userSelect: 'none'
                 }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -340,7 +340,7 @@ export default function Header() {
                       key={index}
                       href={item.href}
                       onClick={closeMobileMenu}
-                      className="block p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 group min-h-[60px]"
+                      className="block p-4 rounded-xl hover:bg-cream/10 transition-all duration-200 group min-h-[60px]"
                       style={{
                         WebkitTapHighlightColor: 'transparent',
                         WebkitTouchCallout: 'none',
@@ -365,7 +365,7 @@ export default function Header() {
               </div>
 
               {/* Main Navigation */}
-              <div className="border-t border-gray-200 pt-6">
+              <div className="border-t border-cream/20 pt-6">
                 <div className="space-y-2">
                   {[
                     { href: "/produkte", label: "Produkte" },
@@ -393,7 +393,7 @@ export default function Header() {
               </div>
 
               {/* Mobile Action Buttons - iOS Optimized */}
-              <div className="border-t border-gray-200 pt-6 space-y-3">
+              <div className="border-t border-cream/20 pt-6 space-y-3">
                 <Link
                   href="/bedarfsfinder"
                   onClick={closeMobileMenu}

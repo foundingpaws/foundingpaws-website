@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
+import { mobileErrorHandler } from '@/lib/mobile-error-handler';
 
 export default function Hero() {
   return (
@@ -33,10 +36,30 @@ export default function Hero() {
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 controls={false}
                 className="w-full h-full object-cover"
-                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
+                poster="/mockups/PSD file.png"
+                onError={(e) => {
+                  console.log('Video loading error:', e);
+                  // Report to mobile error handler
+                  mobileErrorHandler.handleError({
+                    userAgent: navigator.userAgent,
+                    isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
+                    isAndroid: /Android/.test(navigator.userAgent),
+                    isMobile: /Mobi|Android/i.test(navigator.userAgent),
+                    timestamp: Date.now(),
+                    errorType: 'video',
+                    errorMessage: 'Mobile video loading error',
+                    stack: undefined
+                  });
+                  // Fallback to image if video fails
+                  const video = e.target as HTMLVideoElement;
+                  video.style.display = 'none';
+                }}
+                onLoadStart={() => {
+                  console.log('Video loading started');
+                }}
                 style={{
                   filter: 'brightness(0.9) contrast(1.1)',
                   transform: 'scale(1.02) translateX(-10%)',
@@ -107,10 +130,30 @@ export default function Hero() {
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 controls={false}
                 className="w-full h-full object-cover"
-                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
+                poster="/mockups/PSD file.png"
+                onError={(e) => {
+                  console.log('Video loading error:', e);
+                  // Report to mobile error handler
+                  mobileErrorHandler.handleError({
+                    userAgent: navigator.userAgent,
+                    isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
+                    isAndroid: /Android/.test(navigator.userAgent),
+                    isMobile: /Mobi|Android/i.test(navigator.userAgent),
+                    timestamp: Date.now(),
+                    errorType: 'video',
+                    errorMessage: 'Mobile video loading error',
+                    stack: undefined
+                  });
+                  // Fallback to image if video fails
+                  const video = e.target as HTMLVideoElement;
+                  video.style.display = 'none';
+                }}
+                onLoadStart={() => {
+                  console.log('Video loading started');
+                }}
                 style={{
                   filter: 'brightness(0.95) contrast(1.05)',
                   transform: 'scale(1.01)',

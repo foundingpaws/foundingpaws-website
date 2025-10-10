@@ -414,5 +414,46 @@
       margin-left: -8px !important;
       padding-left: 8px !important;
     }
+    
+    /* Hide video play button on iOS */
+    video::-webkit-media-controls {
+      display: none !important;
+    }
+    
+    video::-webkit-media-controls-overlay-play-button {
+      display: none !important;
+    }
+    
+    video::-webkit-media-controls-play-button {
+      display: none !important;
+    }
+    
+    video::-webkit-media-controls-start-playback-button {
+      display: none !important;
+    }
+    
+    /* Mobile video performance optimizations */
+    video {
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+    
+    /* Prevent video crashes on iOS */
+    video:not([poster]) {
+      background: #000;
+    }
+    
+    /* Fallback for video loading issues */
+    .video-container {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .video-container video[style*="display: none"] + img {
+      display: block !important;
+    }
   }
 }
