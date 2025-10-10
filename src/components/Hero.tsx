@@ -13,7 +13,7 @@ export default function Hero() {
       
       <div className="container-wide relative z-20">
         {/* Mobile Layout - Optimiert für weniger Stapelung */}
-        <div className="lg:hidden">
+        <div className="lg:hidden pt-4">
           <FadeIn>
             <div className="text-center mb-8">
               <h1 className="wv-h1 mb-6" style={{color: 'white'}}>

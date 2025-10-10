@@ -85,7 +85,7 @@ export default function Header() {
         {/* Header Content */}
         <div className="relative w-full px-4 sm:px-6 lg:px-8">
                 <div className={`flex items-center justify-between transition-all duration-300 ${
-                  isScrolled ? "h-16 lg:h-20" : "h-32 lg:h-36"
+                  isScrolled ? "h-16 lg:h-20" : "h-20 lg:h-36"
                 }`}>
             
             {/* Logo Container - Größer in Hero-Sektion */}
@@ -95,7 +95,7 @@ export default function Header() {
                 className={`group flex items-center z-10 transition-all duration-300 ${
                   isScrolled 
                     ? "h-full px-1 py-2" 
-                    : "h-full px-20 py-16"
+                    : "h-full px-4 py-2 lg:px-20 lg:py-16"
                 }`}
                 aria-label="Startseite"
               >
@@ -103,15 +103,15 @@ export default function Header() {
                   isScrolled ? "h-full overflow-hidden" : "h-full"
                 }`}>
                   <div className={`transition-all duration-300 flex items-center ${
-                    isScrolled ? "h-14" : "h-10"
+                    isScrolled ? "h-14" : "h-8 lg:h-10"
                   }`} style={{
-                    marginTop: isScrolled ? '0' : '32px'
+                    marginTop: isScrolled ? '0' : '0px'
                   }}>
                     <Image 
                       src="/brand/9 LogoNew.jpg" 
                       alt="Founding Paws Logo" 
-                      width={isScrolled ? 200 : 127.5} 
-                      height={isScrolled ? 50 : 31.2} 
+                      width={isScrolled ? 200 : 100} 
+                      height={isScrolled ? 50 : 25} 
                       className={`h-full w-auto object-contain transition-all duration-300 ${
                         isScrolled 
                           ? "" 

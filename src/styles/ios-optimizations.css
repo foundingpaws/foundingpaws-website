@@ -370,29 +370,45 @@
 /* Logo positioning for mobile iOS */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) {
+    /* Optimize header height for mobile iOS */
+    header {
+      min-height: 60px !important;
+      max-height: 60px !important;
+    }
+    
     /* Move logo higher and more to the left on mobile iOS */
     .header-logo-container {
-      margin-left: -8px !important;
-      padding-left: 8px !important;
-      margin-top: -8px !important;
-      padding-top: 8px !important;
+      margin-left: -4px !important;
+      padding-left: 4px !important;
+      margin-top: -4px !important;
+      padding-top: 4px !important;
+      height: 50px !important;
     }
     
     /* Adjust logo positioning in header */
     header .flex-shrink-0 {
-      margin-left: -12px !important;
-      margin-top: -8px !important;
+      margin-left: -8px !important;
+      margin-top: -4px !important;
+      height: 50px !important;
     }
     
     /* Ensure logo stays in top-left corner on mobile */
     header .header-logo-container .group {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
+      height: 50px !important;
     }
     
     /* Reduce logo size on mobile to prevent overlap */
     .header-logo-container .group div {
       margin-top: 0 !important;
+      height: 40px !important;
+    }
+    
+    /* Ensure logo image fits properly */
+    .header-logo-container img {
+      max-height: 40px !important;
+      width: auto !important;
     }
     header .flex-shrink-0 a {
       margin-left: -8px !important;
