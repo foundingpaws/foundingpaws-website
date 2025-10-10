@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import IconBrainHeart from "@/components/icons/IconBrainHeart";
 import IconBone from "@/components/icons/IconBone";
 import IconSparkles from "@/components/icons/IconSparkles";
@@ -14,6 +15,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const onScroll = () => {
@@ -48,10 +50,8 @@ export default function Header() {
   const handleLinkClick = (href: string) => {
     console.log('Link clicked:', href);
     closeMobileMenu();
-    // Force navigation after a short delay to ensure menu closes
-    setTimeout(() => {
-      window.location.href = href;
-    }, 100);
+    // Use Next.js router for proper client-side navigation
+    router.push(href);
   };
 
   // Close mobile menu when clicking outside
