@@ -33,7 +33,8 @@ export default function Hero() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
+                controls={false}
                 className="w-full h-full object-cover"
                 poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
                 style={{
@@ -106,7 +107,8 @@ export default function Hero() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
+                controls={false}
                 className="w-full h-full object-cover"
                 poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
                 style={{

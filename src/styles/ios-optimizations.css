@@ -370,18 +370,30 @@
 /* Logo positioning for mobile iOS */
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) {
-    /* Move logo more to the left on mobile iOS */
+    /* Move logo higher and more to the left on mobile iOS */
     .header-logo-container {
       margin-left: -8px !important;
       padding-left: 8px !important;
+      margin-top: -8px !important;
+      padding-top: 8px !important;
     }
     
     /* Adjust logo positioning in header */
     header .flex-shrink-0 {
       margin-left: -12px !important;
+      margin-top: -8px !important;
     }
     
-    /* Ensure logo stays in left corner on mobile */
+    /* Ensure logo stays in top-left corner on mobile */
+    header .header-logo-container .group {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    /* Reduce logo size on mobile to prevent overlap */
+    .header-logo-container .group div {
+      margin-top: 0 !important;
+    }
     header .flex-shrink-0 a {
       margin-left: -8px !important;
       padding-left: 8px !important;
