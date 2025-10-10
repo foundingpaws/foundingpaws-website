@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
-import { mobileErrorHandler } from '@/lib/mobile-error-handler';
+import { useState } from "react";
 
 export default function Hero() {
+  const [videoError, setVideoError] = useState(false);
+
   return (
     <section className="relative bg-green text-cream overflow-hidden hero-depth wv-section">
       {/* Background Pattern */}
@@ -13,74 +15,59 @@ export default function Hero() {
         <div className="absolute bottom-20 right-10 w-24 h-24 bg-copper rounded-full blur-2xl"></div>
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-cream rounded-full blur-xl"></div>
       </div>
-      
+
       <div className="container-wide relative z-20">
-        {/* Mobile Layout - Optimiert für weniger Stapelung */}
-        <div className="lg:hidden pt-4">
+        {/* Mobile Layout - iOS Optimiert */}
+        <div className="lg:hidden pt-2">
           <FadeIn>
-            <div className="text-center mb-8">
-              <h1 className="wv-h1 mb-6" style={{color: 'white'}}>
+            <div className="text-center mb-6">
+              <h1 className="wv-h1 mb-4" style={{color: 'white'}}>
                 Premium-Supplements für ein langes, gesundes Hundeleben
               </h1>
-              <p className="wv-lead mb-8" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
+              <p className="wv-lead mb-6" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
                 Evidenzbasiert entwickelt, handgefertigt in Heilbronn – für spürbare Wirkung und Vertrauen.
               </p>
             </div>
           </FadeIn>
-          
-          {/* Mobile Video - Optimiert für Mobile */}
+
+          {/* Mobile Video - iOS optimiert mit Best Practices */}
           <div className="relative mb-8">
             <div className="relative aspect-[4/3] rounded-[28px] overflow-hidden bg-green/20 shadow-2xl">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                controls={false}
-                className="w-full h-full object-cover"
-                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
-                onError={(e) => {
-                  console.log('Video loading error:', e);
-                  // Report to mobile error handler
-                  mobileErrorHandler.handleError({
-                    userAgent: navigator.userAgent,
-                    isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
-                    isAndroid: /Android/.test(navigator.userAgent),
-                    isMobile: /Mobi|Android/i.test(navigator.userAgent),
-                    timestamp: Date.now(),
-                    errorType: 'video',
-                    errorMessage: 'Mobile video loading error',
-                    stack: undefined
-                  });
-                  // Fallback to image if video fails
-                  const video = e.target as HTMLVideoElement;
-                  video.style.display = 'none';
-                }}
-                onLoadStart={() => {
-                  console.log('Video loading started');
-                }}
-                style={{
-                  filter: 'brightness(0.9) contrast(1.1)',
-                  transform: 'scale(1.02) translateX(-10%)',
-                  transition: 'transform 0.3s ease-out'
-                }}
-              >
-                <source src="/customers/Smooth_cinematic_transition_202510101708.mp4" type="video/mp4" />
-                {/* Fallback für Browser ohne Video-Support */}
-                <Image 
-                  src="/mockups/PSD file.png" 
-                  alt="Bright Mind Produktbild - Gründungspaws Supplements" 
-                  fill 
-                  className="object-contain img-depth" 
-                  style={{objectPosition:"center 45%"}} 
-                  priority 
-                  sizes="100vw" 
-                  fetchPriority="high" 
-                  placeholder="empty" 
+              {!videoError ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="/mockups/PSD file.png"
+                  className="w-full h-full object-cover"
+                  onError={() => setVideoError(true)}
+                  style={{
+                    filter: 'brightness(0.9) contrast(1.1)',
+                    transform: 'scale(1.02) translateX(-10%)',
+                    transition: 'transform 0.3s ease-out'
+                  }}
+                >
+                  {/* TODO: Erstelle komprimierte Mobile Version (<3MB) für iOS Autoplay */}
+                  <source src="/customers/Smooth_cinematic_transition_202510101708-mobile.mp4" type="video/mp4" />
+                  {/* Fallback auf Original (wird nur auf WiFi/Desktop geladen) */}
+                  <source src="/customers/Smooth_cinematic_transition_202510101708.mp4" type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  src="/mockups/PSD file.png"
+                  alt="Bright Mind Produktbild - Founding Paws Supplements"
+                  fill
+                  className="object-contain img-depth"
+                  style={{objectPosition:"center 45%"}}
+                  priority
+                  sizes="100vw"
+                  fetchPriority="high"
+                  placeholder="empty"
                 />
-              </video>
-              {/* Video Overlay für bessere Lesbarkeit auf Mobile */}
+              )}
+              {/* Video/Image Overlay für bessere Lesbarkeit */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
             </div>
             {/* Mobile-optimierte Floating Elements */}
@@ -122,7 +109,7 @@ export default function Hero() {
             </div>
           </FadeIn>
           
-          {/* Desktop Video - Optimiert für Desktop */}
+          {/* Desktop Video - Original Qualität */}
           <div className="relative">
             <div className="relative aspect-[4/3] rounded-[24px] overflow-hidden bg-green/20 shadow-2xl">
               <video
@@ -131,29 +118,8 @@ export default function Hero() {
                 loop
                 playsInline
                 preload="metadata"
-                controls={false}
+                poster="/mockups/PSD file.png"
                 className="w-full h-full object-cover"
-                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
-                onError={(e) => {
-                  console.log('Video loading error:', e);
-                  // Report to mobile error handler
-                  mobileErrorHandler.handleError({
-                    userAgent: navigator.userAgent,
-                    isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
-                    isAndroid: /Android/.test(navigator.userAgent),
-                    isMobile: /Mobi|Android/i.test(navigator.userAgent),
-                    timestamp: Date.now(),
-                    errorType: 'video',
-                    errorMessage: 'Mobile video loading error',
-                    stack: undefined
-                  });
-                  // Fallback to image if video fails
-                  const video = e.target as HTMLVideoElement;
-                  video.style.display = 'none';
-                }}
-                onLoadStart={() => {
-                  console.log('Video loading started');
-                }}
                 style={{
                   filter: 'brightness(0.95) contrast(1.05)',
                   transform: 'scale(1.01)',
@@ -161,20 +127,8 @@ export default function Hero() {
                 }}
               >
                 <source src="/customers/Smooth_cinematic_transition_202510101708.mp4" type="video/mp4" />
-                {/* Fallback für Browser ohne Video-Support */}
-                <Image 
-                  src="/mockups/PSD file.png" 
-                  alt="Bright Mind Produktbild - Gründungspaws Supplements" 
-                  fill 
-                  className="object-contain img-depth" 
-                  style={{objectPosition:"center 45%"}} 
-                  priority 
-                  sizes="(max-width: 1024px) 50vw, 600px" 
-                  fetchPriority="high" 
-                  placeholder="empty" 
-                />
               </video>
-              {/* Subtile Video Overlay für Desktop */}
+              {/* Subtile Video Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5 pointer-events-none"></div>
             </div>
             {/* Desktop Floating Elements */}
