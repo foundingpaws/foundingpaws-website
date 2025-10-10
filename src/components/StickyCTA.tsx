@@ -1,71 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-interface Product {
-  key: string;
-  title: string;
-  price: string;
-  currency: string;
-  comingSoon: boolean;
-}
-
-interface StickyCTAProps {
-  product: Product;
-  isVisible: boolean;
-}
-
-export default function StickyCTA({ product, isVisible }: StickyCTAProps) {
-  const [isMobile, setIsMobile] = useState(false);
+export default function StickyCTA() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      
+      setScrollProgress(progress);
+      
+      // Zeige Button nach 50% Scroll-Progress (weniger aufdringlich)
+      setIsVisible(progress > 50);
     };
-    
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!isMobile || !isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
-      <div className="bg-white border-t border-gray-200 shadow-lg">
-        <div className="container-wide px-4 py-4">
-          <div className="flex items-center justify-between gap-4">
-            {/* Product Info */}
-            <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium text-gray-900 truncate">
-                {product.title}
-              </div>
-              <div className="text-lg font-bold text-accent">
-                {product.price} {product.currency}
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <button
-              className={`px-6 py-3 rounded-full font-medium text-white transition-all duration-300 ${
-                product.comingSoon
-                  ? "bg-copper hover:bg-copper-dark"
-                  : "bg-accent hover:bg-accent-dark"
-              } shadow-lg hover:shadow-xl transform hover:scale-105 flex-shrink-0`}
-              style={{
-                WebkitTapHighlightColor: 'transparent',
-                WebkitTouchCallout: 'none',
-                WebkitUserSelect: 'none',
-                userSelect: 'none'
-              }}
-            >
-              {product.comingSoon ? "Pre-Order" : "In den Warenkorb"}
-            </button>
-          </div>
-        </div>
-      </div>
+    <div className="fixed bottom-6 right-6 z-40 animate-fade-in">
+      <button 
+        className="bg-green text-cream px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:bg-green/90 transform hover:scale-105 transition-all duration-300 text-sm font-medium"
+        onClick={() => {
+          document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+        }}
+      >
+        Jetzt bestellen →
+      </button>
     </div>
   );
 }

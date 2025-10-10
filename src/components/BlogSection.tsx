@@ -303,31 +303,6 @@ export default function BlogSection() {
           </div>
         </ScrollAnimation>
 
-        {/* Newsletter Signup */}
-        <ScrollAnimation>
-          <GlassmorphismCard className="text-center p-8 md:p-12">
-            <h3 className="wv-h3 text-green wv-spacing-sm">
-              Verpasse keine neuen Artikel
-            </h3>
-            <p className="wv-body text-green/70 wv-spacing-md max-w-2xl mx-auto">
-              Erhalte wöchentlich die neuesten Artikel über Hundegesundheit direkt in dein Postfach. 
-              Plus: Exklusive Tipps und frühzeitigen Zugang zu neuen Guides.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Deine E-Mail-Adresse"
-                className="flex-1 px-4 py-3 rounded-lg border border-green/20 focus:outline-none focus:ring-2 focus:ring-copper text-green placeholder-green/50"
-              />
-              <button className="bg-copper text-cream px-6 py-3 rounded-lg font-medium hover:bg-copper/90 transition-colors">
-                Anmelden
-              </button>
-            </div>
-            <p className="text-xs text-green/50 mt-4">
-              Keine Spam-Mails. Jederzeit abmeldbar.
-            </p>
-          </GlassmorphismCard>
-        </ScrollAnimation>
       </div>
     </section>
   );

@@ -77,7 +77,7 @@ export default function Header() {
           }`}
           style={{
             background: isScrolled 
-              ? "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,239,231,0.9) 100%)"
+              ? "linear-gradient(135deg, rgba(0,66,37,0.95) 0%, rgba(0,66,37,0.9) 100%)"
               : "transparent"
           }}
         />
@@ -114,15 +114,15 @@ export default function Header() {
                       height={isScrolled ? 50 : 31.2} 
                       className={`h-full w-auto object-contain transition-all duration-300 ${
                         isScrolled 
-                          ? "drop-shadow-md" 
-                          : "drop-shadow-lg brightness-125 contrast-125"
+                          ? "" 
+                          : "brightness-125 contrast-125"
                       }`}
                       priority 
                       quality={100}
                       style={{
                         filter: isScrolled 
-                          ? 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' 
-                          : 'drop-shadow(0 4px 8px rgba(0,0,0,0.3)) brightness(1.25) contrast(1.25)',
+                          ? 'none' 
+                          : 'brightness(1.25) contrast(1.25)',
                         maxHeight: isScrolled ? '100%' : 'none',
                         maxWidth: isScrolled ? '100%' : 'none'
                       }}
@@ -137,14 +137,14 @@ export default function Header() {
               {/* Dropdown Menu */}
               <div className="group relative">
                 <button className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-100/50 group-hover:bg-gray-100/80">
-                  <span className={`font-medium transition-colors duration-300 ${
-                    isScrolled ? "text-gray-900" : "text-white drop-shadow-lg"
+                  <span className={`font-medium transition-colors duration-300 whitespace-nowrap ${
+                    isScrolled ? "text-cream" : "text-white drop-shadow-lg"
                   }`}>
                     Gut für
                   </span>
                   <svg 
                     className={`w-4 h-4 transition-all duration-300 ${
-                      isScrolled ? "text-gray-600" : "text-white drop-shadow-lg"
+                      isScrolled ? "text-cream/80" : "text-white drop-shadow-lg"
                     }`} 
                     fill="none" 
                     stroke="currentColor" 
@@ -155,9 +155,9 @@ export default function Header() {
                 </button>
                 
                 {/* Dropdown Content */}
-                <div className="absolute left-0 mt-2 w-96 bg-white/95 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                <div className="absolute left-0 mt-2 w-96 backdrop-blur-xl border border-cream/30 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0" style={{backgroundColor: 'rgba(0,66,37,0.95)'}}>
                   <div className="p-6">
-                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
+                    <div className="text-xs font-semibold text-cream/70 uppercase tracking-wider mb-4">
                       Wähle eine Kategorie
                     </div>
                     <div className="space-y-2">
@@ -174,12 +174,12 @@ export default function Header() {
                           className="block p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 group/item"
                         >
                           <div className="flex items-center gap-3">
-                            <item.icon className="w-5 h-5 text-gray-600 group-hover/item:text-accent transition-colors" />
+                            <item.icon className="w-5 h-5 text-cream/80 group-hover/item:text-copper transition-colors" />
                             <div>
-                              <div className="font-medium text-gray-900 group-hover/item:text-accent transition-colors">
+                              <div className="font-medium text-cream group-hover/item:text-copper transition-colors">
                                 {item.title}
                               </div>
-                              <div className="text-sm text-gray-600">
+                              <div className="text-sm text-cream/70">
                                 {item.desc}
                               </div>
                             </div>
@@ -202,9 +202,9 @@ export default function Header() {
                 <Link
                   key={index}
                   href={link.href}
-                  className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-gray-100/50 ${
+                  className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-cream/20 ${
                     isScrolled 
-                      ? "text-gray-700 hover:text-gray-900" 
+                      ? "text-cream hover:text-white" 
                       : "text-white drop-shadow-lg hover:bg-white/20"
                   }`}
                 >
@@ -219,7 +219,7 @@ export default function Header() {
                 href="/bedarfsfinder"
                 className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg ${
                   isScrolled
-                    ? "bg-gray-100 text-gray-900 hover:bg-gray-200"
+                    ? "bg-cream text-green hover:bg-white"
                     : "bg-white/90 text-gray-900 backdrop-blur-sm border border-white/50 hover:bg-white shadow-lg"
                 }`}
               >
@@ -236,8 +236,8 @@ export default function Header() {
             {/* Mobile Menu Button - iOS Optimized */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-3 rounded-lg transition-all duration-300 hover:bg-gray-100/50 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center ${
-                isScrolled ? "text-gray-700" : "text-white drop-shadow-lg"
+              className={`lg:hidden p-3 rounded-lg transition-all duration-300 hover:bg-cream/20 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center ${
+                isScrolled ? "text-cream" : "text-white drop-shadow-lg"
               }`}
               aria-label="Menü öffnen"
               style={{
@@ -325,7 +325,7 @@ export default function Header() {
             <nav className="space-y-6">
               {/* Categories Section */}
               <div>
-                <div className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
+                <div className="text-sm font-semibold text-cream/70 uppercase tracking-wider mb-4">
                   Gut für
                 </div>
                 <div className="space-y-2">
@@ -349,12 +349,12 @@ export default function Header() {
                       }}
                     >
                       <div className="flex items-center gap-3">
-                        <item.icon className="w-5 h-5 text-gray-600 group-hover:text-accent transition-colors flex-shrink-0" />
+                        <item.icon className="w-5 h-5 text-cream/80 group-hover:text-copper transition-colors flex-shrink-0" />
                         <div className="flex-1">
-                          <div className="font-medium text-gray-900 group-hover:text-accent transition-colors">
+                          <div className="font-medium text-cream group-hover:text-copper transition-colors">
                             {item.title}
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-sm text-cream/70">
                             {item.desc}
                           </div>
                         </div>
@@ -378,7 +378,7 @@ export default function Header() {
                       key={index}
                       href={link.href}
                       onClick={closeMobileMenu}
-                      className="block px-4 py-4 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 min-h-[48px] flex items-center"
+                      className="block px-4 py-4 rounded-lg text-cream hover:bg-cream/10 hover:text-white transition-all duration-200 min-h-[48px] flex items-center"
                       style={{
                         WebkitTapHighlightColor: 'transparent',
                         WebkitTouchCallout: 'none',
@@ -397,7 +397,7 @@ export default function Header() {
                 <Link
                   href="/bedarfsfinder"
                   onClick={closeMobileMenu}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 transition-all duration-200 min-h-[48px] flex items-center justify-center"
+                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-green bg-cream hover:bg-white transition-all duration-200 min-h-[48px] flex items-center justify-center"
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     WebkitTouchCallout: 'none',

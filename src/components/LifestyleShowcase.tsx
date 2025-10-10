@@ -30,7 +30,7 @@ const lifestyleShots = [
 
 export default function LifestyleShowcase() {
   return (
-    <section className="wv-section bg-green text-cream">
+    <section id="lifestyle" className="wv-section bg-green text-cream">
       <div className="container-wide">
         {/* Header */}
         <FadeIn>
@@ -112,7 +112,7 @@ export default function LifestyleShowcase() {
               </p>
               <a 
                 href="#finder-mvp"
-                className="btn-primary pill text-cream px-8 py-4 text-base font-medium hover-glow"
+                className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base inline-block"
               >
                 Bedarfsfinder starten →
               </a>

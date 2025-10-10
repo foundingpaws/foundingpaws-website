@@ -38,7 +38,7 @@ const articles = [
 
 export default function KnowledgeHub() {
   return (
-    <section className="wv-section bg-cream">
+    <section id="knowledge" className="wv-section bg-cream">
       <div className="container-wide">
         <ScrollAnimation animation="fade-in">
           <div className="text-center mb-16">
@@ -93,7 +93,7 @@ export default function KnowledgeHub() {
             <p className="text-green/70 mb-6">Weitere Ratgeber und Tipps folgen zum Launch</p>
             <a 
               href="#waitlist"
-              className="btn-primary pill text-cream px-6 py-3 inline-block font-medium"
+              className="bg-copper text-cream px-6 py-3 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 inline-block"
             >
               Bei Updates benachrichtigen
             </a>

@@ -8,7 +8,7 @@ const ingredients = [
   {
     name: "Omega-3 Fischöl",
     description: "Hochwertige Fettsäuren für kognitive Funktion und Herzgesundheit",
-    image: "/products/ingredients/OMEGA-3 FISCHÖL .png",
+    image: "/products/ingredients/OMEGA-3 FISCHÖL New.png",
     benefits: ["Gehirnfunktion", "Herzgesundheit", "Entzündungshemmend"],
     color: "copper"
   },
@@ -30,7 +30,7 @@ const ingredients = [
 
 export default function IngredientsShowcase() {
   return (
-    <section className="wv-section bg-gradient-to-b from-cream to-taupe/5">
+    <section id="ingredients" className="wv-section bg-gradient-to-b from-cream to-taupe/5">
       <div className="container-wide">
         {/* Header */}
         <FadeIn>
@@ -58,7 +58,7 @@ export default function IngredientsShowcase() {
               delay={idx * 150}
               className="group"
             >
-              <div className="bg-white/80 backdrop-blur-sm border border-taupe/20 rounded-3xl p-6 sm:p-8 hover-lift-feature shadow-premium">
+              <div className="bg-white/80 border border-green/10 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                 {/* Ingredient Image */}
                 <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-cream to-taupe/10">
                   <Image 
@@ -72,7 +72,7 @@ export default function IngredientsShowcase() {
                 </div>
 
                 {/* Content */}
-                <div className="space-y-4">
+                <div className="space-y-4 flex-grow">
                   <h3 className="wv-h3 text-green">
                     {ingredient.name}
                   </h3>

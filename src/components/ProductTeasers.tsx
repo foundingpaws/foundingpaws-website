@@ -7,9 +7,7 @@ import ScrollAnimation from "@/components/ScrollAnimation";
 import IconPaw from "@/components/icons/IconPaw";
 import Transform3D from "@/components/Transform3D";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
-import LoadingButton from "@/components/LoadingButton";
 import SkeletonLoader from "@/components/SkeletonLoader";
-import { RippleButton, MagneticButton, TiltCard } from "@/components/MicroInteractions";
 import ProductConfigurator from "@/components/ProductConfigurator";
 
 const products = [
@@ -203,21 +201,21 @@ export default function ProductTeasers() {
 
         {/* Product Configurator Button */}
         <div className="text-center mb-8">
-          <RippleButton
+          <button
             onClick={() => setShowConfigurator(true)}
-            className="btn-primary pill text-cream px-8 py-4 font-medium gradient-copper-glow"
+            className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             🐕 Produkt-Konfigurator öffnen
-          </RippleButton>
+          </button>
         </div>
 
         {/* "Alle Produkte" Teaser */}
         <div className="text-center mb-14 sm:mb-16">
           <p className="text-green/70 mb-4">Weitere Formeln in Entwicklung:</p>
           <div className="flex flex-wrap justify-center gap-3 text-sm">
-            <span className="pill bg-taupe/10 border border-taupe/20 text-green/70 px-4 py-2">Skin & Coat</span>
-            <span className="pill bg-taupe/10 border border-taupe/20 text-green/70 px-4 py-2">Immune Boost</span>
-            <span className="pill bg-taupe/10 border border-taupe/20 text-green/70 px-4 py-2">+ 3 weitere</span>
+            <span className="bg-green/5 border border-green/20 text-green/60 px-4 py-2 rounded-full">Skin & Coat</span>
+            <span className="bg-green/5 border border-green/20 text-green/60 px-4 py-2 rounded-full">Immune Boost</span>
+            <span className="bg-green/5 border border-green/20 text-green/60 px-4 py-2 rounded-full">+ 3 weitere</span>
           </div>
         </div>
 
@@ -255,6 +253,7 @@ export default function ProductTeasers() {
             </div>
           </div>
           
+          <div id="waitlist">
           {!submitted ? (
             <form onSubmit={handleWaitlist} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <div className="form-group flex-1">
@@ -267,19 +266,27 @@ export default function ProductTeasers() {
                   className="form-input-premium w-full border-copper/30 focus:border-copper focus:ring-copper/20"
                 />
               </div>
-              <LoadingButton
+              <button
                 type="submit"
-                loading={isLoading}
-                className="whitespace-nowrap gradient-copper-glow"
+                disabled={isLoading}
+                className="bg-copper text-cream px-6 py-3 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
               >
-                Jetzt anmelden
-              </LoadingButton>
+                {isLoading ? (
+                  <span className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-cream/30 border-t-cream rounded-full animate-spin"></div>
+                    Wird angemeldet...
+                  </span>
+                ) : (
+                  'Jetzt anmelden'
+                )}
+              </button>
             </form>
           ) : (
             <div className="pill bg-copper/15 border border-copper/25 text-copper px-6 py-4 inline-flex items-center gap-2 animate-pulse">
               <span>✓</span> Perfekt! Du bist dabei – wir melden uns bald.
             </div>
           )}
+          </div>
           
           </GlassmorphismCard>
         </Transform3D>

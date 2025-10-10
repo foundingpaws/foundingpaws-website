@@ -72,10 +72,10 @@ export default function CharitySection() {
                 auch über unsere Produkte hinaus.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#products" className="btn-primary pill text-cream px-8 py-4 text-base font-medium">
+                <a href="#products" className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base">
                   Jetzt kaufen & helfen →
                 </a>
-                <a href="/team" className="btn-secondary pill text-green px-8 py-4 text-base font-medium">
+                <a href="/team" className="bg-green text-cream px-8 py-4 rounded-full font-medium hover:bg-green/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base">
                   Mehr über unsere Mission
                 </a>
               </div>

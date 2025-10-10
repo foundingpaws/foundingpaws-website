@@ -7,28 +7,36 @@ import FadeIn from "@/components/FadeIn";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import OptimizedImage from "@/components/OptimizedImage";
 import LoadingButton from "@/components/LoadingButton";
+import IconHeart from "@/components/icons/IconHeart";
+import IconLeaf from "@/components/icons/IconLeaf";
+import IconTarget from "@/components/icons/IconTarget";
+import IconMadeInGermany from "@/components/icons/IconMadeInGermany";
+import IconLab from "@/components/icons/IconLab";
+import IconDoctor from "@/components/icons/IconDoctor";
+import IconRocket from "@/components/icons/IconRocket";
+import IconSparkles from "@/components/icons/IconSparkles";
 
 const benefits = [
   {
-    icon: "😌",
+    icon: IconHeart,
     title: "Natürliche Beruhigung",
     description: "Sanfte Entspannung ohne Sedierung oder Nebenwirkungen",
     scientific: "L-Theanin fördert Alpha-Wellen im Gehirn für natürliche Ruhe"
   },
   {
-    icon: "🌙",
+    icon: IconLeaf,
     title: "Besserer Schlaf",
     description: "Fördert erholsamen Schlaf und reduziert nächtliche Unruhe",
     scientific: "Kamillenextrakt wirkt schlaffördernd und angstlösend"
   },
   {
-    icon: "⚡",
+    icon: IconTarget,
     title: "Schnelle Wirkung",
     description: "Bereits nach 30-60 Minuten spürbare Entspannung",
     scientific: "Optimierte Bioverfügbarkeit für schnelle Aufnahme"
   },
   {
-    icon: "🎯",
+    icon: IconHeart,
     title: "Gezielte Anwendung",
     description: "Perfekt für Gewitter, Feuerwerk, Tierarztbesuche",
     scientific: "Klinisch getestet bei akuten Stresssituationen"
@@ -172,24 +180,46 @@ export default function GentleCalmPage() {
                   Sanft, wirksam, ohne Sedierung.
                 </p>
                 
-                {/* Emotional Appeal */}
-                <div className="bg-copper/20 border border-copper/30 rounded-2xl p-4 wv-spacing-md">
-                  <div className="flex items-center gap-2 font-medium wv-spacing-xs" style={{color: 'white'}}>
-                    <span className="text-lg">💝</span>
-                    <span>Gib deinem Hund die Ruhe, die er verdient</span>
+                {/* Social Proof */}
+                <div className="flex items-center gap-4 wv-spacing-sm">
+                  <div className="flex -space-x-2">
+                    <div className="w-8 h-8 bg-copper rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">A</div>
+                    <div className="w-8 h-8 bg-copper rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">B</div>
+                    <div className="w-8 h-8 bg-copper rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">C</div>
+                    <div className="w-8 h-8 bg-cream/20 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">+</div>
                   </div>
-                  <p className="wv-body" style={{color: 'white'}}>
-                    Kein Hund sollte unter Stress und Angst leiden. Gentle Calm hilft 
-                    deinem Vierbeiner, entspannt durch den Alltag zu gehen.
+                  <div className="text-sm" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
+                    <strong>89 Hundehalter</strong> bereits auf der Warteliste
+                  </div>
+                </div>
+
+                {/* Urgency & Scarcity */}
+                <div className="bg-gradient-to-r from-copper/20 to-copper/10 border border-copper/30 rounded-2xl p-6 wv-spacing-md">
+                  <div className="flex items-center gap-3 font-bold text-lg wv-spacing-xs" style={{color: 'white'}}>
+                    <span className="text-2xl animate-pulse">⚡</span>
+                    <span>Nur noch 11 Plätze für die Warteliste verfügbar!</span>
+                  </div>
+                  <p className="wv-body wv-spacing-sm" style={{color: 'white'}}>
+                    Sichere dir jetzt deinen exklusiven <strong>10% Launch-Rabatt</strong> und werde als Erste:r über die Verfügbarkeit informiert.
                   </p>
+                  <div className="flex items-center gap-4 text-sm" style={{color: 'rgba(255, 255, 255, 0.8)'}}>
+                    <div className="flex items-center gap-1">
+                      <span>✓</span>
+                      <span>Kostenlose Anmeldung</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <span>✓</span>
+                      <span>Jederzeit kündbar</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 wv-spacing-md">
-                  <a href="#waitlist" className="btn-primary pill text-cream px-8 py-4 text-base font-medium">
-                    Jetzt für Warteliste anmelden
+                  <a href="#waitlist" className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base text-center">
+                    🎯 Jetzt 10% Rabatt sichern
                   </a>
-                  <a href="#details" className="btn-secondary pill text-cream px-8 py-4 text-base font-medium">
-                        Mehr erfahren
+                  <a href="#details" className="bg-white/20 text-cream px-8 py-4 rounded-full font-medium hover:bg-white/30 transition-all duration-300 text-base text-center">
+                    Mehr erfahren →
                   </a>
                 </div>
               </div>
@@ -240,18 +270,27 @@ export default function GentleCalmPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, index) => (
               <ScrollAnimation key={benefit.title} animation="slide-up" delay={index * 100}>
-                <GlassmorphismCard className="p-6 text-center hover-lift-feature bg-cream/80 backdrop-blur-sm border border-green/20">
-                  <div className="text-4xl wv-spacing-sm">{benefit.icon}</div>
+                <div className="group p-8 text-center hover-lift-feature bg-white rounded-2xl shadow-lg border border-green/20 hover:shadow-xl transition-all duration-300 hover:border-copper/30 h-full flex flex-col">
+                  <div className="relative mb-6">
+                    <div className="w-16 h-16 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300">
+                      <benefit.icon className="w-full h-full text-copper" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-copper rounded-full flex items-center justify-center">
+                      <span className="text-cream text-xs font-bold">✓</span>
+                    </div>
+                  </div>
                   <h3 className="wv-h4 text-green wv-spacing-xs">
                     {benefit.title}
                   </h3>
-                  <p className="wv-body text-green/75 wv-spacing-sm">
+                  <p className="wv-body text-green/75 wv-spacing-sm flex-grow">
                     {benefit.description}
                   </p>
-                  <div className="text-xs text-copper font-medium bg-copper/10 px-2 py-1 rounded">
-                    {benefit.scientific}
+                  <div className="bg-green/5 border border-green/15 rounded-lg p-3 mt-auto">
+                    <p className="text-xs text-copper font-medium">
+                      <strong>Wissenschaftlich belegt:</strong> {benefit.scientific}
+                    </p>
                   </div>
-                </GlassmorphismCard>
+                </div>
               </ScrollAnimation>
             ))}
           </div>
@@ -294,6 +333,61 @@ export default function GentleCalmPage() {
                 </GlassmorphismCard>
               </ScrollAnimation>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & Guarantees Section */}
+      <section className="wv-section bg-gradient-to-r from-green/5 to-copper/5">
+        <div className="container-wide">
+          <ScrollAnimation>
+            <div className="text-center wv-spacing-2xl">
+              <h2 className="wv-h2 text-green wv-spacing-sm">
+                Warum Hundebesitzer uns vertrauen
+              </h2>
+              <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
+              <p className="wv-lead text-green/70 wv-spacing-md max-w-3xl mx-auto">
+                Wir stehen hinter jedem Produkt mit unserem Namen und unserer Expertise.
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <ScrollAnimation animation="fade-in" delay={0}>
+              <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-green/20">
+                <div className="w-16 h-16 bg-copper/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <IconMadeInGermany className="w-8 h-8 text-copper" />
+                </div>
+                <h3 className="wv-h4 text-green wv-spacing-xs">Made in Germany</h3>
+                <p className="wv-body text-green/75">
+                  Handgefertigt in Heilbronn mit höchsten Qualitätsstandards.
+                </p>
+              </div>
+            </ScrollAnimation>
+
+            <ScrollAnimation animation="fade-in" delay={100}>
+              <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-green/20">
+                <div className="w-16 h-16 bg-copper/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <IconLab className="w-8 h-8 text-copper" />
+                </div>
+                <h3 className="wv-h4 text-green wv-spacing-xs">Eigene Qualitätskontrolle</h3>
+                <p className="wv-body text-green/75">
+                  Jede Charge wird in unserem eigenen Labor auf Reinheit und Qualität geprüft.
+                </p>
+              </div>
+            </ScrollAnimation>
+
+            <ScrollAnimation animation="fade-in" delay={200}>
+              <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-green/20">
+                <div className="w-16 h-16 bg-copper/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <IconDoctor className="w-8 h-8 text-copper" />
+                </div>
+                <h3 className="wv-h4 text-green wv-spacing-xs">Tierärztlich entwickelt</h3>
+                <p className="wv-body text-green/75">
+                  Von Veterinärexperten entwickelt und wissenschaftlich fundiert.
+                </p>
+              </div>
+            </ScrollAnimation>
           </div>
         </div>
       </section>
@@ -369,9 +463,9 @@ export default function GentleCalmPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <ScrollAnimation key={testimonial.name} animation="slide-up" delay={index * 100}>
-                <GlassmorphismCard className="p-8 bg-cream/90 backdrop-blur-sm border border-cream/30">
+                <div className="p-8 bg-white rounded-2xl shadow-lg border border-green/20 hover:shadow-xl transition-all duration-300 hover:border-copper/30 h-full flex flex-col">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-copper rounded-full flex items-center justify-center text-cream font-bold">
+                    <div className="w-12 h-12 bg-copper rounded-full flex items-center justify-center text-cream font-bold flex-shrink-0">
                       {testimonial.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div className="flex-1">
@@ -381,18 +475,18 @@ export default function GentleCalmPage() {
                       <p className="wv-body text-green/70 wv-spacing-xs">
                         {testimonial.role}
                       </p>
-                      <blockquote className="wv-lead text-green/80 italic wv-spacing-sm">
+                      <blockquote className="wv-lead text-green/80 italic wv-spacing-sm flex-grow">
                         "{testimonial.quote}"
                       </blockquote>
                       {testimonial.verified && (
-                        <div className="flex items-center gap-2 text-copper text-sm">
+                        <div className="flex items-center gap-2 text-copper text-sm mt-auto">
                           <span>✓</span>
                           <span>Verifizierter Experte</span>
                         </div>
                       )}
                     </div>
                   </div>
-                </GlassmorphismCard>
+                </div>
               </ScrollAnimation>
             ))}
           </div>
@@ -439,77 +533,120 @@ export default function GentleCalmPage() {
       </section>
 
       {/* Waitlist CTA */}
-      <section id="waitlist" className="wv-section bg-gradient-to-br from-copper to-copper/80 text-cream">
+      <section id="waitlist" className="wv-section bg-gradient-to-br from-green to-green/90 text-white">
         <div className="container-wide">
           <ScrollAnimation>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="wv-h2 text-cream wv-spacing-sm">
-                Hilf deinem Hund zu entspannen
-              </h2>
-              <div className="w-16 h-1 bg-cream mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead text-cream/90 wv-spacing-md">
-                Melde dich jetzt für unsere exklusive Warteliste an und erhalte:
-              </p>
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
+                <div className="inline-block pill bg-white/20 border border-white/30 px-6 py-3 wv-eyebrow wv-spacing-sm text-white font-medium">
+                  Exklusive Warteliste
+                </div>
+                <h2 className="wv-h2 text-white wv-spacing-sm">
+                  Sei dabei, wenn Gentle Calm verfügbar wird
+                </h2>
+                <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
+                <p className="wv-lead text-white/90 wv-spacing-md max-w-3xl mx-auto">
+                  Melde dich jetzt für unsere exklusive Warteliste an und erhalte exklusive Vorteile und Updates.
+                </p>
+              </div>
 
-              <div className="grid sm:grid-cols-3 gap-6 wv-spacing-md">
-                <div className="text-center">
-                  <div className="text-3xl wv-spacing-sm">🎯</div>
-                  <h3 className="wv-h4 text-cream wv-spacing-xs">10% Launch-Rabatt</h3>
-                  <p className="wv-body text-cream/80">Exklusiv für Wartelisten-Mitglieder</p>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                {/* Benefits */}
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4 p-6 bg-white/10 rounded-2xl border border-white/20">
+                    <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <IconTarget className="w-6 h-6 text-copper" />
+                    </div>
+                    <div>
+                      <h3 className="wv-h4 text-white wv-spacing-xs">10% Launch-Rabatt</h3>
+                      <p className="wv-body text-white/80">Exklusiv für Wartelisten-Mitglieder bei der ersten Bestellung</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-6 bg-white/10 rounded-2xl border border-white/20">
+                    <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <IconRocket className="w-6 h-6 text-copper" />
+                    </div>
+                    <div>
+                      <h3 className="wv-h4 text-white wv-spacing-xs">Vorabzugang</h3>
+                      <p className="wv-body text-white/80">Als Erste:r bestellen, bevor alle anderen Zugang haben</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-6 bg-white/10 rounded-2xl border border-white/20">
+                    <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <IconSparkles className="w-6 h-6 text-copper" />
+                    </div>
+                    <div>
+                      <h3 className="wv-h4 text-white wv-spacing-xs">Exklusive Updates</h3>
+                      <p className="wv-body text-white/80">Entwicklungsfortschritte, Tipps und Neuigkeiten direkt in dein Postfach</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl wv-spacing-sm">⚡</div>
-                  <h3 className="wv-h4 text-cream wv-spacing-xs">Vorabzugang</h3>
-                  <p className="wv-body text-cream/80">Als Erste:r bestellen, bevor alle anderen</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl wv-spacing-sm">📧</div>
-                  <h3 className="wv-h4 text-cream wv-spacing-xs">Exklusive Updates</h3>
-                  <p className="wv-body text-cream/80">Entwicklungsfortschritte und Tipps</p>
+
+                {/* Form */}
+                <div className="bg-white/10 rounded-3xl p-8 border border-white/20">
+                  {!submitted ? (
+                    <div>
+                      <h3 className="wv-h3 text-white wv-spacing-sm text-center">Jetzt anmelden</h3>
+                      <p className="wv-body text-white/80 wv-spacing-md text-center">
+                        Kostenlos und jederzeit kündbar. Keine Spam-E-Mails.
+                      </p>
+                      
+                      <form onSubmit={handleWaitlist} className="space-y-4">
+                        <input
+                          type="email"
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="deine@email.de"
+                          className="w-full px-4 py-4 rounded-xl border border-white/30 focus:border-copper focus:ring-2 focus:ring-copper/20 text-green bg-white/80 placeholder-green/50 text-lg"
+                        />
+                        <button
+                          type="submit"
+                          disabled={isLoading}
+                          className="w-full bg-copper text-cream px-8 py-4 rounded-xl font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+                        >
+                          {isLoading ? (
+                            <span className="flex items-center justify-center gap-2">
+                              <div className="w-5 h-5 border-2 border-cream/30 border-t-cream rounded-full animate-spin"></div>
+                              Wird angemeldet...
+                            </span>
+                          ) : (
+                            "Jetzt 10% Rabatt sichern"
+                          )}
+                        </button>
+                      </form>
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-copper/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-3xl text-copper">✓</span>
+                      </div>
+                      <h3 className="wv-h3 text-white wv-spacing-sm">Perfekt! Du bist dabei</h3>
+                      <p className="wv-body text-white/80">
+                        Wir melden uns bald mit deinem exklusiven 10% Rabatt-Code.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {!submitted ? (
-                <form onSubmit={handleWaitlist} className="max-w-md mx-auto wv-spacing-md">
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="deine@email.de"
-                      className="form-input-premium flex-1 border-cream/30 focus:border-cream focus:ring-cream/20 text-green"
-                    />
-                    <LoadingButton
-                      type="submit"
-                      loading={isLoading}
-                      className="btn-primary pill text-copper bg-cream px-8 py-4 font-medium whitespace-nowrap"
-                    >
-                      Jetzt anmelden
-                    </LoadingButton>
+              {/* Trust Elements */}
+              <div className="mt-12 pt-8 border-t border-white/20">
+                <div className="flex flex-wrap justify-center gap-8 text-white/70">
+                  <div className="flex items-center gap-2">
+                    <IconMadeInGermany className="w-5 h-5 text-copper" />
+                    <span>Made in Germany</span>
                   </div>
-                  <p className="wv-caption text-cream/70 wv-spacing-sm">
-                    Keine Sorge – wir spammen nicht. Nur hochwertige Updates, versprochen.
-                  </p>
-                </form>
-              ) : (
-                <div className="pill bg-cream/20 border border-cream/30 text-cream px-8 py-4 inline-flex items-center gap-2 text-lg wv-spacing-md">
-                  <span>✓</span> Perfekt! Du bist dabei – wir melden uns bald.
-                </div>
-              )}
-
-              <div className="flex flex-wrap justify-center gap-6 text-cream/70 wv-spacing-md">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cream"></span>
-                  <span>100% Natürlich</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cream"></span>
-                  <span>Ohne Sedierung</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-cream"></span>
-                  <span>Tierärztlich entwickelt</span>
+                  <div className="flex items-center gap-2">
+                    <IconLab className="w-5 h-5 text-copper" />
+                    <span>Eigene Qualitätskontrolle</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <IconDoctor className="w-5 h-5 text-copper" />
+                    <span>Tierärztlich entwickelt</span>
+                  </div>
                 </div>
               </div>
             </div>

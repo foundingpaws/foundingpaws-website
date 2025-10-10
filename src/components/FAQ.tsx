@@ -115,15 +115,6 @@ export default function FAQ() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-green/70 mb-4">Noch Fragen?</p>
-          <a
-            href="mailto:hallo@foundingpaws.de"
-            className="pill bg-green text-cream px-6 py-3 inline-block font-medium hover:opacity-95 hover:scale-105 transition-all"
-          >
-            Schreib uns
-          </a>
-        </div>
       </div>
     </section>
   );

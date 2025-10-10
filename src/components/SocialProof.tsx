@@ -114,12 +114,6 @@ const trustBadges = [
     description: "Umweltfreundliche Verpackung",
     icon: IconSustainable,
     verified: true
-  },
-  {
-    name: "Jeder Kauf zählt",
-    description: "1% für Tierheime ab dem ersten Verkauf",
-    icon: IconHeart,
-    verified: true
   }
 ];
 
@@ -184,7 +178,7 @@ export default function SocialProof() {
   };
 
   return (
-    <section className="wv-section bg-gradient-to-b from-cream to-white">
+    <section id="social-proof" className="wv-section bg-gradient-to-b from-cream to-white">
       <div className="container-wide">
         {/* Header */}
         <ScrollAnimation>
@@ -232,6 +226,22 @@ export default function SocialProof() {
           </div>
         </ScrollAnimation>
 
+        {/* Urgency Banner */}
+        <ScrollAnimation>
+          <div className="max-w-4xl mx-auto wv-spacing-lg">
+            <div className="bg-gradient-to-r from-copper/10 to-green/10 border border-copper/20 rounded-2xl p-6 text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="w-3 h-3 bg-copper rounded-full animate-pulse"></div>
+                <span className="text-copper font-semibold text-lg">Begrenzte Verfügbarkeit</span>
+                <div className="w-3 h-3 bg-copper rounded-full animate-pulse"></div>
+              </div>
+              <p className="text-green/80 font-medium">
+                ⏰ Nur noch <strong className="text-copper">47 Plätze</strong> in der ersten Charge verfügbar
+              </p>
+            </div>
+          </div>
+        </ScrollAnimation>
+
         {/* Coming Soon Message */}
         <ScrollAnimation>
           <div className="max-w-4xl mx-auto wv-spacing-2xl">
@@ -248,10 +258,10 @@ export default function SocialProof() {
                 wissenschaftlich entwickelten Supplements profitieren.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center wv-spacing-md">
-                <a href="#products" className="btn-primary pill text-cream px-8 py-4 font-medium">
-                  Zur Warteliste
+                <a href="#products" className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                  Zur Warteliste →
                 </a>
-                <a href="#finder-mvp" className="btn-secondary pill text-green px-8 py-4 font-medium">
+                <a href="#finder-mvp" className="bg-green text-cream px-8 py-4 rounded-full font-medium hover:bg-green/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                   Bedarfsfinder
                 </a>
               </div>

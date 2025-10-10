@@ -11,7 +11,7 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-cream rounded-full blur-xl"></div>
       </div>
       
-      <div className="container-wide relative z-10">
+      <div className="container-wide relative z-20">
         {/* Mobile Layout - Optimiert für weniger Stapelung */}
         <div className="lg:hidden">
           <FadeIn>
@@ -25,24 +25,43 @@ export default function Hero() {
             </div>
           </FadeIn>
           
-          {/* Mobile Product Image - Diagonale Positionierung */}
+          {/* Mobile Video - Optimiert für Mobile */}
           <div className="relative mb-8">
-            <div className="relative aspect-[4/3] rounded-[28px] overflow-hidden bg-green/20 transform rotate-2 shadow-2xl">
-              <Image 
-                src="/mockups/PSD file.png" 
-                alt="Bright Mind Produktbild - Gründungspaws Supplements" 
-                fill 
-                className="object-contain img-depth" 
-                style={{objectPosition:"center 45%"}} 
-                priority 
-                sizes="100vw" 
-                fetchPriority="high" 
-                placeholder="empty" 
-              />
+            <div className="relative aspect-[4/3] rounded-[28px] overflow-hidden bg-green/20 shadow-2xl">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover"
+                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
+                style={{
+                  filter: 'brightness(0.9) contrast(1.1)',
+                  transform: 'scale(1.02) translateX(-10%)',
+                  transition: 'transform 0.3s ease-out'
+                }}
+              >
+                <source src="/customers/Smooth_cinematic_transition_202510101708.mp4" type="video/mp4" />
+                {/* Fallback für Browser ohne Video-Support */}
+                <Image 
+                  src="/mockups/PSD file.png" 
+                  alt="Bright Mind Produktbild - Gründungspaws Supplements" 
+                  fill 
+                  className="object-contain img-depth" 
+                  style={{objectPosition:"center 45%"}} 
+                  priority 
+                  sizes="100vw" 
+                  fetchPriority="high" 
+                  placeholder="empty" 
+                />
+              </video>
+              {/* Video Overlay für bessere Lesbarkeit auf Mobile */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
             </div>
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-copper rounded-full opacity-80 animate-pulse"></div>
-            <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-cream rounded-full opacity-60 animate-bounce"></div>
+            {/* Mobile-optimierte Floating Elements */}
+            <div className="absolute -top-3 -right-3 w-6 h-6 bg-copper rounded-full opacity-80 animate-pulse"></div>
+            <div className="absolute -bottom-2 -left-2 w-5 h-5 bg-cream rounded-full opacity-60 animate-bounce"></div>
           </div>
           
           {/* Mobile CTAs - Zentriert */}
@@ -79,22 +98,41 @@ export default function Hero() {
             </div>
           </FadeIn>
           
-          {/* Desktop Product Image - Subtile Diagonale Positionierung */}
+          {/* Desktop Video - Optimiert für Desktop */}
           <div className="relative">
-            <div className="relative aspect-[4/3] rounded-[24px] overflow-hidden bg-green/20 transform rotate-1 shadow-2xl">
-              <Image 
-                src="/mockups/PSD file.png" 
-                alt="Bright Mind Produktbild - Gründungspaws Supplements" 
-                fill 
-                className="object-contain img-depth" 
-                style={{objectPosition:"center 45%"}} 
-                priority 
-                sizes="(max-width: 1024px) 50vw, 600px" 
-                fetchPriority="high" 
-                placeholder="empty" 
-              />
+            <div className="relative aspect-[4/3] rounded-[24px] overflow-hidden bg-green/20 shadow-2xl">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover"
+                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
+                style={{
+                  filter: 'brightness(0.95) contrast(1.05)',
+                  transform: 'scale(1.01)',
+                  transition: 'transform 0.3s ease-out'
+                }}
+              >
+                <source src="/customers/Smooth_cinematic_transition_202510101708.mp4" type="video/mp4" />
+                {/* Fallback für Browser ohne Video-Support */}
+                <Image 
+                  src="/mockups/PSD file.png" 
+                  alt="Bright Mind Produktbild - Gründungspaws Supplements" 
+                  fill 
+                  className="object-contain img-depth" 
+                  style={{objectPosition:"center 45%"}} 
+                  priority 
+                  sizes="(max-width: 1024px) 50vw, 600px" 
+                  fetchPriority="high" 
+                  placeholder="empty" 
+                />
+              </video>
+              {/* Subtile Video Overlay für Desktop */}
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5 pointer-events-none"></div>
             </div>
-            {/* Subtile Floating Elements für Desktop */}
+            {/* Desktop Floating Elements */}
             <div className="absolute -top-4 -right-4 w-8 h-8 bg-copper rounded-full opacity-70 animate-pulse"></div>
             <div className="absolute -bottom-3 -left-3 w-6 h-6 bg-cream rounded-full opacity-50 animate-bounce"></div>
           </div>

@@ -15,47 +15,47 @@ export default function WhyFoundingPaws() {
         </ScrollAnimation>
 
         {/* Mobile: 1 Spalte, Desktop: 3 Spalten */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <ScrollAnimation animation="slide-up" delay={0}>
-            <article className="wv-card-premium hover-lift-premium p-6 lg:p-8">
+            <article className="bg-white/80 border border-green/10 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <div className="wv-eyebrow text-copper wv-spacing-xs">Wirkprinzip</div>
               <h3 className="wv-h3 text-green wv-spacing-xs">Gezielte Unterstützung</h3>
-              <p className="wv-body text-green/75 wv-spacing-md">
+              <p className="wv-body text-green/75 wv-spacing-md flex-grow">
                 Jede Formel hat ein klares Ziel – z. B. Kognition & Herz, Stress & Angst oder Gelenke –
                 auf Basis aktueller Evidenz.
               </p>
-              <a href="#knowledge" className="btn-outline pill px-4 py-2 inline-block wv-spacing-top-md text-sm">Weiterlesen →</a>
+              <a href="#knowledge" className="bg-copper text-cream px-6 py-3 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm inline-block w-fit">Weiterlesen →</a>
             </article>
           </ScrollAnimation>
 
           <ScrollAnimation animation="slide-up" delay={100}>
-            <article className="wv-card-feature hover-lift-feature p-6 lg:p-8">
+            <article className="bg-white/80 border border-green/10 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <div className="wv-eyebrow text-copper wv-spacing-xs">Inhaltsstoffe</div>
               <h3 className="wv-h3 text-green wv-spacing-xs">Rein, transparent</h3>
-              <p className="wv-body text-green/75 wv-spacing-md">
+              <p className="wv-body text-green/75 wv-spacing-md flex-grow">
                 Nur ausgewählte, natürliche Rohstoffe – in kleinen Chargen verarbeitet.
               </p>
-              <a href="#ingredients" className="btn-ghost pill px-4 py-2 inline-block wv-spacing-top-md text-sm">Transparenz ansehen</a>
+              <a href="#ingredients" className="bg-green text-cream px-6 py-3 rounded-full font-medium hover:bg-green/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm inline-block w-fit">Transparenz ansehen</a>
             </article>
           </ScrollAnimation>
 
           <ScrollAnimation animation="slide-up" delay={200}>
-            <article className="wv-card-minimal hover-lift-minimal p-6 lg:p-8">
+            <article className="bg-white/80 border border-green/10 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <div className="wv-eyebrow text-copper wv-spacing-xs">Anwendung</div>
               <h3 className="wv-h3 text-green wv-spacing-xs">Alltagstauglich</h3>
-              <p className="wv-body text-green/75 wv-spacing-md">
+              <p className="wv-body text-green/75 wv-spacing-md flex-grow">
                 Klare Dosierung, einfache Integration in die Fütterung und verständliche Anleitungen.
               </p>
-              <a href="#finder-mvp" className="btn-primary pill text-cream px-4 py-2 inline-block wv-spacing-top-md text-sm">Finder starten</a>
+              <a href="#finder-mvp" className="bg-copper text-cream px-6 py-3 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm inline-block w-fit">Finder starten</a>
             </article>
           </ScrollAnimation>
         </div>
 
         {/* Mobile: Vertikale Anordnung, Desktop: Horizontal */}
-        <div className="text-center mt-6 lg:mt-10">
-          <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-center">
-            <a href="#products" className="pill bg-copper text-cream px-6 py-3 text-sm font-medium inline-block w-full sm:w-auto">Produkte ansehen</a>
-            <a href="#waitlist" className="pill bg-cream/10 border border-green/20 text-green px-6 py-3 text-sm font-medium inline-block w-full sm:w-auto">Warteliste sichern</a>
+        <div className="text-center mt-8 lg:mt-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="#products" className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm w-full sm:w-auto">Produkte ansehen</a>
+            <a href="#waitlist" className="bg-green text-cream px-8 py-4 rounded-full font-medium hover:bg-green/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-sm w-full sm:w-auto">Warteliste sichern</a>
           </div>
         </div>
       </div>

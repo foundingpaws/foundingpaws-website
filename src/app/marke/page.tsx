@@ -29,12 +29,6 @@ const values = [
     color: "copper"
   },
   {
-    icon: IconScience,
-    title: "Wissenschaftliche Exzellenz",
-    description: "Unsere Formeln basieren auf aktueller Forschung und werden von Tierärzten entwickelt. Jede Zutat ist sorgfältig ausgewählt.",
-    color: "green"
-  },
-  {
     icon: IconNature,
     title: "Natürlichkeit",
     description: "Wir setzen auf die Kraft der Natur. Keine künstlichen Zusatzstoffe, keine Kompromisse bei der Qualität.",
@@ -179,73 +173,60 @@ export default function MarkePage() {
             </div>
           </ScrollAnimation>
 
-          {/* Horizontal Timeline with Scroll Snap */}
-          <div className="relative">
+          {/* Vertical Timeline */}
+          <div className="relative max-w-4xl mx-auto">
             {/* Timeline Line */}
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-copper via-copper/50 to-copper transform -translate-y-1/2 z-0"></div>
+            <div className="hidden lg:block absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-copper via-copper/50 to-copper z-0"></div>
             
-            {/* Timeline Container with Scroll Snap */}
-            <div className="overflow-x-auto scrollbar-hide timeline-container">
-              <div className="flex lg:grid lg:grid-cols-5 gap-8 lg:gap-0 min-w-max lg:min-w-0 pb-8 lg:pb-0">
-                {milestones.map((milestone, index) => (
-                  <ScrollAnimation key={`${milestone.year}-${milestone.quarter}`} animation="fade-in" delay={index * 150}>
-                    <div className="flex-shrink-0 w-80 lg:w-auto lg:relative timeline-item">
-                      {/* Timeline Point */}
-                      <div className="flex flex-col lg:items-center">
-                        {/* Icon and Point */}
-                        <div className="flex items-center lg:flex-col mb-6 lg:mb-8">
-                          {/* Mobile: Icon on left */}
-                          <div className="flex-shrink-0 w-16 h-16 bg-copper rounded-full flex items-center justify-center mr-4 lg:mr-0 lg:mb-4 shadow-lg z-10 relative timeline-point">
-                            <milestone.icon className="w-8 h-8 text-white" />
-                          </div>
-                          
-                          {/* Desktop: Timeline point */}
-                          <div className="hidden lg:block w-6 h-6 bg-copper rounded-full border-4 border-cream shadow-lg z-10 relative timeline-point">
-                            <div className="absolute inset-0 bg-copper rounded-full animate-pulse"></div>
-                          </div>
-                        </div>
+            {/* Timeline Items */}
+            <div className="space-y-12">
+              {milestones.map((milestone, index) => (
+                <ScrollAnimation key={`${milestone.year}-${milestone.quarter}`} animation="fade-in" delay={index * 150}>
+                  <div className="relative flex items-start gap-8">
+                    {/* Timeline Point */}
+                    <div className="flex-shrink-0 w-16 h-16 bg-copper rounded-full flex items-center justify-center shadow-lg z-10 relative">
+                      <milestone.icon className="w-8 h-8 text-white" />
+                    </div>
 
-                        {/* Content Card */}
-                        <div className="timeline-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-taupe/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                          {/* Year and Quarter */}
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="text-copper font-bold text-lg">{milestone.year}</span>
-                            {milestone.quarter && (
-                              <>
-                                <span className="text-taupe">•</span>
-                                <span className="text-taupe font-medium">{milestone.quarter}</span>
-                              </>
-                            )}
-                          </div>
-                          
-                          {/* Title */}
-                          <h3 className="wv-h4 text-green wv-spacing-xs">
-                            {milestone.title}
-                          </h3>
-                          
-                          {/* Description */}
-                          <p className="wv-body text-green/80 leading-relaxed mb-4">
-                            {milestone.description}
-                          </p>
-                          
-                          {/* Image with Enhanced Fade-In */}
-                          <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
-                            <Image
-                              src={milestone.image}
-                              alt={milestone.title}
-                              fill
-                              className="timeline-image object-cover transition-all duration-500 hover:scale-105"
-                              unoptimized
-                            />
-                            {/* Overlay for better text readability */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                          </div>
-                        </div>
+                    {/* Content Card */}
+                    <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-taupe/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                      {/* Year and Quarter */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="text-copper font-bold text-xl">{milestone.year}</span>
+                        {milestone.quarter && (
+                          <>
+                            <span className="text-taupe">•</span>
+                            <span className="text-taupe font-medium">{milestone.quarter}</span>
+                          </>
+                        )}
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="wv-h3 text-green wv-spacing-sm">
+                        {milestone.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="wv-body text-green/80 leading-relaxed mb-6">
+                        {milestone.description}
+                      </p>
+                      
+                      {/* Image with Enhanced Fade-In */}
+                      <div className="relative aspect-[16/10] rounded-xl overflow-hidden">
+                        <Image
+                          src={milestone.image}
+                          alt={milestone.title}
+                          fill
+                          className="timeline-image object-cover transition-all duration-500 hover:scale-105"
+                          unoptimized
+                        />
+                        {/* Overlay for better text readability */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                     </div>
-                  </ScrollAnimation>
-                ))}
-              </div>
+                  </div>
+                </ScrollAnimation>
+              ))}
             </div>
           </div>
         </div>
@@ -266,8 +247,8 @@ export default function MarkePage() {
             </div>
           </ScrollAnimation>
 
-          {/* 4-Column Icon Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* 3-Column Icon Grid */}
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <ScrollAnimation key={value.title} animation="fade-in" delay={index * 150}>
                 <div className="group relative">
@@ -275,7 +256,7 @@ export default function MarkePage() {
                   <div className={`absolute inset-0 bg-gradient-to-br from-${value.color}/5 to-${value.color === 'copper' ? 'green' : 'copper'}/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                   
                   {/* Content Card */}
-                  <div className="relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-taupe/20 hover:border-copper/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+                  <div className="relative bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-taupe/20 hover:border-copper/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl h-full flex flex-col">
                     {/* Icon Container with Enhanced Styling */}
                     <div className="relative w-20 h-20 mx-auto mb-6">
                       <div className={`absolute inset-0 bg-gradient-to-br from-${value.color}/10 to-${value.color === 'copper' ? 'green' : 'copper'}/10 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500`}></div>
@@ -290,10 +271,9 @@ export default function MarkePage() {
                     </h3>
                     
                     {/* Description */}
-                    <p className="wv-body text-green/75 leading-relaxed group-hover:text-green/90 transition-colors duration-300">
+                    <p className="wv-body text-green/75 leading-relaxed group-hover:text-green/90 transition-colors duration-300 flex-grow">
                       {value.description}
                     </p>
-                    
                     
                     {/* Decorative Element */}
                     <div className={`absolute top-4 right-4 w-2 h-2 bg-${value.color}/30 rounded-full group-hover:bg-${value.color}/60 transition-colors duration-300`}></div>
