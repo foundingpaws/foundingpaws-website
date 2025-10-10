@@ -261,40 +261,34 @@ export default function Header() {
       </header>
 
       {/* Mobile Menu Overlay - iOS Optimized */}
-      <div className={`lg:hidden fixed inset-0 z-[1300] transition-opacity duration-300 ${
-        isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`} style={{
-        WebkitOverflowScrolling: 'touch',
-        overscrollBehavior: 'contain',
-        pointerEvents: isMobileMenuOpen ? 'auto' : 'none'
-      }}>
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/50"
-          onClick={closeMobileMenu}
-          style={{
-            WebkitBackdropFilter: 'blur(8px)',
-            backdropFilter: 'blur(8px)',
-            pointerEvents: 'auto'
-          }}
-        />
-        
-        {/* Mobile Menu Panel - iOS Safe Area Support */}
-        <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-green/95 border-l border-cream/20 shadow-2xl transform transition-transform duration-300 z-[1400] ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`} style={{
-          paddingTop: 'env(safe-area-inset-top)',
-          paddingBottom: 'env(safe-area-inset-bottom)',
-          paddingLeft: 'env(safe-area-inset-left)',
-          paddingRight: 'env(safe-area-inset-right)',
-          WebkitBackdropFilter: 'blur(20px)',
-          backdropFilter: 'blur(20px)',
-          WebkitTransform: 'translateZ(0)',
-          transform: 'translateZ(0)',
-          WebkitBackfaceVisibility: 'hidden',
-          backfaceVisibility: 'hidden',
-          pointerEvents: 'auto'
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[1300]" style={{
+          WebkitOverflowScrolling: 'touch',
+          overscrollBehavior: 'contain'
         }}>
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={closeMobileMenu}
+            style={{
+              WebkitBackdropFilter: 'blur(8px)',
+              backdropFilter: 'blur(8px)'
+            }}
+          />
+        
+          {/* Mobile Menu Panel - iOS Safe Area Support */}
+          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-green/95 border-l border-cream/20 shadow-2xl z-[1400]" style={{
+            paddingTop: 'env(safe-area-inset-top)',
+            paddingBottom: 'env(safe-area-inset-bottom)',
+            paddingLeft: 'env(safe-area-inset-left)',
+            paddingRight: 'env(safe-area-inset-right)',
+            WebkitBackdropFilter: 'blur(20px)',
+            backdropFilter: 'blur(20px)',
+            WebkitTransform: 'translateZ(0)',
+            transform: 'translateZ(0)',
+            WebkitBackfaceVisibility: 'hidden',
+            backfaceVisibility: 'hidden'
+          }}>
           <div className="p-6 h-full overflow-y-auto" style={{
             WebkitOverflowScrolling: 'touch',
             overscrollBehavior: 'contain'
@@ -428,7 +422,8 @@ export default function Header() {
             </nav>
           </div>
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Spacer to prevent content jumping - iOS Safe Area Support */}
       <div className="h-16 lg:h-20" style={{
