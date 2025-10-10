@@ -165,7 +165,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
       </section>
 
       {/* Sticky CTA for Mobile */}
-      <StickyCTA product={product} isVisible={isScrolled} />
+      <StickyCTA />
     </main>
   );
 }
