@@ -348,10 +348,11 @@ export default function Header() {
                     { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Glänzendes Fell & gesunde Haut" },
                     { href: "/immunsystem", icon: IconShield, title: "Immunsystem", desc: "Abwehrkräfte & Vitalität" },
                   ].map((item, index) => (
-                    <div
+                    <Link
                       key={index}
-                      onClick={() => handleLinkClick(item.href)}
-                      className="block p-4 rounded-xl hover:bg-cream/10 transition-all duration-200 group min-h-[60px] cursor-pointer"
+                      href={item.href}
+                      onClick={closeMobileMenu}
+                      className="block p-4 rounded-xl hover:bg-cream/10 transition-all duration-200 group min-h-[60px]"
                       style={{
                         WebkitTapHighlightColor: 'transparent',
                         WebkitTouchCallout: 'none',
@@ -370,7 +371,7 @@ export default function Header() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -385,10 +386,11 @@ export default function Header() {
                     { href: "/marke", label: "Marke" },
                     { href: "/team", label: "Team" },
                   ].map((link, index) => (
-                    <div
+                    <Link
                       key={index}
-                      onClick={() => handleLinkClick(link.href)}
-                      className="block px-4 py-4 rounded-lg text-cream hover:bg-cream/10 hover:text-white transition-all duration-200 min-h-[48px] flex items-center cursor-pointer"
+                      href={link.href}
+                      onClick={closeMobileMenu}
+                      className="block px-4 py-4 rounded-lg text-cream hover:bg-cream/10 hover:text-white transition-all duration-200 min-h-[48px] flex items-center"
                       style={{
                         WebkitTapHighlightColor: 'transparent',
                         WebkitTouchCallout: 'none',
@@ -397,16 +399,17 @@ export default function Header() {
                       }}
                     >
                       {link.label}
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
 
               {/* Mobile Action Buttons - iOS Optimized */}
               <div className="border-t border-cream/20 pt-6 space-y-3">
-                <div
-                  onClick={() => handleLinkClick("/bedarfsfinder")}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-green bg-cream hover:bg-white transition-all duration-200 min-h-[48px] flex items-center justify-center cursor-pointer"
+                <Link
+                  href="/bedarfsfinder"
+                  onClick={closeMobileMenu}
+                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-green bg-cream hover:bg-white transition-all duration-200 min-h-[48px] flex items-center justify-center"
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     WebkitTouchCallout: 'none',
@@ -415,10 +418,11 @@ export default function Header() {
                   }}
                 >
                   Bedarfsfinder starten
-                </div>
-                <div
-                  onClick={() => handleLinkClick("/shop")}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-white bg-accent hover:bg-accent-dark transition-all duration-200 shadow-lg min-h-[48px] flex items-center justify-center cursor-pointer"
+                </Link>
+                <Link
+                  href="/shop"
+                  onClick={closeMobileMenu}
+                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-white bg-accent hover:bg-accent-dark transition-all duration-200 shadow-lg min-h-[48px] flex items-center justify-center"
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     WebkitTouchCallout: 'none',
@@ -427,7 +431,7 @@ export default function Header() {
                   }}
                 >
                   Jetzt einkaufen
-                </div>
+                </Link>
               </div>
             </nav>
           </div>
