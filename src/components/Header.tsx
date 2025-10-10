@@ -265,15 +265,17 @@ export default function Header() {
         isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`} style={{
         WebkitOverflowScrolling: 'touch',
-        overscrollBehavior: 'contain'
+        overscrollBehavior: 'contain',
+        pointerEvents: isMobileMenuOpen ? 'auto' : 'none'
       }}>
         {/* Backdrop */}
-        <div 
+        <div
           className="absolute inset-0 bg-black/50"
           onClick={closeMobileMenu}
           style={{
             WebkitBackdropFilter: 'blur(8px)',
-            backdropFilter: 'blur(8px)'
+            backdropFilter: 'blur(8px)',
+            pointerEvents: 'auto'
           }}
         />
         
@@ -290,7 +292,8 @@ export default function Header() {
           WebkitTransform: 'translateZ(0)',
           transform: 'translateZ(0)',
           WebkitBackfaceVisibility: 'hidden',
-          backfaceVisibility: 'hidden'
+          backfaceVisibility: 'hidden',
+          pointerEvents: 'auto'
         }}>
           <div className="p-6 h-full overflow-y-auto" style={{
             WebkitOverflowScrolling: 'touch',
