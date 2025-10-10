@@ -39,7 +39,7 @@ export default function Hero() {
                 preload="metadata"
                 controls={false}
                 className="w-full h-full object-cover"
-                poster="/mockups/PSD file.png"
+                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
                 onError={(e) => {
                   console.log('Video loading error:', e);
                   // Report to mobile error handler
@@ -133,7 +133,7 @@ export default function Hero() {
                 preload="metadata"
                 controls={false}
                 className="w-full h-full object-cover"
-                poster="/mockups/PSD file.png"
+                poster="/customers/Smooth_cinematic_transition_202510101708.mp4"
                 onError={(e) => {
                   console.log('Video loading error:', e);
                   // Report to mobile error handler

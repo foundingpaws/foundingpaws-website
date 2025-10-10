@@ -277,7 +277,7 @@ export default function Header() {
         />
         
         {/* Mobile Menu Panel - iOS Safe Area Support */}
-        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-green/95 border-l border-cream/20 shadow-2xl transform transition-transform duration-300 ${
+        <div className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-green/95 border-l border-cream/20 shadow-2xl transform transition-transform duration-300 z-50 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`} style={{
           paddingTop: 'env(safe-area-inset-top)',
