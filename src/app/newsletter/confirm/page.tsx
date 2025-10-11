@@ -1,4 +1,4 @@
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 
 import Link from 'next/link';
 export default async function NewsletterConfirmPage({ searchParams }: { searchParams: Promise<{ status?: string }> }) {

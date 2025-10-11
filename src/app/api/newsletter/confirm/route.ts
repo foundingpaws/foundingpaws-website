@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyEmailConfirmToken } from '@/lib/token';
-import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from '@/lib/supabase';
 import { EmailService } from '@/lib/email-service';
 
 export async function GET(req: NextRequest) {
@@ -15,9 +15,9 @@ export async function GET(req: NextRequest) {
     const email = verify.email.toLowerCase().trim();
 
     // Insert or update subscriber as active
-    const { error } = await supabase
+    const { error } = await supabaseAdmin
       .from('newsletter_subscribers')
-      .upsert({ email, status: 'active', source: 'homepage-modal', subscribed_at: new Date().toISOString() }, { onConflict: 'email' });
+      .upsert({ email, status: 'active', source: 'homepage-modal', subscribed_at: new Date().toISOString(), confirmed_at: new Date().toISOString() }, { onConflict: 'email' });
     if (error) {
       console.error('Supabase upsert error:', error);
       return NextResponse.redirect(new URL('/newsletter/confirm?status=error', req.url));

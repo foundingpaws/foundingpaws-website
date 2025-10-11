@@ -119,16 +119,16 @@ function AnalyticsProviderInner({
       {/* Google Analytics Script with Consent Mode */}
       {gaId && gaId !== 'G-XXXXXXXXXX' && (
         <>
+          {/* Define dataLayer/gtag right after interactive to avoid race with config */}
           <Script
             id="gtag-init"
-            strategy="beforeInteractive"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                
+                window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
                 // Set default consent state (denied for all)
-                gtag('consent', 'default', {
+                window.gtag('consent', 'default', {
                   'ad_storage': 'denied',
                   'analytics_storage': 'denied',
                   'functionality_storage': 'denied',
@@ -148,8 +148,10 @@ function AnalyticsProviderInner({
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
-                gtag('js', new Date());
-                gtag('config', '${gaId}', {
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+                window.gtag('js', new Date());
+                window.gtag('config', '${gaId}', {
                   page_title: document.title,
                   page_location: window.location.href,
                   send_page_view: true,

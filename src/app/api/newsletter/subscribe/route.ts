@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
       const { error: dbError } = await supabaseAdmin
         .from('newsletter_subscribers')
         .insert({
-          email,
+          email: email.toLowerCase().trim(),
           name: name || null,
           subscribed_at: new Date().toISOString(),
           status: 'pending',
@@ -45,18 +45,20 @@ export async function POST(request: NextRequest) {
         });
 
       if (dbError) {
-        console.log('Database insert failed, but continuing with email send:', dbError);
+        console.error('[subscribe] Supabase insert error:', dbError);
+        return NextResponse.json({ error: 'Datenbankfehler bei der Anmeldung.' }, { status: 500 });
       }
     } catch (error) {
-      console.log('Database operation failed, but continuing with email send:', error);
+      console.error('[subscribe] Supabase insert exception:', error);
+      return NextResponse.json({ error: 'Datenbankfehler (Exception).' }, { status: 500 });
     }
 
     // Send confirm email for double opt-in
     try {
       await EmailService.sendConfirmEmail(email);
     } catch (emailError) {
-      console.error('Confirm email error:', emailError);
-      // Don't fail the subscription if email fails
+      console.error('[subscribe] Confirm email error:', emailError);
+      return NextResponse.json({ error: 'E-Mail Versand fehlgeschlagen.' }, { status: 502 });
     }
 
     return NextResponse.json({
