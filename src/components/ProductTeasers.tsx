@@ -8,7 +8,7 @@ import IconPaw from "@/components/icons/IconPaw";
 import Transform3D from "@/components/Transform3D";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import SkeletonLoader from "@/components/SkeletonLoader";
-import ProductConfigurator from "@/components/ProductConfigurator";
+// ProductConfigurator entfernt (noch keine Konfiguration verfügbar)
 
 const products = [
   {
@@ -55,7 +55,7 @@ export default function ProductTeasers() {
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showSkeletons, setShowSkeletons] = useState(true);
-  const [showConfigurator, setShowConfigurator] = useState(false);
+  // Konfigurator-UI deaktiviert
 
   useEffect(() => {
     setMounted(true);
@@ -199,15 +199,7 @@ export default function ProductTeasers() {
           )}
         </div>
 
-        {/* Product Configurator Button */}
-        <div className="text-center mb-8">
-          <button
-            onClick={() => setShowConfigurator(true)}
-            className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-          >
-            🐕 Produkt-Konfigurator öffnen
-          </button>
-        </div>
+        {/* Produkt-Konfigurator entfernt */}
 
         {/* "Alle Produkte" Teaser */}
         <div className="text-center mb-14 sm:mb-16">
@@ -235,7 +227,7 @@ export default function ProductTeasers() {
             Sei beim Launch dabei
           </h3>
           <p className="wv-body text-green/75 mb-6">
-            Registriere dich für unsere <strong className="text-green">exklusive Warteliste</strong> und erhalte:
+            Registriere dich für unsere <strong className="text-green">exklusive Warteliste</strong> – wir senden dir eine Bestätigungs‑E‑Mail (Double Opt‑In). Danach erhältst du:
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 text-sm">
@@ -283,7 +275,7 @@ export default function ProductTeasers() {
             </form>
           ) : (
             <div className="pill bg-copper/15 border border-copper/25 text-copper px-6 py-4 inline-flex items-center gap-2 animate-pulse">
-              <span>✓</span> Perfekt! Du bist dabei – wir melden uns bald.
+              <span>✓</span> Danke! Bitte bestätige jetzt deine E‑Mail – prüfe dein Postfach.
             </div>
           )}
           </div>
@@ -292,10 +284,7 @@ export default function ProductTeasers() {
         </Transform3D>
       </div>
 
-      {/* Product Configurator Modal */}
-      {showConfigurator && (
-        <ProductConfigurator onClose={() => setShowConfigurator(false)} />
-      )}
+      {/* Konfigurator-Modal entfernt */}
     </section>
   );
 }

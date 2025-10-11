@@ -359,6 +359,78 @@
   transition-duration: 0.01ms !important;
 }
 
+/* Mobile Quick Navigation Optimizations */
+@supports (-webkit-touch-callout: none) {
+  .mobile-quick-nav {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .mobile-quick-nav button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .mobile-quick-nav button:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Mobile Optimized Sections */
+@supports (-webkit-touch-callout: none) {
+  .mobile-optimized-section {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+  
+  .mobile-optimized-section .sticky-header {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  .mobile-optimized-section button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .mobile-optimized-section button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Enhanced Mobile Scroll Behavior */
+@supports (-webkit-touch-callout: none) {
+  /* Smooth scrolling for section jumps */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent iOS bounce on main content */
+  body {
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimize section transitions */
+  section {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
 /* Mobile touch feedback */
 @media (pointer: coarse) {
   .mobile-touch-feedback:active {
@@ -372,42 +444,42 @@
   @media (max-width: 768px) {
     /* Optimize header height for mobile iOS */
     header {
-      min-height: 60px !important;
-      max-height: 60px !important;
+      min-height: 52px !important;
+      max-height: 56px !important;
     }
     
     /* Move logo higher and more to the left on mobile iOS */
     .header-logo-container {
       margin-left: -4px !important;
-      padding-left: 4px !important;
-      margin-top: -4px !important;
-      padding-top: 4px !important;
-      height: 50px !important;
+      padding-left: 2px !important;
+      margin-top: -6px !important;
+      padding-top: 2px !important;
+      height: 44px !important;
     }
     
     /* Adjust logo positioning in header */
     header .flex-shrink-0 {
-      margin-left: -8px !important;
-      margin-top: -4px !important;
-      height: 50px !important;
+      margin-left: -6px !important;
+      margin-top: -6px !important;
+      height: 44px !important;
     }
     
     /* Ensure logo stays in top-left corner on mobile */
     header .header-logo-container .group {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
-      height: 50px !important;
+      height: 44px !important;
     }
     
     /* Reduce logo size on mobile to prevent overlap */
     .header-logo-container .group div {
       margin-top: 0 !important;
-      height: 40px !important;
+      height: 36px !important;
     }
     
     /* Ensure logo image fits properly */
     .header-logo-container img {
-      max-height: 40px !important;
+      max-height: 36px !important;
       width: auto !important;
     }
     header .flex-shrink-0 a {

@@ -1,0 +1,262 @@
+export type Article = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  description?: string;
+  category: string;
+  tags: string[];
+  image: string;
+  date: string; // human readable (de)
+  readTime: string; // e.g. "7 Min"
+  featured?: boolean;
+  canonical?: string;
+};
+
+export const articles: Article[] = [
+  {
+    slug: "/ratgeber/gelenkprobleme-erkennen",
+    title: "Die 5 häufigsten Gelenkprobleme bei Hunden und wie du sie erkennst",
+    excerpt:
+      "Lahmheit, Steifheit, Schwierigkeiten beim Aufstehen – so erkennst du die wichtigsten Muster und handelst richtig.",
+    category: "Gesundheit",
+    tags: ["Gelenke", "Gesundheit", "Symptome"],
+    image: "/blog/joint-problems.svg",
+    date: "15. März 2024",
+    readTime: "5 Min",
+    featured: true,
+    canonical: "/ratgeber/gelenkprobleme-erkennen",
+  },
+  {
+    slug: "/ratgeber/gastritis-hund",
+    title: "Gastritis beim Hund: Symptome, Ursachen, Hilfe",
+    excerpt: "Wenn der Magen rebelliert – Erkennen, was hilft, wann zum Tierarzt.",
+    category: "Ernährung & Verdauung",
+    tags: ["Gastritis", "Erbrechen", "Verdauung"],
+    image: "/blog/omega3-guide.jpg",
+    date: "8. Januar 2025",
+    readTime: "8 Min",
+    canonical: "/ratgeber/gastritis-hund",
+  },
+  {
+    slug: "/ratgeber/l-theanin-hund",
+    title: "L‑Theanin: Sanfte Hilfe bei Stress und Angst",
+    excerpt: "Studien zeigen beruhigende Effekte – Dosierung 50/100/200 mg.",
+    category: "Stress & Entspannung",
+    tags: ["L-Theanin", "Stress", "Angst"],
+    image: "/blog/dog-stress.svg",
+    date: "4. Januar 2025",
+    readTime: "6 Min",
+    canonical: "/ratgeber/l-theanin-hund",
+  },
+  {
+    slug: "/ratgeber/polyphenole-hund",
+    title: "Antioxidantien & Polyphenole – pflanzliche Helden",
+    excerpt: "Gallic Acid, Curcumin & Co.: Wo sie sinnvoll sind.",
+    category: "Ernährung",
+    tags: ["Polyphenole", "Antioxidantien"],
+    image: "/blog/omega3-guide.svg",
+    date: "3. Januar 2025",
+    readTime: "6 Min",
+    canonical: "/ratgeber/polyphenole-hund",
+  },
+  {
+    slug: "/ratgeber/gruenlippmuschel-hund",
+    title: "Grünlippmuschel – naturbelassene Unterstützung",
+    excerpt: "Perna canaliculus: bessere Aktivität, geringere Schmerzen.",
+    category: "Gelenke & Mobilität",
+    tags: ["GLM", "Gelenke"],
+    image: "/blog/joint-problems.svg",
+    date: "3. Januar 2025",
+    readTime: "7 Min",
+    canonical: "/ratgeber/gruenlippmuschel-hund",
+  },
+  {
+    slug: "/ratgeber/palmitoyl-glucosamin-curcumin",
+    title: "Palmitoyl‑Glucosamin + Curcumin: natürliche Schmerztherapie",
+    excerpt: "90% reduzierten Meloxicam – Ansatz und Anwendung.",
+    category: "Gelenke & Mobilität",
+    tags: ["Schmerz", "Curcumin", "Glucosamin"],
+    image: "/blog/natural-pain-relief.svg",
+    date: "2. Januar 2025",
+    readTime: "7 Min",
+    canonical: "/ratgeber/palmitoyl-glucosamin-curcumin",
+  },
+  {
+    slug: "/ratgeber/ashwagandha-hund",
+    title: "Ashwagandha – Adaptogen für alternde Hunde",
+    excerpt: "Weniger Cortisol/Entzündungsmarker, bessere Lebensqualität.",
+    category: "Senior & Vitalität",
+    tags: ["Senior", "Adaptogen"],
+    image: "/blog/senior-dog-exercises.svg",
+    date: "2. Januar 2025",
+    readTime: "6 Min",
+    canonical: "/ratgeber/ashwagandha-hund",
+  },
+  {
+    slug: "/ratgeber/taurin-herz-hund",
+    title: "Taurin & Herzgesundheit: Vorbeugung gegen DCM",
+    excerpt: "Ernährung & Supplemente sinnvoll nutzen – Warnzeichen, Diagnose.",
+    category: "Herz & Kreislauf",
+    tags: ["Taurin", "Herz"],
+    image: "/blog/health-guide.jpg",
+    date: "1. Januar 2025",
+    readTime: "7 Min",
+    canonical: "/ratgeber/taurin-herz-hund",
+  },
+  {
+    slug: "/ratgeber/coq10-herz-hund",
+    title: "Coenzym Q10 – antioxidativer Schutz fürs Herz",
+    excerpt: "Studie: reduzierte Entzündungsmarker – Ergänzung sinnvoll.",
+    category: "Herz & Kreislauf",
+    tags: ["CoQ10", "Herz"],
+    image: "/blog/health-guide.jpg",
+    date: "1. Januar 2025",
+    readTime: "6 Min",
+    canonical: "/ratgeber/coq10-herz-hund",
+  },
+  {
+    slug: "/ratgeber/mct-kognition-hund",
+    title: "MCTs & kognitive Dysfunktion beim Hund",
+    excerpt: "6,5% MCT: klinische Verbesserungen nach 30–90 Tagen.",
+    category: "Kognition & Gehirn",
+    tags: ["MCT", "Kognition"],
+    image: "/blog/omega3-guide.svg",
+    date: "31. Dezember 2024",
+    readTime: "7 Min",
+    canonical: "/ratgeber/mct-kognition-hund",
+  },
+  {
+    slug: "/ratgeber/dental-chews-hund",
+    title: "Dental‑Chews: mehr als nur Kauen",
+    excerpt: "12–17% weniger Plaque/Zahnstein; 20–35% weniger Calculus.",
+    category: "Zähne & Mundgesundheit",
+    tags: ["Zähne", "Pflege"],
+    image: "/blog/health-guide.jpg",
+    date: "30. Dezember 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/dental-chews-hund",
+  },
+  {
+    slug: "/ratgeber/feuerwerksangst-hund",
+    title: "Feuerwerksangst: Tryptophan, Baldrian & Passionsblume",
+    excerpt: "33–41% Verbesserungen – rechtzeitig beginnen.",
+    category: "Stress & Entspannung",
+    tags: ["Angst", "Silvester"],
+    image: "/blog/dog-stress.svg",
+    date: "29. Dezember 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/feuerwerksangst-hund",
+  },
+  {
+    slug: "/ratgeber/melatonin-hund",
+    title: "Melatonin – Beruhigung & Hilfe bei Alopezie",
+    excerpt: "Geräuschphobie/Schlaf; teils Haarneubildung.",
+    category: "Stress & Entspannung",
+    tags: ["Melatonin", "Schlaf"],
+    image: "/blog/health-guide.jpg",
+    date: "28. Dezember 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/melatonin-hund",
+  },
+  {
+    slug: "/ratgeber/giardien-hund",
+    title: "Giardien – wenn der Darm rebelliert",
+    excerpt: "Therapie + Hygiene; Zoonose beachten.",
+    category: "Ernährung & Verdauung",
+    tags: ["Giardien", "Durchfall"],
+    image: "/blog/omega3-guide.jpg",
+    date: "27. Dezember 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/giardien-hund",
+  },
+  {
+    slug: "/ratgeber/floehe-hund",
+    title: "Flöhe – kleine Plagegeister mit großer Wirkung",
+    excerpt: "Prophylaxe, Umgebungshygiene, Behandlung.",
+    category: "Haut & Fell",
+    tags: ["Flöhe", "Parasiten"],
+    image: "/blog/health-guide.jpg",
+    date: "26. Dezember 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/floehe-hund",
+  },
+  {
+    slug: "/ratgeber/raeude-hund",
+    title: "Räude (Sarcoptes) – hoch ansteckender Juckreiz",
+    excerpt: "Erkennen, behandeln, Reinfektion vermeiden.",
+    category: "Haut & Fell",
+    tags: ["Räude", "Parasiten"],
+    image: "/blog/health-guide.jpg",
+    date: "25. Dezember 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/raeude-hund",
+  },
+  {
+    slug: "/ratgeber/omega3-hund",
+    title: "Omega-3 für Hunde: Warum es so wichtig ist und worauf du achten solltest",
+    excerpt:
+      "Vorteile, Qualität, Dosierung – worauf es bei EPA/DHA wirklich ankommt.",
+    category: "Ernährung",
+    tags: ["Omega-3", "Ernährung", "Fettsäuren"],
+    image: "/blog/omega3-guide.svg",
+    date: "12. März 2024",
+    readTime: "7 Min",
+    canonical: "/ratgeber/omega3-hund",
+  },
+  {
+    slug: "/ratgeber/stress-hund",
+    title: "Stress bei Hunden: Anzeichen erkennen und natürlich lindern",
+    excerpt:
+      "Typische Stressoren, Körpersprache und sanfte Strategien für mehr Gelassenheit.",
+    category: "Verhalten",
+    tags: ["Stress", "Verhalten", "Entspannung"],
+    image: "/blog/dog-stress.svg",
+    date: "10. März 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/stress-hund",
+  },
+  {
+    slug: "/ratgeber/gelenk-praevention",
+    title: "Das Geheimnis gesunder Hundegelenke: Prävention ist besser als Heilung",
+    excerpt:
+      "Früh beginnen: Bewegung, Gewicht, Umfeld – die wichtigsten Stellschrauben.",
+    category: "Prävention",
+    tags: ["Prävention", "Gelenke", "Bewegung"],
+    image: "/blog/joint-prevention.svg",
+    date: "8. März 2024",
+    readTime: "8 Min",
+    canonical: "/ratgeber/gelenk-praevention",
+  },
+  {
+    slug: "/ratgeber/natuerliche-schmerzmittel-hund",
+    title: "Natürliche Alternativen zu Schmerzmitteln für Hunde",
+    excerpt:
+      "Multimodal statt Monotherapie: Omega‑3, GLM, UC‑II/Boswellia und mehr im Überblick.",
+    category: "Naturheilkunde",
+    tags: ["Schmerzlinderung", "Naturheilkunde", "Alternativen"],
+    image: "/blog/natural-pain-relief.svg",
+    date: "5. März 2024",
+    readTime: "9 Min",
+    canonical: "/ratgeber/natuerliche-schmerzmittel-hund",
+  },
+  {
+    slug: "/ratgeber/senior-hund-uebungen",
+    title: "Die besten Übungen für ältere Hunde: Bewegung ohne Überlastung",
+    excerpt:
+      "Schonend mobilisieren, Muskulatur erhalten, Alltag erleichtern – konkrete Übungsideen.",
+    category: "Bewegung",
+    tags: ["Bewegung", "Senior-Hunde", "Übungen"],
+    image: "/blog/senior-dog-exercises.svg",
+    date: "3. März 2024",
+    readTime: "6 Min",
+    canonical: "/ratgeber/senior-hund-uebungen",
+  },
+];
+
+export function getAllCategories(): string[] {
+  const set = new Set<string>();
+  for (const a of articles) set.add(a.category);
+  return ["Alle", ...Array.from(set)];
+}
+
+

@@ -8,6 +8,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import CustomCursor from "@/components/CustomCursor";
 import { AccessibilityProvider } from "@/components/AccessibilityProvider";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
+import JsonLd from "@/components/JsonLd";
 // Removed next-i18next import
 
 // Display (Retrips-like) — using Fraunces as premium optical-serif stand-in
@@ -42,6 +43,14 @@ export const metadata: Metadata = {
   title: "Founding Paws — Wissenschaft mit Herz",
   description:
     "Premium-Ergänzungen für Hunde – evidenzbasiert entwickelt und mit Herz gemacht.",
+  alternates: {
+    canonical: '/',
+    languages: {
+      'de-DE': '/',
+      'en': '/en',
+      'x-default': '/',
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
@@ -51,6 +60,17 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
     title: "Founding Paws — Wissenschaft mit Herz",
     description:
@@ -77,11 +97,38 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de';
   return (
     <html lang="de">
       <body
         className={`${display.variable} ${sans.variable} ${round.variable} antialiased`}
       >
+        <JsonLd schema={{
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'Founding Paws',
+          url: siteUrl,
+          logo: `${siteUrl}/logo-header.png`,
+        }} />
+        <JsonLd schema={{
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Founding Paws',
+          url: siteUrl,
+          inLanguage: 'de-DE',
+        }} />
+        <JsonLd schema={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Startseite',
+              item: siteUrl,
+            },
+          ],
+        }} />
         <ErrorBoundary>
           <AccessibilityProvider>
             <AnalyticsProvider>

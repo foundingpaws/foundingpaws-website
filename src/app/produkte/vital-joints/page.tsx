@@ -15,6 +15,7 @@ import IconLab from "@/components/icons/IconLab";
 import IconDoctor from "@/components/icons/IconDoctor";
 import IconRocket from "@/components/icons/IconRocket";
 import IconSparkles from "@/components/icons/IconSparkles";
+import JsonLd from "@/components/JsonLd";
 
 const benefits = [
   {
@@ -135,15 +136,16 @@ export default function VitalJointsPage() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de';
 
   const handleWaitlist = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch('/api/waitlist', {
+      const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, product: 'vital-joints' }),
+        body: JSON.stringify({ email, name: null, source: 'vital-joints-waitlist' }),
       });
       if (res.ok) {
         setSubmitted(true);
@@ -159,6 +161,35 @@ export default function VitalJointsPage() {
 
   return (
     <main className="bg-cream text-green">
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Produkte', item: `${siteUrl}/produkte` },
+          { '@type': 'ListItem', position: 3, name: 'Vital Joints', item: `${siteUrl}/produkte/vital-joints` },
+        ],
+      }} />
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Vital Joints',
+        description: 'Für schmerzfreie Spaziergänge bis ins hohe Alter. Unterstützt Gelenke und Beweglichkeit.',
+        image: [`${siteUrl}/products/vital-joints/VitalJoints.png`],
+        brand: { '@type': 'Brand', name: 'Founding Paws' },
+        category: 'Animals & Pet Supplies > Pet Supplies > Dog Supplies > Dog Health Supplies',
+        url: `${siteUrl}/produkte/vital-joints`,
+        audience: { '@type': 'PeopleAudience', audienceType: 'Dog owners' },
+      }} />
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: { '@type': 'Answer', text: q.answer },
+        })),
+      }} />
       {/* Hero Section */}
       <section className="wv-section bg-gradient-to-br from-green to-green/90" style={{color: 'white'}}>
         <div className="container-wide">

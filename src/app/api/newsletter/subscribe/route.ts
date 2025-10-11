@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { EmailService, EmailAutomation } from '@/lib/email-service';
+import { EmailService } from '@/lib/email-service';
 import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, name } = await request.json();
+    const { email, name, source } = await request.json();
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -40,7 +40,8 @@ export async function POST(request: NextRequest) {
           email,
           name: name || null,
           subscribed_at: new Date().toISOString(),
-          status: 'active'
+          status: 'pending',
+          source: source || 'newsletter-subscribe'
         });
 
       if (dbError) {
@@ -50,17 +51,17 @@ export async function POST(request: NextRequest) {
       console.log('Database operation failed, but continuing with email send:', error);
     }
 
-    // Send welcome email
+    // Send confirm email for double opt-in
     try {
-      await EmailAutomation.triggerWelcomeEmail(email, name);
+      await EmailService.sendConfirmEmail(email);
     } catch (emailError) {
-      console.error('Welcome email error:', emailError);
+      console.error('Confirm email error:', emailError);
       // Don't fail the subscription if email fails
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Erfolgreich für den Newsletter angemeldet!'
+      message: 'Bitte bestätige deine Anmeldung. Wir haben dir eine E-Mail gesendet.'
     });
 
   } catch (error) {

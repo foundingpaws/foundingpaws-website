@@ -3,85 +3,65 @@ import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 import IconBook from "@/components/icons/IconBook";
+import IconBone from "@/components/icons/IconBone";
+import IconSparkles from "@/components/icons/IconSparkles";
+import IconBrainHeart from "@/components/icons/IconBrainHeart";
+import IconShield from "@/components/icons/IconShield";
+import { getAllCategories } from "@/lib/articles";
+import { articles as allArticles } from "@/lib/articles";
+import ArticleList from "@/components/ArticleList";
+import JsonLd from "@/components/JsonLd";
 
-const categories = [
-  {
-    name: "Gelenke & Mobilität",
-    description: "Bandscheibenvorfälle, Spondylose und Bewegung",
-    icon: "🦴",
-    color: "copper",
-    articles: 12
-  },
-  {
-    name: "Stress & Entspannung",
-    description: "Trennungsangst, Bellen und Gelassenheit",
-    icon: "🧘",
-    color: "green",
-    articles: 8
-  },
-  {
-    name: "Kognition & Gehirn",
-    description: "Epilepsie und geistige Fitness",
-    icon: "🧠",
-    color: "taupe",
-    articles: 6
-  },
-  {
-    name: "Ernährung & Verdauung",
-    description: "Gastritis, Kot-Probleme und gesunde Ernährung",
-    icon: "🥗",
-    color: "copper",
-    articles: 10
-  },
-  {
-    name: "Haut & Fell",
-    description: "Ohrenprobleme, Juckreiz und Fellpflege",
-    icon: "✨",
-    color: "green",
-    articles: 7
-  },
-  {
-    name: "Senior & Vitalität",
-    description: "Nierenprobleme und Altersbeschwerden",
-    icon: "🐕",
-    color: "taupe",
-    articles: 9
-  }
-];
+const categoryIconMap: Record<string, any> = {
+  Gesundheit: IconShield,
+  Ernährung: IconSparkles,
+  Verhalten: IconSparkles,
+  Prävention: IconShield,
+  Naturheilkunde: IconSparkles,
+  Bewegung: IconBone,
+};
+
+const categories = getAllCategories()
+  .filter((c) => c !== "Alle")
+  .map((name) => ({
+    name,
+    description: "",
+    Icon: categoryIconMap[name] || IconShield,
+  }));
 
 const featuredArticles = [
   {
     id: 1,
-    title: "Bandscheibenvorfall beim Hund: Symptome, Behandlung und was du tun kannst",
-    excerpt: "Wenn dein Hund plötzlich lahmt oder Schmerzen hat - alles über Bandscheibenvorfälle, ihre Ursachen und wie du deinem Liebling helfen kannst.",
-    category: "Gelenke & Mobilität",
-    readTime: "12 Min",
-    image: "/blog/joint-problems.jpg",
-    date: "15. Januar 2025",
+    title: "Omega‑3 für Hunde: Warum so wichtig – und worauf achten?",
+    excerpt: "EPA/DHA modulieren Entzündungen – Evidenz bei OA, Haut, Herz, Niere. Dosierung und Qualität im Überblick.",
+    category: "Ernährung",
+    readTime: "9 Min",
+    image: "/blog/omega3-guide.jpg",
+    date: "11. Januar 2025",
     featured: true,
-    url: "/ratgeber/bandscheibenvorfall-hund"
+    url: "/ratgeber/omega3-hund"
   },
   {
     id: 2,
-    title: "Hund kann nicht alleine bleiben? So kannst du ihm helfen",
-    excerpt: "Trennungsangst beim Hund verstehen und überwinden - bewährte Methoden für mehr Gelassenheit und Selbstvertrauen.",
-    category: "Stress & Entspannung",
-    readTime: "10 Min",
-    image: "/blog/dog-stress.jpg",
-    date: "12. Januar 2025",
-    featured: true,
-    url: "/ratgeber/trennungsangst-hund"
-  },
-  {
-    id: 3,
-    title: "Epilepsie beim Hund verstehen und liebevoll begleiten",
-    excerpt: "Wenn das Gehirn stolpert - alles über Epilepsie bei Hunden, Anfallsmanagement und wie du deinem Hund ein normales Leben ermöglichen kannst.",
-    category: "Kognition & Gehirn",
-    readTime: "15 Min",
+    title: "Übungen für Senior‑Hunde: Bewegung ohne Überlastung",
+    excerpt: "Schonende Aktivitäten, Kraft & Balance zu Hause und ein Wochenplan – so bleibt dein Senior mobil.",
+    category: "Gelenke & Mobilität",
+    readTime: "9 Min",
     image: "/blog/senior-dog-exercises.jpg",
     date: "10. Januar 2025",
     featured: true,
-    url: "/ratgeber/epilepsie-hund"
+    url: "/ratgeber/senior-hund-uebungen"
+  },
+  {
+    id: 3,
+    title: "Glucosamin & Chondroitin vs. marine Lipide – was hilft wirklich?",
+    excerpt: "Studie: PCSO‑524/EAB‑277 und Carprofen verbessern objektive Belastungsmaße – Glucosamin/Chondroitin nicht.",
+    category: "Gelenke & Mobilität",
+    readTime: "8 Min",
+    image: "/blog/joint-problems.jpg",
+    date: "9. Januar 2025",
+    featured: true,
+    url: "/ratgeber/glucosamin-vs-marine-lipide"
   }
 ];
 
@@ -95,6 +75,206 @@ const recentArticles = [
     image: "/blog/omega3-guide.jpg",
     date: "8. Januar 2025",
     url: "/ratgeber/gastritis-hund"
+  },
+  {
+    id: 10,
+    title: "Natürliche Alternativen zu Schmerzmitteln: Was hilft wirklich?",
+    excerpt: "Evidenz zu Omega‑3, Grünlippmuschel und UC‑II/Boswellia – sicher einsetzen und richtig dosieren.",
+    category: "Gelenke & Mobilität",
+    readTime: "8 Min",
+    image: "/blog/natural-pain-relief.jpg",
+    date: "9. Januar 2025",
+    url: "/ratgeber/natuerliche-schmerzmittel-hund"
+  },
+  {
+    id: 11,
+    title: "Prävention ist King: So schützt du Hundegelenke frühzeitig",
+    excerpt: "Die 6 Säulen: Gewicht, Bewegung, Umfeld, Früherkennung, Ernährung, Reha – mit Checkliste.",
+    category: "Gelenke & Mobilität",
+    readTime: "7 Min",
+    image: "/blog/joint-prevention.jpg",
+    date: "8. Januar 2025",
+    url: "/ratgeber/gelenk-praevention"
+  },
+  {
+    id: 12,
+    title: "Stress bei Hunden erkennen – und natürlich unterstützen",
+    excerpt: "Signale deuten, Training & Management kombinieren – Evidenz zu L‑Theanin, DAP & Co.",
+    category: "Stress & Entspannung",
+    readTime: "7 Min",
+    image: "/blog/dog-stress.jpg",
+    date: "7. Januar 2025",
+    url: "/ratgeber/stress-hund"
+  },
+  {
+    id: 13,
+    title: "Die 5 häufigsten Gelenkprobleme – und wie du sie erkennst",
+    excerpt: "OA, Hüft‑/Ellenbogendysplasie, Kreuzband, Patellaluxation – typische Anzeichen & Tierarzt‑Check.",
+    category: "Gelenke & Mobilität",
+    readTime: "8 Min",
+    image: "/blog/joint-problems.jpg",
+    date: "6. Januar 2025",
+    url: "/ratgeber/gelenkprobleme-erkennen"
+  },
+  {
+    id: 14,
+    title: "Die besten Übungen für ältere Hunde: Praxis‑Anleitung (4 Wochen)",
+    excerpt: "Warm‑up, Progression, Cool‑down – sicher trainieren ohne Überlastung.",
+    category: "Gelenke & Mobilität",
+    readTime: "8 Min",
+    image: "/blog/senior-dog-exercises.jpg",
+    date: "5. Januar 2025",
+    url: "/ratgeber/senior-uebungen-anleitung"
+  },
+  {
+    id: 15,
+    title: "L‑Theanin: Sanfte Hilfe bei Stress und Angst",
+    excerpt: "Studien zeigen beruhigende Effekte – Dosierung 50/100/200 mg je nach Gewicht.",
+    category: "Stress & Entspannung",
+    readTime: "6 Min",
+    image: "/blog/stress-guide.jpg",
+    date: "4. Januar 2025",
+    url: "/ratgeber/l-theanin-hund"
+  },
+  {
+    id: 16,
+    title: "Probiotika & Präbiotika: Darm & Immunsystem stärken",
+    excerpt: "Ausgewählte Stämme verbessern Verdauung, Stressmarker & IgA – so setzt du sie ein.",
+    category: "Ernährung & Verdauung",
+    readTime: "7 Min",
+    image: "/guides/nutrition-guide.jpg",
+    date: "4. Januar 2025",
+    url: "/ratgeber/probiotika-hund"
+  },
+  {
+    id: 17,
+    title: "Antioxidantien & Polyphenole – pflanzliche Helden",
+    excerpt: "Gallic Acid, Tannine, Granatapfel, Curcumin: wo sie sinnvoll sind.",
+    category: "Ernährung",
+    readTime: "6 Min",
+    image: "/guides/health-guide.jpg",
+    date: "3. Januar 2025",
+    url: "/ratgeber/polyphenole-hund"
+  },
+  {
+    id: 18,
+    title: "Grünlippmuschel – naturbelassene Unterstützung für Gelenke",
+    excerpt: "Perna canaliculus: bessere Aktivität, geringere Schmerzen – Anwendung & Tipps.",
+    category: "Gelenke & Mobilität",
+    readTime: "7 Min",
+    image: "/blog/joint-problems.jpg",
+    date: "3. Januar 2025",
+    url: "/ratgeber/gruenlippmuschel-hund"
+  },
+  {
+    id: 19,
+    title: "Palmitoyl‑Glucosamin + Curcumin: natürliche Schmerztherapie",
+    excerpt: "Studie: 90% konnten Meloxicam reduzieren – so könnte die Kombination helfen.",
+    category: "Gelenke & Mobilität",
+    readTime: "7 Min",
+    image: "/blog/natural-pain-relief.jpg",
+    date: "2. Januar 2025",
+    url: "/ratgeber/palmitoyl-glucosamin-curcumin"
+  },
+  {
+    id: 20,
+    title: "Ashwagandha – Adaptogen für alternde Hunde",
+    excerpt: "Randomisierte Daten: weniger Cortisol/TNF‑α/IFN‑γ, bessere Lebensqualität.",
+    category: "Senior & Vitalität",
+    readTime: "6 Min",
+    image: "/guides/health-guide.jpg",
+    date: "2. Januar 2025",
+    url: "/ratgeber/ashwagandha-hund"
+  },
+  {
+    id: 21,
+    title: "Taurin & Herzgesundheit: Vorbeugung gegen DCM",
+    excerpt: "Ernährung & Supplemente sinnvoll nutzen – Warnzeichen, Diagnose, Empfehlungen.",
+    category: "Herz & Kreislauf",
+    readTime: "7 Min",
+    image: "/blog/stress-guide.jpg",
+    date: "1. Januar 2025",
+    url: "/ratgeber/taurin-herz-hund"
+  },
+  {
+    id: 22,
+    title: "Coenzym Q10 – antioxidativer Schutz fürs Herz",
+    excerpt: "Studie: reduzierte Entzündungsmarker – sinnvoll als Ergänzung, keine Monotherapie.",
+    category: "Herz & Kreislauf",
+    readTime: "6 Min",
+    image: "/guides/health-guide.jpg",
+    date: "1. Januar 2025",
+    url: "/ratgeber/coq10-herz-hund"
+  },
+  {
+    id: 23,
+    title: "MCTs & kognitive Dysfunktion beim Hund",
+    excerpt: "Diät mit 6,5% MCT + BPB: klinische Verbesserungen nach 30–90 Tagen.",
+    category: "Kognition & Gehirn",
+    readTime: "7 Min",
+    image: "/blog/omega3-guide.jpg",
+    date: "31. Dezember 2024",
+    url: "/ratgeber/mct-kognition-hund"
+  },
+  {
+    id: 24,
+    title: "Dental‑Chews: mehr als nur Kauen",
+    excerpt: "12–17% weniger Plaque/Zahnstein; 20–35% weniger Calculus – Evidenz & Tipps.",
+    category: "Zähne & Mundgesundheit",
+    readTime: "6 Min",
+    image: "/blog/joint-problems.jpg",
+    date: "30. Dezember 2024",
+    url: "/ratgeber/dental-chews-hund"
+  },
+  {
+    id: 25,
+    title: "Feuerwerksangst: Tryptophan, Baldrian & Passionsblume",
+    excerpt: "Placebokontrollierte Daten: Verbesserungen 33–41% – rechtzeitig beginnen.",
+    category: "Stress & Entspannung",
+    readTime: "6 Min",
+    image: "/blog/dog-stress.jpg",
+    date: "29. Dezember 2024",
+    url: "/ratgeber/feuerwerksangst-hund"
+  },
+  {
+    id: 26,
+    title: "Melatonin – Beruhigung & Hilfe bei Alopezie",
+    excerpt: "Einsatz bei Geräuschphobie/Schlaf; teils Haarneubildung bei saisonaler Alopezie.",
+    category: "Stress & Entspannung",
+    readTime: "6 Min",
+    image: "/guides/health-guide.jpg",
+    date: "28. Dezember 2024",
+    url: "/ratgeber/melatonin-hund"
+  },
+  {
+    id: 27,
+    title: "Giardien – wenn der Darm rebelliert",
+    excerpt: "Therapie + Hygiene; Zoonose beachten – Symptome, Behandlung, Prävention.",
+    category: "Ernährung & Verdauung",
+    readTime: "6 Min",
+    image: "/guides/nutrition-guide.jpg",
+    date: "27. Dezember 2024",
+    url: "/ratgeber/giardien-hund"
+  },
+  {
+    id: 28,
+    title: "Flöhe – kleine Plagegeister mit großer Wirkung",
+    excerpt: "Prophylaxe, Umgebungshygiene und Behandlung – so gehst du vor.",
+    category: "Haut & Fell",
+    readTime: "6 Min",
+    image: "/blog/joint-problems.jpg",
+    date: "26. Dezember 2024",
+    url: "/ratgeber/floehe-hund"
+  },
+  {
+    id: 29,
+    title: "Räude (Sarcoptes) – hoch ansteckender Juckreiz",
+    excerpt: "Erkennen, sicher behandeln, Reinfektion vermeiden – Hygiene ist entscheidend.",
+    category: "Haut & Fell",
+    readTime: "6 Min",
+    image: "/blog/joint-problems.jpg",
+    date: "25. Dezember 2024",
+    url: "/ratgeber/raeude-hund"
   },
   {
     id: 5,
@@ -112,7 +292,7 @@ const recentArticles = [
     excerpt: "Wenn der Kot deines Hundes verändert aussieht - Ursachen erkennen und richtig handeln.",
     category: "Ernährung & Verdauung",
     readTime: "7 Min",
-    image: "/blog/puppy-nutrition.jpg",
+    image: "/blog/omega3-guide.jpg",
     date: "3. Januar 2025",
     url: "/ratgeber/trennungsangst-hund"
   },
@@ -174,6 +354,15 @@ const tips = [
 export default function RatgeberPage() {
   return (
     <main className="bg-cream text-green">
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: allArticles.map((a, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}${a.slug}`,
+        })),
+      }} />
       {/* Hero Section */}
       <section className="wv-section bg-green text-cream">
         <div className="container-wide">
@@ -195,220 +384,30 @@ export default function RatgeberPage() {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="wv-section bg-gradient-to-b from-cream to-taupe/5">
-        <div className="container-wide">
-          <ScrollAnimation>
-            <div className="text-center wv-spacing-2xl">
-              <h2 className="wv-h2 text-green wv-spacing-sm">
-                Wähle dein Thema
-              </h2>
-              <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead text-green/70 wv-spacing-md max-w-3xl mx-auto">
-                Finde die richtigen Informationen für die Gesundheit deines Hundes.
-              </p>
-            </div>
-          </ScrollAnimation>
+      
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, index) => (
-              <ScrollAnimation key={category.name} animation="fade-in" delay={index * 100}>
-                <div className="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2 border border-green/10">
-                  <div className="p-8">
-                    <div className="text-4xl wv-spacing-sm">{category.icon}</div>
-                    <h3 className="wv-h3 text-green wv-spacing-sm group-hover:text-copper transition-colors">
-                      {category.name}
-                    </h3>
-                    <p className="wv-body text-green/70 wv-spacing-md">
-                      {category.description}
-                    </p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-green/60">
-                        {category.articles} Artikel
-                      </span>
-                      <span className="text-copper text-sm font-medium group-hover:text-copper/80 transition-colors">
-                        Lesen →
-                      </span>
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-copper/5 via-transparent to-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              </ScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
-      {/* Featured Articles */}
+      {/* Quick Tips entfernt für ruhigeren Premium-Look */}
+
+      
+
+      {/* All Articles with Filter */}
       <section className="wv-section bg-cream">
         <div className="container-wide">
           <ScrollAnimation>
             <div className="text-center wv-spacing-2xl">
               <h2 className="wv-h2 text-green wv-spacing-sm">
-                Empfohlene Artikel
+                Alle Artikel
               </h2>
               <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
               <p className="wv-lead text-green/70 wv-spacing-md max-w-3xl mx-auto">
-                Unsere beliebtesten und wichtigsten Artikel für die Hundegesundheit.
+                Filtere nach Kategorien und stöbere durch unseren gesamten Ratgeber.
               </p>
             </div>
           </ScrollAnimation>
 
-          <div className="grid lg:grid-cols-3 gap-12 wv-spacing-2xl">
-            {featuredArticles.map((article, index) => (
-              <ScrollAnimation key={article.id} animation="slide-up" delay={index * 150}>
-                <article className="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2 border border-green/10">
-                  {/* Article Image */}
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      unoptimized
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                    
-                    {/* Featured Badge */}
-                    {article.featured && (
-                      <div className="absolute top-4 left-4">
-                        <div className="bg-copper text-cream px-3 py-1 rounded-full text-sm font-bold">
-                          Empfohlen
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* Category */}
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-white/90 text-green px-3 py-1 rounded-full text-sm font-medium">
-                        {article.category}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Article Content */}
-                  <div className="p-8">
-                    <div className="flex items-center gap-4 text-sm text-green/60 wv-spacing-sm">
-                      <span>{article.date}</span>
-                      <span>•</span>
-                      <span>{article.readTime} Lesezeit</span>
-                    </div>
-                    
-                    <h3 className="wv-h3 text-green wv-spacing-sm group-hover:text-copper transition-colors">
-                      {article.title}
-                    </h3>
-                    
-                    <p className="wv-body text-green/70 wv-spacing-md leading-relaxed">
-                      {article.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <Link href={article.url} className="text-copper text-sm font-medium group-hover:text-copper/80 transition-colors">
-                        Artikel lesen →
-                      </Link>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-copper rounded-full"></div>
-                        <span className="text-xs text-green/60">Verfügbar</span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </ScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Tips */}
-      <section className="wv-section bg-green text-cream">
-        <div className="container-wide">
-          <ScrollAnimation>
-            <div className="text-center wv-spacing-2xl">
-              <h2 className="wv-h2 wv-spacing-sm" style={{color: 'white'}}>
-                Schnelle Tipps für den Alltag
-              </h2>
-              <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead wv-spacing-md max-w-3xl mx-auto" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
-                Einfache Maßnahmen, die sofort wirken.
-              </p>
-            </div>
-          </ScrollAnimation>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {tips.map((tip, index) => (
-              <ScrollAnimation key={tip.title} animation="fade-in" delay={index * 100}>
-                <div className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-cream/20 hover:bg-white/20 transition-all duration-300">
-                  <div className="text-3xl wv-spacing-sm">{tip.icon}</div>
-                  <h3 className="wv-h4 wv-spacing-xs" style={{color: 'white'}}>
-                    {tip.title}
-                  </h3>
-                  <p className="wv-body" style={{color: 'rgba(255, 255, 255, 0.8)'}}>
-                    {tip.description}
-                  </p>
-                </div>
-              </ScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recent Articles */}
-      <section className="wv-section bg-gradient-to-b from-taupe/5 to-cream">
-        <div className="container-wide">
-          <ScrollAnimation>
-            <div className="text-center wv-spacing-2xl">
-              <h2 className="wv-h2 text-green wv-spacing-sm">
-                Neueste Artikel
-              </h2>
-              <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead text-green/70 wv-spacing-md max-w-3xl mx-auto">
-                Frische Inhalte und aktuelle Erkenntnisse zur Hundegesundheit.
-              </p>
-            </div>
-          </ScrollAnimation>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {recentArticles.map((article, index) => (
-              <ScrollAnimation key={article.id} animation="slide-up" delay={index * 100}>
-                <article className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1 border border-green/10">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      unoptimized
-                    />
-                    <div className="absolute top-3 right-3">
-                      <div className="bg-white/90 text-green px-2 py-1 rounded-full text-xs font-medium">
-                        {article.category}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 text-xs text-green/60 wv-spacing-xs">
-                      <span>{article.date}</span>
-                      <span>•</span>
-                      <span>{article.readTime}</span>
-                    </div>
-                    
-                    <h3 className="wv-h4 text-green wv-spacing-sm group-hover:text-copper transition-colors">
-                      {article.title}
-                    </h3>
-                    
-                    <p className="wv-body text-green/70 wv-spacing-sm text-sm">
-                      {article.excerpt}
-                    </p>
-                    
-                    <Link href={article.url} className="text-copper text-sm font-medium group-hover:text-copper/80 transition-colors">
-                      Lesen →
-                    </Link>
-                  </div>
-                </article>
-              </ScrollAnimation>
-            ))}
-          </div>
+          <ArticleList articles={allArticles} pageSize={9} showFilter={true} showSearch={true} />
         </div>
       </section>
 

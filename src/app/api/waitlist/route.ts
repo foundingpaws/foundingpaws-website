@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { EmailService } from "@/lib/email-service";
 
 export async function POST(req: Request) {
   try {
@@ -8,11 +9,15 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "invalid_email" }, { status: 400 });
     }
 
-    // In a real setup, write to your CRM/Email provider.
-    // For first live test, log to server and accept.
-    console.log("[waitlist] new email:", email);
+    // Send double opt-in confirmation email
+    try {
+      await EmailService.sendConfirmEmail(email);
+    } catch (e) {
+      console.error('[waitlist] confirm email error:', e);
+      // still return ok to avoid user friction; resend can be retried
+    }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, doi: true });
   } catch {
     return NextResponse.json({ ok: false }, { status: 500 });
   }

@@ -28,7 +28,13 @@ export function useLeadCapture(config: LeadCaptureConfig = {}) {
     // Check if already shown (if showOnce is enabled)
     if (finalConfig.showOnce) {
       const hasShownBefore = localStorage.getItem(finalConfig.storageKey!) === 'true';
+      const cookieMatch = document.cookie.match(/(?:^|; )fp_subscribed=([^;]+)/);
+      const isSubscribed = cookieMatch && cookieMatch[1] === '1';
       if (hasShownBefore) {
+        setHasShown(true);
+        return;
+      }
+      if (isSubscribed) {
         setHasShown(true);
         return;
       }

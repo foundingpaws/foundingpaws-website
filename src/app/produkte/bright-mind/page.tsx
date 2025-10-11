@@ -7,7 +7,6 @@ import FadeIn from "@/components/FadeIn";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import OptimizedImage from "@/components/OptimizedImage";
 import LoadingButton from "@/components/LoadingButton";
-import { supabase } from '@/lib/supabase';
 import IconBrainHeart from "@/components/icons/IconBrainHeart";
 import IconHeart from "@/components/icons/IconHeart";
 import IconLeaf from "@/components/icons/IconLeaf";
@@ -17,6 +16,7 @@ import IconLab from "@/components/icons/IconLab";
 import IconDoctor from "@/components/icons/IconDoctor";
 import IconRocket from "@/components/icons/IconRocket";
 import IconSparkles from "@/components/icons/IconSparkles";
+import JsonLd from "@/components/JsonLd";
 
 const benefits = [
   {
@@ -115,6 +115,7 @@ export default function BrightMindPage() {
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de';
 
   const handleWaitlist = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -122,39 +123,16 @@ export default function BrightMindPage() {
     setErrorMessage('');
     
     try {
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .insert([{ 
-          email: email.toLowerCase().trim(), 
-          source: 'bright-mind-waitlist',
-          status: 'active'
-        }]);
-      
-      if (error) {
-        if (error.code === '23505') {
-          setErrorMessage('Diese E-Mail-Adresse ist bereits angemeldet.');
-        } else {
-          setErrorMessage('Fehler beim Anmelden. Bitte versuche es erneut.');
-        }
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.toLowerCase().trim(), name: 'Liebe/r Hundefreund/in', source: 'bright-mind-waitlist' })
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        setErrorMessage(data?.error || 'Fehler beim Anmelden. Bitte versuche es erneut.');
         setIsLoading(false);
         return;
-      }
-      
-      // Send welcome email
-      try {
-        await fetch('/api/email/welcome', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: email.toLowerCase().trim(),
-            name: 'Liebe/r Hundefreund/in'
-          }),
-        });
-      } catch (emailError) {
-        console.error('Welcome email error:', emailError);
-        // Don't fail the signup if email fails
       }
       
       setSubmitted(true);
@@ -168,6 +146,35 @@ export default function BrightMindPage() {
 
   return (
     <main className="bg-cream text-green">
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Produkte', item: `${siteUrl}/produkte` },
+          { '@type': 'ListItem', position: 3, name: 'Bright Mind', item: `${siteUrl}/produkte/bright-mind` },
+        ],
+      }} />
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: 'Bright Mind',
+        description: 'Für geistige Klarheit und Herzgesundheit bis ins hohe Alter. Wissenschaftlich entwickelt, tierärztlich empfohlen.',
+        image: [`${siteUrl}/products/bright-mind/Bright Mind.png`],
+        brand: { '@type': 'Brand', name: 'Founding Paws' },
+        category: 'Animals & Pet Supplies > Pet Supplies > Dog Supplies > Dog Health Supplies',
+        url: `${siteUrl}/produkte/bright-mind`,
+        audience: { '@type': 'PeopleAudience', audienceType: 'Dog owners' },
+      }} />
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faq.map((q) => ({
+          '@type': 'Question',
+          name: q.question,
+          acceptedAnswer: { '@type': 'Answer', text: q.answer },
+        })),
+      }} />
       {/* Hero Section */}
       <section className="wv-section bg-gradient-to-br from-green to-green/90" style={{color: 'white'}}>
         <div className="container-wide">

@@ -5,6 +5,7 @@ import GlassmorphismCard from "@/components/GlassmorphismCard";
 import OptimizedImage from "@/components/OptimizedImage";
 import ProductCard from "@/components/ProductCard";
 import "@/styles/product-cards.css";
+import JsonLd from "@/components/JsonLd";
 
 const products = [
   {
@@ -114,6 +115,15 @@ const comingSoonProducts = [
 export default function ProduktePage() {
   return (
     <main className="bg-cream text-green">
+      <JsonLd schema={{
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/bright-mind` },
+          { '@type': 'ListItem', position: 2, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/gentle-calm` },
+          { '@type': 'ListItem', position: 3, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/vital-joints` },
+        ],
+      }} />
       {/* Hero Section */}
       <section className="wv-section bg-green text-cream">
         <div className="container-wide">

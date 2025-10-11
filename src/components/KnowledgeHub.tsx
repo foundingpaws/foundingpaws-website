@@ -1,40 +1,17 @@
 import FadeIn from "@/components/FadeIn";
 import ScrollAnimation from "@/components/ScrollAnimation";
+import { articles as allArticles } from "@/lib/articles";
 
-const articles = [
-  {
-    id: "stress-angst",
-    title: "Stress & Angst beim Hund",
-    excerpt: "Was hilft wirklich? Die wichtigsten Tipps für entspannte Vierbeiner.",
-    category: "Verhalten",
-    readTime: "3 Min",
-    href: "/produkte/gentle-calm",
-  },
-  {
-    id: "gelenke-mobilitaet",
-    title: "Gelenke & Mobilität",
-    excerpt: "So unterstützt du die Beweglichkeit deines Hundes bis ins hohe Alter.",
-    category: "Gesundheit",
-    readTime: "4 Min",
-    href: "/produkte/vital-joints",
-  },
-  {
-    id: "kognition-herz",
-    title: "Kognitive Gesundheit",
-    excerpt: "Geistige Fitness fördern – für ein waches, vitales Hundeleben.",
-    category: "Gehirn",
-    readTime: "3 Min",
-    href: "/produkte/bright-mind",
-  },
-  {
-    id: "haut-fell",
-    title: "Haut & Fellgesundheit",
-    excerpt: "Glänzendes Fell von innen – die besten Tipps für schöne Haut.",
-    category: "Schönheit",
-    readTime: "2 Min",
-    href: "/produkte",
-  },
-];
+const curatedSlugs = [
+  "/ratgeber/stress-hund",
+  "/ratgeber/gelenkprobleme-erkennen",
+  "/ratgeber/omega3-hund",
+  "/ratgeber/senior-hund-uebungen",
+] as const;
+
+const curatedArticles = curatedSlugs
+  .map((slug) => allArticles.find((a) => a.slug === slug))
+  .filter(Boolean) as typeof allArticles;
 
 export default function KnowledgeHub() {
   return (
@@ -56,8 +33,8 @@ export default function KnowledgeHub() {
         </ScrollAnimation>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {articles.map((article, idx) => (
-            <ScrollAnimation key={article.id} animation="slide-up" delay={idx * 100}>
+          {curatedArticles.map((article, idx) => (
+            <ScrollAnimation key={article.slug} animation="slide-up" delay={idx * 100}>
               <article className="group wv-card-minimal hover-lift-minimal p-6 cursor-pointer">
                 {/* Category Badge */}
                 <div className="pill bg-green/10 border border-green/20 text-green wv-caption px-3 py-1 font-medium wv-spacing-sm inline-block">
@@ -76,10 +53,10 @@ export default function KnowledgeHub() {
                 <div className="flex items-center justify-between wv-small text-green/60">
                   <span>{article.readTime} Lesezeit</span>
                   <a 
-                    href={article.href}
+                    href={article.slug}
                     className="text-copper hover:text-green font-medium transition-colors"
                   >
-                    Bald verfügbar →
+                    Artikel lesen →
                   </a>
                 </div>
               </article>

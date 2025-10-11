@@ -6,6 +6,7 @@ import {
   AbandonedCartTemplate 
 } from './email-templates';
 import { RESEND_API_KEY } from './supabase';
+import { createEmailConfirmToken } from './token';
 
 // Initialize Resend with API key
 const resend = new Resend(RESEND_API_KEY);
@@ -16,6 +17,61 @@ const REPLY_TO = 'foundingpaws@gmail.com';
 
 // Email service class
 export class EmailService {
+  // Send confirmation email for double opt-in
+  static async sendConfirmEmail(email: string) {
+    try {
+      const token = createEmailConfirmToken(email);
+      const base = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+      const confirmUrl = `${base}/api/newsletter/confirm?token=${encodeURIComponent(token)}`;
+
+      const { data, error } = await resend.emails.send({
+        from: FROM_EMAIL,
+        to: [email],
+        replyTo: REPLY_TO,
+        subject: 'Bitte bestätige deine Anmeldung – Founding Paws',
+        html: `
+          <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.65;color:#2d5a27;background:#f8f6f0;margin:0;padding:0;">
+            <div style="max-width:680px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.08);">
+              <div style="padding:32px 28px;border-bottom:1px solid #e7e3da;">
+                <div style="font-size:18px;letter-spacing:.02em;color:#2d5a27;font-weight:700;">Founding Paws</div>
+                <div style="margin-top:4px;font-size:13px;color:rgba(45,90,39,.75);">Wissenschaft trifft Herz</div>
+              </div>
+              <div style="padding:42px 34px;">
+                <h1 style="margin:0 0 10px;font-size:28px;line-height:1.25;font-weight:700;color:#2d5a27;">Noch ein Schritt – bitte bestätige deine E‑Mail</h1>
+                <p style="margin:0 0 14px;font-size:16px;color:rgba(45,90,39,.85);">Wir möchten dir nur <strong>wirklich hilfreiche</strong> Inhalte senden. Mit deiner Bestätigung sichern wir dir deinen <strong style=\"color:#b46a34\">10% Launch‑Vorteil</strong> und Zugang zu praxisnahen Inhalten.</p>
+                <div style="background:#f8f6f0;border:1px solid #e7e3da;border-radius:14px;padding:16px 18px;margin:16px 0;">
+                  <div style="font-weight:700;margin-bottom:6px;color:#2d5a27;">Was du nach der Bestätigung erhältst</div>
+                  <ul style="margin:0;padding-left:18px;color:rgba(45,90,39,.85);">
+                    <li>Klar strukturierte Tipps mit Dosierungen & Sicherheitshinweisen</li>
+                    <li>Einblicke in Entwicklung & Qualität unserer Formeln</li>
+                    <li>Frühen Zugang zu Launch‑Infos – inkl. 10% Vorteil</li>
+                  </ul>
+                </div>
+                <div style="text-align:center;margin:28px 0 8px;">
+                  <a href="${confirmUrl}" style="display:inline-block;background:#b46a34;color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:600;font-size:16px;box-shadow:0 6px 18px rgba(180,106,52,.25);">Anmeldung bestätigen</a>
+                </div>
+                <p style="margin:14px 0 0;font-size:12px;color:rgba(45,90,39,.7);">Falls der Button nicht funktioniert, öffne diesen Link:<br><span style="word-break:break-all;color:#b46a34;">${confirmUrl}</span></p>
+                <p style="margin:14px 0 0;font-size:12px;color:rgba(45,90,39,.7);">Du kannst dich jederzeit mit einem Klick wieder abmelden. Datenschutz ist uns wichtig.</p>
+              </div>
+              <div style="padding:18px 28px;background:#f8f6f0;border-top:1px solid #e7e3da;text-align:center;">
+                <p style="margin:0;font-size:12px;color:#6b6b6b;">Fragen? Antworte einfach auf diese E‑Mail oder schreibe an <a href="mailto:foundingpaws@gmail.com" style="color:#b46a34;text-decoration:none;">foundingpaws@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+        `,
+        headers: { 'X-Entity-Ref-ID': `confirm-${Date.now()}` },
+      });
+
+      if (error) {
+        console.error('Confirm email error:', error);
+        throw new Error('Failed to send confirm email');
+      }
+      return { success: true, messageId: data?.id };
+    } catch (error) {
+      console.error('Confirm email service error:', error);
+      throw error;
+    }
+  }
   // Send welcome email to new subscribers
   static async sendWelcomeEmail(email: string, name?: string) {
     try {
@@ -23,64 +79,31 @@ export class EmailService {
         from: FROM_EMAIL,
         to: [email],
         replyTo: REPLY_TO,
-        subject: '🎉 Willkommen bei Founding Paws!',
+        subject: 'Willkommen bei Founding Paws',
         html: `
-          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #2d5a27; background-color: #f8f6f0; margin: 0; padding: 0;">
-            <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
-              <div style="background: linear-gradient(135deg, #2d5a27 0%, #1e3d1a 100%); padding: 40px 30px; text-align: center; color: #ffffff;">
-                <div style="font-size: 28px; font-weight: bold; margin-bottom: 10px; color: #ffffff;">🐾 Founding Paws</div>
-                <p style="font-size: 14px; opacity: 0.9; margin: 0;">Wissenschaft trifft Herz</p>
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #2d5a27; background:#f8f6f0; margin:0; padding:0;">
+            <div style="max-width:640px;margin:0 auto;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 16px 36px rgba(0,0,0,.08);">
+              <div style="padding:36px 28px;border-bottom:1px solid #e7e3da;">
+                <div style="font-size:18px;letter-spacing:.02em;color:#2d5a27;font-weight:700;">Founding Paws</div>
+                <div style="margin-top:4px;font-size:13px;color:rgba(45,90,39,.75);">Wissenschaft trifft Herz</div>
               </div>
-              
-              <div style="padding: 40px 30px;">
-                <h1 style="color: #2d5a27; margin-top: 0; font-size: 32px;">Willkommen in der Founding Paws Familie! 🎉</h1>
-                
-                <p>Hallo ${name || 'Liebe/r Hundefreund/in'},</p>
-                
-                <p>herzlich willkommen bei Founding Paws! Wir freuen uns riesig, dass du Teil unserer Mission geworden bist, Hunden ein gesünderes und glücklicheres Leben zu ermöglichen.</p>
-                
-                <div style="background: linear-gradient(135deg, #f8f6f0 0%, #e8e4d8 100%); border-left: 4px solid #b46a34; padding: 20px; margin: 20px 0; border-radius: 8px;">
-                  <h3 style="color: #2d5a27; margin-top: 0;">Was dich erwartet:</h3>
-                  <ul style="margin: 10px 0; padding-left: 20px;">
-                    <li>📚 <strong>Exklusive Tipps</strong> zur Hundegesundheit von Experten</li>
-                    <li>🔬 <strong>Wissenschaftliche Erkenntnisse</strong> aus der Veterinärmedizin</li>
-                    <li>🎁 <strong>Früher Zugang</strong> zu neuen Produkten und Angeboten</li>
-                    <li>💝 <strong>Spezielle Rabatte</strong> nur für Newsletter-Abonnenten</li>
+              <div style="padding:40px 32px;">
+                <h1 style="margin:0 0 10px 0;font-size:28px;line-height:1.25;font-weight:700;color:#2d5a27;">Willkommen</h1>
+                <p style="margin:0 0 18px 0;font-size:16px;color:rgba(45,90,39,.85);">Hallo ${name || 'und herzlich willkommen'}, schön, dass du da bist. Wir verbinden evidenzbasierte Rezepturen mit verantwortungsvollem Design – für ein langes, gesundes Hundeleben.</p>
+                <div style="background:#f8f6f0;border:1px solid #e7e3da;border-radius:14px;padding:18px 20px;margin:16px 0;">
+                  <div style="font-weight:700;margin-bottom:6px;color:#2d5a27;">Das erwartet dich:</div>
+                  <ul style="margin:0;padding-left:18px;color:rgba(45,90,39,.85);">
+                    <li>Fachlich kuratierter Ratgeber‑Content</li>
+                    <li>Einblicke in Entwicklung & Qualität</li>
+                    <li>Vorab‑News zum Launch</li>
                   </ul>
                 </div>
-                
-                <p>Unsere Supplements werden von Tierärzten entwickelt und basieren auf neuesten wissenschaftlichen Erkenntnissen. Jede Zutat ist sorgfältig ausgewählt, um deinem Hund optimal zu helfen.</p>
-                
-                <div style="text-align: center; margin: 30px 0;">
-                  <a href="https://foundingpaws.de/produkte" style="display: inline-block; background: linear-gradient(135deg, #b46a34 0%, #9d5a2a 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 50px; font-weight: bold; font-size: 16px; margin: 20px 0; box-shadow: 0 4px 15px rgba(180, 106, 52, 0.3);">
-                    Entdecke unsere Produkte
-                  </a>
+                <div style="text-align:center;margin:24px 0 0;">
+                  <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte" style="display:inline-block;background:#2d5a27;color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;box-shadow:0 6px 18px rgba(45,90,39,.18);">Unsere Formeln ansehen</a>
                 </div>
-                
-                <div style="height: 2px; background: linear-gradient(90deg, #b46a34, #2d5a27); margin: 30px 0; border-radius: 1px;"></div>
-                
-                <p><strong>Dein nächster Schritt:</strong> Folge uns auf Instagram für tägliche Tipps und schaue dir unseren Ratgeber an, wo du alles über Hundegesundheit erfährst.</p>
-                
-                <p>Bei Fragen stehen wir dir jederzeit zur Verfügung!</p>
-                
-                <p>Herzliche Grüße,<br/>
-                <strong>Das Founding Paws Team</strong><br/>
-                <em>Nala, Jackson, Alica & Nick</em></p>
               </div>
-              
-              <div style="background-color: #f8f6f0; padding: 30px; text-align: center; border-top: 1px solid #e5e5e5;">
-                <div style="margin: 20px 0;">
-                  <a href="https://www.instagram.com/foundingpaws" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">Instagram</a>
-                  <a href="https://www.linkedin.com/company/founding-paws" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">LinkedIn</a>
-                  <a href="https://www.tiktok.com/@foundingpaws1" style="display: inline-block; margin: 0 10px; color: #b46a34; text-decoration: none; font-weight: bold;">TikTok</a>
-                </div>
-                <p style="font-size: 12px; color: #666666; margin: 0;">
-                  Founding Paws • Eppendorfer Weg, Hamburg<br/>
-                  <a href="mailto:foundingpaws@gmail.com" style="color: #b46a34;">foundingpaws@gmail.com</a><br/>
-                  <a href="https://foundingpaws.de/datenschutz" style="color: #666666;">Datenschutz</a> • 
-                  <a href="https://foundingpaws.de/agb" style="color: #666666;">AGB</a> • 
-                  <a href="https://foundingpaws.de/abmelden" style="color: #666666;">Abmelden</a>
-                </p>
+              <div style="padding:18px 28px;background:#f8f6f0;border-top:1px solid #e7e3da;text-align:center;">
+                <p style="margin:0;font-size:12px;color:#6b6b6b;">Fragen? <a href="mailto:foundingpaws@gmail.com" style="color:#b46a34;text-decoration:none;">foundingpaws@gmail.com</a></p>
               </div>
             </div>
           </div>
@@ -98,6 +121,63 @@ export class EmailService {
       return { success: true, messageId: data?.id };
     } catch (error) {
       console.error('Welcome email service error:', error);
+      throw error;
+    }
+  }
+
+  // Send 10% launch welcome after confirmation
+  static async sendWelcomeWithDiscount(email: string) {
+    try {
+      const { data, error } = await resend.emails.send({
+        from: FROM_EMAIL,
+        to: [email],
+        replyTo: REPLY_TO,
+        subject: 'Willkommen – dein 10% Launch‑Vorteil',
+        html: `
+          <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.65;color:#2d5a27;background:#f8f6f0;margin:0;padding:0;">
+            <div style="max-width:680px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.08);">
+              <div style="padding:32px 28px;border-bottom:1px solid #e7e3da;">
+                <div style="font-size:18px;letter-spacing:.02em;color:#2d5a27;font-weight:700;">Founding Paws</div>
+              </div>
+              <div style="padding:42px 34px;">
+                <h1 style="margin:0 0 12px;font-size:28px;line-height:1.25;font-weight:700;color:#2d5a27;">Schön, dass du da bist</h1>
+                <p style="margin:0 0 12px;font-size:16px;color:rgba(45,90,39,.85);">Wir wissen, wie viel dir dein Hund bedeutet. Deshalb verbinden wir <strong>evidenzbasierte Rezepturen</strong> mit <strong>echter Alltagstauglichkeit</strong>. Danke für dein Vertrauen.</p>
+                <div style="background:#f8f6f0;border:1px dashed #b46a34;color:#b46a34;border-radius:14px;padding:16px 20px;text-align:center;font-weight:700;letter-spacing:.5px;margin:16px 0 10px;">
+                  DEIN VORTEIL: <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;">LAUNCH10</span>
+                </div>
+                <p style="margin:0 0 16px;font-size:12px;color:rgba(45,90,39,.75);">Einlösbar, sobald der Shop live ist – wir informieren dich rechtzeitig.</p>
+                <div style="background:#f8f6f0;border:1px solid #e7e3da;border-radius:14px;padding:16px 18px;margin:18px 0;">
+                  <div style="font-weight:700;margin-bottom:6px;color:#2d5a27;">Nächste Schritte</div>
+                  <ol style="margin:0;padding-left:18px;color:rgba(45,90,39,.85);">
+                    <li><a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte" style="color:#2d5a27;text-decoration:underline;">Formeln ansehen</a> – Überblick & Entwicklungsprinzipien</li>
+                    <li><a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/ratgeber" style="color:#2d5a27;text-decoration:underline;">Ratgeber auswählen</a> – starte mit einem Thema, das euch gerade hilft</li>
+                    <li>Antworte uns kurz mit Alter & Thema deines Hundes – wir empfehlen gezielt Inhalte</li>
+                  </ol>
+                </div>
+                <blockquote style="margin:18px 0 0;padding:14px 18px;border-left:3px solid #b46a34;background:#fdfaf6;border-radius:8px;color:#2d5a27;">
+                  „Unser Ziel: spürbare Verbesserungen im Alltag – ohne leere Versprechen.“
+                  <div style="font-size:12px;color:rgba(45,90,39,.75);margin-top:6px;">– Alica, Founding Paws</div>
+                </blockquote>
+                <div style="text-align:center;margin:26px 0 0;">
+                  <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte" style="display:inline-block;background:#2d5a27;color:#fff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;box-shadow:0 6px 18px rgba(45,90,39,.18);">Unsere Formeln ansehen</a>
+                </div>
+              </div>
+              <div style="padding:18px 28px;background:#f8f6f0;border-top:1px solid #e7e3da;text-align:center;">
+                <p style="margin:0;font-size:12px;color:#6b6b6b;">Fragen? <a href="mailto:foundingpaws@gmail.com" style="color:#b46a34;text-decoration:none;">Antworte einfach</a> – wir lesen alles.</p>
+              </div>
+            </div>
+          </div>
+        `,
+        headers: { 'X-Entity-Ref-ID': `welcome-discount-${Date.now()}` },
+      });
+
+      if (error) {
+        console.error('Welcome discount email error:', error);
+        throw new Error('Failed to send discount email');
+      }
+      return { success: true, messageId: data?.id };
+    } catch (error) {
+      console.error('Welcome discount service error:', error);
       throw error;
     }
   }

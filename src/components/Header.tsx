@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import IconBrainHeart from "@/components/icons/IconBrainHeart";
@@ -10,6 +11,7 @@ import IconShield from "@/components/icons/IconShield";
 import { mobilePerformanceManager } from "@/lib/mobile-performance";
 
 export default function Header() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -43,17 +45,18 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (isMobileMenuOpen && headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setIsMobileMenuOpen(false);
-      }
-    };
+  // Navigate and close helper (robust on iOS)
+  const navigateAndClose = (href: string) => (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    setIsMobileMenuOpen(false);
+    try {
+      router.push(href);
+    } catch {
+      window.location.href = href;
+    }
+  };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMobileMenuOpen]);
+  // Removed outside-click listener to avoid iOS event interference; backdrop close remains
 
   return (
     <>
@@ -84,9 +87,9 @@ export default function Header() {
         />
         
         {/* Header Content */}
-        <div className="relative w-full px-4 sm:px-6 lg:px-8">
-                <div className={`flex items-center justify-between transition-all duration-300 ${
-                  isScrolled ? "h-16 lg:h-20" : "h-20 lg:h-36"
+        <div className="relative w-full px-4 sm:px-6 lg:px-8 overflow-visible">
+                <div className={`flex items-center ${isScrolled ? 'justify-between' : 'justify-center lg:justify-between'} transition-all duration-300 ${
+                  isScrolled ? "h-14 lg:h-20" : "h-16 lg:h-28"
                 }`}>
             
             {/* Logo Container - Größer in Hero-Sektion */}
@@ -95,8 +98,8 @@ export default function Header() {
                 href="/" 
                 className={`group flex items-center z-10 transition-all duration-300 ${
                   isScrolled 
-                    ? "h-full px-1 py-2" 
-                    : "h-full px-4 py-2 lg:px-20 lg:py-16"
+                    ? "h-full px-1 py-1" 
+                    : "h-full py-1 lg:py-16"
                 }`}
                 aria-label="Startseite"
               >
@@ -104,15 +107,15 @@ export default function Header() {
                   isScrolled ? "h-full overflow-hidden" : "h-full"
                 }`}>
                   <div className={`transition-all duration-300 flex items-center ${
-                    isScrolled ? "h-14" : "h-8 lg:h-10"
+                    isScrolled ? "h-12" : "h-10 lg:h-10"
                   }`} style={{
                     marginTop: isScrolled ? '0' : '0px'
                   }}>
                     <Image 
                       src="/brand/9 LogoNew.jpg" 
                       alt="Founding Paws Logo" 
-                      width={isScrolled ? 200 : 100} 
-                      height={isScrolled ? 50 : 25} 
+                      width={isScrolled ? 180 : 120} 
+                      height={isScrolled ? 44 : 32} 
                       className={`h-full w-auto object-contain transition-all duration-300 ${
                         isScrolled 
                           ? "" 
@@ -134,7 +137,7 @@ export default function Header() {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8 z-10">
+            <nav className="hidden lg:flex items-center lg:gap-6 z-10 min-w-0 shrink">
               {/* Dropdown Menu */}
               <div className="group relative">
                 <button className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-100/50 group-hover:bg-gray-100/80">
@@ -156,7 +159,7 @@ export default function Header() {
                 </button>
                 
                 {/* Dropdown Content */}
-                <div className="absolute left-0 mt-2 w-96 backdrop-blur-xl border border-cream/30 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0" style={{backgroundColor: 'rgba(0,66,37,0.95)'}}>
+                <div className="absolute left-0 mt-2 w-80 max-w-[calc(100vw-4rem)] backdrop-blur-xl border border-cream/30 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0" style={{backgroundColor: 'rgba(0,66,37,0.95)'}}>
                   <div className="p-6">
                     <div className="text-xs font-semibold text-cream/70 uppercase tracking-wider mb-4">
                       Wähle eine Kategorie
@@ -234,28 +237,63 @@ export default function Header() {
               </Link>
             </div>
 
-            {/* Mobile Menu Button - iOS Optimized */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-3 rounded-lg transition-all duration-300 hover:bg-cream/20 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center ${
-                isScrolled ? "text-cream" : "text-white drop-shadow-lg"
-              }`}
-              aria-label="Menü öffnen"
-              style={{
-                WebkitTapHighlightColor: 'transparent',
-                WebkitTouchCallout: 'none',
-                WebkitUserSelect: 'none',
-                userSelect: 'none'
-              }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+            {/* Mobile Navigation - Enhanced with Quick Sections */}
+            <div className={`lg:hidden flex items-center gap-2 ${isScrolled ? '' : 'absolute right-4 top-1/2 -translate-y-1/2'}`}>
+              {/* Quick Section Navigation - Only show when scrolled */}
+              {isScrolled && (
+                <div className="flex items-center gap-1 mr-2">
+                  <button
+                    onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 rounded-lg transition-all duration-200"
+                    style={{
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none',
+                      minHeight: '36px',
+                    }}
+                  >
+                    Produkte
+                  </button>
+                  <button
+                    onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 rounded-lg transition-all duration-200"
+                    style={{
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none',
+                      minHeight: '36px',
+                    }}
+                  >
+                    FAQ
+                  </button>
+                </div>
+              )}
+
+              {/* Mobile Menu Button - iOS Optimized */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`p-3 rounded-lg transition-all duration-300 hover:bg-cream/20 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center ${
+                  isScrolled ? "text-cream" : "text-white drop-shadow-lg"
+                }`}
+                aria-label="Menü öffnen"
+                style={{
+                  WebkitTapHighlightColor: 'transparent',
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none'
+                }}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isMobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -289,29 +327,22 @@ export default function Header() {
             WebkitBackfaceVisibility: 'hidden',
             backfaceVisibility: 'hidden'
           }}>
-          <div className="p-6 h-full overflow-y-auto" style={{
+          <div className="p-4 h-full overflow-y-auto" style={{
             WebkitOverflowScrolling: 'touch',
             overscrollBehavior: 'contain'
           }}>
-            {/* Mobile Menu Header - iOS Optimized */}
-            <div className="flex items-center justify-between mb-8">
-              <Image 
-                src="/brand/9 LogoNew.jpg" 
-                alt="Founding Paws Logo" 
-                width={140} 
-                height={35} 
-                className="h-10 w-auto" 
-                quality={100}
-              />
+            {/* Mobile Menu Header - Compact (no logo to save space) */}
+            <div className="flex items-center justify-end mb-2">
               <button
                 onClick={closeMobileMenu}
-                className="p-3 rounded-lg hover:bg-cream/10 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2 rounded-lg hover:bg-cream/10 transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
                 style={{
                   WebkitTapHighlightColor: 'transparent',
                   WebkitTouchCallout: 'none',
                   WebkitUserSelect: 'none',
                   userSelect: 'none'
                 }}
+                aria-label="Menü schließen"
               >
                 <svg className="w-5 h-5 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -319,92 +350,86 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Mobile Navigation */}
-            <nav className="space-y-6">
-              {/* Categories Section */}
-              <div>
-                <div className="text-sm font-semibold text-cream/70 uppercase tracking-wider mb-4">
-                  Gut für
-                </div>
-                <div className="space-y-2">
+            {/* Mobile Navigation - compact grouped accordions */}
+            <nav className="space-y-4 text-[15px] leading-tight">
+              {/* Group: Gut für */}
+              <details className="rounded-xl border border-cream/15">
+                <summary className="list-none px-4 py-3 flex items-center justify-between cursor-pointer select-none">
+                  <span className="text-cream/90 font-medium flex items-center gap-2">
+                    <span className="inline-block w-5 h-5 rounded-full bg-cream/10" />
+                    Gut für
+                  </span>
+                  <svg className="w-4 h-4 text-cream/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div className="py-1">
                   {[
-                    { href: "/kognition-herz", icon: IconBrainHeart, title: "Kognition & Herz", desc: "Geistige Klarheit & Herzgesundheit" },
-                    { href: "/stress-angst", icon: IconSparkles, title: "Stress & Angst", desc: "Entspannung & emotionale Balance" },
-                    { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität", desc: "Beweglichkeit & Schmerzlinderung" },
-                    { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Glänzendes Fell & gesunde Haut" },
-                    { href: "/immunsystem", icon: IconShield, title: "Immunsystem", desc: "Abwehrkräfte & Vitalität" },
+                    { href: "/kognition-herz", icon: IconBrainHeart, title: "Kognition & Herz" },
+                    { href: "/stress-angst", icon: IconSparkles, title: "Stress & Angst" },
+                    { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität" },
+                    { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell" },
+                    { href: "/immunsystem", icon: IconShield, title: "Immunsystem" },
                   ].map((item, index) => (
-                    <Link
+                    <a
                       key={index}
                       href={item.href}
-                      onClick={closeMobileMenu}
-                      className="block p-4 rounded-xl hover:bg-cream/10 transition-all duration-200 group min-h-[60px]"
-                      style={{
-                        WebkitTapHighlightColor: 'transparent',
-                        WebkitTouchCallout: 'none',
-                        WebkitUserSelect: 'none',
-                        userSelect: 'none'
-                      }}
+                      onClick={navigateAndClose(item.href)}
+                      className="flex items-center justify-between px-4 py-3 hover:bg-cream/10 transition-colors"
+                      style={{ WebkitTapHighlightColor: 'transparent' }}
                     >
-                      <div className="flex items-center gap-3">
-                        <item.icon className="w-5 h-5 text-cream/80 group-hover:text-copper transition-colors flex-shrink-0" />
-                        <div className="flex-1">
-                          <div className="font-medium text-cream group-hover:text-copper transition-colors">
-                            {item.title}
-                          </div>
-                          <div className="text-sm text-cream/70">
-                            {item.desc}
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
+                      <span className="flex items-center gap-3 text-cream">
+                        <item.icon className="w-5 h-5 text-cream/80" />
+                        <span className="font-medium">{item.title}</span>
+                      </span>
+                      <svg className="w-4 h-4 text-cream/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                    </a>
                   ))}
                 </div>
-              </div>
+              </details>
 
-              {/* Main Navigation */}
-              <div className="border-t border-cream/20 pt-6">
-                <div className="space-y-2">
+              {/* Group: Seiten */}
+              <details open className="rounded-xl border border-cream/15">
+                <summary className="list-none px-4 py-3 flex items-center justify-between cursor-pointer select-none">
+                  <span className="text-cream/90 font-medium flex items-center gap-2">
+                    <span className="inline-block w-5 h-5 rounded-full bg-cream/10" />
+                    Seiten
+                  </span>
+                  <svg className="w-4 h-4 text-cream/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div className="py-1">
                   {[
                     { href: "/produkte", label: "Produkte" },
                     { href: "/ratgeber", label: "Ratgeber" },
-                    { href: "/bedarfsfinder", label: "Bedarfsfinder" },
                     { href: "/marke", label: "Marke" },
                     { href: "/team", label: "Team" },
                   ].map((link, index) => (
-                    <Link
+                    <a
                       key={index}
                       href={link.href}
-                      onClick={closeMobileMenu}
-                      className="block px-4 py-4 rounded-lg text-cream hover:bg-cream/10 hover:text-white transition-all duration-200 min-h-[48px] flex items-center"
-                      style={{
-                        WebkitTapHighlightColor: 'transparent',
-                        WebkitTouchCallout: 'none',
-                        WebkitUserSelect: 'none',
-                        userSelect: 'none'
-                      }}
+                      onClick={navigateAndClose(link.href)}
+                      className="flex items-center justify-between px-4 py-3 hover:bg-cream/10 transition-colors text-cream"
                     >
-                      {link.label}
-                    </Link>
+                      <span className="font-medium">{link.label}</span>
+                      <svg className="w-4 h-4 text-cream/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                    </a>
                   ))}
                 </div>
-              </div>
+              </details>
 
               {/* Mobile Action Buttons - iOS Optimized */}
               <div className="border-t border-cream/20 pt-6 space-y-3">
-                <Link
-                  href="/bedarfsfinder"
-                  onClick={closeMobileMenu}
-                  className="block w-full text-center px-6 py-4 rounded-full font-medium text-green bg-cream hover:bg-white transition-all duration-200 min-h-[48px] flex items-center justify-center"
-                  style={{
-                    WebkitTapHighlightColor: 'transparent',
-                    WebkitTouchCallout: 'none',
-                    WebkitUserSelect: 'none',
-                    userSelect: 'none'
-                  }}
-                >
-                  Bedarfsfinder starten
-                </Link>
+              <a
+                href="/bedarfsfinder"
+                onClick={navigateAndClose('/bedarfsfinder')}
+                className="block w-full text-center px-6 py-4 rounded-full font-medium text-green bg-cream hover:bg-white transition-all duration-200 min-h-[48px] flex items-center justify-center"
+                style={{
+                  WebkitTapHighlightColor: 'transparent',
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none'
+                }}
+              >
+                Bedarfsfinder starten
+              </a>
                 <Link
                   href="/shop"
                   onClick={closeMobileMenu}
@@ -426,7 +451,7 @@ export default function Header() {
       )}
 
       {/* Spacer to prevent content jumping - iOS Safe Area Support */}
-      <div className="h-16 lg:h-20" style={{
+      <div className="h-8 lg:h-20" style={{
         paddingTop: 'env(safe-area-inset-top)'
       }} />
     </>

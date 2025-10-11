@@ -18,13 +18,13 @@ export default function Hero() {
 
       <div className="container-wide relative z-20">
         {/* Mobile Layout - iOS Optimiert */}
-        <div className="lg:hidden pt-2">
+        <div className="lg:hidden pt-0">
           <FadeIn>
-            <div className="text-center mb-6">
-              <h1 className="wv-h1 mb-4" style={{color: 'white'}}>
+            <div className="text-center mb-1 mt-0">
+              <h1 className="wv-h1 mb-2" style={{color: 'white'}}>
                 Premium-Supplements für ein langes, gesundes Hundeleben
               </h1>
-              <p className="wv-lead mb-6" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
+              <p className="wv-lead mb-5" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
                 Evidenzbasiert entwickelt, handgefertigt in Heilbronn – für spürbare Wirkung und Vertrauen.
               </p>
             </div>
@@ -39,13 +39,13 @@ export default function Hero() {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   poster="/mockups/PSD file.png"
                   className="w-full h-full object-cover"
                   onError={() => setVideoError(true)}
                   style={{
                     filter: 'brightness(0.9) contrast(1.1)',
-                    transform: 'scale(1.02) translateX(-10%)',
+                    transform: 'scale(1.02)',
                     transition: 'transform 0.3s ease-out'
                   }}
                 >
@@ -117,7 +117,7 @@ export default function Hero() {
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload="none"
                 poster="/mockups/PSD file.png"
                 className="w-full h-full object-cover"
                 style={{
