@@ -4,7 +4,7 @@ import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, name, source } = await request.json();
+    const { email } = await request.json();
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -34,31 +34,37 @@ export async function POST(request: NextRequest) {
 
     // Try to add to database (optional - table might not exist yet)
     try {
+      const now = new Date().toISOString();
       const { error: dbError } = await supabaseAdmin
         .from('newsletter_subscribers')
         .insert({
           email: email.toLowerCase().trim(),
-          name: name || null,
-          subscribed_at: new Date().toISOString(),
           status: 'pending',
-          source: source || 'newsletter-subscribe'
+          created_at: now,
+          updated_at: now,
         });
 
       if (dbError) {
         console.error('[subscribe] Supabase insert error:', dbError);
-        return NextResponse.json({ error: 'Datenbankfehler bei der Anmeldung.' }, { status: 500 });
+        return NextResponse.json({ 
+          error: 'Datenbankfehler bei der Anmeldung.',
+          code: (dbError as any).code,
+          message: (dbError as any).message,
+          details: (dbError as any).details,
+          hint: (dbError as any).hint,
+        }, { status: 500 });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('[subscribe] Supabase insert exception:', error);
-      return NextResponse.json({ error: 'Datenbankfehler (Exception).' }, { status: 500 });
+      return NextResponse.json({ error: 'Datenbankfehler (Exception).', message: String(error?.message || error) }, { status: 500 });
     }
 
     // Send confirm email for double opt-in
     try {
       await EmailService.sendConfirmEmail(email);
-    } catch (emailError) {
+    } catch (emailError: any) {
       console.error('[subscribe] Confirm email error:', emailError);
-      return NextResponse.json({ error: 'E-Mail Versand fehlgeschlagen.' }, { status: 502 });
+      return NextResponse.json({ error: 'E-Mail Versand fehlgeschlagen.', message: String(emailError?.message || emailError) }, { status: 502 });
     }
 
     return NextResponse.json({

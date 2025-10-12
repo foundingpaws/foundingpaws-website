@@ -25,9 +25,10 @@ export async function GET(req: NextRequest) {
 
     // Send welcome with discount
     try {
-      await EmailService.sendWelcomeWithDiscount(email);
+      const result = await EmailService.sendWelcomeWithDiscount(email);
+      console.log('[confirm] Sent welcome-discount email:', result);
     } catch (e) {
-      console.error('Welcome discount send error:', e);
+      console.error('[confirm] Welcome discount send error:', e);
     }
 
     const res = NextResponse.redirect(new URL('/newsletter/confirm?status=ok', req.url));

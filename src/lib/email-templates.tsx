@@ -31,16 +31,17 @@ export const BaseEmailTemplate = ({
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         .header {
-          background: linear-gradient(135deg, #2d5a27 0%, #1e3d1a 100%);
-          padding: 40px 30px;
+          background: #1f4f26; /* brand racing green darker for email */
+          padding: 28px 22px;
           text-align: center;
           color: #ffffff;
         }
-        .logo {
-          font-size: 28px;
-          font-weight: bold;
-          margin-bottom: 10px;
-          color: #ffffff;
+        .logo img {
+          max-width: 220px;
+          height: auto;
+          display: inline-block;
+          border-radius: 8px;
+          background: #2d5a27;
         }
         .tagline {
           font-size: 14px;
@@ -120,7 +121,9 @@ export const BaseEmailTemplate = ({
     <body>
       <div className="email-container">
         <div className="header">
-          <div className="logo">🐾 Founding Paws</div>
+          <div className="logo">
+            <img src="https://www.foundingpaws.de/logo-header.png" alt="Founding Paws" />
+          </div>
           <p className="tagline">Wissenschaft trifft Herz</p>
         </div>
         <div className="content">

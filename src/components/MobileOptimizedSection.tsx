@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { mobilePerformanceManager } from '@/lib/mobile-performance';
 
 interface MobileOptimizedSectionProps {
@@ -23,6 +23,8 @@ export default function MobileOptimizedSection({
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [isMobile, setIsMobile] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [contentHeight, setContentHeight] = useState<number>(0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -34,6 +36,24 @@ export default function MobileOptimizedSection({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Measure content height to avoid 100vh clipping on iOS. We animate using maxHeight in pixels
+  useEffect(() => {
+    const measure = () => {
+      if (!contentRef.current) return;
+      // Use scrollHeight to capture full expanded height
+      const next = contentRef.current.scrollHeight;
+      setContentHeight(next);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (contentRef.current) ro.observe(contentRef.current);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, [isMobile, id, isExpanded]);
 
   useEffect(() => {
     if (!isMobile) return;
@@ -90,7 +110,10 @@ export default function MobileOptimizedSection({
   return (
     <section id={id} className={`${className} transition-all duration-300 mobile-optimized-section`}>
       {/* Section Header - Always Visible */}
-      <div className="sticky top-16 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4 sticky-header">
+      <div
+        className="sticky z-30 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4 sticky-header"
+        style={{ top: 'calc(env(safe-area-inset-top, 0px) + 56px)' }}
+      >
         <div className="container-wide">
           <div className="flex items-center justify-between">
             <h2 id={`${id}-heading`} tabIndex={-1} className="text-xl font-bold text-green">{title}</h2>
@@ -124,10 +147,11 @@ export default function MobileOptimizedSection({
       </div>
 
       {/* Section Content */}
-      <div className={`transition-all duration-500 overflow-hidden ${
-        isExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-      }`}>
-        <div className="py-6">
+      <div
+        className={`transition-all duration-500 overflow-hidden ${isExpanded ? 'opacity-100' : 'opacity-0'}`}
+        style={{ maxHeight: isExpanded ? contentHeight : 0 }}
+      >
+        <div ref={contentRef} className="py-6">
           {isExpanded ? children : (compactView || children)}
         </div>
       </div>

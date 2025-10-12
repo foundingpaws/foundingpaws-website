@@ -30,6 +30,13 @@ export default function LTheaninHundPage() {
                   <li>• Unterstützt entspanntere Interaktionen</li>
                 </ul>
 
+                <h2 className="wv-h2 text-green wv-spacing-lg">Einsatzgebiete</h2>
+                <ul className="wv-body text-green/80 space-y-2">
+                  <li>• Akuter Stress (Gewitter, Feuerwerk, Tierarzt): 60–90 Min vorher geben.</li>
+                  <li>• Generalisierte Unsicherheit/Trennungsstress: tägliche Gabe über 2–4 Wochen testen.</li>
+                  <li>• Als Baustein im Trainingsplan (Gegenkonditionierung, Ruhetraining).</li>
+                </ul>
+
                 <h2 className="wv-h2 text-green wv-spacing-lg">Dosierung (Richtwerte)</h2>
                 <ul className="wv-body text-green/80 space-y-2">
                   <li>• &lt;10 kg: 50 mg/Tag</li>
@@ -41,6 +48,19 @@ export default function LTheaninHundPage() {
                   <h3 className="wv-h3 text-green wv-spacing-sm">Empfehlung</h3>
                   <p className="wv-body text-green/80">Setze L‑Theanin als Baustein im ganzheitlichen Stressmanagement ein – kombiniert mit Training, Routinen und Rückzugsorten.</p>
                 </div>
+
+                <h2 className="wv-h2 text-green wv-spacing-lg">Sicherheit & Hinweise</h2>
+                <ul className="wv-body text-green/80 space-y-2">
+                  <li>• In Studien gut verträglich; selten milde Magen‑Darm‑Beschwerden berichtet.</li>
+                  <li>• Vorsicht bei Beruhigungsmitteln/Sedativa – Tierarzt fragen (additive Effekte möglich).</li>
+                  <li>• Trächtigkeit/Laktation: nur nach tierärztlicher Rücksprache.</li>
+                </ul>
+
+                <h2 className="wv-h2 text-green wv-spacing-lg">Quellen (Auswahl)</h2>
+                <ul className="wv-body text-green/80 space-y-2">
+                  <li>• Klinische Untersuchungen zu L‑Theanin bei Hunden mit Stress‑/Angst‑Verhalten; Berichte zu Sicherheit und Verträglichkeit.</li>
+                  <li>• Übersichten zum Wirkmechanismus (GABA/Serotonin‑Modulation, Stressmarker).</li>
+                </ul>
               </div>
             </ScrollAnimation>
           </div>

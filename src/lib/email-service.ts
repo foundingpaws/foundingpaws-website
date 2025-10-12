@@ -21,20 +21,25 @@ export class EmailService {
   static async sendConfirmEmail(email: string) {
     try {
       const token = createEmailConfirmToken(email);
-      const base = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+      const base = process.env.NEXT_PUBLIC_SITE_URL
+        ? process.env.NEXT_PUBLIC_SITE_URL
+        : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
       const confirmUrl = `${base}/api/newsletter/confirm?token=${encodeURIComponent(token)}`;
+      // Always use public absolute URL for images so they render from emails, even in local tests
+      const logoUrl = 'https://www.foundingpaws.de/logo-header.png';
 
       const { data, error } = await resend.emails.send({
         from: FROM_EMAIL,
         to: [email],
         replyTo: REPLY_TO,
-        subject: 'Bitte bestätige deine Anmeldung – Founding Paws',
+        subject: '🐾 Bitte bestätige deine Anmeldung – Founding Paws',
         html: `
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.65;color:#2d5a27;background:#f8f6f0;margin:0;padding:0;">
             <div style="max-width:680px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.08);">
-              <div style="padding:32px 28px;border-bottom:1px solid #e7e3da;">
-                <div style="font-size:18px;letter-spacing:.02em;color:#2d5a27;font-weight:700;">Founding Paws</div>
-                <div style="margin-top:4px;font-size:13px;color:rgba(45,90,39,.75);">Wissenschaft trifft Herz</div>
+              <div style="padding:28px 24px;border-bottom:1px solid #e7e3da;background:#2d5a27;">
+                <div style="text-align:center;">
+                  <img src="${logoUrl}" alt="Founding Paws" style="max-width:220px;width:100%;height:auto;display:inline-block;border-radius:8px;background:#2d5a27" />
+                </div>
               </div>
               <div style="padding:42px 34px;">
                 <h1 style="margin:0 0 10px;font-size:28px;line-height:1.25;font-weight:700;color:#2d5a27;">Noch ein Schritt – bitte bestätige deine E‑Mail</h1>
@@ -48,7 +53,7 @@ export class EmailService {
                   </ul>
                 </div>
                 <div style="text-align:center;margin:28px 0 8px;">
-                  <a href="${confirmUrl}" style="display:inline-block;background:#b46a34;color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:600;font-size:16px;box-shadow:0 6px 18px rgba(180,106,52,.25);">Anmeldung bestätigen</a>
+                  <a href="${confirmUrl}" style="display:inline-block;background:#b46a34;color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:600;font-size:16px;box-shadow:0 6px 18px rgba(180,106,52,.25);">🐾 Anmeldung bestätigen</a>
                 </div>
                 <p style="margin:14px 0 0;font-size:12px;color:rgba(45,90,39,.7);">Falls der Button nicht funktioniert, öffne diesen Link:<br><span style="word-break:break-all;color:#b46a34;">${confirmUrl}</span></p>
                 <p style="margin:14px 0 0;font-size:12px;color:rgba(45,90,39,.7);">Du kannst dich jederzeit mit einem Klick wieder abmelden. Datenschutz ist uns wichtig.</p>
@@ -132,12 +137,12 @@ export class EmailService {
         from: FROM_EMAIL,
         to: [email],
         replyTo: REPLY_TO,
-        subject: 'Willkommen – dein 10% Launch‑Vorteil',
+        subject: '🐾 Willkommen – dein 10% Launch‑Vorteil',
         html: `
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.65;color:#2d5a27;background:#f8f6f0;margin:0;padding:0;">
             <div style="max-width:680px;margin:0 auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.08);">
-              <div style="padding:32px 28px;border-bottom:1px solid #e7e3da;">
-                <div style="font-size:18px;letter-spacing:.02em;color:#2d5a27;font-weight:700;">Founding Paws</div>
+              <div style="padding:28px 24px;border-bottom:1px solid #e7e3da;background:#2d5a27;text-align:center;">
+                <img src="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/logo-header.png" alt="Founding Paws" style="max-width:220px;width:100%;height:auto;display:inline-block;border-radius:8px;background:#2d5a27" />
               </div>
               <div style="padding:42px 34px;">
                 <h1 style="margin:0 0 12px;font-size:28px;line-height:1.25;font-weight:700;color:#2d5a27;">Schön, dass du da bist</h1>

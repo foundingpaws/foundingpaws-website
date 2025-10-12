@@ -16,6 +16,7 @@ import IconDoctor from "@/components/icons/IconDoctor";
 import IconRocket from "@/components/icons/IconRocket";
 import IconSparkles from "@/components/icons/IconSparkles";
 import JsonLd from "@/components/JsonLd";
+import LaunchCountdown from "@/components/LaunchCountdown";
 
 const benefits = [
   {
@@ -165,6 +166,11 @@ export default function GentleCalmPage() {
 
   return (
     <main className="bg-cream text-green">
+      <div className="container-wide mt-4">
+        <div className="inline-block bg-green/90 text-cream rounded-2xl px-4 py-3">
+          <LaunchCountdown compact />
+        </div>
+      </div>
       <JsonLd schema={{
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',

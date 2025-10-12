@@ -3,6 +3,7 @@
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import { useState } from "react";
+import LaunchCountdown from "@/components/LaunchCountdown";
 
 export default function Hero() {
   const [videoError, setVideoError] = useState(false);
@@ -29,6 +30,12 @@ export default function Hero() {
               </p>
             </div>
           </FadeIn>
+
+          {/* Compact Launch Countdown in Hero (ohne Box) */}
+          <div className="mt-4 mb-6">
+            <div className="text-center text-cream/90 text-sm mb-2">Launch am 1.12.2025</div>
+            <LaunchCountdown compact targetISO="2025-12-01T00:00:00+01:00" />
+          </div>
 
           {/* Mobile Video - iOS optimiert mit Best Practices */}
           <div className="relative mb-8">
@@ -105,6 +112,12 @@ export default function Hero() {
                 <a className="btn-secondary pill text-cream px-8 py-4 text-base font-medium" href="/bedarfsfinder">
                   Bedarfsfinder (2 Min)
                 </a>
+              </div>
+
+              {/* Desktop compact Launch Countdown (ohne Box) */}
+              <div className="mt-6">
+                <div className="text-center text-cream/90 text-sm mb-2">Launch am 1.12.2025</div>
+                <LaunchCountdown compact targetISO="2025-12-01T00:00:00+01:00" />
               </div>
             </div>
           </FadeIn>

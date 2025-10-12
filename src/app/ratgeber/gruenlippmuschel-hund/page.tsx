@@ -36,6 +36,24 @@ export default function GruenlippmuschelHundPage() {
                   <li>• Unterstützt Gelenkfunktion, reduziert Schmerzen</li>
                   <li>• Nachhaltig gewonnener Rohstoff</li>
                 </ul>
+
+                <h2 className="wv-h2 text-green wv-spacing-lg">Dosierung (Richtwerte)</h2>
+                <ul className="wv-body text-green/80 space-y-2">
+                  <li>• 10–20 mg GLM‑Extrakt/kg KGW/Tag (Produktabhängigkeit beachten).</li>
+                  <li>• Einschleichen über 7–10 Tage, Wirkung nach 4–8 Wochen beurteilen.</li>
+                </ul>
+
+                <h2 className="wv-h2 text-green wv-spacing-lg">Sicherheit</h2>
+                <ul className="wv-body text-green/80 space-y-2">
+                  <li>• Meist gut verträglich; selten weicher Kot/Magen‑Darm.</li>
+                  <li>• Muschelallergie/Meeresfrüchte‑Allergie: vorher tierärztlich klären.</li>
+                </ul>
+
+                <h2 className="wv-h2 text-green wv-spacing-lg">Quellen (Auswahl)</h2>
+                <ul className="wv-body text-green/80 space-y-2">
+                  <li>• Randomisierte Studien zu <em>Perna canaliculus</em> bei caniner OA (Schmerzscore, Aktivität, Omega‑3‑Spiegel).</li>
+                  <li>• Übersichtsarbeiten zu Glykosaminoglykanen und marinen Lipiden in der Gelenkgesundheit.</li>
+                </ul>
               </div>
             </ScrollAnimation>
           </div>
