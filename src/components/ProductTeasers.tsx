@@ -49,7 +49,7 @@ const products = [
     category: "Haut & Vitalität",
     accent: "copper",
     comingSoon: true,
-    productImage: "/products/5-Omega-Ölflasche.png",
+    productImage: "/products/5-Omega-Oelflasche.png",
   },
   {
     key: "green-lipped-mussel",
@@ -59,7 +59,7 @@ const products = [
     category: "Gelenke & Mobilität",
     accent: "taupe",
     comingSoon: true,
-    productImage: "/products/Grünlippmuschelpulver.png",
+    productImage: "/products/Gruenlippmuschelpulver.png",
   },
 ];
 

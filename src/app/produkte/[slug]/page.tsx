@@ -421,8 +421,8 @@ const products = {
     comingSoon: true,
     price: "19,90",
     currency: "€",
-    productImage: "/products/5-Omega-Ölflasche.png",
-    heroImage: "/products/5-Omega-Ölflasche.png",
+    productImage: "/products/5-Omega-Oelflasche.png",
+    heroImage: "/products/5-Omega-Oelflasche.png",
     benefits: [
       "EPA/DHA + ALA + GLA: umfassendes Omega‑Profil",
       "Vitamin E: antioxidativer Schutz",
@@ -465,8 +465,8 @@ const products = {
     comingSoon: true,
     price: "22,90",
     currency: "€",
-    productImage: "/products/Grünlippmuschelpulver.png",
-    heroImage: "/products/Grünlippmuschelpulver.png",
+    productImage: "/products/Gruenlippmuschelpulver.png",
+    heroImage: "/products/Gruenlippmuschelpulver.png",
     benefits: [
       "GAGs ~3,3 % – Knorpelunterstützung",
       "Omega‑3 ~3,2 % – Entzündungsbalance",

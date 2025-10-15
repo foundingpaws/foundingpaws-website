@@ -106,7 +106,7 @@ const products = [
     comingSoon: true,
     isNew: true,
     isBestseller: false,
-    productImage: "/products/5-Omega-Ölflasche.png",
+    productImage: "/products/5-Omega-Oelflasche.png",
     studioImage: "/products/ingredients/omega3-detail.svg",
     lifestyleImage: "/products/lifestyle/happy-dog-beach.svg",
     benefits: [
@@ -135,7 +135,7 @@ const products = [
     comingSoon: true,
     isNew: true,
     isBestseller: false,
-    productImage: "/products/Grünlippmuschelpulver.png",
+    productImage: "/products/Gruenlippmuschelpulver.png",
     studioImage: "/products/ingredients/Gelenk.png",
     lifestyleImage: "/products/lifestyle/active-dog-park.svg",
     benefits: [
