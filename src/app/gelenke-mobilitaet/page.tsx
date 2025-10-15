@@ -19,12 +19,8 @@ export default function GelenkeMobilitaetPage() {
                 Unterstütze die Gelenkgesundheit deines Hundes für schmerzfreie Spaziergänge bis ins hohe Alter.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="#products" className="pill bg-copper text-cream px-7 py-3 text-base font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.5)] hover:opacity-95 hover:scale-105 transition-all">
-                  Formel ansehen →
-                </Link>
-                <Link href="/" className="pill bg-cream/10 border border-cream/30 text-cream px-7 py-3 text-base font-medium backdrop-blur-sm hover:bg-cream/15 transition">
-                  Zurück zur Übersicht
-                </Link>
+                <Link href="/produkte/joint-mobility#waitlist" className="pill bg-copper text-cream px-7 py-3 text-base font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.5)] hover:opacity-95 hover:scale-105 transition-all">Joint & Mobility – Warteliste</Link>
+                <Link href="/produkte/green-lipped-mussel#waitlist" className="pill bg-cream/10 border border-cream/30 text-cream px-7 py-3 text-base font-medium backdrop-blur-sm hover:bg-cream/15 transition">Grünlippmuschel – Warteliste</Link>
               </div>
             </div>
           </FadeIn>
@@ -64,8 +60,8 @@ export default function GelenkeMobilitaetPage() {
               <div className="bg-white/70 backdrop-blur-sm border border-taupe/20 rounded-[28px] p-8 shadow-[0_16px_48px_-16px_rgba(142,127,116,0.25)]">
                 <h3 className="use-retrips text-2xl text-green mb-4">Unsere Lösung</h3>
                 <p className="text-green/75 leading-relaxed mb-6">
-                  <strong className="text-copper">Vital Joints</strong> kombiniert bewährte Nährstoffe für Gelenkgesundheit und Mobilität. 
-                  Wissenschaftlich entwickelt, handgefertigt in Heilbronn.
+                  <strong className="text-copper">Joint & Mobility</strong> – Glucosamin, MSM & Grünlippmuschel. <br/> 
+                  <strong className="text-copper">Grünlippmuschelpulver</strong> – 100 % Perna canaliculus (GAGs & Omega‑3).
                 </p>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-2">
@@ -92,9 +88,7 @@ export default function GelenkeMobilitaetPage() {
         <div className="container-wide">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center mb-16">
-              <h2 className="use-retrips text-3xl sm:text-4xl text-green mb-6">
-                Vital Joints
-              </h2>
+              <h2 className="use-retrips text-3xl sm:text-4xl text-green mb-6">Joint & Mobility</h2>
               <p className="use-fredoka text-lg text-green/70 mb-8">
                 Die perfekte Formel für Gelenkgesundheit und Mobilität
               </p>
@@ -108,11 +102,9 @@ export default function GelenkeMobilitaetPage() {
                   <span className="text-2xl">Joints</span>
                 </div>
                 
-                <h3 className="use-retrips text-3xl text-green mb-4">Vital Joints</h3>
-                <p className="use-fredoka text-lg text-copper mb-6">Gelenkgesundheit & Mobilität</p>
-                <p className="text-green/70 leading-relaxed mb-8">
-                  Unterstützt Gelenke und Beweglichkeit – für schmerzfreie Spaziergänge bis ins hohe Alter.
-                </p>
+                <h3 className="use-retrips text-3xl text-green mb-4">Joint & Mobility</h3>
+                <p className="use-fredoka text-lg text-copper mb-6">Gelenke, Beweglichkeit, entzündungshemmend</p>
+                <p className="text-green/70 leading-relaxed mb-8">Glucosamin & MSM – Knorpelstoffwechsel · Grünlippmuschel – GAGs & Omega‑3.</p>
 
                 <div className="border-t border-taupe/20 pt-6 mb-8">
                   <div className="flex items-center justify-center gap-6 text-xs text-green/60">
@@ -121,16 +113,11 @@ export default function GelenkeMobilitaetPage() {
                   </div>
                 </div>
 
-                <div className="pill bg-copper/15 border border-copper/25 text-copper px-4 py-2 text-sm font-medium mb-6 inline-block">
-                  Coming Soon
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <div className="pill bg-copper/15 border border-copper/25 text-copper px-4 py-2 text-sm font-medium inline-block">Coming Soon</div>
+                  <Link href="/produkte/joint-mobility#waitlist" className="pill bg-copper text-cream px-6 py-3 font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.6)] hover:opacity-95 hover:scale-105 transition-all inline-block">Joint & Mobility – Warteliste</Link>
+                  <Link href="/produkte/green-lipped-mussel#waitlist" className="pill bg-cream/10 border border-cream/30 text-green px-6 py-3 font-medium backdrop-blur-sm hover:bg-cream/20 transition inline-block">Grünlippmuschel – Warteliste</Link>
                 </div>
-
-                <Link 
-                  href="#waitlist"
-                  className="pill bg-copper text-cream px-8 py-4 font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.6)] hover:opacity-95 hover:scale-105 transition-all inline-block"
-                >
-                  Auf Warteliste setzen
-                </Link>
               </div>
             </FadeIn>
           </div>

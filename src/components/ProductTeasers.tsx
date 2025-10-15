@@ -12,40 +12,54 @@ import SkeletonLoader from "@/components/SkeletonLoader";
 
 const products = [
   {
-    key: "bright-mind",
-    title: "Bright Mind",
-    subtitle: "Kognitive Unterstützung & Herzgesundheit",
-    description: "Fördert geistige Klarheit und unterstützt die Herzfunktion – für ein waches, vitales Hundeleben.",
-    category: "Kognition & Herz",
-    accent: "copper",
-    comingSoon: true,
-        productImage: "/products/bright-mind/Bright Mind.png",
-    studioImage: "/products/bright-mind/product-studio.svg",
-    lifestyleImage: "/products/lifestyle/happy-dog-beach.svg",
-  },
-  {
-    key: "gentle-calm",
-    title: "Gentle Calm",
-    subtitle: "Stresslinderung & Emotionale Balance",
-    description: "Natürliche Beruhigung für ängstliche Momente – damit dein Hund entspannt durch den Alltag geht.",
-    category: "Stress & Angst",
+    key: "shiny-coat",
+    title: "Shiny Coat",
+    subtitle: "Fellglanz & Hautgesundheit",
+    description: "Omega‑3, Zink & Biotin – für glänzendes Fell und robuste Hautbarriere.",
+    category: "Haut & Fell",
     accent: "green",
     comingSoon: true,
-        productImage: "/products/gentle-calm/ObjectID6a.png",
-    studioImage: "/products/gentle-calm/product-studio.svg",
-    lifestyleImage: "/products/lifestyle/calm-dog-home.svg",
+    productImage: "/products/Shiny Coat.png",
   },
   {
-    key: "vital-joints",
-    title: "Vital Joints",
-    subtitle: "Gelenkgesundheit & Mobilität",
-    description: "Unterstützt Gelenke und Beweglichkeit – für schmerzfreie Spaziergänge bis ins hohe Alter.",
+    key: "sensitive-skin",
+    title: "Sensitive Skin",
+    subtitle: "Hautbarriere & Entzündungsbalance",
+    description: "GLA‑reiche Öle (Hanf/Nachtkerze) + Vitamin E & Kurkuma – sanft zur Haut.",
+    category: "Haut & Fell",
+    accent: "green",
+    comingSoon: true,
+    productImage: "/products/Sensitive Skin.png",
+  },
+  {
+    key: "joint-mobility",
+    title: "Joint & Mobility",
+    subtitle: "Gelenke & Beweglichkeit",
+    description: "Glucosamin, MSM & Grünlippmuschel – spürbar mehr Gelenkkomfort.",
     category: "Gelenke & Mobilität",
     accent: "taupe",
     comingSoon: true,
-        productImage: "/products/vital-joints/VitalJoints.png",
-    studioImage: "/products/vital-joints/product-studio.svg",
-    lifestyleImage: "/products/lifestyle/active-dog-park.svg",
+    productImage: "/products/Joint & Mobility.png",
+  },
+  {
+    key: "skin-vital-omega",
+    title: "5‑Omega – Skin & Vital",
+    subtitle: "Haut, Fell, Herz & Immunsystem",
+    description: "Lachs‑, Lein‑, Hanf‑, Borretsch‑ & Nachtkerzenöl mit Vitamin E.",
+    category: "Haut & Vitalität",
+    accent: "copper",
+    comingSoon: true,
+    productImage: "/products/5-Omega-Ölflasche.png",
+  },
+  {
+    key: "green-lipped-mussel",
+    title: "Grünlippmuschelpulver",
+    subtitle: "Natürlich für Gelenke",
+    description: "100 % Perna canaliculus – GAGs & Omega‑3, fein vermahlen.",
+    category: "Gelenke & Mobilität",
+    accent: "taupe",
+    comingSoon: true,
+    productImage: "/products/Grünlippmuschelpulver.png",
   },
 ];
 
@@ -100,12 +114,11 @@ export default function ProductTeasers() {
             Bald verfügbar
           </div>
           <h2 className="wv-h2 text-green mb-4">
-            Unsere Formeln
+            Unsere neuen Formeln
           </h2>
           <div className="w-16 h-1 bg-copper mx-auto rounded-full mb-6"></div>
           <p className="wv-lead text-green/70 max-w-2xl mx-auto">
-            Drei wissenschaftlich entwickelte Supplements für jede Lebensphase deines Hundes.
-            Handgefertigt in Heilbronn, entwickelt mit Tierärzten.
+            Fünf neue Formeln – wissenschaftlich entwickelt, tierärztlich begleitet und in Heilbronn handgefertigt.
           </p>
         </div>
 
@@ -142,12 +155,12 @@ export default function ProductTeasers() {
                   </div>
 
                   {/* Product Image - Größer und prominenter */}
-                  <div className="w-32 h-32 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-cream to-taupe/20 border border-taupe/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-premium">
+                  <div className="w-40 h-40 mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-cream to-taupe/20 border border-taupe/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-premium">
                     <OptimizedImage 
                       src={product.productImage} 
                       alt={`${product.title} Produktbild`}
-                      width={100}
-                      height={100}
+                      width={160}
+                      height={160}
                       className="w-full h-full object-contain"
                       placeholder="blur"
                       quality={90}
@@ -166,22 +179,34 @@ export default function ProductTeasers() {
                       {product.description}
                     </p>
                     <ul className="text-green/70 text-sm mb-5 sm:mb-6 list-disc pl-5">
-                      {product.key === 'bright-mind' && (
+                      {product.key === 'shiny-coat' && (
                         <>
-                          <li>Omega‑3 + Antioxidantien für mentale Schärfe</li>
-                          <li>Kohärent dosiert, alltagstauglich</li>
+                          <li>Omega‑3, Zink & Biotin für Fell & Haut</li>
+                          <li>Schonend getrocknet – hohe Akzeptanz</li>
                         </>
                       )}
-                      {product.key === 'gentle-calm' && (
+                      {product.key === 'sensitive-skin' && (
                         <>
-                          <li>Sanfte Pflanzenstoffe für Balance</li>
-                          <li>Ohne Sedierung, klare Dosierung</li>
+                          <li>GLA‑Öle (Hanf/Nachtkerze) für Barriere</li>
+                          <li>Vitamin E & Kurkuma – antioxidativ</li>
                         </>
                       )}
-                      {product.key === 'vital-joints' && (
+                      {product.key === 'joint-mobility' && (
                         <>
-                          <li>Gelenknährstoffe in sinnvoller Kombination</li>
-                          <li>Für Beweglichkeit bis ins Alter</li>
+                          <li>Glucosamin, MSM & Grünlippmuschel</li>
+                          <li>Für Gelenkkomfort & Beweglichkeit</li>
+                        </>
+                      )}
+                      {product.key === 'skin-vital-omega' && (
+                        <>
+                          <li>5‑Öle‑Synergie: EPA/DHA + ALA + GLA</li>
+                          <li>Mit Vitamin E – kalt gemischt</li>
+                        </>
+                      )}
+                      {product.key === 'green-lipped-mussel' && (
+                        <>
+                          <li>100 % Perna canaliculus – GAGs & Omega‑3</li>
+                          <li>Fein vermahlen – flexible Dosierung</li>
                         </>
                       )}
                     </ul>
@@ -202,14 +227,7 @@ export default function ProductTeasers() {
         {/* Produkt-Konfigurator entfernt */}
 
         {/* "Alle Produkte" Teaser */}
-        <div className="text-center mb-14 sm:mb-16">
-          <p className="text-green/70 mb-4">Weitere Formeln in Entwicklung:</p>
-          <div className="flex flex-wrap justify-center gap-3 text-sm">
-            <span className="bg-green/5 border border-green/20 text-green/60 px-4 py-2 rounded-full">Skin & Coat</span>
-            <span className="bg-green/5 border border-green/20 text-green/60 px-4 py-2 rounded-full">Immune Boost</span>
-            <span className="bg-green/5 border border-green/20 text-green/60 px-4 py-2 rounded-full">+ 3 weitere</span>
-          </div>
-        </div>
+        {/* Entfernt: Weitere Formeln in Entwicklung */}
 
         {/* Waitlist CTA mit Urgency */}
         <Transform3D hoverEffect="morph" className="max-w-2xl mx-auto">

@@ -166,11 +166,9 @@ export default function Header() {
                     </div>
                     <div className="space-y-2">
                       {[
-                        { href: "/kognition-herz", icon: IconBrainHeart, title: "Kognition & Herz", desc: "Geistige Klarheit & Herzgesundheit" },
-                        { href: "/stress-angst", icon: IconSparkles, title: "Stress & Angst", desc: "Entspannung & emotionale Balance" },
-                        { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität", desc: "Beweglichkeit & Schmerzlinderung" },
-                        { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Glänzendes Fell & gesunde Haut" },
-                        { href: "/immunsystem", icon: IconShield, title: "Immunsystem", desc: "Abwehrkräfte & Vitalität" },
+                        { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Shiny Coat · Sensitive Skin" },
+                        { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität", desc: "Joint & Mobility · Grünlippmuschel" },
+                        { href: "/immunsystem", icon: IconShield, title: "Haut & Vitalität", desc: "5‑Omega – Skin & Vital" },
                       ].map((item, index) => (
                         <Link
                           key={index}
@@ -363,11 +361,9 @@ export default function Header() {
                 </summary>
                 <div className="py-1">
                   {[
-                    { href: "/kognition-herz", icon: IconBrainHeart, title: "Kognition & Herz" },
-                    { href: "/stress-angst", icon: IconSparkles, title: "Stress & Angst" },
-                    { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität" },
                     { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell" },
-                    { href: "/immunsystem", icon: IconShield, title: "Immunsystem" },
+                    { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität" },
+                    { href: "/immunsystem", icon: IconShield, title: "Haut & Vitalität" },
                   ].map((item, index) => (
                     <a
                       key={index}

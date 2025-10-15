@@ -1,35 +1,41 @@
 "use client";
+import IconMadeInGermany from "@/components/icons/IconMadeInGermany";
+import IconLab from "@/components/icons/IconLab";
+import IconStethoscope from "@/components/icons/IconStethoscope";
+import IconShield from "@/components/icons/IconShield";
+import IconRocket from "@/components/icons/IconRocket";
+import IconNatural100 from "@/components/icons/IconNatural100";
 
 export default function TrustBadges() {
   const badges = [
     {
-      icon: "🇩🇪",
+      icon: <IconMadeInGermany className="w-5 h-5 text-green-700" />,
       title: "Made in Germany",
       description: "Hergestellt in Heilbronn"
     },
     {
-      icon: "🔬",
+      icon: <IconLab className="w-5 h-5 text-green-700" />,
       title: "Laborgeprüft",
       description: "Jede Charge getestet"
     },
     {
-      icon: "🌿",
+      icon: <IconNatural100 className="w-5 h-5 text-green-700" />,
       title: "100% Natürlich",
       description: "Keine Zusatzstoffe"
     },
     {
-      icon: "🩺",
+      icon: <IconStethoscope className="w-5 h-5 text-green-700" />,
       title: "Tierärztlich entwickelt",
       description: "Von Experten entwickelt"
     },
     {
-      icon: "📦",
-      title: "Kostenloser Versand",
-      description: "Ab 50€ Bestellwert"
+      icon: <IconRocket className="w-5 h-5 text-green-700" />,
+      title: "Schneller Versand",
+      description: "Ab 50€ kostenfrei"
     },
     {
-      icon: "↩️",
-      title: "30 Tage Rückgaberecht",
+      icon: <IconShield className="w-5 h-5 text-green-700" />,
+      title: "30 Tage Rückgabe",
       description: "Zufriedenheitsgarantie"
     }
   ];
@@ -46,7 +52,7 @@ export default function TrustBadges() {
             key={index}
             className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
           >
-            <div className="text-2xl flex-shrink-0">
+            <div className="flex-shrink-0">
               {badge.icon}
             </div>
             <div className="min-w-0">
@@ -65,15 +71,11 @@ export default function TrustBadges() {
       <div className="pt-4 border-t border-gray-200">
         <div className="flex items-center justify-between text-sm text-gray-600">
           <div className="flex items-center gap-2">
-            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
+            <IconShield className="w-4 h-4 text-green-600" />
             <span>Sichere Zahlung</span>
           </div>
           <div className="flex items-center gap-2">
-            <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
+            <IconShield className="w-4 h-4 text-green-600" />
             <span>SSL Verschlüsselt</span>
           </div>
         </div>

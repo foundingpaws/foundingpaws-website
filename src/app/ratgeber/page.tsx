@@ -10,7 +10,9 @@ import IconShield from "@/components/icons/IconShield";
 import { getAllCategories } from "@/lib/articles";
 import { articles as allArticles } from "@/lib/articles";
 import ArticleList from "@/components/ArticleList";
+import { Suspense } from "react";
 import JsonLd from "@/components/JsonLd";
+import type { Metadata } from "next";
 
 const categoryIconMap: Record<string, any> = {
   Gesundheit: IconShield,
@@ -407,7 +409,9 @@ export default function RatgeberPage() {
             </div>
           </ScrollAnimation>
 
-          <ArticleList articles={allArticles} pageSize={9} showFilter={true} showSearch={true} />
+          <Suspense fallback={<div className="wv-spacing-xl max-w-5xl mx-auto text-center text-green/60">Laden…</div>}>
+            <ArticleList articles={allArticles} pageSize={9} showFilter={true} showSearch={true} syncUrl={true} />
+          </Suspense>
         </div>
       </section>
 
@@ -453,4 +457,23 @@ export default function RatgeberPage() {
       </section>
     </main>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de';
+  const title = 'Ratgeber für Hundegesundheit: Evidenz, Tipps & Leitfäden | Founding Paws';
+  const description = 'Wissenschaftlich fundierte Ratgeber-Artikel zu Gelenken, Stress, Ernährung, Haut, Herz und mehr – übersichtlich erklärt und praxisnah umgesetzt.';
+  return {
+    title,
+    description,
+    alternates: { canonical: '/ratgeber' },
+    openGraph: {
+      title,
+      description,
+      url: '/ratgeber',
+      type: 'website',
+      images: [{ url: '/logo-header.png', width: 1200, height: 630, alt: 'Founding Paws Ratgeber' }],
+    },
+    robots: { index: true, follow: true },
+  };
 }

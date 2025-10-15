@@ -1,13 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import ProductHero from "./ProductHero";
+import ProductKeyFacts from "./ProductKeyFacts";
+import { trackEvent } from "@/lib/analytics";
 import ProductSections from "./ProductSections";
 import TestimonialsSlider from "./TestimonialsSlider";
 import TrustBadges from "./TrustBadges";
 import StickyCTA from "./StickyCTA";
+import WaitlistSection from "./WaitlistSection";
 
 interface Product {
   key: string;
@@ -55,6 +59,9 @@ interface ProductDetailPageProps {
 
 export default function ProductDetailPage({ product }: ProductDetailPageProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const firstSegment = (pathname || "/").split("/").filter(Boolean)[0] || "";
+  const locale = firstSegment === "en" ? "en" : "de";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,8 +77,11 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
       {/* Hero Section */}
       <ProductHero product={product} />
 
+      {/* Key Facts under Hero */}
+      <ProductKeyFacts productTitle={product.title} />
+
       {/* Main Content */}
-      <div className="container-wide py-12">
+      <div className="container-wide py-16">
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Content Sections */}
           <div className="lg:col-span-2">
@@ -98,27 +108,40 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
                   <p className="text-accent font-medium mb-4">
                     {product.subtitle}
                   </p>
-                  <div className="text-3xl font-bold text-gray-900 mb-6">
-                    {product.price} {product.currency}
-                  </div>
+                  {product.comingSoon ? (
+                    <div className="text-sm font-medium text-copper mb-2">Coming Soon</div>
+                  ) : null}
                 </div>
 
                 {/* CTA Button */}
-                <button
-                  className={`w-full py-4 px-6 rounded-full font-medium text-white transition-all duration-300 ${
-                    product.comingSoon
-                      ? "bg-copper hover:bg-copper-dark"
-                      : "bg-accent hover:bg-accent-dark"
-                  } shadow-lg hover:shadow-xl transform hover:scale-105`}
-                  style={{
-                    WebkitTapHighlightColor: 'transparent',
-                    WebkitTouchCallout: 'none',
-                    WebkitUserSelect: 'none',
-                    userSelect: 'none'
-                  }}
-                >
-                  {product.comingSoon ? "Pre-Order" : "In den Warenkorb"}
-                </button>
+                {product.comingSoon ? (
+                  <a
+                    href="#waitlist"
+                    className="product-cta-button block w-full px-8 py-4 rounded-full font-medium text-white transition-all duration-300 bg-copper hover:bg-copper-dark shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
+                    style={{
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none'
+                    }}
+                    onClick={() => trackEvent('sidebar_waitlist_cta', 'pdp', product.key)}
+                  >
+                    Jetzt vormerken
+                  </a>
+                ) : (
+                  <button
+                    className="product-cta-button w-full px-8 py-4 rounded-full font-medium text-white transition-all duration-300 bg-accent hover:bg-accent-dark shadow-lg hover:shadow-xl transform hover:scale-105"
+                    style={{
+                      WebkitTapHighlightColor: 'transparent',
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none'
+                    }}
+                    onClick={() => trackEvent('sidebar_buy_cta', 'pdp', product.key)}
+                  >
+                    In den Warenkorb
+                  </button>
+                )}
 
                 {/* Trust Badges */}
                 <TrustBadges />
@@ -152,20 +175,27 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
       </div>
 
       {/* Testimonials */}
-      <section className="bg-gradient-to-r from-gray-50 to-gray-100 py-16">
-        <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Was Experten und Kunden sagen
-            </h2>
-            <div className="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+      {product.testimonials && product.testimonials.length > 0 && (
+        <section className="bg-gradient-to-r from-gray-50 to-gray-100 py-16">
+          <div className="container-wide">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Was Experten und Kunden sagen
+              </h2>
+              <div className="w-16 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+            <TestimonialsSlider testimonials={product.testimonials} />
           </div>
-          <TestimonialsSlider testimonials={product.testimonials} />
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Waitlist */}
+      {product.comingSoon && (
+        <WaitlistSection productKey={product.key} locale={locale} />
+      )}
 
       {/* Sticky CTA for Mobile */}
-      <StickyCTA />
+      <StickyCTA comingSoon={product.comingSoon} />
     </main>
   );
 }

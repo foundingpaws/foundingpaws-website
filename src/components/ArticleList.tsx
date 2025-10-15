@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Transform3D from "./Transform3D";
 import ArticleCard from "./ArticleCard";
 import { Article } from "@/lib/articles";
@@ -11,6 +12,10 @@ type ArticleListProps = {
   showFilter?: boolean;
   initialCategory?: string;
   showSearch?: boolean;
+  // When true, keep current page in the URL (?page=)
+  syncUrl?: boolean;
+  // Optional initial page override; when syncUrl is true, URL wins
+  initialPage?: number;
 };
 
 export default function ArticleList({
@@ -19,7 +24,13 @@ export default function ArticleList({
   showFilter = true,
   initialCategory = "Alle",
   showSearch = false,
+  syncUrl = false,
+  initialPage,
 }: ArticleListProps) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
   const categories = useMemo(() => {
     const set = new Set<string>();
     for (const a of articles) set.add(a.category);
@@ -28,7 +39,20 @@ export default function ArticleList({
 
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
+  const urlPage = useMemo(() => {
+    if (!syncUrl) return 1;
+    const raw = searchParams.get("page");
+    const n = Number(raw || "1");
+    return Number.isFinite(n) && n > 0 ? Math.floor(n) : 1;
+  }, [searchParams, syncUrl]);
+
+  const [page, setPage] = useState<number>(initialPage || urlPage || 1);
+
+  useEffect(() => {
+    if (!syncUrl) return;
+    setPage(urlPage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlPage]);
 
   const filtered = useMemo(() => {
     const byCategory = selectedCategory === "Alle"
@@ -52,6 +76,15 @@ export default function ArticleList({
     try {
       window.scrollTo({ top: (document?.getElementById("article-list-top")?.offsetTop || 0) - 120, behavior: "smooth" });
     } catch {}
+
+    if (syncUrl) {
+      try {
+        const sp = new URLSearchParams(searchParams.toString());
+        if (next <= 1) sp.delete("page"); else sp.set("page", String(next));
+        const qs = sp.toString();
+        router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+      } catch {}
+    }
   };
 
   return (

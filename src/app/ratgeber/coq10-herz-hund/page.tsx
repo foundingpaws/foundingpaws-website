@@ -1,6 +1,7 @@
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
+import RatgeberArticleLayout from "@/components/RatgeberArticleLayout";
 
 export const metadata = {
   title: 'Coenzym Q10 beim Hund: Herz & Entzündung | Founding Paws',
@@ -25,22 +26,25 @@ export default function Coq10HerzHundPage() {
         </div>
       </section>
 
-      <section className="wv-section bg-cream">
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <ScrollAnimation>
-              <div className="prose prose-lg max-w-none">
-                <h2 className="wv-h2 text-green wv-spacing-lg">Einsatzmöglichkeiten</h2>
-                <ul className="wv-body text-green/80 space-y-2">
-                  <li>• Ergänzend bei Herzpatienten zur Unterstützung des Immunsystems</li>
-                  <li>• In Kombination mit Taurin & Omega‑3 als ganzheitlicher Ansatz</li>
-                  <li>• Dosierung individuell mit der Tierärztin abstimmen</li>
-                </ul>
-              </div>
-            </ScrollAnimation>
+      <RatgeberArticleLayout
+        slug="/ratgeber/coq10-herz-hund"
+        takeaways={[
+          "CoQ10 kann Entzündungsmarker beeinflussen; kein Ersatz anderer Maßnahmen",
+          "Einsatz ergänzend und individuell abgestimmt",
+          "Kombination mit Taurin & Omega‑3 sinnvoll prüfen",
+        ]}
+      >
+        <ScrollAnimation>
+          <div className="prose prose-lg max-w-none">
+            <h2 className="wv-h2 text-green wv-spacing-lg">Einsatzmöglichkeiten</h2>
+            <ul className="wv-body text-green/80 space-y-2">
+              <li>• Ergänzend bei Herzpatienten zur Unterstützung des Immunsystems</li>
+              <li>• In Kombination mit Taurin & Omega‑3 als ganzheitlicher Ansatz</li>
+              <li>• Dosierung individuell mit der Tierärztin abstimmen</li>
+            </ul>
           </div>
-        </div>
-      </section>
+        </ScrollAnimation>
+      </RatgeberArticleLayout>
 
       <section className="wv-section bg-green text-cream">
         <div className="container-wide text-center">

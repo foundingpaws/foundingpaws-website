@@ -126,6 +126,33 @@
   }
 }
 
+@media (min-width: 1280px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Uniform Card Heights */
+.product-card {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card .product-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card .product-benefits {
+  flex: 1;
+}
+
+.product-card .product-cta-section {
+  margin-top: auto;
+}
+
 /* Loading States */
 .product-card-loading {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);

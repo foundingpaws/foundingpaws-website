@@ -196,7 +196,7 @@ export default function TeamPage() {
                     
                     {/* Description */}
                     <div className="mb-4 flex-grow">
-                      <p className="wv-small text-green/80 group-hover:text-green/90 transition-colors duration-500 leading-relaxed line-clamp-4">
+                      <p className="wv-small text-green/80 group-hover:text-green/90 transition-colors duration-500 leading-relaxed">
                         {member.description}
                       </p>
                     </div>

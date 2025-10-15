@@ -1,7 +1,7 @@
-import Image from "next/image";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
+import RatgeberArticleLayout from "@/components/RatgeberArticleLayout";
 
 export default function GastritisHundPage() {
   return (
@@ -33,14 +33,16 @@ export default function GastritisHundPage() {
       </section>
 
       {/* Article Content */}
-      <section className="wv-section bg-cream">
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid lg:grid-cols-3 gap-12">
-              {/* Main Content */}
-              <div className="lg:col-span-2">
-                <ScrollAnimation>
-                  <div className="prose prose-lg max-w-none">
+      <RatgeberArticleLayout
+        slug="/ratgeber/gastritis-hund"
+        takeaways={[
+          "Gastritis: häufige, meist vorübergehende Magenschleimhautentzündung",
+          "Erstmaßnahmen: Futterpause, kleine Wassermengen, Ruhe, Beobachtung",
+          "Warnzeichen: Blut, starke Schmerzen, Fieber – Tierarzt aufsuchen",
+        ]}
+      >
+        <ScrollAnimation>
+          <div className="prose prose-lg max-w-none">
                     <h2 className="wv-h2 text-green wv-spacing-lg">Was ist Gastritis beim Hund?</h2>
                     <p className="wv-body text-green/80 wv-spacing-md leading-relaxed">
                       Gastritis ist eine Entzündung der Magenschleimhaut, die bei Hunden relativ häufig auftritt. 
@@ -141,61 +143,9 @@ export default function GastritisHundPage() {
                         da sie natürliche Beruhigungsmittel enthält, die den Magen beruhigen.
                       </p>
                     </div>
-                  </div>
-                </ScrollAnimation>
               </div>
-
-              {/* Sidebar */}
-              <div className="lg:col-span-1">
-                <div className="sticky top-8 space-y-8">
-                  {/* Table of Contents */}
-                  <div className="bg-white p-6 rounded-xl shadow-lg border border-green/10">
-                    <h3 className="wv-h4 text-green wv-spacing-sm">Inhaltsverzeichnis</h3>
-                    <nav className="space-y-2">
-                      <a href="#was-ist" className="block text-sm text-green/70 hover:text-copper transition-colors">Was ist Gastritis?</a>
-                      <a href="#symptome" className="block text-sm text-green/70 hover:text-copper transition-colors">Symptome erkennen</a>
-                      <a href="#ursachen" className="block text-sm text-green/70 hover:text-copper transition-colors">Ursachen</a>
-                      <a href="#behandlung" className="block text-sm text-green/70 hover:text-copper transition-colors">Behandlung</a>
-                      <a href="#tierarzt" className="block text-sm text-green/70 hover:text-copper transition-colors">Wann zum Tierarzt?</a>
-                      <a href="#praevention" className="block text-sm text-green/70 hover:text-copper transition-colors">Prävention</a>
-                    </nav>
-                  </div>
-
-                  {/* Related Articles */}
-                  <div className="bg-white p-6 rounded-xl shadow-lg border border-green/10">
-                    <h3 className="wv-h4 text-green wv-spacing-sm">Verwandte Artikel</h3>
-                    <div className="space-y-4">
-                      <Link href="/ratgeber/kot-probleme-hund" className="block group">
-                        <div className="text-sm font-medium text-green group-hover:text-copper transition-colors">
-                          Kot-Probleme beim Hund
-                        </div>
-                        <div className="text-xs text-green/60">Durchfall und Verstopfung</div>
-                      </Link>
-                      <Link href="/ratgeber/ernaehrung-hund" className="block group">
-                        <div className="text-sm font-medium text-green group-hover:text-copper transition-colors">
-                          Gesunde Ernährung
-                        </div>
-                        <div className="text-xs text-green/60">Fütterung optimieren</div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  <div className="bg-gradient-to-br from-copper/10 to-green/10 p-6 rounded-xl border border-copper/20">
-                    <h3 className="wv-h4 text-green wv-spacing-sm">Magen beruhigen</h3>
-                    <p className="wv-body text-green/80 wv-spacing-sm text-sm">
-                      Unsere Gentle Calm Formel kann bei stressbedingter Gastritis helfen.
-                    </p>
-                    <Link href="/produkte/gentle-calm" className="btn-primary pill text-cream px-4 py-2 text-sm font-medium inline-block wv-spacing-sm">
-                      Produkt ansehen
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </ScrollAnimation>
+      </RatgeberArticleLayout>
 
       {/* CTA Section */}
       <section className="wv-section bg-green text-cream">

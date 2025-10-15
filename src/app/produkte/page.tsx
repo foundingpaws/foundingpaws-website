@@ -1,114 +1,154 @@
-import Image from "next/image";
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
-import GlassmorphismCard from "@/components/GlassmorphismCard";
-import OptimizedImage from "@/components/OptimizedImage";
 import ProductCard from "@/components/ProductCard";
+import ProductsFilterGrid from "@/components/ProductsFilterGrid";
 import "@/styles/product-cards.css";
 import JsonLd from "@/components/JsonLd";
+import IconMadeInGermany from "@/components/icons/IconMadeInGermany";
+import IconLab from "@/components/icons/IconLab";
+import IconStethoscope from "@/components/icons/IconStethoscope";
+import IconNatural100 from "@/components/icons/IconNatural100";
 
 const products = [
   {
-    key: "bright-mind",
-    title: "Bright Mind",
-    subtitle: "Kognitive Unterstützung & Herzgesundheit",
-    description: "Fördert geistige Klarheit und unterstützt die Herzfunktion – für ein waches, vitales Hundeleben.",
-    category: "Kognition & Herz",
-    accent: "copper",
-    comingSoon: true,
-    isNew: false,
-    isBestseller: false,
-    productImage: "/products/bright-mind/Bright Mind.png",
-    studioImage: "/products/bright-mind/product-studio.svg",
-    lifestyleImage: "/products/lifestyle/happy-dog-beach.svg",
-    benefits: [
-      "Omega-3 Fettsäuren für Gehirnfunktion",
-      "Antioxidantien gegen freie Radikale",
-      "Unterstützt Herz-Kreislauf-System",
-      "Fördert Konzentration und Lernfähigkeit"
-    ],
-    ingredients: [
-      "EPA & DHA aus Fischöl",
-      "Curcumin aus Kurkuma",
-      "Vitamin E",
-      "L-Carnitin"
-    ],
-    dosage: "1-2 Kapseln täglich je nach Gewicht",
-    targetGroup: "Hunde ab 7 Jahren, besonders aktive und lernende Hunde"
-  },
-  {
-    key: "gentle-calm",
-    title: "Gentle Calm",
-    subtitle: "Stresslinderung & Emotionale Balance",
-    description: "Natürliche Beruhigung für ängstliche Momente – damit dein Hund entspannt durch den Alltag geht.",
-    category: "Stress & Angst",
+    key: "shiny-coat",
+    title: "Shiny Coat",
+    subtitle: "Fellglanz & Hautgesundheit – weniger Juckreiz",
+    description: "Omega‑3, Zink, Biotin & Vitamin E für glänzendes Fell und starke Hautbarriere.",
+    category: "Haut & Fell",
     accent: "green",
     comingSoon: true,
-    isNew: false,
+    isNew: true,
     isBestseller: false,
-    productImage: "/products/gentle-calm/ObjectID6a.png",
-    studioImage: "/products/gentle-calm/product-studio.svg",
-    lifestyleImage: "/products/lifestyle/calm-dog-home.svg",
+    productImage: "/products/Shiny Coat.png",
+    studioImage: "/products/ingredients/omega3-detail.svg",
+    lifestyleImage: "/products/lifestyle/happy-dog-beach.svg",
     benefits: [
-      "Reduziert Stress und Angst",
-      "Fördert entspannten Schlaf",
-      "Unterstützt emotionale Balance",
-      "Natürliche Beruhigung ohne Sedierung"
+      "Fellglanz durch Omega‑3",
+      "Zink & Biotin für Keratin",
+      "Antioxidativer Zellschutz",
+      "Schonende Herstellung"
     ],
     ingredients: [
-      "L-Theanin aus grünem Tee",
-      "Kamillenextrakt",
-      "Passionsblume",
-      "Magnesium"
+      "Lachsöl",
+      "Leinsamen",
+      "Zink",
+      "Biotin",
     ],
-    dosage: "1 Kapsel 30 Min vor stressigen Situationen",
-    targetGroup: "Ängstliche Hunde, bei Gewitter, Feuerwerk, Tierarztbesuchen"
+    dosage: "1–3 Chews je 10 kg täglich",
+    targetGroup: "Hunde mit stumpfem Fell, trockener/empfindlicher Haut"
   },
   {
-    key: "vital-joints",
-    title: "Vital Joints",
-    subtitle: "Gelenkgesundheit & Mobilität",
-    description: "Unterstützt Gelenke und Beweglichkeit – für schmerzfreie Spaziergänge bis ins hohe Alter.",
+    key: "sensitive-skin",
+    title: "Sensitive Skin",
+    subtitle: "Hautbarriere & Entzündungsbalance",
+    description: "GLA‑reiche Öle (Hanf/Nachtkerze), Vitamin E & Kurkuma – sanft für sensible Haut.",
+    category: "Haut & Fell",
+    accent: "green",
+    comingSoon: true,
+    isNew: true,
+    isBestseller: false,
+    productImage: "/products/Sensitive Skin.png",
+    studioImage: "/products/ingredients/omega3-detail.svg",
+    lifestyleImage: "/products/lifestyle/calm-dog-home.svg",
+    benefits: [
+      "GLA unterstützt Hautbarriere",
+      "B‑Vitamine aus Bierhefe",
+      "Antioxidativer Schutz",
+      "Hohe Akzeptanz"
+    ],
+    ingredients: [
+      "Hanföl",
+      "Nachtkerzenöl",
+      "Bierhefe",
+      "Kurkuma",
+    ],
+    dosage: "1–3 Chews je 10 kg täglich",
+    targetGroup: "Hunde mit sensibler Haut/Schuppen"
+  },
+  ,
+  {
+    key: "joint-mobility",
+    title: "Joint & Mobility",
+    subtitle: "Gelenke, Beweglichkeit, entzündungshemmend",
+    description: "Glucosamin, MSM & Grünlippmuschel – für spürbar mehr Gelenkkomfort.",
     category: "Gelenke & Mobilität",
     accent: "taupe",
     comingSoon: true,
-    isNew: false,
+    isNew: true,
     isBestseller: false,
-    productImage: "/products/vital-joints/VitalJoints.png",
-    studioImage: "/products/vital-joints/product-studio.svg",
+    productImage: "/products/Joint & Mobility.png",
+    studioImage: "/products/ingredients/glucosamine-detail.svg",
     lifestyleImage: "/products/lifestyle/active-dog-park.svg",
     benefits: [
-      "Fördert Gelenkgesundheit",
-      "Reduziert Entzündungen",
-      "Unterstützt Knorpelaufbau",
-      "Verbessert Beweglichkeit"
+      "Knorpelstoffwechsel unterstützen",
+      "Entzündungen reduzieren",
+      "Mehr Beweglichkeit",
+      "Mit Hagebutte"
     ],
     ingredients: [
-      "Glucosamin HCl",
-      "Chondroitinsulfat",
-      "MSM (Methylsulfonylmethan)",
-      "Hyaluronsäure"
+      "Glucosamin",
+      "MSM",
+      "Grünlippmuschel",
+      "Kurkuma+Piperin",
     ],
-    dosage: "2-3 Kapseln täglich je nach Gewicht",
-    targetGroup: "Hunde mit Gelenkproblemen, Senioren, große Rassen"
+    dosage: "1–3 Chews je 10 kg täglich",
+    targetGroup: "Senioren, große Rassen, Gelenkbedarf"
   }
-];
-
-const comingSoonProducts = [
+  ,
   {
-    name: "Skin & Coat",
-    description: "Für glänzendes Fell und gesunde Haut",
-    status: "In Entwicklung"
-  },
+    key: "skin-vital-omega",
+    title: "5‑Omega‑Öl – Skin & Vital Blend",
+    subtitle: "Haut, Fell, Herz & Immunsystem",
+    description: "Synergie aus Lachs‑, Lein‑, Hanf‑, Borretsch‑ & Nachtkerzenöl, mit Vitamin E.",
+    category: "Haut & Vitalität",
+    accent: "copper",
+    comingSoon: true,
+    isNew: true,
+    isBestseller: false,
+    productImage: "/products/5-Omega-Ölflasche.png",
+    studioImage: "/products/ingredients/omega3-detail.svg",
+    lifestyleImage: "/products/lifestyle/happy-dog-beach.svg",
+    benefits: [
+      "EPA/DHA + ALA + GLA",
+      "Antioxidativer Schutz",
+      "Hohe Akzeptanz",
+      "Kalt gemischt"
+    ],
+    ingredients: [
+      "Lachsöl",
+      "Leinöl",
+      "Hanföl",
+      "Borretsch & Nachtkerze",
+    ],
+    dosage: "2–3 ml je 10 kg täglich",
+    targetGroup: "Hunde mit Haut/Fell‑ & Vitalitätsbedarf"
+  }
+  ,
   {
-    name: "Immune Boost",
-    description: "Stärkt die Abwehrkräfte",
-    status: "In Planung"
-  },
-  {
-    name: "Digestive Care",
-    description: "Unterstützt die Verdauung",
-    status: "In Planung"
+    key: "green-lipped-mussel",
+    title: "Grünlippmuschelpulver (100%)",
+    subtitle: "Gelenke, Sehnen, Bindegewebe",
+    description: "100 % Perna canaliculus – GAGs & Omega‑3, schonend getrocknet.",
+    category: "Gelenke & Mobilität",
+    accent: "taupe",
+    comingSoon: true,
+    isNew: true,
+    isBestseller: false,
+    productImage: "/products/Grünlippmuschelpulver.png",
+    studioImage: "/products/ingredients/Gelenk.png",
+    lifestyleImage: "/products/lifestyle/active-dog-park.svg",
+    benefits: [
+      "GAGs für Knorpel",
+      "Omega‑3 für Balance",
+      "Transparente Qualität",
+      "Mit Messlöffel"
+    ],
+    ingredients: [
+      "Grünlippmuschelpulver 100%",
+    ],
+    dosage: "0,5 g je 10 kg täglich",
+    targetGroup: "Gelenkbedarf, Sporthunde, Senioren"
   }
 ];
 
@@ -119,27 +159,58 @@ export default function ProduktePage() {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/bright-mind` },
-          { '@type': 'ListItem', position: 2, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/gentle-calm` },
-          { '@type': 'ListItem', position: 3, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/vital-joints` },
+          { '@type': 'ListItem', position: 1, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/shiny-coat` },
+          { '@type': 'ListItem', position: 2, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/sensitive-skin` },
+          { '@type': 'ListItem', position: 3, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/joint-mobility` },
+          { '@type': 'ListItem', position: 4, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/skin-vital-omega` },
+          { '@type': 'ListItem', position: 5, url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.foundingpaws.de'}/produkte/green-lipped-mussel` },
         ],
       }} />
       {/* Hero Section */}
       <section className="wv-section bg-green text-cream">
         <div className="container-wide">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
             <FadeIn>
-              <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md" style={{color: 'white'}}>
-                Unsere Produkte
+              <div>
+                <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md" style={{color: 'white'}}>
+                  Unsere Produkte
+                </div>
+                <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>
+                  Premium-Supplements – Coming Soon
+                </h1>
+                <div className="w-16 h-1 bg-copper rounded-full wv-spacing-md"></div>
+                <p className="wv-lead wv-spacing-md max-w-2xl" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
+                  Evidenzbasiert, mit Tierärzten entwickelt und in Deutschland gefertigt.
+                  Sichere dir jetzt Zugang zur Warteliste und 10% Launch-Rabatt.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 wv-spacing-md">
+                  <a href="/bedarfsfinder" className="bg-white text-green px-8 py-4 rounded-full font-medium hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base text-center">
+                    Bedarfsfinder starten
+                  </a>
+                  <a href="#waitlist" className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base text-center">
+                    Warteliste sichern
+                  </a>
+                </div>
               </div>
-              <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>
-                Wissenschaftlich entwickelte Supplements
-              </h1>
-              <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead wv-spacing-md max-w-3xl mx-auto" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
-                Drei gezielte Formeln für die wichtigsten Gesundheitsbereiche deines Hundes. 
-                Entwickelt mit Tierärzten, hergestellt in Deutschland.
-              </p>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <div className="grid grid-cols-3 gap-4 text-cream/90">
+                <div className="bg-white/10 rounded-2xl p-5 border border-white/20">
+                  <IconMadeInGermany className="w-8 h-8 mb-2 text-white" />
+                  <div className="wv-subhead" style={{color: 'white'}}>Made in Germany</div>
+                  <div className="text-sm" style={{color: 'rgba(255,255,255,0.85)'}}>Hergestellt in Heilbronn</div>
+                </div>
+                <div className="bg-white/10 rounded-2xl p-5 border border-white/20">
+                  <IconLab className="w-8 h-8 mb-2 text-white" />
+                  <div className="wv-subhead" style={{color: 'white'}}>Laborgeprüft</div>
+                  <div className="text-sm" style={{color: 'rgba(255,255,255,0.85)'}}>Jede Charge getestet</div>
+                </div>
+                <div className="bg-white/10 rounded-2xl p-5 border border-white/20">
+                  <IconStethoscope className="w-8 h-8 mb-2 text-white" />
+                  <div className="wv-subhead" style={{color: 'white'}}>Tierärztlich</div>
+                  <div className="text-sm" style={{color: 'rgba(255,255,255,0.85)'}}>Von Experten entwickelt</div>
+                </div>
+              </div>
             </FadeIn>
           </div>
         </div>
@@ -161,52 +232,10 @@ export default function ProduktePage() {
             </div>
           </ScrollAnimation>
 
-          <div className="product-grid">
-            {products.map((product, index) => (
-              <ScrollAnimation key={product.key} animation="slide-up" delay={index * 100}>
-                <ProductCard product={product} index={index} />
-              </ScrollAnimation>
-            ))}
-          </div>
+          <ProductsFilterGrid products={products as any} />
         </div>
       </section>
 
-      {/* Coming Soon Products */}
-      <section className="wv-section bg-gradient-to-b from-cream to-taupe/5">
-        <div className="container-wide">
-          <ScrollAnimation>
-            <div className="text-center wv-spacing-2xl">
-              <h2 className="wv-h2 text-green wv-spacing-sm">
-                Weitere Formeln in Entwicklung
-              </h2>
-              <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead text-green/70 wv-spacing-md max-w-3xl mx-auto">
-                Wir arbeiten kontinuierlich an neuen Formeln, um alle Aspekte 
-                der Hundegesundheit abzudecken.
-              </p>
-            </div>
-          </ScrollAnimation>
-
-          <div className="grid sm:grid-cols-3 gap-6">
-            {comingSoonProducts.map((product, index) => (
-              <ScrollAnimation key={product.name} animation="fade-in" delay={index * 100}>
-                <GlassmorphismCard className="p-6 text-center hover-lift-feature">
-                  <div className="text-3xl wv-spacing-sm">🔬</div>
-                  <h3 className="wv-h4 text-green wv-spacing-xs">
-                    {product.name}
-                  </h3>
-                  <p className="wv-body text-green/75 wv-spacing-sm">
-                    {product.description}
-                  </p>
-                  <div className="pill bg-copper/15 text-copper px-3 py-1 text-xs font-medium">
-                    {product.status}
-                  </div>
-                </GlassmorphismCard>
-              </ScrollAnimation>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Quality Promise */}
       <section className="wv-section bg-green text-cream">
@@ -223,22 +252,22 @@ export default function ProduktePage() {
               
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 wv-spacing-md">
                 <div className="text-center">
-                  <div className="text-3xl wv-spacing-sm">🔬</div>
+                  <IconLab className="w-8 h-8 mx-auto wv-spacing-sm text-white" />
                   <h3 className="wv-h4 wv-spacing-xs" style={{color: 'white'}}>Laborgeprüft</h3>
                   <p className="wv-body" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Jede Charge wird von unabhängigen Laboren geprüft</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl wv-spacing-sm">🇩🇪</div>
+                  <IconMadeInGermany className="w-8 h-8 mx-auto wv-spacing-sm text-white" />
                   <h3 className="wv-h4 wv-spacing-sm" style={{color: 'white'}}>Made in Germany</h3>
                   <p className="wv-body" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Handgefertigt in Heilbronn</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl wv-spacing-sm">🌿</div>
+                  <IconNatural100 className="w-8 h-8 mx-auto wv-spacing-sm text-white" />
                   <h3 className="wv-h4 wv-spacing-sm" style={{color: 'white'}}>100% Natürlich</h3>
                   <p className="wv-body" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Keine künstlichen Zusatzstoffe</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl wv-spacing-sm">🩺</div>
+                  <IconStethoscope className="w-8 h-8 mx-auto wv-spacing-sm text-white" />
                   <h3 className="wv-h4 wv-spacing-sm" style={{color: 'white'}}>Tierärztlich entwickelt</h3>
                   <p className="wv-body" style={{color: 'rgba(255, 255, 255, 0.8)'}}>Von Experten für Hunde entwickelt</p>
                 </div>
@@ -252,6 +281,29 @@ export default function ProduktePage() {
                   Fragen stellen
                 </a>
               </div>
+            </div>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      {/* Waitlist Banner */}
+      <section id="waitlist" className="wv-section bg-gradient-to-br from-green to-green/90 text-cream">
+        <div className="container-wide">
+          <ScrollAnimation>
+            <div className="max-w-5xl mx-auto text-center">
+              <div className="inline-block pill bg-white/20 border border-white/30 px-6 py-3 wv-eyebrow wv-spacing-sm text-white font-medium">Exklusive Warteliste</div>
+              <h2 className="wv-h2 text-white wv-spacing-sm">Sei beim Launch dabei</h2>
+              <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
+              <p className="wv-lead text-white/90 wv-spacing-md max-w-3xl mx-auto">
+                Melde dich an und erhalte 10% Launch‑Rabatt, Vorabzugang und Updates.
+              </p>
+
+              <form className="max-w-lg mx-auto grid sm:grid-cols-[1fr_auto] gap-3">
+                <input type="email" required placeholder="deine@email.de" className="w-full px-4 py-4 rounded-xl border border-cream/30 focus:border-copper focus:ring-2 focus:ring-copper/20 text-green bg-white/90 placeholder-green/50 text-lg" />
+                <button className="bg-copper text-cream px-8 py-4 rounded-xl font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">Jetzt 10% sichern</button>
+              </form>
+
+              <div className="mt-6 text-white/70 text-sm">🔒 Keine Sorge, kein Spam. Jederzeit kündbar.</div>
             </div>
           </ScrollAnimation>
         </div>

@@ -21,12 +21,7 @@ export default function ImmunsystemPage() {
                 Unterstütze das Immunsystem deines Hundes mit wissenschaftlich entwickelten Nährstoffen für optimale Widerstandskraft.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="#products" className="pill bg-copper text-cream px-7 py-3 text-base font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.5)] hover:opacity-95 hover:scale-105 transition-all">
-                  Formel ansehen →
-                </Link>
-                <Link href="/" className="pill bg-cream/10 border border-cream/30 text-cream px-7 py-3 text-base font-medium backdrop-blur-sm hover:bg-cream/15 transition">
-                  Zurück zur Übersicht
-                </Link>
+                <Link href="/produkte/skin-vital-omega#waitlist" className="pill bg-copper text-cream px-7 py-3 text-base font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.5)] hover:opacity-95 hover:scale-105 transition-all">5‑Omega – Warteliste</Link>
               </div>
             </div>
           </FadeIn>
@@ -66,8 +61,7 @@ export default function ImmunsystemPage() {
               <div className="bg-white/70 backdrop-blur-sm border border-taupe/20 rounded-[28px] p-8 shadow-[0_16px_48px_-16px_rgba(142,127,116,0.25)]">
                 <h3 className="use-retrips text-2xl text-green mb-4">Unsere Lösung</h3>
                 <p className="text-green/75 leading-relaxed mb-6">
-                  <strong className="text-copper">Immune Boost</strong> stärkt die natürlichen Abwehrkräfte deines Hundes. 
-                  Mit Vitaminen, Mineralien und sekundären Pflanzenstoffen für optimale Immunfunktion.
+                  <strong className="text-copper">5‑Omega – Skin & Vital</strong> – Lachs‑, Lein‑, Hanf‑, Borretsch‑ & Nachtkerzenöl mit Vitamin E (kalt gemischt, lichtgeschützt abgefüllt).
                 </p>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-2">
@@ -94,9 +88,7 @@ export default function ImmunsystemPage() {
         <div className="container-wide">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center mb-16">
-              <h2 className="use-retrips text-3xl sm:text-4xl text-green mb-6">
-                Immune Boost
-              </h2>
+              <h2 className="use-retrips text-3xl sm:text-4xl text-green mb-6">5‑Omega – Skin & Vital</h2>
               <p className="use-fredoka text-lg text-green/70 mb-8">
                 Die perfekte Formel für starke Abwehrkräfte und optimale Immunfunktion
               </p>
@@ -110,11 +102,9 @@ export default function ImmunsystemPage() {
                   <IconShield className="w-10 h-10 text-green" />
                 </div>
                 
-                <h3 className="use-retrips text-3xl text-green mb-4">Immune Boost</h3>
-                <p className="use-fredoka text-lg text-copper mb-6">Starke Abwehrkräfte & Immunfunktion</p>
-                <p className="text-green/70 leading-relaxed mb-8">
-                  Stärkt die natürlichen Abwehrkräfte deines Hundes und unterstützt die Immunfunktion für optimale Gesundheit.
-                </p>
+                <h3 className="use-retrips text-3xl text-green mb-4">5‑Omega – Skin & Vital</h3>
+                <p className="use-fredoka text-lg text-copper mb-6">Haut, Fell, Herz & Immunsystem</p>
+                <p className="text-green/70 leading-relaxed mb-8">EPA/DHA + ALA + GLA – umfassendes Omega‑Profil, mit antioxidativem Schutz.</p>
 
                 <div className="border-t border-taupe/20 pt-6 mb-8">
                   <div className="flex items-center justify-center gap-6 text-xs text-green/60">
@@ -123,16 +113,10 @@ export default function ImmunsystemPage() {
                   </div>
                 </div>
 
-                <div className="pill bg-copper/15 border border-copper/25 text-copper px-4 py-2 text-sm font-medium mb-6 inline-block">
-                  Coming Soon
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <div className="pill bg-copper/15 border border-copper/25 text-copper px-4 py-2 text-sm font-medium inline-block">Coming Soon</div>
+                  <Link href="/produkte/skin-vital-omega#waitlist" className="pill bg-copper text-cream px-6 py-3 font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.6)] hover:opacity-95 hover:scale-105 transition-all inline-block">5‑Omega – Warteliste</Link>
                 </div>
-
-                <Link 
-                  href="#waitlist"
-                  className="pill bg-copper text-cream px-8 py-4 font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.6)] hover:opacity-95 hover:scale-105 transition-all inline-block"
-                >
-                  Auf Warteliste setzen
-                </Link>
               </div>
             </FadeIn>
           </div>

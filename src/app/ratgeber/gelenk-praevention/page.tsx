@@ -1,12 +1,13 @@
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
+import RatgeberArticleLayout from "@/components/RatgeberArticleLayout";
 
 export const metadata = {
-  title: 'Gelenk‑Prävention beim Hund: Die 6 Säulen | Founding Paws',
-  description: 'Gewicht, Bewegung, Umfeld, Früherkennung, Ernährung & Reha – Checkliste und Maßnahmen für gesunde Gelenke.',
+  title: 'Gelenke beim Hund: Prävention leicht gemacht (Checkliste) | Founding Paws',
+  description: 'Die 6 Säulen für gesunde Hundegelenke: Gewicht, Bewegung, Umfeld, Früherkennung, Ernährung & Reha.',
   alternates: { canonical: '/ratgeber/gelenk-praevention' },
-  openGraph: { title: 'Gelenk‑Prävention', description: 'Früh schützen, besser leben.', type: 'article' }
+  openGraph: { title: 'Gelenk‑Prävention', description: 'Früh schützen, besser leben – mit Checkliste.', type: 'article' }
 };
 
 export default function GelenkPraeventionPage() {
@@ -25,38 +26,56 @@ export default function GelenkPraeventionPage() {
         </div>
       </section>
 
-      <section className="wv-section bg-cream">
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <ScrollAnimation>
-              <div className="prose prose-lg max-w-none">
-                <h2 className="wv-h2 text-green wv-spacing-lg">Die 6 Präventions‑Säulen</h2>
-                <ul className="wv-body text-green/80 space-y-2">
-                  <li>• Körpergewicht & Body Condition Score (Ziel: 4–5/9)</li>
-                  <li>• Lebenslange, kontrollierte Low‑Impact‑Bewegung</li>
-                  <li>• Rutschfeste Umgebung, Rampen, kurze Krallen</li>
-                  <li>• Früherkennung bei Risikorassen (Hüfte/Ellenbogen)</li>
-                  <li>• Ernährung/Supplemente gezielt einsetzen (stärkste Evidenz: Omega‑3)</li>
-                  <li>• Reha bei ersten Anzeichen (Mobilisation, Kraft, Balance)</li>
-                </ul>
+      <RatgeberArticleLayout
+        slug="/ratgeber/gelenk-praevention"
+        takeaways={[
+          "Frühe Prävention reduziert spätere Beschwerden",
+          "Gewicht, Bewegung und Umfeld sind die größten Hebel",
+          "Omega‑3 besitzt die stärkste Evidenz unter Ergänzungen",
+        ]}
+      >
+        <ScrollAnimation>
+          <div className="prose prose-lg max-w-none">
+            <h2 className="wv-h2 text-green wv-spacing-lg">Die 6 Präventions‑Säulen</h2>
+            <ul className="wv-body text-green/80 space-y-2">
+              <li>• Körpergewicht & Body Condition Score (Ziel: 4–5/9)</li>
+              <li>• Lebenslange, kontrollierte Low‑Impact‑Bewegung</li>
+              <li>• Rutschfeste Umgebung, Rampen, kurze Krallen</li>
+              <li>• Früherkennung bei Risikorassen (Hüfte/Ellenbogen)</li>
+              <li>• Ernährung/Supplemente gezielt einsetzen (stärkste Evidenz: Omega‑3)</li>
+              <li>• Reha bei ersten Anzeichen (Mobilisation, Kraft, Balance)</li>
+            </ul>
 
-                <h2 className="wv-h2 text-green wv-spacing-lg">Checkliste für den Alltag</h2>
-                <ul className="wv-body text-green/80 space-y-1">
-                  <li>• 4–6×/Woche 30–45 min Bewegung (individuell)</li>
-                  <li>• BCS 4–5/9 anstreben</li>
-                  <li>• Rutschstopper & Rampen nutzen</li>
-                  <li>• 2×/Jahr Gelenk‑Check (Senioren öfter)</li>
-                </ul>
+            <h2 className="wv-h2 text-green wv-spacing-lg">Checkliste für den Alltag</h2>
+            <ul className="wv-body text-green/80 space-y-1">
+              <li>• 4–6×/Woche 30–45 min Bewegung (individuell)</li>
+              <li>• BCS 4–5/9 anstreben</li>
+              <li>• Rutschstopper & Rampen nutzen</li>
+              <li>• 2×/Jahr Gelenk‑Check (Senioren öfter)</li>
+            </ul>
 
-                <div className="bg-copper/10 p-6 rounded-xl border border-copper/20 wv-spacing-lg">
-                  <h3 className="wv-h3 text-green wv-spacing-sm">CTA</h3>
-                  <p className="wv-body text-green/80">Starte heute mit deinem FoundingPaws Gelenk‑Plan – Gewicht, Bewegung, Omega‑3 – wir begleiten dich.</p>
+            <div className="bg-copper/10 p-6 rounded-xl border border-copper/20 wv-spacing-lg">
+              <h3 className="wv-h3 text-green wv-spacing-sm">CTA</h3>
+              <p className="wv-body text-green/80">Starte heute mit deinem FoundingPaws Gelenk‑Plan – Gewicht, Bewegung, Omega‑3 – wir begleiten dich.</p>
+            </div>
+
+            <div className="wv-spacing-xl" />
+            <div className="bg-white p-6 rounded-xl border border-green/10">
+              <h2 className="wv-h3 text-green wv-spacing-sm">Häufige Fragen</h2>
+              <div className="wv-body text-green/80 space-y-4">
+                <div>
+                  <div className="font-medium text-green">Ab wann sollte man mit Prävention beginnen?</div>
+                  <p>Idealerweise im jungen Erwachsenenalter, besonders bei Risikorassen oder hohem Aktivitätslevel.</p>
+                </div>
+                <div>
+                  <div className="font-medium text-green">Welche Ergänzungen haben die beste Evidenz?</div>
+                  <p>Omega‑3 besitzt die stärkste Evidenz; ergänzend GLM und UC‑II/Boswellia je nach Fall.</p>
                 </div>
               </div>
-            </ScrollAnimation>
+            </div>
           </div>
-        </div>
-      </section>
+        </ScrollAnimation>
+      </RatgeberArticleLayout>
 
       <section className="wv-section bg-green text-cream">
         <div className="container-wide text-center">

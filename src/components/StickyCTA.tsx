@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export default function StickyCTA() {
+export default function StickyCTA({ comingSoon = true }: { comingSoon?: boolean }) {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -29,10 +29,16 @@ export default function StickyCTA() {
       <button 
         className="bg-green text-cream px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:bg-green/90 transform hover:scale-105 transition-all duration-300 text-sm font-medium"
         onClick={() => {
-          document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+          if (comingSoon) {
+            const el = document.getElementById('waitlist');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            const el = document.getElementById('products');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }
         }}
       >
-        Jetzt bestellen →
+        {comingSoon ? 'Warteliste sichern →' : 'Jetzt bestellen →'}
       </button>
     </div>
   );

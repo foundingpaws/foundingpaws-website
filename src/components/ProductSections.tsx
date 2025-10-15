@@ -1,8 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import CollapsibleSection from "./CollapsibleSection";
+import ProductBenefits from "./ProductBenefits";
+import IngredientIcon from "./IngredientIcon";
+import IconTrust from "@/components/icons/IconTrust";
+import IconQualityLab from "@/components/icons/IconQualityLab";
+import IconVetApproved from "@/components/icons/IconVetApproved";
 
 interface Product {
   key: string;
@@ -41,6 +46,31 @@ interface ProductSectionsProps {
 export default function ProductSections({ product }: ProductSectionsProps) {
   const [activeTab, setActiveTab] = useState("overview");
 
+  useEffect(() => {
+    const ids = ["overview", "ingredients", "science", "faq"];
+    const sections = ids
+      .map((id) => document.getElementById(`tabpanel-${id}`))
+      .filter(Boolean) as HTMLElement[];
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (a.target as HTMLElement).offsetTop - (b.target as HTMLElement).offsetTop);
+        if (visible[0]) {
+          const id = visible[0].target.id.replace("tabpanel-", "");
+          setActiveTab(id);
+        }
+      },
+      { rootMargin: "-120px 0px -60% 0px", threshold: [0, 0.25, 0.5] }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const tabs = [
     { id: "overview", label: "Übersicht" },
     { id: "ingredients", label: "Wirkstoffe" },
@@ -49,18 +79,22 @@ export default function ProductSections({ product }: ProductSectionsProps) {
   ];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       {/* Tab Navigation */}
-      <div className="border-b border-gray-200">
-        <nav className="flex space-x-8" role="tablist">
+      <div className="border-b border-green/15 sticky top-14 z-20 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/80">
+        <nav className="flex gap-8 container-wide" role="tablist">
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                const el = document.getElementById(`tabpanel-${tab.id}`);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
                 activeTab === tab.id
                   ? "border-accent text-accent"
-                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+                  : "border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300"
               }`}
               role="tab"
               aria-selected={activeTab === tab.id}
@@ -89,19 +123,7 @@ export default function ProductSections({ product }: ProductSectionsProps) {
 
             {/* Warum es wirkt */}
             <section className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900">Warum es wirkt</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {product.benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-3 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                    <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <p className="text-gray-700 font-medium">{benefit}</p>
-                  </div>
-                ))}
-              </div>
+              <ProductBenefits benefits={product.benefits} category={product.category} />
             </section>
 
             {/* Anwendung & Dosierung */}
@@ -131,13 +153,7 @@ export default function ProductSections({ product }: ProductSectionsProps) {
                   <div key={index} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                     <div className="flex items-start gap-4">
                       <div className="w-16 h-16 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Image
-                          src={ingredient.icon}
-                          alt={ingredient.name}
-                          width={32}
-                          height={32}
-                          className="w-8 h-8"
-                        />
+                        <IngredientIcon name={ingredient.name} className="w-8 h-8" />
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
@@ -186,6 +202,30 @@ export default function ProductSections({ product }: ProductSectionsProps) {
                     }
                   />
                 ))}
+              </div>
+            </section>
+
+            {/* Warum Founding Paws – CTA Section */}
+            <section className="mt-12">
+              <div className="bg-green/5 border border-green/15 rounded-2xl p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Warum Founding Paws?</h3>
+                <div className="grid sm:grid-cols-3 gap-4 mb-6">
+                  <div className="flex items-center gap-3 p-4 bg-white rounded-xl border border-green/10">
+                    <IconQualityLab className="w-5 h-5 text-green" />
+                    <div className="text-sm font-medium text-gray-800">Laborgeprüfte Qualität</div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-white rounded-xl border border-green/10">
+                    <IconVetApproved className="w-5 h-5 text-green" />
+                    <div className="text-sm font-medium text-gray-800">Tierärztlich entwickelt</div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-white rounded-xl border border-green/10">
+                    <IconTrust className="w-5 h-5 text-green" />
+                    <div className="text-sm font-medium text-gray-800">Transparenz & Verantwortung</div>
+                  </div>
+                </div>
+                <div className="flex justify-center">
+                  <a href="#waitlist" className="px-6 py-3 rounded-full bg-copper text-white font-medium hover:bg-copper/90 transition-colors">Warteliste sichern</a>
+                </div>
               </div>
             </section>
           </div>

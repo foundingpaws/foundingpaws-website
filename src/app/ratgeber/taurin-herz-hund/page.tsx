@@ -1,6 +1,7 @@
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
+import RatgeberArticleLayout from "@/components/RatgeberArticleLayout";
 
 export const metadata = {
   title: 'Taurin & Herzgesundheit beim Hund (DCM) | Founding Paws',
@@ -25,11 +26,16 @@ export default function TaurinHerzHundPage() {
         </div>
       </section>
 
-      <section className="wv-section bg-cream">
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <ScrollAnimation>
-              <div className="prose prose-lg max-w-none">
+      <RatgeberArticleLayout
+        slug="/ratgeber/taurin-herz-hund"
+        takeaways={[
+          "Taurinmangel kann DCM begünstigen; Messung in Plasma und Vollblut",
+          "Intervention: Futteranpassung + Taurin 50–100 mg/kg/Tag; Verlauf kontrollieren",
+          "Diagnostik/Monitoring in enger Abstimmung mit Kardiologie",
+        ]}
+      >
+        <ScrollAnimation>
+          <div className="prose prose-lg max-w-none">
                 <h2 className="wv-h2 text-green wv-spacing-lg">Erkenntnisse & Empfehlungen</h2>
                 <ul className="wv-body text-green/80 space-y-2">
                   <li>• Warnzeichen: Müdigkeit, Husten, Herzgeräusche → tierärztlich abklären.</li>
@@ -50,11 +56,9 @@ export default function TaurinHerzHundPage() {
                   <li>• Klinische Fallserien zur diätassoziierten DCM mit Taurinmangel und Reversibilität nach Futterumstellung + Supplement.</li>
                   <li>• Reviews zu Taurinmetabolismus beim Hund, Messmethoden (Plasma vs Vollblut) und Fütterungszusammenhängen.</li>
                 </ul>
-              </div>
-            </ScrollAnimation>
           </div>
-        </div>
-      </section>
+        </ScrollAnimation>
+      </RatgeberArticleLayout>
 
       <section className="wv-section bg-green text-cream">
         <div className="container-wide text-center">

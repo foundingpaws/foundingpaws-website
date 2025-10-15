@@ -1,6 +1,7 @@
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
+import RatgeberArticleLayout from "@/components/RatgeberArticleLayout";
 
 export const metadata = {
   title: 'Dental‑Chews: Mehr als nur Kauen – Evidenz zur Zahnpflege | Founding Paws',
@@ -25,22 +26,25 @@ export default function DentalChewsHundPage() {
         </div>
       </section>
 
-      <section className="wv-section bg-cream">
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <ScrollAnimation>
-              <div className="prose prose-lg max-w-none">
-                <h2 className="wv-h2 text-green wv-spacing-lg">Tipps zur Zahnpflege</h2>
-                <ul className="wv-body text-green/80 space-y-2">
-                  <li>• Kaustreifen in den Kalorienbedarf einrechnen</li>
-                  <li>• Mit regelmäßigem Zähneputzen kombinieren</li>
-                  <li>• Jährliche Gebisskontrolle beim Tierarzt</li>
-                </ul>
-              </div>
-            </ScrollAnimation>
+      <RatgeberArticleLayout
+        slug="/ratgeber/dental-chews-hund"
+        takeaways={[
+          "Dental‑Chews reduzieren Plaque/Zahnstein – als Ergänzung zum Putzen",
+          "Kalorien berücksichtigen; jährliche Kontrollen einplanen",
+          "Produktqualität und Größe auf den Hund abstimmen",
+        ]}
+      >
+        <ScrollAnimation>
+          <div className="prose prose-lg max-w-none">
+            <h2 className="wv-h2 text-green wv-spacing-lg">Tipps zur Zahnpflege</h2>
+            <ul className="wv-body text-green/80 space-y-2">
+              <li>• Kaustreifen in den Kalorienbedarf einrechnen</li>
+              <li>• Mit regelmäßigem Zähneputzen kombinieren</li>
+              <li>• Jährliche Gebisskontrolle beim Tierarzt</li>
+            </ul>
           </div>
-        </div>
-      </section>
+        </ScrollAnimation>
+      </RatgeberArticleLayout>
 
       <section className="wv-section bg-green text-cream">
         <div className="container-wide text-center">

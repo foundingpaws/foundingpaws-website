@@ -22,11 +22,11 @@ export default function HautFellPage() {
                 Unterstütze die natürliche Schönheit und Gesundheit von Haut und Fell deines Hundes mit unserer speziellen Formel.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="#products" className="pill bg-copper text-cream px-7 py-3 text-base font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.5)] hover:opacity-95 hover:scale-105 transition-all">
-                  Formel ansehen →
+                <Link href="/produkte/shiny-coat#waitlist" className="pill bg-copper text-cream px-7 py-3 text-base font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.5)] hover:opacity-95 hover:scale-105 transition-all">
+                  Shiny Coat – Warteliste
                 </Link>
-                <Link href="/" className="pill bg-cream/10 border border-cream/30 text-cream px-7 py-3 text-base font-medium backdrop-blur-sm hover:bg-cream/15 transition">
-                  Zurück zur Übersicht
+                <Link href="/produkte/sensitive-skin#waitlist" className="pill bg-cream/10 border border-cream/30 text-cream px-7 py-3 text-base font-medium backdrop-blur-sm hover:bg-cream/15 transition">
+                  Sensitive Skin – Warteliste
                 </Link>
               </div>
             </div>
@@ -67,22 +67,13 @@ export default function HautFellPage() {
               <div className="bg-white/70 backdrop-blur-sm border border-taupe/20 rounded-[28px] p-8 shadow-[0_16px_48px_-16px_rgba(142,127,116,0.25)]">
                 <h3 className="use-retrips text-2xl text-green mb-4">Unsere Lösung</h3>
                 <p className="text-green/75 leading-relaxed mb-6">
-                  <strong className="text-copper">Skin & Coat</strong> nährt Haut und Fell von innen heraus. 
-                  Mit essentiellen Fettsäuren, Vitaminen und Mineralien für sichtbare Ergebnisse.
+                  <strong className="text-copper">Shiny Coat</strong> für Fellglanz & Hautbarriere – mit Omega‑3, Zink & Biotin. <br/>
+                  <strong className="text-copper">Sensitive Skin</strong> für sensible Haut – GLA‑Öle (Hanf/Nachtkerze) + Vitamin E & Kurkuma.
                 </p>
                 <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="text-copper">✓</span>
-                    <span>Fördert glänzendes, kräftiges Fell</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-copper">✓</span>
-                    <span>Unterstützt gesunde Hautbarriere</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-copper">✓</span>
-                    <span>Reduziert Juckreiz & Schuppen</span>
-                  </div>
+                  <div className="flex items-center gap-2"><span className="text-copper">✓</span><span>Omega‑3, Zink & Biotin für Fell & Haut</span></div>
+                  <div className="flex items-center gap-2"><span className="text-copper">✓</span><span>GLA‑Öle – Hautbarriere & Entzündungsbalance</span></div>
+                  <div className="flex items-center gap-2"><span className="text-copper">✓</span><span>Schonend formuliert, hohe Akzeptanz</span></div>
                 </div>
               </div>
             </FadeIn>
@@ -95,9 +86,7 @@ export default function HautFellPage() {
         <div className="container-wide">
           <FadeIn>
             <div className="max-w-4xl mx-auto text-center mb-16">
-              <h2 className="use-retrips text-3xl sm:text-4xl text-green mb-6">
-                Skin & Coat
-              </h2>
+              <h2 className="use-retrips text-3xl sm:text-4xl text-green mb-6">Shiny Coat</h2>
               <p className="use-fredoka text-lg text-green/70 mb-8">
                 Die perfekte Formel für glänzendes Fell und gesunde Haut
               </p>
@@ -111,11 +100,9 @@ export default function HautFellPage() {
                   <IconSparkles className="w-10 h-10 text-green" />
                 </div>
                 
-                <h3 className="use-retrips text-3xl text-green mb-4">Skin & Coat</h3>
-                <p className="use-fredoka text-lg text-copper mb-6">Glänzendes Fell & gesunde Haut</p>
-                <p className="text-green/70 leading-relaxed mb-8">
-                  Nährt Haut und Fell von innen heraus, für ein glänzendes, kräftiges Fell und eine gesunde Hautbarriere.
-                </p>
+                <h3 className="use-retrips text-3xl text-green mb-4">Shiny Coat</h3>
+                <p className="use-fredoka text-lg text-copper mb-6">Fellglanz & Hautbarriere</p>
+                <p className="text-green/70 leading-relaxed mb-8">Omega‑3, Zink & Biotin – sichtbar glänzendes Fell und robuste Hautbarriere.</p>
 
                 <div className="border-t border-taupe/20 pt-6 mb-8">
                   <div className="flex items-center justify-center gap-6 text-xs text-green/60">
@@ -124,16 +111,11 @@ export default function HautFellPage() {
                   </div>
                 </div>
 
-                <div className="pill bg-copper/15 border border-copper/25 text-copper px-4 py-2 text-sm font-medium mb-6 inline-block">
-                  Coming Soon
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <div className="pill bg-copper/15 border border-copper/25 text-copper px-4 py-2 text-sm font-medium inline-block">Coming Soon</div>
+                  <Link href="/produkte/shiny-coat#waitlist" className="pill bg-copper text-cream px-6 py-3 font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.6)] hover:opacity-95 hover:scale-105 transition-all inline-block">Shiny Coat – Warteliste</Link>
+                  <Link href="/produkte/sensitive-skin#waitlist" className="pill bg-cream/10 border border-cream/30 text-green px-6 py-3 font-medium backdrop-blur-sm hover:bg-cream/20 transition inline-block">Sensitive Skin – Warteliste</Link>
                 </div>
-
-                <Link 
-                  href="#waitlist"
-                  className="pill bg-copper text-cream px-8 py-4 font-medium shadow-[0_8px_24px_-8px_rgba(180,106,52,0.6)] hover:opacity-95 hover:scale-105 transition-all inline-block"
-                >
-                  Auf Warteliste setzen
-                </Link>
               </div>
             </FadeIn>
           </div>

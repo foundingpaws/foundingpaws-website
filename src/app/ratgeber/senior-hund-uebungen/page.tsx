@@ -1,6 +1,7 @@
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
+import RatgeberArticleLayout from "@/components/RatgeberArticleLayout";
 
 export const metadata = {
   title: 'Übungen für Senior‑Hunde: Schonend mobil bleiben | Founding Paws',
@@ -33,11 +34,16 @@ export default function SeniorHundUebungenPage() {
       </section>
 
       {/* Content */}
-      <section className="wv-section bg-cream">
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <ScrollAnimation>
-              <div className="prose prose-lg max-w-none">
+      <RatgeberArticleLayout
+        slug="/ratgeber/senior-hund-uebungen"
+        takeaways={[
+          "Sanfte, regelmäßige Bewegung verbessert Mobilität und Schlaf",
+          "Kombiniere Spaziergänge mit kurzen Kraft‑/Balance‑Einheiten",
+          "Schmerz-/Steifigkeits‑Signale beachten und Dosis anpassen",
+        ]}
+      >
+        <ScrollAnimation>
+          <div className="prose prose-lg max-w-none">
                 <h2 className="wv-h2 text-green wv-spacing-lg">Vor dem Start</h2>
                 <ul className="wv-body text-green/80 space-y-2">
                   <li>• Tierärztlichen Check-up (Herz, Gelenke, Gewicht, Schmerzen, ggf. Blutbild)</li>
@@ -80,11 +86,9 @@ export default function SeniorHundUebungenPage() {
 
                 <h2 className="wv-h2 text-green wv-spacing-lg">CTA</h2>
                 <p className="wv-body text-green/80">Unterstütze die Gelenke deines Seniors zusätzlich mit Omega‑3 und einem gelenkfreundlichen Futterplan – für spürbar mehr Alltagsfreude.</p>
-              </div>
-            </ScrollAnimation>
           </div>
-        </div>
-      </section>
+        </ScrollAnimation>
+      </RatgeberArticleLayout>
 
       {/* CTA */}
       <section className="wv-section bg-green text-cream">
