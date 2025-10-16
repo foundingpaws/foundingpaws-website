@@ -149,8 +149,8 @@ export default function TeamPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
               <ScrollAnimation key={member.name} animation="slide-up" delay={index * 150}>
-                <div className="group h-full">
-                  <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-taupe/20 hover:border-copper/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-full flex flex-col">
+                <div className="group h-full flex">
+                  <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-taupe/20 hover:border-copper/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden h-full flex flex-col w-full">
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-copper/5 to-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                     
@@ -183,20 +183,20 @@ export default function TeamPage() {
                     
                     {/* Name & Role */}
                     <div className="text-center mb-4 flex-shrink-0">
-                      <h3 className="wv-h4 text-green group-hover:text-copper transition-colors duration-500 mb-1">
+                      <h3 className="wv-h4 text-green group-hover:text-copper transition-colors duration-500 mb-2 text-center">
                         {member.name}
                       </h3>
-                      <p className="wv-body text-copper group-hover:text-green transition-colors duration-500 font-medium mb-1">
+                      <p className="wv-body text-copper group-hover:text-green transition-colors duration-500 font-medium mb-2 text-center">
                         {member.role}
                       </p>
-                      <p className="wv-small text-green/70 group-hover:text-green/90 transition-colors duration-500">
+                      <p className="wv-small text-green/70 group-hover:text-green/90 transition-colors duration-500 text-center">
                         {member.specialty}
                       </p>
                     </div>
                     
                     {/* Description */}
                     <div className="mb-4 flex-grow">
-                      <p className="wv-small text-green/80 group-hover:text-green/90 transition-colors duration-500 leading-relaxed">
+                      <p className="wv-small text-green/80 group-hover:text-green/90 transition-colors duration-500 leading-relaxed text-center">
                         {member.description}
                       </p>
                     </div>
@@ -211,13 +211,13 @@ export default function TeamPage() {
                     </div>
 
                     {/* Qualifications */}
-                    <div className="border-t border-taupe/15 pt-4 flex-shrink-0">
-                      <div className="wv-caption text-green/60 group-hover:text-green/80 transition-colors duration-500 mb-2">
+                    <div className="border-t border-taupe/15 pt-4 flex-shrink-0 text-center">
+                      <div className="wv-caption text-green/60 group-hover:text-green/80 transition-colors duration-500 mb-2 text-center">
                         {member.experience} Berufserfahrung
                       </div>
                       <div className="flex flex-wrap justify-center gap-1 mb-3">
                         {member.qualifications.map((qual, idx) => (
-                          <span key={idx} className="pill bg-green/10 text-green group-hover:bg-copper/10 group-hover:text-copper px-2 py-1 text-xs transition-all duration-500">
+                          <span key={idx} className="pill bg-green/10 text-green group-hover:bg-copper/10 group-hover:text-copper px-2 py-1 text-xs transition-all duration-500 text-center">
                             {qual}
                           </span>
                         ))}
@@ -282,12 +282,12 @@ export default function TeamPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <ScrollAnimation key={value.title} animation="fade-in" delay={index * 150}>
-                <div className="group relative">
+                <div className="group relative h-full flex">
                   {/* Hover Effect Background */}
                   <div className={`absolute inset-0 bg-gradient-to-br from-${value.color}/5 to-${value.color === 'copper' ? 'green' : 'copper'}/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}></div>
                   
                   {/* Content Card */}
-                  <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 text-center border border-taupe/20 hover:border-copper/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden">
+                  <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 text-center border border-taupe/20 hover:border-copper/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl overflow-hidden flex flex-col justify-center w-full">
                     {/* Icon Container */}
                     <div className="relative w-20 h-20 mx-auto mb-6">
                       <div className={`absolute inset-0 bg-gradient-to-br from-${value.color}/10 to-${value.color === 'copper' ? 'green' : 'copper'}/10 rounded-full blur-xl group-hover:blur-2xl transition-all duration-500 pointer-events-none`}></div>
@@ -297,12 +297,12 @@ export default function TeamPage() {
                     </div>
                     
                     {/* Title */}
-                    <h3 className="wv-h4 text-green group-hover:text-copper transition-colors duration-300 wv-spacing-sm">
+                    <h3 className="wv-h4 text-green group-hover:text-copper transition-colors duration-300 wv-spacing-sm text-center">
                       {value.title}
                     </h3>
                     
                     {/* Description */}
-                    <p className="wv-body text-green/75 leading-relaxed group-hover:text-green/90 transition-colors duration-300">
+                    <p className="wv-body text-green/75 leading-relaxed group-hover:text-green/90 transition-colors duration-300 text-center">
                       {value.description}
                     </p>
                     
@@ -326,7 +326,7 @@ export default function TeamPage() {
                 Hast du Fragen an unser Team?
               </h2>
               <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead text-cream/90 wv-spacing-md">
+              <p className="wv-lead text-white wv-spacing-md">
                 Unser Expertenteam steht dir gerne für Fragen rund um die Gesundheit 
                 deines Hundes zur Verfügung.
               </p>

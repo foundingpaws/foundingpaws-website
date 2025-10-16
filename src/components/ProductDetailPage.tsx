@@ -73,7 +73,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
   }, []);
 
   return (
-    <main className="bg-cream text-green">
+    <main className="bg-cream text-green pdp-mobile">
       {/* Hero Section */}
       <ProductHero product={product} />
 
@@ -81,8 +81,8 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
       <ProductKeyFacts productTitle={product.title} />
 
       {/* Main Content */}
-      <div className="container-wide py-16">
-        <div className="grid lg:grid-cols-3 gap-12">
+      <div className="container-wide py-16 pdp-container">
+        <div className="grid lg:grid-cols-3 gap-12 pdp-grid">
           {/* Content Sections */}
           <div className="lg:col-span-2">
             <ProductSections product={product} />

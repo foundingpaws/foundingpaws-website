@@ -39,7 +39,7 @@ export default function ProductHero({ product }: ProductHeroProps) {
   };
 
   return (
-    <section className={`relative min-h-[75vh] md:min-h-[80vh] ${getAccentColor()} text-white overflow-hidden`}>
+    <section className={`relative min-h-[75vh] md:min-h-[80vh] ${getAccentColor()} text-white overflow-hidden pdp-hero`}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
@@ -48,7 +48,7 @@ export default function ProductHero({ product }: ProductHeroProps) {
       </div>
 
       <div className="container-wide relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[75vh] md:min-h-[80vh] pt-12 pb-12 md:pt-16 md:pb-16" style={{ paddingTop: 'max(3rem, env(safe-area-inset-top))' }}>
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[75vh] md:min-h-[80vh] pt-12 pb-12 md:pt-16 md:pb-16 pdp-hero" style={{ paddingTop: 'max(3rem, env(safe-area-inset-top))' }}>
           {/* Content */}
           <div className="space-y-6 md:space-y-8">
             {/* Category Badge */}

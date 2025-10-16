@@ -17,7 +17,7 @@ export default function ProductKeyFacts({ productTitle }: ProductKeyFactsProps) 
   ];
 
   return (
-    <section className="bg-white">
+    <section className="bg-white pdp-keyfacts">
       <div className="container-wide py-6">
         <div className="flex flex-wrap items-center gap-4 justify-center">
           {items.map((it, idx) => (

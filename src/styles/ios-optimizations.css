@@ -77,7 +77,142 @@
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
   }
-}
+
+  /* PDP (Product Detail) iOS mobile fixes */
+  @media (max-width: 768px) {
+    /* Ensure hero fills visible viewport height on iOS */
+    section.min-h-\[75vh\],
+    section .grid.min-h-\[75vh\] {
+      min-height: 100svh !important;
+    }
+
+    /* Prevent horizontal scroll/clipping on PDP */
+    .pdp-mobile {
+      overflow-x: hidden;
+    }
+    .pdp-container {
+      padding-top: max(1.25rem, env(safe-area-inset-top));
+      padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    }
+    .pdp-grid {
+      gap: 1.25rem;
+    }
+    .pdp-hero {
+      padding-top: max(2.25rem, env(safe-area-inset-top));
+    }
+    /* Ensure cards and images don't overflow viewport */
+    .pdp-mobile img, .pdp-mobile .wv-card, .pdp-mobile .card-elevated {
+      max-width: 100%;
+    }
+    .pdp-mobile .rounded-2xl,
+    .pdp-mobile .rounded-3xl {
+      overflow: hidden;
+    }
+  }
+
+    /* iOS: Produkte Filterleiste – horizontales Scrollen der Kategorie-Pills */
+    .produkte-filter-bar {
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0px) + 56px);
+      z-index: 15;
+      background: rgba(248, 246, 240, 0.95);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      backdrop-filter: saturate(180%) blur(10px);
+    }
+    .produkte-filter-row {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 8px;
+      padding-bottom: 6px;
+      margin-right: -16px;
+      margin-left: -16px;
+      padding-right: 16px;
+      padding-left: 16px;
+      scroll-snap-type: x mandatory;
+    }
+    .produkte-filter-row > .pill {
+      scroll-snap-align: start;
+      white-space: nowrap;
+    }
+  }
+
+  /* Anchor sections should account for sticky header + safe area */
+  #waitlist,
+  #benefits,
+  #science,
+  #faq,
+  #products {
+    scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 72px);
+  }
+
+  /* Prevent icon cropping in tight inline flex chips (Key Facts) */
+  @media (max-width: 768px) {
+    .pdp-keyfacts .flex.items-center.gap-2 svg,
+    .pdp-keyfacts .flex.items-center.gap-2 img {
+      display: block;
+    }
+    .pdp-keyfacts .flex.items-center.gap-2 {
+      line-height: 1.25;
+    }
+
+    /* Grid statt Wrap für bessere Tap-Ziele */
+    .pdp-keyfacts .flex.flex-wrap.items-center {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 10px;
+    }
+    .pdp-keyfacts .rounded-full {
+      padding: 10px 12px;
+    }
+    .pdp-keyfacts .w-6.h-6 {
+      width: 22px;
+      height: 22px;
+    }
+    .pdp-keyfacts span.text-sm {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Add breathing room above iOS home indicator for waitlist */
+  #waitlist {
+    padding-bottom: max(2rem, calc(2rem + env(safe-area-inset-bottom, 0px)));
+  }
+
+  /* Mobile Tab Navigation Optimization */
+  @media (max-width: 768px) {
+    /* Tab navigation mobile spacing */
+    .tab-navigation {
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    /* Tab buttons mobile optimization */
+    .tab-button {
+      min-height: 44px; /* iOS touch target */
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    
+    /* Tab container mobile scroll */
+    .tab-container {
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+    
+    .tab-container::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+    
+    /* Tab button snap alignment */
+    .tab-button {
+      scroll-snap-align: start;
+    }
+  }
 
 /* Fix for iOS Safari safe area */
 @supports (padding: max(0px)) {

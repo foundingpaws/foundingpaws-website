@@ -146,7 +146,7 @@ export default function BlogSection() {
                       <span>•</span>
                       <span>{guide.downloadCount} Downloads</span>
                     </div>
-                    <button className="bg-green text-cream px-6 py-3 rounded-lg font-medium hover:bg-green/90 transition-colors w-full">
+                    <button className="bg-green text-cream px-6 py-3 pill font-medium hover:bg-green/90 transition-colors w-full">
                       Kostenlos herunterladen
                     </button>
                   </GlassmorphismCard>

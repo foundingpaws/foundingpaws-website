@@ -81,8 +81,8 @@ export default function ProductSections({ product }: ProductSectionsProps) {
   return (
     <div className="space-y-16">
       {/* Tab Navigation */}
-      <div className="border-b border-green/15 sticky top-14 z-20 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/80">
-        <nav className="flex gap-8 container-wide" role="tablist">
+      <div className="border-b border-green/15 sticky top-14 z-20 bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/80 tab-navigation">
+        <nav className="flex gap-2 sm:gap-4 md:gap-6 lg:gap-8 container-wide overflow-x-auto tab-container" role="tablist">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -91,7 +91,7 @@ export default function ProductSections({ product }: ProductSectionsProps) {
                 const el = document.getElementById(`tabpanel-${tab.id}`);
                 if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
-              className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ${
+              className={`py-3 sm:py-4 px-2 sm:px-3 md:px-4 border-b-2 font-medium text-xs sm:text-sm transition-colors duration-200 whitespace-nowrap flex-shrink-0 tab-button ${
                 activeTab === tab.id
                   ? "border-accent text-accent"
                   : "border-transparent text-gray-600 hover:text-gray-800 hover:border-gray-300"

@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "../styles/theme.css";
 @import "../styles/product-cards.css";
 @import "../styles/product-detail.css";
@@ -230,6 +233,12 @@ body {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
+/* Ensure correct contrast on green Waitlist sections */
+#waitlist .wv-lead { color: #fff !important; }
+#waitlist .wv-body { color: rgba(255, 255, 255, 0.85) !important; }
+#waitlist .wv-subhead, 
+#waitlist .wv-eyebrow { color: rgba(255, 255, 255, 0.9) !important; }
+
 .wv-small {
   font-family: var(--font-sans-umlaut);
   font-size: 0.875rem;
@@ -359,7 +368,7 @@ body {
 }
 
 .pill {
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-pill) !important;
 }
 
 .card-elevated {
@@ -497,6 +506,7 @@ body {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--fp-copper) 0%, color-mix(in oklab, var(--fp-copper) 90%, black 10%) 100%);
+  border-radius: var(--radius-pill) !important;
   box-shadow: 
     0 4px 16px -4px color-mix(in oklab, var(--fp-copper) 30%, transparent),
     0 8px 24px -8px color-mix(in oklab, var(--fp-copper) 20%, transparent);
@@ -531,6 +541,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill) !important;
   box-shadow: 0 2px 8px -2px color-mix(in oklab, var(--fp-green) 10%, transparent);
 }
 .btn-secondary::before {
@@ -567,6 +578,7 @@ body {
   position: relative;
   background: transparent;
   border: 1px solid color-mix(in oklab, var(--fp-green) 20%, transparent);
+  border-radius: var(--radius-pill);
   color: var(--fp-green);
 }
 .btn-ghost:hover {
@@ -582,6 +594,7 @@ body {
   position: relative;
   background: transparent;
   border: 2px solid var(--fp-copper);
+  border-radius: var(--radius-pill);
   color: var(--fp-copper);
   overflow: hidden;
 }

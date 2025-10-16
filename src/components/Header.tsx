@@ -140,7 +140,7 @@ export default function Header() {
             <nav className="hidden lg:flex items-center lg:gap-6 z-10 min-w-0 shrink">
               {/* Dropdown Menu */}
               <div className="group relative">
-                <button className="flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-100/50 group-hover:bg-gray-100/80">
+                <button className="flex items-center gap-2 px-3 py-2 pill transition-all duration-300 hover:bg-gray-100/50 group-hover:bg-gray-100/80">
                   <span className={`font-medium transition-colors duration-300 whitespace-nowrap ${
                     isScrolled ? "text-cream" : "text-white drop-shadow-lg"
                   }`}>
@@ -204,7 +204,7 @@ export default function Header() {
                 <Link
                   key={index}
                   href={link.href}
-                  className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-cream/20 ${
+                  className={`px-3 py-2 pill font-medium transition-all duration-300 hover:bg-cream/20 ${
                     isScrolled 
                       ? "text-cream hover:text-white" 
                       : "text-white drop-shadow-lg hover:bg-white/20"
@@ -242,7 +242,7 @@ export default function Header() {
                 <div className="flex items-center gap-1 mr-2">
                   <button
                     onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 rounded-lg transition-all duration-200"
+                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 pill transition-all duration-200"
                     style={{
                       WebkitTapHighlightColor: 'transparent',
                       WebkitTouchCallout: 'none',
@@ -255,7 +255,7 @@ export default function Header() {
                   </button>
                   <button
                     onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 rounded-lg transition-all duration-200"
+                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 pill transition-all duration-200"
                     style={{
                       WebkitTapHighlightColor: 'transparent',
                       WebkitTouchCallout: 'none',
@@ -272,7 +272,7 @@ export default function Header() {
               {/* Mobile Menu Button - iOS Optimized */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-3 rounded-lg transition-all duration-300 hover:bg-cream/20 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center ${
+                className={`p-3 pill transition-all duration-300 hover:bg-cream/20 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center ${
                   isScrolled ? "text-cream" : "text-white drop-shadow-lg"
                 }`}
                 aria-label="Menü öffnen"
@@ -333,7 +333,7 @@ export default function Header() {
             <div className="flex items-center justify-end mb-2">
               <button
                 onClick={closeMobileMenu}
-                className="p-2 rounded-lg hover:bg-cream/10 transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
+                className="p-2 pill hover:bg-cream/10 transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
                 style={{
                   WebkitTapHighlightColor: 'transparent',
                   WebkitTouchCallout: 'none',

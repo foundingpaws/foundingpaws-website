@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import IconTarget from "@/components/icons/IconTarget";
-import IconRocket from "@/components/icons/IconRocket";
-import IconSparkles from "@/components/icons/IconSparkles";
+import IconMadeInGermany from "@/components/icons/IconMadeInGermany";
+import IconLab from "@/components/icons/IconLab";
+import IconStethoscope from "@/components/icons/IconStethoscope";
+import IconNatural100 from "@/components/icons/IconNatural100";
 
 interface WaitlistSectionProps {
   productKey: string;
@@ -97,7 +98,7 @@ export default function WaitlistSection({
   };
 
   return (
-    <section id="waitlist" className="wv-section bg-gradient-to-br from-green to-green/90 text-cream">
+    <section id="waitlist" className="wv-section bg-gradient-to-br from-green to-green/90 text-white">
       <div className="container-wide">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
@@ -108,41 +109,41 @@ export default function WaitlistSection({
               {tHeadline}
             </h2>
             <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-            <p className="wv-lead text-white/90 wv-spacing-md max-w-3xl mx-auto">
+            <p className="wv-lead text-white wv-spacing-md max-w-3xl mx-auto" style={{ color: '#ffffff' }}>
               {tDescription}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Benefits */}
+            {/* Benefits with CI icons */}
             <div className="space-y-6">
               <div className="flex items-start gap-4 p-6 bg-white/10 rounded-2xl border border-white/20">
-                <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <IconTarget className="w-6 h-6 text-copper" />
+                <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <IconNatural100 className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="wv-h4 text-white wv-spacing-xs">{t('benefit1')}</h3>
-                  <p className="wv-body text-white/80">{t('benefit1Desc')}</p>
+                  <p className="wv-body text-white/85">{t('benefit1Desc')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 p-6 bg-white/10 rounded-2xl border border-white/20">
-                <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <IconRocket className="w-6 h-6 text-copper" />
+                <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <IconLab className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="wv-h4 text-white wv-spacing-xs">{t('benefit2')}</h3>
-                  <p className="wv-body text-white/80">{t('benefit2Desc')}</p>
+                  <p className="wv-body text-white/85">{t('benefit2Desc')}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4 p-6 bg-white/10 rounded-2xl border border-white/20">
-                <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <IconSparkles className="w-6 h-6 text-copper" />
+                <div className="w-12 h-12 bg-white/15 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <IconStethoscope className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="wv-h4 text-white wv-spacing-xs">{t('benefit3')}</h3>
-                  <p className="wv-body text-white/80">{t('benefit3Desc')}</p>
+                  <p className="wv-body text-white/85">{t('benefit3Desc')}</p>
                 </div>
               </div>
             </div>
@@ -165,7 +166,7 @@ export default function WaitlistSection({
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full bg-copper text-cream px-8 py-4 rounded-xl font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+                      className="w-full bg-copper text-white px-8 py-4 rounded-xl font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
                     >
                       {isLoading ? (
                         <span className="flex items-center justify-center gap-2">
@@ -198,19 +199,23 @@ export default function WaitlistSection({
             </div>
           </div>
 
-          {/* Trust Elements */}
+          {/* Trust Elements (CI icons) */}
           <div className="mt-12 pt-8 border-t border-white/20">
-            <div className="flex flex-wrap justify-center gap-8 text-white/70">
-              <div className="flex items-center gap-2">
-                <span>🇩🇪</span>
+            <div className="flex flex-wrap justify-center gap-8 text-white/80">
+              <div className="flex items-center gap-3">
+                <IconMadeInGermany className="w-5 h-5 text-white" />
                 <span>Made in Germany</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span>🧪</span>
-                <span>Eigene Qualitätskontrolle</span>
+              <div className="flex items-center gap-3">
+                <IconLab className="w-5 h-5 text-white" />
+                <span>Laborgeprüft</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span>👩‍⚕️</span>
+              <div className="flex items-center gap-3">
+                <IconNatural100 className="w-5 h-5 text-white" />
+                <span>100% Natürlich</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <IconStethoscope className="w-5 h-5 text-white" />
                 <span>Tierärztlich entwickelt</span>
               </div>
             </div>

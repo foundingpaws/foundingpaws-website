@@ -209,7 +209,7 @@ export default function CookieConsent() {
                   </button>
                   <button
                     onClick={handleSavePreferences}
-                    className="px-4 sm:px-6 py-2.5 sm:py-2 bg-green text-white rounded-lg hover:bg-green/90 transition-colors font-medium touch-manipulation text-sm sm:text-base"
+                    className="px-4 sm:px-6 py-2.5 sm:py-2 bg-green text-white pill hover:bg-green/90 transition-colors font-medium touch-manipulation text-sm sm:text-base"
                   >
                     Präferenzen speichern
                   </button>
@@ -218,13 +218,13 @@ export default function CookieConsent() {
                 <>
                   <button
                     onClick={handleRejectAll}
-                    className="px-4 sm:px-6 py-2.5 sm:py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors touch-manipulation text-sm sm:text-base"
+                    className="px-4 sm:px-6 py-2.5 sm:py-2 border border-gray-300 text-gray-700 pill hover:bg-gray-50 transition-colors touch-manipulation text-sm sm:text-base"
                   >
                     Nur notwendige
                   </button>
                   <button
                     onClick={handleAcceptAll}
-                    className="cookie-button px-4 sm:px-6 py-2.5 sm:py-2 bg-green text-white rounded-lg hover:bg-green/90 transition-colors font-medium touch-manipulation text-sm sm:text-base"
+                    className="cookie-button px-4 sm:px-6 py-2.5 sm:py-2 bg-green text-white pill hover:bg-green/90 transition-colors font-medium touch-manipulation text-sm sm:text-base"
                   >
                     Alle akzeptieren
                   </button>

@@ -139,6 +139,7 @@
   --radius-button: var(--radius-full);
   --radius-input: var(--radius-full);
   --radius-badge: var(--radius-full);
+  --radius-pill: var(--radius-full);
   
   /* ========================================
      SHADOW SYSTEM
@@ -392,15 +393,141 @@
   }
 }
 
+/* ========================================
+   CONTAINER WIDE - Mobile iOS Optimized
+   ======================================== */
+
+.container-wide {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;  /* 16px - Mobile First */
+  padding-right: 1rem; /* 16px - Mobile First */
+  max-width: var(--container-2xl);
+}
+
+/* Mobile iOS Safe Area Support */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .container-wide {
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+    }
+  }
+}
+
+@media (min-width: 48rem) {
+  .container-wide {
+    padding-left: 1.5rem; /* 24px */
+    padding-right: 1.5rem; /* 24px */
+  }
+}
+
+@media (min-width: 64rem) {
+  .container-wide {
+    padding-left: 2rem; /* 32px */
+    padding-right: 2rem; /* 32px */
+  }
+}
+
+@media (min-width: 80rem) {
+  .container-wide {
+    padding-left: 3rem; /* 48px */
+    padding-right: 3rem; /* 48px */
+  }
+}
+
 /* Section spacing */
 .section {
   padding-top: var(--space-section);
   padding-bottom: var(--space-section);
 }
 
+/* ========================================
+   WV-SECTION - Mobile iOS Optimized
+   ======================================== */
+
+.wv-section {
+  padding-top: 3rem;    /* 48px - Mobile First */
+  padding-bottom: 3rem; /* 48px - Mobile First */
+  padding-left: 1rem;   /* 16px - Mobile First */
+  padding-right: 1rem;  /* 16px - Mobile First */
+}
+
+/* Mobile iOS Safe Area Support for sections */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .wv-section {
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+      padding-top: 2rem;    /* 32px - Kompakter auf Mobile */
+      padding-bottom: 2rem; /* 32px - Kompakter auf Mobile */
+    }
+  }
+}
+
+@media (min-width: 48rem) {
+  .wv-section {
+    padding-left: 1.5rem; /* 24px */
+    padding-right: 1.5rem; /* 24px */
+    padding-top: 3rem;     /* 48px */
+    padding-bottom: 3rem;  /* 48px */
+  }
+}
+
+@media (min-width: 64rem) {
+  .wv-section {
+    padding-left: 2rem; /* 32px */
+    padding-right: 2rem; /* 32px */
+    padding-top: 4rem;    /* 64px */
+    padding-bottom: 4rem; /* 64px */
+  }
+}
+
 .section-sm {
   padding-top: var(--space-section-sm);
   padding-bottom: var(--space-section-sm);
+}
+
+/* ========================================
+   MOBILE PRODUCT PAGE OPTIMIZATIONS
+   ======================================== */
+
+/* Mobile-optimized spacing for product pages */
+@media (max-width: 768px) {
+  .pdp-mobile {
+    /* Reduce excessive spacing on mobile */
+    --space-section: 2rem; /* 32px instead of default */
+  }
+  
+  .pdp-container {
+    padding-top: 1.5rem;    /* 24px */
+    padding-bottom: 1.5rem; /* 24px */
+  }
+  
+  .pdp-grid {
+    gap: 1rem; /* 16px - Tighter grid spacing */
+  }
+  
+  .pdp-hero {
+    padding-top: 1.5rem; /* 24px - Less top padding */
+    padding-bottom: 1.5rem; /* 24px */
+  }
+  
+  /* Optimize card spacing */
+  .wv-card {
+    margin-bottom: 1rem; /* 16px - Consistent card spacing */
+  }
+  
+  /* Better button spacing */
+  .btn-group {
+    gap: 0.75rem; /* 12px - Tighter button groups */
+  }
+  
+  /* Optimize form spacing */
+  .form-group {
+    margin-bottom: 1rem; /* 16px - Consistent form spacing */
+  }
 }
 
 .section-lg {

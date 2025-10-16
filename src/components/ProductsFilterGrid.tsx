@@ -35,10 +35,33 @@ const CATEGORY_LABELS = [
 export default function ProductsFilterGrid({ products }: ProductsFilterGridProps) {
   const [activeCategory, setActiveCategory] = useState<string>("Alle");
   const [query, setQuery] = useState<string>("");
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [hideOnScroll, setHideOnScroll] = useState<boolean>(false);
+  const [lastY, setLastY] = useState<number>(0);
 
   useEffect(() => {
     trackEvent("listing_render", "produkte", activeCategory);
-  }, []);
+  }, [activeCategory]);
+
+  // Mobile-only: hide sticky bar on scroll down, show on scroll up
+  useEffect(() => {
+    const onScroll = () => {
+      if (typeof window === 'undefined') return;
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) {
+        if (hideOnScroll) setHideOnScroll(false);
+        setLastY(window.scrollY);
+        return;
+      }
+      const currentY = window.scrollY;
+      const scrollingDown = currentY > lastY;
+      const beyond = currentY > 96;
+      setHideOnScroll(scrollingDown && beyond);
+      setLastY(currentY);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [lastY, hideOnScroll]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -51,11 +74,17 @@ export default function ProductsFilterGrid({ products }: ProductsFilterGridProps
     return products.filter(matches);
   }, [products, activeCategory, query]);
 
+  const hasActiveFilter = activeCategory !== "Alle" || query.trim().length > 0;
+
   return (
     <div>
       {/* Filter Bar */}
-      <div className="sticky top-16 z-10 bg-cream/90 backdrop-blur-md border-b border-green/10 -mx-4 px-4 py-3 mb-6">
-        <div className="flex flex-wrap items-center gap-2">
+      <div
+        className={`sticky top-16 z-10 bg-cream/90 backdrop-blur-md border-b border-green/10 -mx-4 px-4 py-2 sm:py-3 mb-4 sm:mb-6 produkte-filter-bar transition-transform duration-300 ${hideOnScroll ? '-translate-y-full' : 'translate-y-0'}`}
+        role="region"
+        aria-label="Produkte filtern"
+      >
+        <div className="flex flex-wrap items-center gap-2 produkte-filter-row">
           {CATEGORY_LABELS.map((label) => (
             <button
               key={label}
@@ -63,7 +92,7 @@ export default function ProductsFilterGrid({ products }: ProductsFilterGridProps
                 setActiveCategory(label);
                 trackEvent("filter_category", "produkte", label);
               }}
-              className={`pill px-3 py-1 text-sm font-medium ${
+              className={`pill px-3 py-2 sm:py-1 text-sm font-medium ${
                 activeCategory === label
                   ? "bg-green text-cream"
                   : "bg-green/10 text-green hover:bg-green/15"
@@ -72,7 +101,34 @@ export default function ProductsFilterGrid({ products }: ProductsFilterGridProps
               {label}
             </button>
           ))}
-          <div className="ml-auto w-full sm:w-64">
+          {/* Mobile search toggle */}
+          <div className="ml-auto flex items-center gap-2">
+            <button
+              className="pill px-3 py-2 text-sm font-medium bg-green/10 text-green hover:bg-green/15 sm:hidden"
+              aria-expanded={showSearch}
+              onClick={() => setShowSearch((s) => !s)}
+            >
+              Suche
+            </button>
+            {hasActiveFilter && (
+              <button
+                className="pill px-3 py-2 text-sm font-medium bg-copper/10 text-copper hover:bg-copper/15"
+                onClick={() => {
+                  setActiveCategory("Alle");
+                  setQuery("");
+                  setShowSearch(false);
+                  trackEvent("filter_reset", "produkte", "reset");
+                }}
+              >
+                Zurücksetzen
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Search input: visible on sm+; collapsible on mobile */}
+        <div className={`mt-2 ${showSearch ? 'block' : 'hidden'} sm:block`}>
+          <div className="w-full sm:w-64 ml-0 sm:ml-auto">
             <input
               type="search"
               placeholder="Suchen…"
@@ -84,6 +140,9 @@ export default function ProductsFilterGrid({ products }: ProductsFilterGridProps
               className="w-full px-3 py-2 text-sm rounded-lg border border-green/20 focus:border-copper focus:outline-none text-green placeholder-green/50"
             />
           </div>
+        </div>
+        <div className="mt-2 sm:mt-0 text-xs text-green/60">
+          Gefunden: {filtered.length}
         </div>
       </div>
 

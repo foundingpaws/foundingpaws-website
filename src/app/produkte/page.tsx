@@ -1,5 +1,6 @@
 import ScrollAnimation from "@/components/ScrollAnimation";
 import FadeIn from "@/components/FadeIn";
+import Image from "next/image";
 import ProductCard from "@/components/ProductCard";
 import ProductsFilterGrid from "@/components/ProductsFilterGrid";
 import "@/styles/product-cards.css";
@@ -194,22 +195,15 @@ export default function ProduktePage() {
               </div>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <div className="grid grid-cols-3 gap-4 text-cream/90">
-                <div className="bg-white/10 rounded-2xl p-5 border border-white/20">
-                  <IconMadeInGermany className="w-8 h-8 mb-2 text-white" />
-                  <div className="wv-subhead" style={{color: 'white'}}>Made in Germany</div>
-                  <div className="text-sm" style={{color: 'rgba(255,255,255,0.85)'}}>Hergestellt in Heilbronn</div>
-                </div>
-                <div className="bg-white/10 rounded-2xl p-5 border border-white/20">
-                  <IconLab className="w-8 h-8 mb-2 text-white" />
-                  <div className="wv-subhead" style={{color: 'white'}}>Laborgeprüft</div>
-                  <div className="text-sm" style={{color: 'rgba(255,255,255,0.85)'}}>Jede Charge getestet</div>
-                </div>
-                <div className="bg-white/10 rounded-2xl p-5 border border-white/20">
-                  <IconStethoscope className="w-8 h-8 mb-2 text-white" />
-                  <div className="wv-subhead" style={{color: 'white'}}>Tierärztlich</div>
-                  <div className="text-sm" style={{color: 'rgba(255,255,255,0.85)'}}>Von Experten entwickelt</div>
-                </div>
+              <div className="relative aspect-[4/3] rounded-[28px] overflow-hidden shadow-2xl bg-white/5 border border-white/10 max-w-xl mx-auto">
+                <Image
+                  src="/products/Omega3mitHund.png"
+                  alt="Omega‑3 mit Hund"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(min-width: 1024px) 600px, 100vw"
+                />
               </div>
             </FadeIn>
           </div>
@@ -287,23 +281,23 @@ export default function ProduktePage() {
       </section>
 
       {/* Waitlist Banner */}
-      <section id="waitlist" className="wv-section bg-gradient-to-br from-green to-green/90 text-cream">
+      <section id="waitlist" className="wv-section bg-gradient-to-br from-green to-green/90 text-white">
         <div className="container-wide">
           <ScrollAnimation>
             <div className="max-w-5xl mx-auto text-center">
               <div className="inline-block pill bg-white/20 border border-white/30 px-6 py-3 wv-eyebrow wv-spacing-sm text-white font-medium">Exklusive Warteliste</div>
               <h2 className="wv-h2 text-white wv-spacing-sm">Sei beim Launch dabei</h2>
               <div className="w-16 h-1 bg-copper mx-auto rounded-full wv-spacing-md"></div>
-              <p className="wv-lead text-white/90 wv-spacing-md max-w-3xl mx-auto">
+              <p className="wv-lead text-white wv-spacing-md max-w-3xl mx-auto">
                 Melde dich an und erhalte 10% Launch‑Rabatt, Vorabzugang und Updates.
               </p>
 
               <form className="max-w-lg mx-auto grid sm:grid-cols-[1fr_auto] gap-3">
                 <input type="email" required placeholder="deine@email.de" className="w-full px-4 py-4 rounded-xl border border-cream/30 focus:border-copper focus:ring-2 focus:ring-copper/20 text-green bg-white/90 placeholder-green/50 text-lg" />
-                <button className="bg-copper text-cream px-8 py-4 rounded-xl font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">Jetzt 10% sichern</button>
+                <button className="bg-copper text-white px-8 py-4 rounded-xl font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">Jetzt 10% sichern</button>
               </form>
 
-              <div className="mt-6 text-white/70 text-sm">🔒 Keine Sorge, kein Spam. Jederzeit kündbar.</div>
+              <div className="mt-6 text-white/80 text-sm">🔒 Keine Sorge, kein Spam. Jederzeit kündbar.</div>
             </div>
           </ScrollAnimation>
         </div>
