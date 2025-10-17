@@ -10,10 +10,28 @@ import IconSparkles from "@/components/icons/IconSparkles";
 import IconShield from "@/components/icons/IconShield";
 import { mobilePerformanceManager } from "@/lib/mobile-performance";
 
+// Produktdaten für das Dropdown-Menü - die aktuellen Produkte von der Produktseite
+const products = [
+  { key: "shiny-coat", title: "Shiny Coat", subtitle: "Fellglanz & Hautgesundheit" },
+  { key: "sensitive-skin", title: "Sensitive Skin", subtitle: "Hautbarriere & Entzündungsbalance" },
+  { key: "joint-mobility", title: "Joint & Mobility", subtitle: "Gelenke, Beweglichkeit, entzündungshemmend" },
+  { key: "skin-vital-omega", title: "5‑Omega‑Öl – Skin & Vital Blend", subtitle: "Haut, Fell, Herz & Immunsystem" },
+  { key: "green-lipped-mussel", title: "Grünlippmuschelpulver (100%)", subtitle: "Gelenke, Sehnen, Bindegewebe" }
+];
+
+// Kategoriedaten für das "Gut für" Dropdown
+const categories = [
+  { key: "haut-fell", title: "Haut & Fell", subtitle: "Shiny Coat · Sensitive Skin" },
+  { key: "gelenke-mobilitaet", title: "Gelenke & Mobilität", subtitle: "Joint & Mobility · Grünlippmuschel" },
+  { key: "immunsystem", title: "Haut & Vitalität", subtitle: "5‑Omega‑Öl – Skin & Vital Blend" }
+];
+
 export default function Header() {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  const [isGutFuerDropdownOpen, setIsGutFuerDropdownOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -45,6 +63,23 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
+  // Close products dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isProductsDropdownOpen && !(event.target as Element).closest('.products-dropdown-container')) {
+        setIsProductsDropdownOpen(false);
+      }
+      if (isGutFuerDropdownOpen && !(event.target as Element).closest('.gut-fuer-dropdown-container')) {
+        setIsGutFuerDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isProductsDropdownOpen, isGutFuerDropdownOpen]);
+
   // Navigate and close helper (robust on iOS)
   const navigateAndClose = (href: string) => (e?: React.MouseEvent) => {
     if (e) e.preventDefault();
@@ -64,7 +99,7 @@ export default function Header() {
         ref={headerRef}
         className={`fixed top-0 left-0 right-0 z-[1100] transition-all duration-500 ease-out ${
           isScrolled
-            ? "backdrop-blur-xl border-b border-cream/20 shadow-lg"
+            ? "backdrop-blur-xl border-b border-cream/20 shadow-lg scrolled"
             : "bg-green backdrop-blur-sm"
         }`}
         style={{
@@ -138,64 +173,107 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center lg:gap-6 z-10 min-w-0 shrink">
-              {/* Dropdown Menu */}
-              <div className="group relative">
-                <button className="flex items-center gap-2 px-3 py-2 pill transition-all duration-300 hover:bg-gray-100/50 group-hover:bg-gray-100/80">
-                  <span className={`font-medium transition-colors duration-300 whitespace-nowrap ${
-                    isScrolled ? "text-cream" : "text-white drop-shadow-lg"
-                  }`}>
-                    Gut für
-                  </span>
-                  <svg 
-                    className={`w-4 h-4 transition-all duration-300 ${
-                      isScrolled ? "text-cream/80" : "text-white drop-shadow-lg"
-                    }`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
+              {/* Gut für Dropdown */}
+              <div className="relative gut-fuer-dropdown-container">
+                <button
+                  onClick={() => setIsGutFuerDropdownOpen(!isGutFuerDropdownOpen)}
+                  className={`flex items-center gap-1 px-3 py-2 pill font-medium transition-all duration-300 hover:bg-cream/20 ${
+                    isScrolled
+                      ? "text-cream hover:text-white"
+                      : "text-white drop-shadow-lg hover:bg-white/20"
+                  }`}
+                >
+                  Gut für
+                  <svg className={`w-4 h-4 transition-transform duration-200 ${isGutFuerDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {isGutFuerDropdownOpen && (
+                  <div
+                    className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-xl border border-cream/20 rounded-2xl shadow-2xl z-50 overflow-hidden"
                   >
+                    <div className="p-4">
+                      <div className="text-sm font-semibold text-green/80 mb-3 px-2">Gesundheitskategorien</div>
+                      <div className="grid grid-cols-1 gap-1">
+                        {categories.map((category) => (
+                          <Link
+                            key={category.key}
+                            href={`/${category.key}`}
+                            className="flex flex-col p-3 rounded-xl hover:bg-green/5 transition-all duration-200 group"
+                            onClick={() => setIsGutFuerDropdownOpen(false)}
+                          >
+                            <div className="font-medium text-green group-hover:text-copper transition-colors duration-200">
+                              {category.title}
+                            </div>
+                            <div className="text-sm text-green/60 group-hover:text-green/80 transition-colors duration-200">
+                              {category.subtitle}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Navigation Links */}
+              {/* Produkte Dropdown */}
+              <div className="relative products-dropdown-container">
+                <button 
+                  onClick={() => setIsProductsDropdownOpen(!isProductsDropdownOpen)}
+                  className={`flex items-center gap-1 px-3 py-2 pill font-medium transition-all duration-300 hover:bg-cream/20 ${
+                    isScrolled 
+                      ? "text-cream hover:text-white" 
+                      : "text-white drop-shadow-lg hover:bg-white/20"
+                  }`}
+                >
+                  Produkte
+                  <svg className={`w-4 h-4 transition-transform duration-200 ${isProductsDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
                 
-                {/* Dropdown Content */}
-                <div className="absolute left-0 mt-2 w-80 max-w-[calc(100vw-4rem)] backdrop-blur-xl border border-cream/30 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0" style={{backgroundColor: 'rgba(0,66,37,0.95)'}}>
-                  <div className="p-6">
-                    <div className="text-xs font-semibold text-cream/70 uppercase tracking-wider mb-4">
-                      Wähle eine Kategorie
-                    </div>
-                    <div className="space-y-2">
-                      {[
-                        { href: "/haut-fell", icon: IconSparkles, title: "Haut & Fell", desc: "Shiny Coat · Sensitive Skin" },
-                        { href: "/gelenke-mobilitaet", icon: IconBone, title: "Gelenke & Mobilität", desc: "Joint & Mobility · Grünlippmuschel" },
-                        { href: "/immunsystem", icon: IconShield, title: "Haut & Vitalität", desc: "5‑Omega – Skin & Vital" },
-                      ].map((item, index) => (
-                        <Link
-                          key={index}
-                          href={item.href}
-                          className="block p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 group/item"
-                        >
-                          <div className="flex items-center gap-3">
-                            <item.icon className="w-5 h-5 text-cream/80 group-hover/item:text-copper transition-colors" />
-                            <div>
-                              <div className="font-medium text-cream group-hover/item:text-copper transition-colors">
-                                {item.title}
-                              </div>
-                              <div className="text-sm text-cream/70">
-                                {item.desc}
-                              </div>
+                {/* Produkte Dropdown Menu */}
+                {isProductsDropdownOpen && (
+                  <div 
+                    className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-xl border border-cream/20 rounded-2xl shadow-2xl z-50 overflow-hidden"
+                  >
+                    <div className="p-4">
+                      <div className="text-sm font-semibold text-green/80 mb-3 px-2">Alle Produkte</div>
+                      <div className="grid grid-cols-1 gap-1">
+                        {products.map((product) => (
+                          <Link
+                            key={product.key}
+                            href={`/produkte/${product.key}`}
+                            className="flex flex-col p-3 rounded-xl hover:bg-green/5 transition-all duration-200 group"
+                            onClick={() => setIsProductsDropdownOpen(false)}
+                          >
+                            <div className="font-medium text-green group-hover:text-copper transition-colors duration-200">
+                              {product.title}
                             </div>
-                          </div>
+                            <div className="text-sm text-green/60 group-hover:text-green/80 transition-colors duration-200">
+                              {product.subtitle}
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                      <div className="mt-3 pt-3 border-t border-green/10">
+                        <Link
+                          href="/produkte"
+                          className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-copper hover:bg-copper/10 rounded-xl transition-all duration-200"
+                          onClick={() => setIsProductsDropdownOpen(false)}
+                        >
+                          Alle Produkte anzeigen
                         </Link>
-                      ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
 
-              {/* Navigation Links */}
+              {/* Andere Navigation Links */}
               {[
-                { href: "/produkte", label: "Produkte" },
                 { href: "/ratgeber", label: "Ratgeber" },
                 { href: "/bedarfsfinder", label: "Bedarfsfinder" },
                 { href: "/marke", label: "Marke" },
@@ -237,37 +315,6 @@ export default function Header() {
 
             {/* Mobile Navigation - Enhanced with Quick Sections */}
             <div className={`lg:hidden flex items-center gap-2 ${isScrolled ? '' : 'absolute right-4 top-1/2 -translate-y-1/2'}`}>
-              {/* Quick Section Navigation - Only show when scrolled */}
-              {isScrolled && (
-                <div className="flex items-center gap-1 mr-2">
-                  <button
-                    onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 pill transition-all duration-200"
-                    style={{
-                      WebkitTapHighlightColor: 'transparent',
-                      WebkitTouchCallout: 'none',
-                      WebkitUserSelect: 'none',
-                      userSelect: 'none',
-                      minHeight: '36px',
-                    }}
-                  >
-                    Produkte
-                  </button>
-                  <button
-                    onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-3 py-2 text-xs font-medium text-cream/80 hover:text-cream hover:bg-cream/10 pill transition-all duration-200"
-                    style={{
-                      WebkitTapHighlightColor: 'transparent',
-                      WebkitTouchCallout: 'none',
-                      WebkitUserSelect: 'none',
-                      userSelect: 'none',
-                      minHeight: '36px',
-                    }}
-                  >
-                    FAQ
-                  </button>
-                </div>
-              )}
 
               {/* Mobile Menu Button - iOS Optimized */}
               <button
@@ -382,34 +429,58 @@ export default function Header() {
                 </div>
               </details>
 
-              {/* Group: Seiten */}
-              <details open className="rounded-xl border border-cream/15">
+              {/* Group: Produkte */}
+              <details className="rounded-xl border border-cream/15">
                 <summary className="list-none px-4 py-3 flex items-center justify-between cursor-pointer select-none">
                   <span className="text-cream/90 font-medium flex items-center gap-2">
                     <span className="inline-block w-5 h-5 rounded-full bg-cream/10" />
-                    Seiten
+                    Produkte
                   </span>
                   <svg className="w-4 h-4 text-cream/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
                 </summary>
                 <div className="py-1">
-                  {[
-                    { href: "/produkte", label: "Produkte" },
-                    { href: "/ratgeber", label: "Ratgeber" },
-                    { href: "/marke", label: "Marke" },
-                    { href: "/team", label: "Team" },
-                  ].map((link, index) => (
+                  {/* Alle Produkte anzeigen */}
+                  <Link
+                    href="/produkte"
+                    onClick={navigateAndClose("/produkte")}
+                    className="flex items-center justify-between px-4 py-3 hover:bg-cream/10 transition-colors text-cream border-b border-cream/10"
+                  >
+                    <span className="font-medium">Alle Produkte</span>
+                    <svg className="w-4 h-4 text-cream/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                  </Link>
+                  
+                  {/* Einzelne Produkte */}
+                  {products.map((product, index) => (
                     <a
                       key={index}
-                      href={link.href}
-                      onClick={navigateAndClose(link.href)}
-                      className="flex items-center justify-between px-4 py-3 hover:bg-cream/10 transition-colors text-cream"
+                      href={`/produkte/${product.key}`}
+                      onClick={navigateAndClose(`/produkte/${product.key}`)}
+                      className="flex flex-col px-4 py-3 hover:bg-cream/10 transition-colors text-cream"
                     >
-                      <span className="font-medium">{link.label}</span>
-                      <svg className="w-4 h-4 text-cream/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                      <span className="font-medium text-cream/90">{product.title}</span>
+                      <span className="text-sm text-cream/60 mt-1">{product.subtitle}</span>
                     </a>
                   ))}
                 </div>
               </details>
+
+              {/* Direct Navigation Links */}
+              {[
+                { href: "/ratgeber", label: "Ratgeber" },
+                { href: "/marke", label: "Marke" },
+                { href: "/team", label: "Team" }
+              ].map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  onClick={navigateAndClose(link.href)}
+                  className="flex items-center justify-between px-4 py-3 hover:bg-cream/10 transition-colors text-cream border-b border-cream/10 last:border-b-0 rounded-xl"
+                >
+                  <span className="font-medium">{link.label}</span>
+                  <svg className="w-4 h-4 text-cream/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                </a>
+              ))}
+
 
               {/* Mobile Action Buttons - iOS Optimized */}
               <div className="border-t border-cream/20 pt-6 space-y-3">

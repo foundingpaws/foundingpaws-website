@@ -75,7 +75,28 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
   return (
     <main className="bg-cream text-green pdp-mobile">
       {/* Hero Section */}
-      <ProductHero product={product} />
+      <ProductHero 
+        product={{
+          key: product.key,
+          title: product.title,
+          subtitle: product.subtitle,
+          description: product.description,
+          category: product.category,
+          accent: product.accent as "copper" | "green" | "taupe",
+          comingSoon: product.comingSoon,
+          productImage: product.productImage,
+          waitlistCount: 150,
+          remainingSpots: 50
+        }}
+        onWaitlistSubmit={async (email) => {
+          const res = await fetch('/api/newsletter/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, name: null, source: `${product.key}-waitlist` }),
+          });
+          if (!res.ok) throw new Error('Waitlist submission failed');
+        }}
+      />
 
       {/* Key Facts under Hero */}
       <ProductKeyFacts productTitle={product.title} />

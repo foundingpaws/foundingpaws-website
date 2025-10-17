@@ -106,7 +106,7 @@ export default function ProductTeasers() {
   }
 
   return (
-    <section id="products" className="wv-section bg-cream">
+    <section id="products" className="wv-section-lg bg-cream">
       <div className="container-wide">
         {/* Header - Verbesserte Hierarchie */}
         <div className="text-center mb-12 lg:mb-16">

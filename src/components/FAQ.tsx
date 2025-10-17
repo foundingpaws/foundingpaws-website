@@ -73,7 +73,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="wv-section bg-cream">
+    <section className="wv-section-lg bg-cream">
       <div className="container-wide max-w-4xl">
         <div className="text-center mb-16">
           <h2 className="wv-h2 text-green mb-6">

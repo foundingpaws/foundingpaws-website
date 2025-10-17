@@ -10,7 +10,7 @@ import Transform3D from "@/components/Transform3D";
 export default function TrustStrip() {
 
   return (
-    <ParallaxElement speed="fast" className="bg-gradient-to-r from-cream via-cream/95 to-cream py-8 border-y border-taupe/15">
+    <ParallaxElement speed="fast" className="bg-gradient-to-r from-cream via-cream/95 to-cream py-4 border-y border-taupe/15">
       <div className="container-wide">
         {/* Desktop - Zentrierte Anordnung mit besserer Balance */}
         <div className="hidden md:flex items-center justify-center text-green/90">

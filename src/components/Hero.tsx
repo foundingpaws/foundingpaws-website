@@ -8,7 +8,7 @@ export default function Hero() {
   const [videoError, setVideoError] = useState(false);
 
   return (
-    <section className="relative bg-green text-cream overflow-hidden hero-depth wv-section">
+    <section className="relative bg-green text-cream overflow-hidden hero-depth wv-section-hero">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-32 h-32 bg-cream rounded-full blur-3xl"></div>

@@ -115,10 +115,16 @@
   --space-56: 14rem;     /* 224px */
   --space-64: 16rem;     /* 256px */
   
-  /* Fluid spacing for responsive design */
-  --space-section: clamp(3.5rem, 6vw, 7.5rem);     /* 56-120px */
-  --space-section-sm: clamp(2.5rem, 4vw, 5rem);    /* 40-80px */
-  --space-section-lg: clamp(5rem, 8vw, 10rem);     /* 80-160px */
+  /* Fluid spacing for responsive design - Tighter hierarchy for better flow */
+  --space-section: clamp(1.5rem, 3vw, 3rem);       /* 24-48px - Standard sections (reduced) */
+  --space-section-sm: clamp(1rem, 2vw, 2rem);      /* 16-32px - Compact sections (reduced) */
+  --space-section-lg: clamp(2.5rem, 4vw, 5rem);    /* 40-80px - Hero/large sections (reduced) */
+  --space-section-xl: clamp(4rem, 6vw, 8rem);      /* 64-128px - Major sections (reduced) */
+  
+  /* Section spacing with visual hierarchy - optimized for tighter flow */
+  --space-section-hero: clamp(2rem, 4vw, 4rem);    /* 32-64px - Hero sections (reduced) */
+  --space-section-content: clamp(1.5rem, 2.5vw, 3rem); /* 24-48px - Content sections (reduced) */
+  --space-section-compact: clamp(1rem, 1.5vw, 2rem); /* 16-32px - Compact sections (reduced) */
   
   /* ========================================
      BORDER RADIUS SYSTEM
@@ -444,49 +450,111 @@
 }
 
 /* ========================================
-   WV-SECTION - Mobile iOS Optimized
+   WV-SECTION - Mobile iOS Optimized with Visual Hierarchy
    ======================================== */
 
+/* Standard section spacing - balanced for content flow */
 .wv-section {
-  padding-top: 3rem;    /* 48px - Mobile First */
-  padding-bottom: 3rem; /* 48px - Mobile First */
+  padding-top: var(--space-section-content);
+  padding-bottom: var(--space-section-content);
   padding-left: 1rem;   /* 16px - Mobile First */
   padding-right: 1rem;  /* 16px - Mobile First */
 }
 
-/* Mobile iOS Safe Area Support for sections */
+/* Hero sections - more prominent spacing */
+.wv-section-hero {
+  padding-top: var(--space-section-hero);
+  padding-bottom: var(--space-section-hero);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Compact sections - tighter spacing for related content */
+.wv-section-compact {
+  padding-top: var(--space-section-compact);
+  padding-bottom: var(--space-section-compact);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Large sections - for major content blocks */
+.wv-section-lg {
+  padding-top: var(--space-section-lg);
+  padding-bottom: var(--space-section-lg);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Mobile iOS Safe Area Support for all sections */
 @supports (padding: max(0px)) {
   @media (max-width: 768px) {
-    .wv-section {
+    .wv-section,
+    .wv-section-hero,
+    .wv-section-compact,
+    .wv-section-lg {
       padding-left: max(1rem, env(safe-area-inset-left));
       padding-right: max(1rem, env(safe-area-inset-right));
-      padding-top: 2rem;    /* 32px - Kompakter auf Mobile */
-      padding-bottom: 2rem; /* 32px - Kompakter auf Mobile */
     }
   }
 }
 
+/* Responsive adjustments */
 @media (min-width: 48rem) {
-  .wv-section {
+  .wv-section,
+  .wv-section-hero,
+  .wv-section-compact,
+  .wv-section-lg {
     padding-left: 1.5rem; /* 24px */
     padding-right: 1.5rem; /* 24px */
-    padding-top: 3rem;     /* 48px */
-    padding-bottom: 3rem;  /* 48px */
   }
 }
 
 @media (min-width: 64rem) {
-  .wv-section {
+  .wv-section,
+  .wv-section-hero,
+  .wv-section-compact,
+  .wv-section-lg {
     padding-left: 2rem; /* 32px */
     padding-right: 2rem; /* 32px */
-    padding-top: 4rem;    /* 64px */
-    padding-bottom: 4rem; /* 64px */
   }
 }
 
 .section-sm {
   padding-top: var(--space-section-sm);
   padding-bottom: var(--space-section-sm);
+}
+
+/* ========================================
+   ENHANCED SPACING UTILITIES
+   ======================================== */
+
+/* Section spacing utilities for fine control */
+.wv-spacing-section-xs { margin-bottom: var(--space-section-compact); }
+.wv-spacing-section-sm { margin-bottom: var(--space-section-content); }
+.wv-spacing-section-md { margin-bottom: var(--space-section); }
+.wv-spacing-section-lg { margin-bottom: var(--space-section-lg); }
+.wv-spacing-section-xl { margin-bottom: var(--space-section-xl); }
+
+/* Top spacing utilities */
+.wv-spacing-top-section-xs { margin-top: var(--space-section-compact); }
+.wv-spacing-top-section-sm { margin-top: var(--space-section-content); }
+.wv-spacing-top-section-md { margin-top: var(--space-section); }
+.wv-spacing-top-section-lg { margin-top: var(--space-section-lg); }
+.wv-spacing-top-section-xl { margin-top: var(--space-section-xl); }
+
+/* Mobile-optimized spacing overrides */
+@media (max-width: 768px) {
+  .wv-spacing-section-mobile-sm { margin-bottom: var(--space-section-compact); }
+  .wv-spacing-section-mobile-md { margin-bottom: var(--space-section-content); }
+  .wv-spacing-section-mobile-lg { margin-bottom: var(--space-section); }
+}
+
+/* Desktop-optimized spacing overrides */
+@media (min-width: 1024px) {
+  .wv-spacing-section-desktop-sm { margin-bottom: var(--space-section-content); }
+  .wv-spacing-section-desktop-md { margin-bottom: var(--space-section); }
+  .wv-spacing-section-desktop-lg { margin-bottom: var(--space-section-lg); }
+  .wv-spacing-section-desktop-xl { margin-bottom: var(--space-section-xl); }
 }
 
 /* ========================================

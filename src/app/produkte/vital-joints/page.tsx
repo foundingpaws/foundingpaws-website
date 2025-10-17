@@ -7,6 +7,7 @@ import FadeIn from "@/components/FadeIn";
 import GlassmorphismCard from "@/components/GlassmorphismCard";
 import OptimizedImage from "@/components/OptimizedImage";
 import LoadingButton from "@/components/LoadingButton";
+import ProductHero from "@/components/ProductHero";
 import IconHeart from "@/components/icons/IconHeart";
 import IconLeaf from "@/components/icons/IconLeaf";
 import IconTarget from "@/components/icons/IconTarget";
@@ -191,92 +192,28 @@ export default function VitalJointsPage() {
         })),
       }} />
       {/* Hero Section */}
-      <section className="wv-section bg-gradient-to-br from-green to-green/90" style={{color: 'white'}}>
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <FadeIn>
-              <div>
-                <div className="inline-block pill bg-cream/15 border border-cream/25 px-5 py-2 wv-eyebrow wv-spacing-md" style={{color: 'white'}}>
-                  Gelenke & Mobilität
-                </div>
-                <h1 className="wv-h1 wv-spacing-sm" style={{color: 'white'}}>
-                  Vital Joints
-                </h1>
-                <p className="wv-lead wv-spacing-md" style={{color: 'white'}}>
-                  Für schmerzfreie Spaziergänge bis ins hohe Alter. 
-                  Unterstützt Gelenke und Beweglichkeit.
-                </p>
-                
-                {/* Social Proof */}
-                <div className="flex items-center gap-4 wv-spacing-sm">
-                  <div className="flex -space-x-2">
-                    <div className="w-8 h-8 bg-copper rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">A</div>
-                    <div className="w-8 h-8 bg-copper rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">B</div>
-                    <div className="w-8 h-8 bg-copper rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">C</div>
-                    <div className="w-8 h-8 bg-cream/20 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold">+</div>
-                  </div>
-                  <div className="text-sm" style={{color: 'rgba(255, 255, 255, 0.9)'}}>
-                    <strong>156 Hundehalter</strong> bereits auf der Warteliste
-                  </div>
-                </div>
-
-                {/* Urgency & Scarcity */}
-                <div className="bg-gradient-to-r from-copper/20 to-copper/10 border border-copper/30 rounded-2xl p-6 wv-spacing-md">
-                  <div className="flex items-center gap-3 font-bold text-lg wv-spacing-xs" style={{color: 'white'}}>
-                    <span className="text-2xl animate-pulse">⚡</span>
-                    <span>Nur noch 44 Plätze für die Warteliste verfügbar!</span>
-                  </div>
-                  <p className="wv-body wv-spacing-sm" style={{color: 'white'}}>
-                    Sichere dir jetzt deinen exklusiven <strong>10% Launch-Rabatt</strong> und werde als Erste:r über die Verfügbarkeit informiert.
-                  </p>
-                  <div className="flex items-center gap-4 text-sm" style={{color: 'rgba(255, 255, 255, 0.8)'}}>
-                    <div className="flex items-center gap-1">
-                      <span>✓</span>
-                      <span>Kostenlose Anmeldung</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <span>✓</span>
-                      <span>Jederzeit kündbar</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 wv-spacing-md">
-                  <a href="#waitlist" className="bg-copper text-cream px-8 py-4 rounded-full font-medium hover:bg-copper/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 text-base text-center">
-                    🎯 Jetzt 10% Rabatt sichern
-                  </a>
-                  <a href="#details" className="bg-white/20 text-cream px-8 py-4 rounded-full font-medium hover:bg-white/30 transition-all duration-300 text-base text-center">
-                    Mehr erfahren →
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <div className="relative">
-                <div className="relative aspect-square max-w-md mx-auto">
-                  <OptimizedImage
-                    src="/products/vital-joints/VitalJoints.png"
-                    alt="Vital Joints Produktbild"
-                    width={400}
-                    height={400}
-                    className="w-full h-full object-contain"
-                    placeholder="blur"
-                    quality={90}
-                  />
-                </div>
-                {/* Floating badges */}
-                <div className="absolute top-4 left-4 pill bg-copper text-cream px-3 py-1 text-sm font-medium">
-                  Coming Soon
-                </div>
-                <div className="absolute bottom-4 right-4 pill bg-cream/20 text-cream px-3 py-1 text-sm">
-                  Klinisch getestet
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
+      <ProductHero
+        product={{
+          key: "vital-joints",
+          title: "Vital Joints",
+          subtitle: "Gelenke, Beweglichkeit, entzündungshemmend",
+          description: "Für schmerzfreie Spaziergänge bis ins hohe Alter. Unterstützt Gelenke und Beweglichkeit.",
+          category: "Gelenke & Mobilität",
+          accent: "taupe",
+          comingSoon: true,
+          productImage: "/products/vital-joints/VitalJoints.png",
+          waitlistCount: 156,
+          remainingSpots: 44
+        }}
+        onWaitlistSubmit={async (email) => {
+          const res = await fetch('/api/newsletter/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, name: null, source: 'vital-joints-waitlist' }),
+          });
+          if (!res.ok) throw new Error('Waitlist submission failed');
+        }}
+      />
 
       {/* Benefits Section */}
       <section id="details" className="wv-section bg-cream">

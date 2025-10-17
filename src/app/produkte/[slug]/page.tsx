@@ -494,6 +494,19 @@ const products = {
   }
 };
 
+// Exclude new standalone product pages to avoid route duplication with static routes
+const excludedSlugs = new Set([
+  'shiny-coat',
+  'sensitive-skin',
+  'joint-mobility',
+  'skin-vital-omega',
+  'green-lipped-mussel',
+]);
+
+const dynamicProducts: typeof products = Object.fromEntries(
+  Object.entries(products).filter(([slug]) => !excludedSlugs.has(slug))
+) as typeof products;
+
 interface ProductPageProps {
   params: Promise<{
     slug: string;
@@ -580,7 +593,5 @@ export default async function ProductPage({ params }: ProductPageProps) {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(products).map((slug) => ({
-    slug,
-  }));
+  return Object.keys(products).map((slug) => ({ slug }));
 }

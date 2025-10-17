@@ -77,43 +77,45 @@ const testimonials = [
   }
 ];
 
-// Trust-Badges und Zertifikate
-const trustBadges = [
-  {
-    name: "Laborgeprüft",
-    description: "Qualitätssicherung durch unser eigenes Labor",
-    icon: IconQualityLab,
-    verified: true
-  },
+// Trust-Badges mit gestufter Hierarchie
+const primaryTrustBadges = [
   {
     name: "Tierärztlich geprüft",
     description: "Von Fachtierärzten entwickelt",
     icon: IconVetApproved,
-    verified: true
+    verified: true,
+    tier: "primary"
   },
+  {
+    name: "Laborgeprüft",
+    description: "Qualitätssicherung durch unser eigenes Labor",
+    icon: IconQualityLab,
+    verified: true,
+    tier: "primary"
+  }
+];
+
+const secondaryTrustBadges = [
   {
     name: "Made in Germany",
     description: "Handgefertigt in Heilbronn",
     icon: IconMadeInGermany,
-    verified: true
+    verified: true,
+    tier: "secondary"
   },
   {
     name: "100% Natürlich",
     description: "Keine künstlichen Zusätze",
     icon: IconNatural,
-    verified: true
-  },
-  {
-    name: "GMO-frei",
-    description: "Ohne gentechnisch veränderte Inhaltsstoffe",
-    icon: IconNonGMO,
-    verified: true
+    verified: true,
+    tier: "secondary"
   },
   {
     name: "Nachhaltig",
     description: "Umweltfreundliche Verpackung",
     icon: IconSustainable,
-    verified: true
+    verified: true,
+    tier: "secondary"
   }
 ];
 
@@ -196,33 +198,76 @@ export default function SocialProof() {
           </div>
         </ScrollAnimation>
 
-        {/* Trust Badges */}
+        {/* Primary Trust Badges - Hervorgehoben */}
         <ScrollAnimation>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 wv-spacing-2xl">
-            {trustBadges.map((badge, index) => (
-              <GlassmorphismCard
-                key={index}
-                className="p-6 text-center hover:scale-105 transition-transform duration-300"
-              >
-                <div className="w-12 h-12 wv-spacing-sm mx-auto text-green">
-                  <badge.icon className="w-full h-full" />
-                </div>
-                <h3 className="wv-h4 text-green wv-spacing-xs">
-                  {badge.name}
-                </h3>
-                <p className="wv-caption text-green/60 wv-spacing-xs">
-                  {badge.description}
-                </p>
-                {badge.verified && (
-                  <div className="wv-spacing-xs">
-                    <span className="inline-flex items-center gap-1 wv-caption text-copper">
-                      <span className="w-2 h-2 bg-copper rounded-full"></span>
-                      Verifiziert
-                    </span>
+          <div className="wv-spacing-2xl">
+            <div className="text-center mb-8">
+              <h3 className="wv-h3 text-green mb-2">Wissenschaftlich fundiert</h3>
+              <p className="wv-body text-green/70">Von Experten entwickelt und getestet</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {primaryTrustBadges.map((badge, index) => (
+                <GlassmorphismCard
+                  key={index}
+                  variant="strong"
+                  className="p-8 text-center hover:scale-105 transition-all duration-300 group"
+                >
+                  <div className="w-16 h-16 mb-6 mx-auto text-green group-hover:text-copper transition-colors duration-300">
+                    <badge.icon className="w-full h-full" />
                   </div>
-                )}
-              </GlassmorphismCard>
-            ))}
+                  <h3 className="wv-h3 text-green mb-3 group-hover:text-copper transition-colors duration-300">
+                    {badge.name}
+                  </h3>
+                  <p className="wv-body text-green/70 mb-4">
+                    {badge.description}
+                  </p>
+                  {badge.verified && (
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-copper/10 rounded-full">
+                      <span className="w-2 h-2 bg-copper rounded-full"></span>
+                      <span className="wv-caption text-copper font-semibold">VERIFIZIERT</span>
+                    </div>
+                  )}
+                </GlassmorphismCard>
+              ))}
+            </div>
+          </div>
+        </ScrollAnimation>
+
+        {/* Secondary Trust Badges - Kompakter */}
+        <ScrollAnimation>
+          <div className="wv-spacing-lg">
+            <div className="text-center mb-6">
+              <h4 className="wv-h4 text-green/80 mb-2">Zusätzliche Qualitätsmerkmale</h4>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
+              {secondaryTrustBadges.map((badge, index) => (
+                <GlassmorphismCard
+                  key={index}
+                  variant="subtle"
+                  className="p-6 text-center hover:scale-105 transition-all duration-300 group"
+                >
+                  <div className="w-12 h-12 mb-4 mx-auto text-green/80 group-hover:text-copper transition-colors duration-300">
+                    <badge.icon className="w-full h-full" />
+                  </div>
+                  <h4 className="wv-body font-semibold text-green mb-2 group-hover:text-copper transition-colors duration-300">
+                    {badge.name}
+                  </h4>
+                  <p className="wv-caption text-green/60 text-sm">
+                    {badge.description}
+                  </p>
+                  {badge.verified && (
+                    <div className="mt-3">
+                      <span className="inline-flex items-center gap-1 wv-caption text-copper/80">
+                        <span className="w-1.5 h-1.5 bg-copper rounded-full"></span>
+                        Verifiziert
+                      </span>
+                    </div>
+                  )}
+                </GlassmorphismCard>
+              ))}
+            </div>
           </div>
         </ScrollAnimation>
 

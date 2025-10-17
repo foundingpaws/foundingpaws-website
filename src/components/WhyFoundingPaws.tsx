@@ -1,9 +1,9 @@
 import FadeIn from "@/components/FadeIn";
 import ScrollAnimation from "@/components/ScrollAnimation";
 
-export default function WhyFoundingPaws() {
+export default function WhyFoundingPaws({ className = "" }: { className?: string }) {
   return (
-    <section className="wv-section bg-cream" aria-labelledby="why-title">
+    <section className={`bg-cream pt-2 pb-16 ${className}`} aria-labelledby="why-title">
       <div className="container-wide">
         <ScrollAnimation animation="fade-in" className="text-center mb-8 lg:mb-12">
           <div className="inline-block pill bg-copper/15 border border-copper/25 px-5 py-2 wv-eyebrow mb-4 lg:mb-6 text-copper">Unsere Mission</div>

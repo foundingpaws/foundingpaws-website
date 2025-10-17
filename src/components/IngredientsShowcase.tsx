@@ -30,7 +30,7 @@ const ingredients = [
 
 export default function IngredientsShowcase() {
   return (
-    <section id="ingredients" className="wv-section bg-gradient-to-b from-cream to-taupe/5">
+    <section id="ingredients" className="wv-section-lg bg-gradient-to-b from-cream to-taupe/5">
       <div className="container-wide">
         {/* Header */}
         <FadeIn>
